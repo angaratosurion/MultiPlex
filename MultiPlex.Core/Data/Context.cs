@@ -30,15 +30,7 @@ namespace MultiPlex.Core.Data
         {
             return new Context();
         }
-     public IDbSet<Plugin> Plugins { get; set; }
-        public IDbSet<Page> Pages { get; set; }
-        public IDbSet<News> News { get; set; }
-        public IDbSet<Category> Catgories { get; set; }
-        public IDbSet<Tag> Tags { get; set; }
-        public IDbSet<Files> Files { get; set; }
-        public IDbSet<FileType> FileTypes { get; set; }
-        public IDbSet<Comment> Comments { get; set; }
-        public IDbSet<CommentThread> CommentThreads { get; set; }
+    
 
     }
 }

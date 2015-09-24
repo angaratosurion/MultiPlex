@@ -21,6 +21,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiPlex", "MultiPlex\MultiPlex.csproj", "{3EA6CBE4-2523-4BB3-8926-9A1746774741}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiPlex.PerformanceHarnass", "MultiPlex.PerformanceHarnass\MultiPlex.PerformanceHarnass.csproj", "{79BE5A05-7292-460C-82C4-0C332DB81A73}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3EA6CBE4-2523-4BB3-8926-9A1746774741} = {3EA6CBE4-2523-4BB3-8926-9A1746774741}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiPlex.Web.Sample", "MultiPlex.Web.Sample\MultiPlex.Web.Sample.csproj", "{38F27781-7D44-475D-BA02-A1B97C0D875E}"
 EndProject
