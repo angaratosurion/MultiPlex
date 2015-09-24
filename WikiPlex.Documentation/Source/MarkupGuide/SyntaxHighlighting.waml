@@ -1,0 +1,52 @@
+{topic:conceptual=71257408-6320-46b0-93e9-cd32cf768c5f}
+{intro}Allows for a code snippet to be styled according to the language specified.{intro}
+
+{section:Syntax Highlighted Supported Languages}
+{p}Using {"{code:language}"} as shown above.{p}
+
+|| Language || Notes ||
+| aspx c# | Use for code snippets from .aspx, .ascx, .asax, .asmx, .master, and .skin files that have embedded C# code |
+| aspx vb.net | Use for code snippets from .aspx, .ascx, .asax, .asmx, .master, and .skin files that have embedded VB.NET code |
+| ashx | Use for code snippets from .ashx files |
+| c# | Use for C# code snippets |
+| {"c++"} | Use for {"C++"} code snippets |
+| vb.net | Use for VB.NET code snippets |
+| html | Use for HTML code snippets |
+| sql | Use for SQL code snippets |
+| java | Use for Java code snippets |
+| javascript | Use for JavaScript code snippets |
+| xml | Use for snippets from .xml, .config, .dbml, and .xsd files |
+| php | Use for PHP code snippets |
+| css | Use for CSS code snippets |
+| powershell | Use for Powershell code snippets |
+{section}
+
+{section:Example}
+*Source Markup*
+{{
+{code:c#}
+using System;
+public class HelloWorld
+{
+   public static void Main(params string[] args)
+   {
+   Console.WriteLine("Hello World!");
+   }
+}
+{code:c#}
+}}
+
+*Rendered Markup*
+{code:c#}
+using System;
+public class HelloWorld
+{
+   public static void Main(params string[] args)
+   {
+   Console.WriteLine("Hello World!");
+   }
+}
+{code:c#}
+{section}
+
+{topic}

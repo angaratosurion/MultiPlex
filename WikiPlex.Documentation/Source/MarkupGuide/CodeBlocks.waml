@@ -1,0 +1,32 @@
+{topic:conceptual=cbbbd875-dea7-4e9f-945c-dd6f4ddbf8a1}
+{intro}Allows for text to be formatted as code for languages in which syntax highlighting is not supported.{intro}
+{section:Multi-Line}
+*Source Markup*
+{code:none}
+{{
+   public static void Main()
+   {
+     // code goes here
+   }
+}}
+{code:none}
+
+*Rendered Markup*
+{{
+   public static void Main()
+   {
+     // code goes here
+   }
+}}
+{section}
+
+{section:Single Line}
+*Source Markup*
+{code:none}
+This is a {{ single line of text }} code.
+{code:none}
+
+*Rendered Markup*
+This is a {{ single line of text }} code.
+{section}
+{topic}

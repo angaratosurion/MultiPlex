@@ -1,0 +1,3 @@
+﻿{video:url=http://www.codeplex.com,align=leftside}
+
+{video:url=http://www.youtube.com/v/hI6hcobkqDg,type=application/x-shockwave-flash}

@@ -1,0 +1,17 @@
+{topic:conceptual=eab59302-ad12-4c3b-86c3-f6569f01baad}
+{intro}Allows for the creation of simple table layouts.{intro}
+
+{section:Example}
+*Source Markup*
+{{
+|| Table Heading 1 || Table Heading 2 || Table Heading 3 ||
+| Row 1 - Cell 1 | Row 1 - Cell 2 | Row 1 - Cell 3 |
+| Row 2 - Cell 1 | Row 2 - Cell 2 | Row 2 - Cell 3 |
+}}
+
+*Rendered Markup*
+|| Table Heading 1 || Table Heading 2 || Table Heading 3 ||
+| Row 1 - Cell 1 | Row 1 - Cell 2 | Row 1 - Cell 3 |
+| Row 2 - Cell 1 | Row 2 - Cell 2 | Row 2 - Cell 3 |
+{section}
+{topic}

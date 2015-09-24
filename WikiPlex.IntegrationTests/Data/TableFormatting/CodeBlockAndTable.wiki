@@ -1,0 +1,9 @@
+﻿{{*Tables*
+|| Table Heading 1 || Table Heading 2 || Table Heading 3 ||
+| Row 1 - Cell 1 | Row 1 - Cell 2 | Row 1 - Cell 3 |
+| Row 2 - Cell 1 | Row 2 - Cell 2 | Row 2 - Cell 3 |}}
+
+*Tables*
+|| Table Heading 1 || Table Heading 2 || Table Heading 3 ||
+| Row 1 - Cell 1 | Row 1 - Cell 2 | Row 1 - Cell 3 |
+| Row 2 - Cell 1 | Row 2 - Cell 2 | Row 2 - Cell 3 |

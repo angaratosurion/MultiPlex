@@ -1,0 +1,23 @@
+{topic:conceptual=e5a331fb-5f5a-4ed9-b020-6623ab39fe28}
+{intro}Allows for a visual break in your wiki content.{intro}
+
+{section:Example}
+*Source Markup*
+{{
+top content
+----
+bottom content
+}}
+
+{p}*Rendered Markup*{p}
+{p}
+top content
+{markup}<hr />{markup}
+bottom content
+{p}
+
+{alert:note}
+The horizontal rule must be the first thing on a line. Content can follow it, but when rendered - will render on a new line.
+{alert}
+{section}
+{topic}

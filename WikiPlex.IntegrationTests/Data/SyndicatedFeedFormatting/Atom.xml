@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-us">
+    <title type="text">cygweb</title>
+    <subtitle type="text">blather listen repeat</subtitle>
+    <id>http://alexharden.org/blog/</id>
+    <link rel="alternate" type="application/xhtml+xml" href="http://alexharden.org/blog/" />
+    <link rel="self" type="application/atom+xml" href="http://alexharden.org/blog/atom.xml"/>
+    <author>
+        <name>aharden</name>
+        <uri>http://alexharden.org/blog/</uri>
+        <email>aharden@comcast.net</email>
+    </author>
+    <rights>Creative Commons Attribution 2.5</rights>
+    <generator uri="http://www.sixapart.com/movabletype/" version="3.33">Movable Type</generator>
+    <icon>http://http://alexharden.org/blog//favicon.ico</icon>
+    <logo>http://http://alexharden.org/blog//cygweb-logo-50-wht.png</logo>
+    <updated>2006-12-16T21:20:35Z</updated>
+    <entry>
+        <title type="text">Long Live cygweb (In a new location!)</title>
+        <summary type="text">cygweb has moved to Wordpress.com! Subscribe to the new cygweb feed. Visit the new cygweb. This site will remain online as the cygweb archives circa 2002-2006. See you at the new site!...</summary>
+        <content type="html">
+            <![CDATA[<p>cygweb has moved to Wordpress.com!</p><p><a href="http://aharden.wordpress.com/feed/atom/">Subscribe to the new cygweb feed</a>.</p><p><a href="http://aharden.wordpress.com/">Visit the new cygweb</a>.</p><p>This site will remain online as the cygweb archives circa 2002-2006.</p><p>See you at the new site!</p>]]>
+        </content>
+        <category term="/misc/site_news" scheme="http://alexharden.org/blog/archives/" label="Site News" />
+        <id>http://alexharden.org/blog/archives/2006/12/long_live_cygwe.html</id>
+        <link rel="alternate" href="http://alexharden.org/blog/archives/2006/12/long_live_cygwe.html" type="application/xhtml+xml" hreflang="en" />
+        <published>2006-12-16T21:16:57Z</published>
+        <updated>2006-12-16T21:20:35Z</updated>
+    </entry>
+    <entry>
+        <title type="text">Thanks, Spammers</title>
+        <summary type="text">I've received two "high CPU" notices from my host about the CPU usage of my search and comments CGI scripts. Before the second, I tried to obfuscate the name of the comments CGI a little, and it didn't help. Since...</summary>
+        <content type="html"><![CDATA[<p>I've received two "high CPU" notices from my host about the CPU usage of my search and comments CGI scripts.  Before the second, I tried to obfuscate the name of the comments CGI a little, and it didn't help.  Since I'm hosting my blog and MHS on the same server, something's gotta give.  I doubt the spammers are hitting that site.  So for the time being I've disabled comments and search on this blog until a figure a way around this.  I'm not sure whether checking out MT's dynamic publishing is worth the work versus considering a move to WordPress.  Email me if you have comments.</p>]]></content>
+        <category term="/misc/site_news" scheme="http://alexharden.org/blog/archives/" label="Site News" />
+        <id>http://alexharden.org/blog/archives/2006/12/thanks_spammers_1.html</id>
+        <link rel="alternate" href="http://alexharden.org/blog/archives/2006/12/thanks_spammers_1.html" type="application/xhtml+xml" hreflang="en" />
+        <published>2006-12-16T21:16:57Z</published>
+        <updated>2006-12-16T21:20:35Z</updated>
+    </entry>
+    <entry>
+        <title type="text">More Stuff</title>
+        <summary type="text">We're having another boy! He's due May 9th. We had a nice 30-minute ultrasound visit with him yesterday. I've been very busy at work for the last month plus bringing up a cluster of two large Opteron-based servers running VI3...</summary>
+        <content type="html">
+            <![CDATA[<p>We're having another boy!  He's due May 9th.  We had a nice 30-minute ultrasound visit with him yesterday.</p><p>I've been very busy at work for the last month plus bringing up a cluster of two large Opteron-based servers running <a href="http://www.vmware.com/products/data_center.html">VI3 Enterprise</a>.  It's my first experience with the high-availability features of the VMware ESX platform.  It's very nice!  I've implemented a clustered iSCSI target implementation using <a href="http://www.netapp.com/products/filer/fas3000_ds.html">NetApp FAS3020</a>'s to serve as the shared storage.  Now that everything's up and integrated, it's working quite well.  Pretty soon I'll be ready to start moving real workload to the cluster.  I would work on VMware solutions full-time if I could; that's how good that software is.</p><p>I made the playoffs in the BDFL for the first time this year, but I didn't get past the first round.  Now that I've had a taste of the postseason, I want more!</p><p>Thinking about doing something different with the blog in the new year.  We'll see!</p>]]>
+        </content>
+        <category term="/misc" scheme="http://alexharden.org/blog/archives/" label="Misc" />
+        <id>http://alexharden.org/blog/archives/2006/12/more_stuff.html</id>
+        <link rel="alternate" href="http://alexharden.org/blog/archives/2006/12/more_stuff.html" type="application/xhtml+xml" hreflang="en" />
+        <published>2006-12-16T21:16:57Z</published>
+        <updated>2006-12-16T21:20:35Z</updated>
+    </entry>
+</feed>

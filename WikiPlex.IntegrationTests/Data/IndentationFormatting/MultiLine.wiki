@@ -1,0 +1,26 @@
+﻿:{
+{{
+help!
+}}
+:}
+
+:{
+more
+:}
+
+:{  
+this is a test with spaces after opening
+:}
+
+:{
+this is a test with spaces after closing
+:}  
+
+:{
+|Col 1|Col 2|Col 3|
+|Col 4|Col 5|Col 6|
+:}
+
+:{
+will not match
+::}

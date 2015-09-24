@@ -1,0 +1,34 @@
+﻿{{
+public class Foo
+{
+	// code goes here
+}
+}}
+
+{{
+public class Foo
+{
+	// code goes here
+}
+}}
+
+{{ 
+[<script>alert('Test')</script>]
+}}
+
+{{
+                                MY name is
+                                Codeplex
+}}
+
+{{# Numbered List 1
+## Numbered List 1.1
+## Numbered List 1.2
+### Numbered List 1.1.1
+# Numbered List 2
+## Numbered List 2.1}}
+
+{{*Tables*
+|| Table Heading 1 || Table Heading 2 || Table Heading 3 ||
+| Row 1 - Cell 1 | Row 1 - Cell 2 | Row 1 - Cell 3 |
+| Row 2 - Cell 1 | Row 2 - Cell 2 | Row 2 - Cell 3 |}}

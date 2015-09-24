@@ -1,0 +1,13 @@
+{topic:conceptual=540BFA61-5C12-4B81-8DA8-79E4325089A4}
+{p}Version 1.3 was released on March 11, 2010{p}
+
+{section:Changes in This Release}
+# *+Documentation+* - This new documentation includes
+## Full Markup Guide with Examples
+## Articles on Extending WikiPlex
+## API Documentation
+# *+Video Macro+* - This macro was updated to support Channel9 Videos.
+# *+Syntax Highlight Support+* - One more language has been included:
+## {"{"}code:powershell} ... Your Powershell Code ... {"{"}code:powershell}
+{section}
+{topic}

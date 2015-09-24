@@ -1,0 +1,17 @@
+﻿this is *my* content
+it *should* be bolded
+correctly
+*this* content *is* rendered
+*{"correctly*for"}* the *output* that
+*is expected
+of*
+{"**"}
+{{ rendering * the }}
+*{{ content * correctly }}*
+*some {{ content * correctly }} some*
+>{*this is some content temp*}>
+<{*this is some content temp*}<
+*A [] {"*"} A*
+* list, not bold
+* list, *with bold*
+* list, not bold*

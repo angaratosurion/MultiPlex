@@ -1,0 +1,3 @@
+﻿{code:invalid}
+this should render as regular code
+{code:invalid}

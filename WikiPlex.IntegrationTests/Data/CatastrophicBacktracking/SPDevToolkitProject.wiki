@@ -1,0 +1,163 @@
+﻿! SPaDevToolkit Core Library Documentation
+!! Overview
+The SPaDevToolkit Core Library contains classes used to accelerate the building of custom SharePoint applications. Using these classes, the following reusable components and applications can be built:
+* *SharePoint Business Objects* - These are like traditional business objects that contain business rules and access data access objects to store and retrieve data from an underlying data store. The difference is these objects are geared toward manipulation of SharePoint content such as lists items that have the SharePoint content database as the backend data store.
+* *Controls* - These are the UI components of custom applications that include the management of list items as a core feature. These controls are tightly integrated with List Item Business Objects to simplify the management of list items.
+!!!! SharePoint Business Objects
+The Core Library define classes from which to build custom business objects. It also contains utility classes that can be used in conjunction with business objects for simplifying data access. The Core Library can be divided into the following categories:
+* List Item Business Objects - Base classes for defining business objects that manipulate list items
+* Data Access - Classes used to access various type of list item fields and convert between common SharePoint field types and .NET types.
+!!!! Controls
+The classes in this category are used to build UI components for custom applications
+* Form Controls - Classes used to create SharePoint forms, ex. List item forms.
+* Pages - Classes used to build various type of SharePoint pages that contain custom logic
+
+!! Creating Business Objects for List Items:
+* List Item Business Objects classes are created by deriving from {{SPaListItem}} which is defined in the core library:
+{{
+	[Serializable]
+	public class TripLogListItem : SPaListItem<TripLogListItem>
+}}
+{{SPaListItem}} defines properties that uniquely identify list items including list id and item id. It also includes methods for retrieving, creating, updating and deleting list items.
+* Derived classes add custom logic by first defining *properties* that represent the custom columns of the list the business object represents. For example, the {{TripLogListItem}} class whose declaration is shown above defines a property called TripDate that records the date of trip. There is a date column in a SharePoint list that corresponds to this property:
+{{
+        private DateTime _TripDate;
+        /// <summary>
+        /// Date of trip
+        /// </summary>
+        public DateTime TripDate
+        {
+            get { return _TripDate; }
+            set { _TripDate = value; }
+        }
+}}
+* The derived class overrides the {{SetProperties()}} method to set custom properties given a {{SPListItem}} object retrieved by the base class:
+{{
+        protected override void SetProperties(Microsoft.SharePoint.SPListItem listItem)
+        {
+            //Extract list item field values using standard conversion functions defined on the 
+	    //SPaFieldConverter class for standard field types
+            _TripDate = SPaFieldConverter.GetDateTimeField(listItem, "Trip_x0020_Date");
+            o
+            o
+            o
+            o
+            base.SetProperties(listItem);
+        }
+}}
+The implementer can use one of many conversion methods defined by the {{SPaFieldConverter}} class that retrieve (or set) values from a field in the list and convert to a .NET type suitable for the business object property that represents the field. In the case above, the derived class calls the {{GetDateTime()}} method to retrieve a value from the *Trip_x0020_Date* field of the list item.
+* In a corresponding manner, the derived class overrides the {{SetFields()}} method of {{SPaListItem}} to set list item fields using property values. {{SetFields()}} is called by the base class when the business object is being saved.
+{{
+        protected override void SetFields(Microsoft.SharePoint.SPListItem listItem)
+        {
+            SPaFieldConverter.SetDateTimeField(listItem, "Trip_x0020_Date", _TripDate);
+            o
+            o
+            o
+            o
+            base.SetFields(listItem);
+        }
+
+}}
+* When a list item is created the {{Create()}} method of {{SPaListItem}} is called. The derived class overrides this method to perform initialization or other business logic:
+{{
+        protected override void Create()
+        {
+            _TripDate = DateTime.Now.Date;
+
+            base.Create();
+        }
+
+}}
+
+* *Create a new list item* - To create a new list item, the client using the business objects uses code similar to the following:
+{{
+	ListItem = SPaListItem<TripLogListItem>.CreateListItem(new SPaListInfo(_ListID, _WebUrl));
+}}
+The *_ListID* and *_WebUrl* variables contain the id of the list where the item is created and the Url of the site where the list is located, respectively. These values are usually populated from the current context such as the QueryString variable containing the list id or the SPContext.Current.Web object. {{CreateListItem()}} initializes a new instance of the specified business object type and calls the {{Create()}} method allowing the business object to perform custom initialization.
+{{ListInfo}} is a structure that uniquely identifies a list.
+* *Get an existing list item* - To retrieve an existing list item, the client uses code similar to the following:
+{{
+	ListItem = SPaListItem<TripLogListItem>.GetListItem(new SPaListInfo(_ListID, _WebUrl), _ItemID);
+}}
+*_ItemID* contains the integer id of the item on the list. {{GetListItem()}} instantiates an instance of the business object and sets default properties defined by the base class such as *LastModifiedDate*, *CreateDate*, etc. {{GetListItem()}} then calls {{SetProperties()}} (see above) allowing the business object to set properties from fields in the list item it retrives using the SharePoint API.
+* *Save a list item* - To save a list item, the client using the business objects uses code similar to the following:
+{{
+            o
+            o
+            ListItem.TripDate = dtTripDate.SelectedDate;
+            o
+            o            
+            ListItem.Save();
+
+}}
+The client (a Web Control or Page for example) sets the properties of the business object and calls the {{Save()}} method to persist the changes in SharePoint. The {{Save()}} method of {{SPaListItem}} determines if the business object represents a new item (created using {{CreateListItem()}}) or an existing item (created using {{GetListItem()}}). {{Save()}} calls the {{SetFields()}} method allowing the business object to save properties to list item fields. Then, based on whether the object represents a new or existing object, it creates a new list item or updates an existing one using the SharePoint API.
+!! Creating a User Interface to Edit List Items:
+By default, every list in SharePoint has forms associated with it that allow users to create new items, view existing items and edit existing items. If these forms are nor explicitly assigned, SharePoint generates controls for list item fields dynamically at run-time. However, the SharePoint object model allows developers to create custom forms and assign them to lists. This allows for the creation of forms with more sophisticated UI presentation and logic that is not avaialble in standard forms (ex. AJAX, 3rd-Party controls, custom controls, etc.). SPaDevToolkit takes advantage of this extension mechanism and supplements it in a way that allows for simple creation of forms targetted for SharePoint.
+* *Create a Form Control* - A Form Control encapsulates the entire presentation and logic for managing a list item. A form control inherits from {{SPaListItemFormControl}}.
+{{
+    public partial class TripLogListControl : SPaListItemFormControl<TripLogListControl, TripLogListItem>
+
+}}
+{{SPaListItemFormControl}} derives from {{System.Web.UI.UserControl}}. This allows derived classes to benefit from the design and run-time capabilities available to User Controls. To create a Form Control, the developer adds a UserControl to a Web Project. By default, the newly created control derives from UserControl. To transform the control into a SPaDevToolkit form control, the developer simply replaces the derivation from {{UserControl}} with a derivation from {{SPaListItemFormControl}}.
+
+As part of the control class declaration, the developer supplies 2 additional type parameters  with the {{SPaListItemFormControl}} generic class - {{TControl}} and {{TItem}}. 
+
+{{TControl}} is the first type parameter. It specified the type of the control class customer itself. In the example above, this is {{TripLogListControl}}. The second type parameter, {{TItem}} is the type of the business logic class that manages the business logic for the list item. Together, the control and business object classes work in tandem to define the UI, Business Logic and Data Access Layers of a mult-tier application that manages list items. This is a familiar concept to most developers and therefore simplifies that transition form developing straight ASP.NET interfaces to developing those same interfaces for SharePoint. The difference is that the model provided here hides a lot of the details of interacting with the SharePoint object model and allows the developer to focus on the UI and core Business Logic.
+* *Developing the Control Presentation* - Create the presentation for a form control is just like creating any other Web UserControl. A snapshot in Visual Studio 2008 design mode of the sample control we use in this document is illusrated below:
+[image:TripLogListFormControl.JPG]
+* *Developing the Control Logic*
+** *{{Page_Load()}}* - The derived control should override the {{Page_Load()}} event method:
+{{
+        protected override void Page_Load(object sender, EventArgs e)
+}}
+** The first call inside {{Page_Load()}} should be to the overriden base class method:
+{{
+            //Initialize the list item (ListItem property)
+            base.Page_Load(sender, e);
+}}
+The base class method initializes an instance of the Business Object using the type specified in the Control class declaration. In this case it is {{TripLogListItem}}. The base class method does the following:
+*** Parses the QueryString to determine the context of the form, including the form mode (i.e. New, Display, Edit) and the identity of the list and list item. The identity of the list and list item are passed in the QueryString by SharePoint.
+*** Instantiates the Business Object. On initial load the Business Object is instantiated using {{SPaListItem.CreateListem()}} or {{SPaListItem.GetListItem()}} depending on whether the form mode is for a new item or not. On PostBack, the method retrieves the Business Object from ViewState where it is saved during the initial load. The Business Object is saved to the {{ListItem}} property of the base class and is available to the derived class on return from {{Page_Load()}}.
+** Back in the derived control's {{Page_Load()}} method, the control can then set control properties using properties of the Business Object saved in {{ListItem}}.
+{{
+            dtTripDate.SelectedDate = ListItem.TripDate;
+            txtPurpose.Text = ListItem.Purpose;
+            txtDescription.Text = ListItem.Description;
+            txtTotalMiles.Text = ListItem.TotalMiles.ToString();
+            txtExpenses.Text = ListItem.Expenses.ToString();
+}}
+** *Save Logic* - Other than setting control properties as shown above, at a minimum the control should define logic for saving the list item when the user clicks OK.
+{{
+            try
+            {
+                if (Page.IsValid)
+                {
+                    Save();
+                    RedirectToParentList(lblErrorMsg);
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowFormError("Error saving Trip Log item: " + ex.Message, lblErrorMsg);
+            }
+
+}}
+If page validation passes, the control can save control properties back to the corresponding properties of the business object and persist the business object.
+{{
+        private void Save()
+        {
+            ListItem.Description = txtDescription.Text;
+            ListItem.Purpose = txtPurpose.Text;
+            ListItem.TripDate = dtTripDate.SelectedDate;
+            ListItem.MetWith = ppMetWith.CommaSeparatedAccounts.Split(',');
+            ListItem.Link = txtRelatedLink.Text;
+            ListItem.TotalMiles = string.IsNullOrEmpty(txtTotalMiles.Text.Trim()) ? 0 : decimal.Parse(txtTotalMiles.Text);
+            ListItem.Expenses = string.IsNullOrEmpty(txtExpenses.Text.Trim()) ? 0 : decimal.Parse(txtExpenses.Text);
+            ListItem.VisitType = (VisitType)Enum.Parse(typeof(VisitType), radVisitType.SelectedValue);
+            
+            ListItem.Save();
+        }
+}}
+!! Summary
+Above we described the components of the SpaDevToolkit Core library. We also provided the basic steps for creating a List Item Business Object class and corresponding Form Item Control. Together, these classes define the business logic and ASP.NET-based UI for editing list items. See the Simple Form Sample included in the release. The binary release contains a working sample solution that can be deployed and run. The source code release contains the source code for all of the SPaDevToolkit and samples. Enjoy!

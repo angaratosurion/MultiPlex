@@ -1,0 +1,21 @@
+{topic:conceptual=57ecfd5f-d23e-4465-9583-1107cb50527e}
+{section:Formatting and Layout Listing}
+{p}This page provides a guide for doing simple formatting utilizing various macros.{p}
+
+* [Basic Text Formatting|3b411c31-7368-4d52-84dd-d9844ffec80f]
+* [Text Alignment|f47d6f1c-c58d-4a7d-a865-a7824defb9e9]
+* [Headings|3ffc30c8-8f25-409e-a00e-115f7baec535]
+* [Code Blocks|cbbbd875-dea7-4e9f-945c-dd6f4ddbf8a1]
+* [Escaped Markup|5ad5f2ee-12a9-454b-bd58-f40766a1700e]
+* [Lists|a38f3c7f-6f2f-4e7d-9e52-27af1ffc1a0f]
+* [Tables|eab59302-ad12-4c3b-86c3-f6569f01baad]
+* [Horizontal Rules|e5a331fb-5f5a-4ed9-b020-6623ab39fe28]
+
+{alert:note}
+_Block level tags include headings, lists, tables, and multi-line formatted text_
+* Tag must be the first thing on the line
+* Closing tag must be the last thing on the line
+* There should be no leading or trailing whitespace
+{alert}
+{section}
+{topic}

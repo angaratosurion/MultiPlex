@@ -1,0 +1,27 @@
+{topic:conceptual=3b411c31-7368-4d52-84dd-d9844ffec80f}
+
+{intro}Allows for simple formatting of wiki text{intro}
+
+{section:Source Markup}
+{{
+*bold*
+_italics_
++underline+
+--strikethrough--
+I am^^superscript^^
+I am,,subscript,,
+}}
+{section}
+
+{section:Rendered Markup}
+{markup}
+<b>bold</b><br />
+<i>italics</i><br />
+<u>underline</u><br />
+<strike>strikethrough</strike><br />
+I am<sup>superscript</sup><br />
+I am<sub>subscript</sub>
+{markup}
+{section}
+
+{topic}

@@ -1,0 +1,132 @@
+﻿! Wiki Markup Guide - Format & Layout
+This page provides a guide for doing simple formatting and layout within a wiki page.
+
+!! Basic Formatting
+_Allows for simple formatting of wiki text._
+
+!!!!! Source Markup
+{{
+*bold*
+_italics_
++underline+
+}}
+
+!!!!! Rendered Markup
+*bold*
+_italics_
++underline+
+
+!! Code Block
+_Allows for text to be formatted as code for languages in which syntax highlighting is not supported._
+
+!!!!! Source Markup
+{{
+// multi-line
+{{
+   public static void Main()
+   {
+     // code goes here
+   }
+}}
+
+// single line
+{{ single line of text }}
+}}
+
+!!!!! Rendered Markup
+// multi-line
+{{
+   public static void Main()
+   {
+     // code goes here
+   }
+}}
+
+// single line
+{{ single line of text }}
+
+
+!! Headings
+_Allows formatting text as a header._
+
+!!!!! Source Markup
+{{
+! Heading 1
+!! Heading 2
+!!! Heading 3
+!!!! Heading 4
+!!!!! Heading 5
+!!!!!! Heading 6
+}}
+
+!!!!! Rendered Markup
+! Heading 1   
+!! Heading 2
+!!! Heading 3
+!!!! Heading 4
+!!!!! Heading 5
+!!!!!! Heading 6
+
+
+!! Escaped Markup
+_Allows use of wiki formatting characters as literal text._
+
+!!!!! Source Markup
+{{
+{"text with *unrendered* wiki markup"}
+}}
+
+!!!!! Rendered Text
+{"text with *unrendered* wiki markup"}
+
+*Note: Only use vertical (not curly) quotes to ensure that formatting will not apply.*
+
+!! Lists
+_Allows for the creation of bullted or numbered lists._
+
+!!!!! Source Markup
+{{
+* Bulleted List 1
+** Bulleted List 2
+*** Bulleted List 3
+
+# Numbered List 1
+## Numbered List 1.1
+### Numbered List 1.1.1
+# Numbered List 2
+## Numbered List 2.1
+}}
+
+!!!!! Rendered Markup
+* Bulleted List 1
+** Bulleted List 2
+*** Bulleted List 3
+
+# Numbered List 1
+## Numbered List 1.1
+### Numbered List 1.1.1
+# Numbered List 2
+## Numbered List 2.1
+
+
+!! Tables
+_Allows for the creation of simple table layouts._
+
+!!!!! Source Markup
+{{
+|| Table Heading 1 || Table Heading 2 || Table Heading 3 ||
+| Row 1 - Cell 1 | Row 1 - Cell 2 | Row 1 - Cell 3 |
+| Row 2 - Cell 1 | Row 2 - Cell 2 | Row 2 - Cell 3 |
+}}
+
+!!!!! Rendered Markup
+|| Table Heading 1 || Table Heading 2 || Table Heading 3 ||
+| Row 1 - Cell 1 | Row 1 - Cell 2 | Row 1 - Cell 3 |
+| Row 2 - Cell 1 | Row 2 - Cell 2 | Row 2 - Cell 3 |
+
+
+!!!! Note on block level tags
+_Block level tags include headings, lists, tables, and multi-line formatted text_
+* Tag must be the first thing on the line
+* Closing tag must be the last thing on the line
+* There should be no leading or trailing whitespace

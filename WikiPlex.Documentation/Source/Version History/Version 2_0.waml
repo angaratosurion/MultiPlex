@@ -1,0 +1,27 @@
+{topic:conceptual=83333494-71a8-4418-b77b-5cb218350fe3}
+{p}Version 2.0 was released on November 16, 2010{p}
+
+{section:Changes in This Release}
+# +*Breaking Changes from v1.x*+
+## All renderers have been moved into the namespace {{WikiPlex.Formatting.Renderers}} from {{WikiPlex.Formatting}}. This also includes the {{IRenderer}} interface.
+## The following interfaces have been removed: {{IMacroCompiler}}, {{IMacroParser}}, and {{IFormatter}}.
+## The classes {{MacroParser}} and {{MacroFormatter}} have been renamed to {{Parser}} and {{Formatter}}, respectively.
+# +*New Features*+
+## There is a new base {{Renderer}} class that encapsulates and simplifies common implementations.
+## Ordered and Unordered lists can now be interleaved.
+### For example: level one can be Ordered items while level two can be Unordered items, etc.
+### The macros {{OrderedListMacro}} and {{UnorderedListMacro}} have been merged into a single {{ListMacro}}.
+### Intermixing of different list types on the same level is unsupported.
+## Images can now contain height and width parameters on the image resource.
+### Similarly to other macros, they're specified as "http://foo.com/image.gif,height=220,width=380".
+### You can use any unit type - ie Pixel, Percent, etc.
+## A new multi-line indentation macro was added with the syntax of {":{ ... :}"} so that content that normally spanned multiple lines (tables, lists, etc) can be indented.
+### The {":{ and :}"} need to be placed on separate lines encapsulating the content. 
+### You can have N number of colons to indicate level of indentation.
+### The number of starting and ending colons must match in order for the macro to be valid.
+## Headings can now be indented on a single line by simply specifying the indentation macro, ie ": ! Heading"
+## Two new overloads were added to IWikiEngine that accept an {{IEnumerable<IRenderer>}}. This is an exclusive list the engine will use to format, similarly to overload that takes macros.
+## The {{ScopeRendered}} event on {{Formatter}} now also includes {{RenderedContent}}.
+## The sample application now supports unicode characters as internal wiki page links.
+{section}
+{topic}

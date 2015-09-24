@@ -1,0 +1,4 @@
+﻿>{
+This is right aligned text
+<{This is left aligned text}<
+}>

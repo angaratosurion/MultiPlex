@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{D37692E4-88B3-4E84-9D13-FCD44D766624}"
+	ProjectSection(SolutionItems) = preProject
+		Build.cmd = Build.cmd
+		BuildScript.ps1 = BuildScript.ps1
+		License.txt = License.txt
+		Sample-ReadMe.txt = Sample-ReadMe.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WikiPlex", "WikiPlex\WikiPlex35.csproj", "{3EA6CBE4-2523-4BB3-8926-9A1746774741}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3EA6CBE4-2523-4BB3-8926-9A1746774741}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EA6CBE4-2523-4BB3-8926-9A1746774741}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EA6CBE4-2523-4BB3-8926-9A1746774741}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EA6CBE4-2523-4BB3-8926-9A1746774741}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+EndGlobal

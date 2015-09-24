@@ -1,0 +1,118 @@
+{topic:walkthrough=7adac8bd-196c-44e6-8547-cc161f5beb1e}
+{intro}
+{p}_[url:Originally Posted|http://blog.eworldui.net/post/2009/07/Extending-WikiPlex-with-Custom-Macros.aspx] on July 24, 2009_{p}
+{p}
+Extending WikiPlex will be done via macros, scope augmenters, and renderers.
+
+# *Macros encapsulate rules for matching segments of content.*
+# *Macro rules are regular expressions that map matches to scopes.*
+# *Scopes are contextual identifiers.*
+# Scope Augmenters insert/remove scopes per macro match.
+# Renderers take scopes and expand them into a HTML formatted representation of the macro.
+{p}
+{intro}
+
+{procedure:Extending With New Macros}
+{step}
+{p}*Scenario*{p}
+{p}
+We would like to integrate WikiPlex into an existing application. The idea is to allow a user contributed area specifically for wiki content. 
+The user should be allowed to use all out-of-the-box macros provided, but also have the ability to have inter-wiki links with the format of {"[Title of Page]"}. 
+As you probably realized, there is currently no macro/renderer that will take that content and turn it into a inter-wiki link, so we'll have to extend WikiPlex adding this functionality.
+{p}
+{step}
+
+{step}
+{p}*Create a Macro*{p}
+{p}
+When creating a macro, you're going to have to dust off that copy of RegexBuddy you probably don't have installed anymore. Why? Well, as previously stated, 
+macro rules are regular expressions - and unless you're a regex guru, you won't be able to do this ad-hoc without a great tool. Let's get started - so in your 
+solution, create a class called TitleLinkMacro, and extend it from {{WikiPlex.Compilation.Macros.IMacro}}. You'll then implement the members it requires ({{Id}} and {{Rules}}). 
+{p}
+{alert:note}
+    The Id value is simply a string that is used as a key for static macro registration and macro compilation, so it should be unique (rule of thumb, give it 
+    the name of your class but with spaces).
+{alert}
+{p}
+Now, its time to define your macro rules. As you may have noticed, I kept "rule" plural. The reason, is that the majority of macros you will create need to have an initial "escaped" rule. This rule 
+basically stops the regex from matching within code blocks, between curly braces, and possibly between square brackets. Since our macro utilizes square brackets, 
+we'll use the escape rule of {{CurlyBraceEscape}}.
+{p}
+{step}
+
+{step}
+{p}*Define Your Regex*{p}
+{p}
+Next, you'll define your regex (with extreme caution!) utilizing capturing groups to identify scopes. If you take a look at the code, you may not think 
+that the scope identification is zero based - don't be fooled, it really is! Identifying an index 0 scope indicates the full match for that rule. 
+When creating your capturing groups, you can have any number, allowing for fine granularity when rendering. So, let's take a look at the sample project's macro's rules.
+{p}
+{code:c#}
+public IList<MacroRule> Rules {   
+	get {      
+		return new List<MacroRule> {         
+			new MacroRule(EscapeRegexPatterns.CurlyBraceEscape),         
+			new MacroRule(@"(?i)(\[)(?!\#|[a-z]+:)((?>[^\]]+))(\])",                 
+						  new Dictionary<int, string> {                    
+								{ 1, ScopeName.Remove },
+								{ 2, WikiScopeName.WikiLink },
+								{ 3, ScopeName.Remove }
+						  })      
+		};   
+	}
+}
+{code:c#}
+{p}
+As you can see, the regular expression is indicating that I should match 3 scopes per overall match. The scope "Remove" does just that. 
+It removes the captured content when rendering. The WikiLink scope name is one that was created specifically for the sample. For the non-regex savvy developer, the regex reads:
+{p}
+# Use case insensitive matching from this point on
+# Match the character {""[""}
+# Match any character until {""]""} is found
+## But do not match if the character is preceded
+### by the "#" character
+### or by any character between a-z, one or more times, followed by a ":" character
+# Match the character "]"
+{p}Our scope to step matching then is{p}
+# {{Remove}} {""[""}
+# {{WikiLink}} any content
+# {{Remove}} {""]""}
+{p}
+Defining macro rules is a fairly straight forward process, just keep in mind that the order of the macro rules is *+important!+* 
+You should also realize that if you wish to allow nesting of rules (for example, italicize bolded text) the italics and bold 
+macro rules cannot be apart of the same macro. This, again, is because the macro rules are combined to build a large regular 
+expression - and each rule is treated as an "or" statement.
+{p}
+{step}
+
+{step}
+{p}*Registering a Macro*{p}
+{p}
+After you have created your macro, you need to register it with WikiPlex. You have two ways of doing this - statically and dynamically. 
+When statically registering macros, you simply need to have the following code in your application startup method
+{p}
+{code:c#}
+Macros.Register<TitleLinkMacro>();
+{code:c#}
+{p}
+When you call the {{WikiEngine.Render("content")}}, it will automatically pick up your macro, compile it, and use it when parsing 
+the wiki content. Dynamically loading your macros is useful when you require a different set of macros to be executed than what is 
+normally registered. For example, in CodePlex - we have a different set of allowed macros between editing a project's wiki content 
+and editing your personal statement. Dynamically loading is achieved by utilizing one of the WikiEngine.Render overloads:
+{p}
+{code:c#}
+WikiEngine.Render("content", new IMacro[] { new WikiTitleLinkMacro() });
+{code:c#}
+{p}The only caveat of this approach, is that it will +*only*+ use that macro when parsing your wiki content.{p}
+{step}
+
+{step}
+{p}*Summary*{p}
+{p}
+This is just the tip of the extensibility for WikiPlex. Creating your own macro is a great. Simply be cautious of your regular 
+expression as it could have negative side effects (catastrophic backtracking) that will bring your site to a screeching halt! 
+In the next installment, we'll take this scenario to the next step by creating a renderer for your macro.
+{p}
+{step}
+{procedure}
+{topic}

@@ -1,0 +1,10 @@
+﻿* Unordered 1
+*** Unordered 1.1
+** Unordered 1.2
+### Ordered 1.2.1
+*** Ordered 1.2.2
+### Ordered 1.2.3
+**** Unordered 1.2.3.1
+##### Unordered 1.2.3.1.1
+##### Unordered 1.2.3.1.2
+** Unordered 1.3

@@ -1,0 +1,42 @@
+{topic:conceptual=a38f3c7f-6f2f-4e7d-9e52-27af1ffc1a0f}
+{intro}Allows for the creation of bullted or numbered lists.{intro}
+
+{section:Example}
+*Source Markup*
+{{
+* Bulleted List 1
+** Bulleted List 2
+*** Bulleted List 3
+
+# Numbered List 1
+## Numbered List 1.1
+### Numbered List 1.1.1
+# Numbered List 2
+## Numbered List 2.1
+
+* Bulleted List 1
+## Numbered List 1.1
+*** Bulleted List 1.1.1
+* Bulleted List 2
+## Bulleted List 2.1
+}}
+
+*Rendered Markup*
+* Bulleted List 1
+** Bulleted List 2
+*** Bulleted List 3
+
+# Numbered List 1
+## Numbered List 1.1
+### Numbered List 1.1.1
+# Numbered List 2
+## Numbered List 2.1
+
+
+* Bulleted List 1
+## Numbered List 1.1
+*** Bulleted List 1.1.1
+* Bulleted List 2
+## Bulleted List 2.1
+{section}
+{topic}

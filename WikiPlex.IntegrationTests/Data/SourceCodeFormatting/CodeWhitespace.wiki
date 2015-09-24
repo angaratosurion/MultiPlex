@@ -1,0 +1,36 @@
+﻿{code:aspx c#}
+<%@ Page Language="C#" %>
+
+<%-- Comments --%>
+<%-- 
+    In overview:
+
+     - The transactional memory allows application code to perform updates
+       in place, with per-transaction logs of the values overwritten.
+
+     - Conflicts between transactions are detected through versioning
+       information.  This is normally held in the multi-use-word (MUW) in an
+       object's header, but it can be displaced to the external multi-use
+       object if the MUW is already in use (e.g. because the object has had
+       its hashcode taken, or because it has a lock associated with it).
+
+     - Write enlistments are visible: each object can be enlisted for
+       update by at most one transaction at a time.  This is reflected in
+       the versioning header.  If there is a conflict when T1 encounters
+       an object already enlisted by T2 then, currently T1 becomes invalid
+       and is re-executed.
+
+     - Read enlistments are invisible: each object can be enlisted for
+       read by more than one transaction at a time; this is reflected
+       solely in the per-transaction logs.  Conflicts are detected only in
+       calls to commit and validate.
+
+--%>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Master page title</title>
+</head>
+<body>
+</body>
+</html>
+{code:aspx c#}

@@ -1,0 +1,63 @@
+﻿{topic:conceptual=75c1120e-3807-4896-b9af-7325866ae183}
+
+{intro}
+{p}WikiPlex is a regular expression based wiki engine that allows developers to integrate a wiki experience into an existing .NET application seamlessly and with little effort. Built and used by the CodePlex team, WikiPlex has been thoroughly tested in real-world scenarios!{p}
+{intro}
+
+{section:What and Why?}
+{p}
+	[url:CodePlex|http://www.codeplex.com] previously had a decent wiki engine that was written eon's ago. On the average, that wiki engine worked relatively well, but had a 
+    very problematic performance bug that would cause rendering slowness occasionally. So, instead of attempting to fix the bug, we 
+    decided to re-write the entire thing with the intensions of making it available to everyone! This time, we chose a different 
+    approach for parsing the wiki markup (utilizing regular expressions) which has proven to give us a performance boost as well as 
+    a relatively simpler architecture!
+{p}
+{p}
+	The main question you may be asking yourself is - Why use WikiPlex over a different solution? Here's the simple answer: WikiPlex 
+    is great if you already have a .NET application you'd like to embed a wiki interface into. Be it as simple as allowing users to 
+    host their own homepage content, item descriptions, or comments - the possibilities are endless!
+{p}
+{section}
+
+{section:Usage}
+{p}WikiPlex was built in a way that it can easily be added into your infrastructure. Whether your using dependency injection or not, the code is as simple as the following:{p}
+{code:c#}
+	var engine = new WikiPlex.WikiEngine();
+	string output = engine.Render("This is my wiki source!");
+{code:c#}
+{p}If you take a look at the overloads for Render, you'll see that you have a lot of flexibility as far as rendering various wiki segments differently at runtime.{p}
+{code:c#}
+	public interface IWikiEngine
+	{
+    string Render(string wikiContent);
+    string Render(string wikiContent, Formatter formatter);
+    string Render(string wikiContent, IEnumerable<IMacro> macros);
+    string Render(string wikiContent, IEnumerable<IRenderer> renderers);
+    string Render(string wikiContent, IEnumerable<IMacro> macros, IEnumerable<IRenderer> renderers);
+    string Render(string wikiContent, IEnumerable<IMacro> macros, Formatter formatter);
+	}
+{code:c#}
+{section}
+
+{section:Supported Macros}
+{p}The following are the macros supported out of the box for WikiPlex. If you'd like to see the description and usage, please visit the markup guide.{p}
+* [Text Formatting|3b411c31-7368-4d52-84dd-d9844ffec80f]
+** Bold
+** Italics
+** Underline
+** Strikethrough
+** Superscript
+** Subscript
+* [Headings|3ffc30c8-8f25-409e-a00e-115f7baec535]
+* [Images|be85c923-9c71-464a-8727-7f13da79ab5f]
+* [Links|f705c6f5-95f2-4ccc-bed9-b6fb9e578947]
+* [Tables|eab59302-ad12-4c3b-86c3-f6569f01baad]
+* [Left / Right Aligned|f47d6f1c-c58d-4a7d-a865-a7824defb9e9] and Indented Text
+* [Ordered and Unordered Lists|a38f3c7f-6f2f-4e7d-9e52-27af1ffc1a0f]
+* [RSS / Atom Feeds|929eb036-b893-41d5-b9c6-5f6c7db7275f]
+* Source Code Blocks (both [syntax highlighted|71257408-6320-46b0-93e9-cd32cf768c5f] and [not|cbbbd875-dea7-4e9f-945c-dd6f4ddbf8a1])
+* [Silverlight|c57ee9bf-4e49-43cc-8326-c97dfe5773e2]
+* [Videos|1957ba74-0964-4cab-995a-d1ec2afd57a0] (Flash, Quicktime, Real, Windows Media, YouTube, Channel9, and Vimeo)
+{section}
+
+{topic}

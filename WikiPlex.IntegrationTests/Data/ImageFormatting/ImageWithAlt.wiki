@@ -1,0 +1,3 @@
+﻿[image:My Image|http://localhost/image.gif]
+[image:My Image|https://localhost/image.gif]
+[image:My Image|data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==]

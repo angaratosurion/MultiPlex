@@ -1,0 +1,51 @@
+{topic:conceptual=f705c6f5-95f2-4ccc-bed9-b6fb9e578947}
+{intro}External links allow you to link to any url.{intro}
+
+{section:Basic Example}
+*Source Markup*
+{{
+[url:http://wikiplex.codeplex.com]
+[url:WikiPlex|http://wikiplex.codeplex.com]
+[url:Email Someone|mailto:someone@someurl.com]
+}}
+
+*Rendered Markup*
+{p}[url:http://wikiplex.codeplex.com]{p}
+{p}[url:WikiPlex|http://wikiplex.codeplex.com]{p}
+{p}[url:Email Someone|mailto:someone@someurl.com]{p}
+{section}
+
+{section:File Links}
+{p}_File links allow you to link to files that will prompt the user to download._{p}
+*Source Markup*
+{{
+[file:http://wikiplex.codeplex.com/SourceControl/ListDownloadableCommits.aspx#DownloadLatest]
+[file:Download Latest Source|http://wikiplex.codeplex.com/SourceControl/ListDownloadableCommits.aspx#DownloadLatest]
+}}
+
+*Rendered Markup*
+{p}[file:http://wikiplex.codeplex.com/SourceControl/ListDownloadableCommits.aspx#DownloadLatest]{p}
+{p}[file:Download Latest Source|http://wikiplex.codeplex.com/SourceControl/ListDownloadableCommits.aspx#DownloadLatest]{p}
+{section}
+
+{section:Anchors}
+{p}_Anchors are links that allow you to link to certain content via a hashtag._{p}
+*Source Markup*
+{{
+// create an anchor
+{anchor:anchorName}
+
+// link to an anchor
+[#anchorName] 
+}}
+
+*Rendered Markup*
+{markup}
+// create an anchor<br />
+<a name="anchorName"></a>
+<br /><br />
+// link to an anchor<br />
+<a href="#anchorName">anchorName</a>
+{markup}
+{section}
+{topic}

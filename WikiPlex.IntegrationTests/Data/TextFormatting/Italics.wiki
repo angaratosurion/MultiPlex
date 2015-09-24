@@ -1,0 +1,14 @@
+﻿this is _my_ content
+it _should_ be italicized
+correctly
+_this_ content _is_ rendered
+_{"correctly_for"}_ the _output_ that
+_is expected
+of_
+{"__"}
+{{ rendering _ the }}
+_{{ content _ correctly }}_
+_some {{ content _ correctly }} some_
+>{_this is some content temp_}>
+<{_this is some content temp_}<
+_A [] {"_"} A_

@@ -1,0 +1,28 @@
+{topic:conceptual=929eb036-b893-41d5-b9c6-5f6c7db7275f}
+{intro}The syndicated feed macro allows for the importing of external rss and atom feeds into your wiki page. Regardless of what prefix (rss, atom, feed) you use for this macro, the correct renderer will be determined at run-time.{intro}
+
+{section:Parameters}
+*Required Parameters*
+|| Name || Description || Range ||
+| url | absolute url to rss feed | n/a |
+
+*Optional Parameters*
+|| Name || Description || Range || Default ||
+| max | maximum number of posts to display up to 20 | 0-20 | 20 |
+| titlesOnly | show only the date and title of each post | true/false | false |
+{section}
+
+{section:Example}
+*Source Markup*
+{{
+{rss:url=http://blogs.msdn.com/codeplex/rss.xml,max=1,titlesOnly=false}
+{atom:url=http://someatomurl.com}
+{feed:url=http://somefeedurl.com}
+}}
+
+{alert:note}
+Since the syndicated feed can return a lot of HTML, there is no rendered example present. [url:Visit the online page|http://wikiplex.codeplex.com/wikipage?title=RSS%20Support&referringTitle=Markup%20Guide] for an example of this.
+{alert}
+{section}
+
+{topic}

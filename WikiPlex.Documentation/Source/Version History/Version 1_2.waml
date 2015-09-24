@@ -1,0 +1,19 @@
+{topic:conceptual=4ed279e4-7353-46ec-b860-e5e36f5393ed}
+{p}Version 1.2 was released on October 8, 2009{p}
+
+{section:Changes in This Release}
+# *+Indentation Macro+* - This new macro adds support for blockquote indentation. Utilize it similar to the ordered/unordered list macros with the colon character. See this [documentation|Text Alignment] for an example on how to use it.
+# *+Silverlight Macro+* - This macro was updated to support:
+## Any type of height/width unit (px, pc, pt, em, %, etc).
+## Require Silverlight 3 as the default. You can optionally revert back to Silverlight 2 with the version=2 parameter.
+## Support for initialization parameters by supplying any additional key/value parameters in the macro.
+# *+Video Macro+* - This macro was updated to support:
+## A height/width supporting any type (px, pc, pt, em %, etc)
+## Videos will not auto-start by default.
+## Soapbox support has been removed.
+# *+Syntax Highlight Support+* - Two more languages have been included:
+## {"{"}code:c{"++}"} ...Your C{"++"} Code... {"{"}code:c{"++}"}
+## {"{"}code:java{"}"} ...Your Java Code... {"{"}code:java{"}"}
+# *+Updated Sample Application+* - A WebForms variant was added to the sample application. It can be found under the /WebForms directory.
+{section}
+{topic}

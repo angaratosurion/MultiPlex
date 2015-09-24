@@ -1,0 +1,2 @@
+﻿this is *my +content+*
+it +should _be *bolded*_ correctly+

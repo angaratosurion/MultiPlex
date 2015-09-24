@@ -1,0 +1,10 @@
+﻿<{this is left aligned content}<
+<{}<
+this content <{should not be}< contained
+<{
+{{ this is content }}
+}<
+<{
+this is left aligned content
+that spans multi
+}<

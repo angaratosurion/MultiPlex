@@ -1,0 +1,7 @@
+﻿{rss:url=http://local/Data/SyndicatedFeedFormatting/Rss.xml}
+
+{rss:url=http://local/Data/SyndicatedFeedFormatting/Rss.xml,max=2}
+
+{rss:url=http://local/Data/SyndicatedFeedFormatting/Rss.xml,titlesOnly=true}
+
+{feed:url=http://local/Data/SyndicatedFeedFormatting/Rss.xml}

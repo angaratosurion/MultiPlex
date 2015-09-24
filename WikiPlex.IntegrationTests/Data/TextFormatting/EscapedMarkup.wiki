@@ -1,0 +1,10 @@
+﻿{"this is *some* content _that_ shouldn't be rendered"}
+
+{"this *also*
+works _with_ multi
+line scenarios"}
+
+{"
+* it will even escape
+** bullets just fine
+"}

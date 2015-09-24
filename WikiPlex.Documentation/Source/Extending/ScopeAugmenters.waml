@@ -1,0 +1,125 @@
+{topic:walkthrough=f66c90ff-0a4a-4d67-a47b-93005ab5cf68}
+{intro}
+{p}_[url:Originally Posted|http://blog.eworldui.net/post/2010/03/Extending-WikiPlex-with-Scope-Augmenters.aspx] on March 10, 2010_{p}
+{p}
+Extending WikiPlex will be done via macros, scope augmenters, and renderers.
+
+# Macros encapsulate rules for matching segments of content. 
+# Macro rules are regular expressions that map matches to scopes. 
+# Scopes are contextual identifiers. 
+# *Scope Augmenters insert/remove scopes per macro match.*
+# Renderers take scopes and expand them into a HTML formatted representation of the macro.
+{p}
+{p}
+Scope Augmenters allow you to post process the collection of scopes to further augment, or insert/remove, new scopes prior to being rendered. 
+{p}
+{intro}
+
+{procedure:Extending with Scope Augmenters}
+{step}
+{p}*Why Its Needed*{p}
+{p}
+The {{IndentationMacro}} allows for an arbitrary indentation level indicated by the number of colons that are placed a the beginning of 
+the line. Let's take a look at the primary macro rule:
+{p}
+{code:c#}
+new MacroRule(@"(^:+\s)[^\r\n]+((?:\r\n)?)$",
+              new Dictionary<int, string>
+              {
+                 {1, ScopeName.IndentationBegin},
+                 {2, ScopeName.IndentationEnd}
+              });
+{code:c#}
+{p}
+As you can see, we're capturing any number of colons at the beginning, but our ending scope knows nothing of the how many defined levels 
+there are. If you can imagine, knowing nothing about your the beginning scope when rendering to correctly render the ending is not a 
+trivial task without context. This is the exact reason a Scope Augmenter is used, it has that context.
+{p}
+{p}Ultimately, we would like the input{p}
+{p}{{:: I am content}}{p}
+{p}to be rendered as {p}
+{p}{{<blockquote><blockquote>I am content</blockquote></blockquote>}}{p}
+{step}
+
+{step}
+{p}*Create a Scope Augmenter*{p}
+{p}
+Scope Augmenters can be as easy as you need to make it, but can also be fairly difficult - point of example, the supplied {{ListScopeAugmenter}} 
+requires a complex algorithm to correctly identify levels, nested levels, and determining when to start new lists. When creating a Scope Augmenter, 
+it will take in the associated macro, the current list of scopes, and the current content returning a new list of scopes to be rendered. In your 
+solution, create a class called {{IndentationScopeAugmenter}} and extend it from {{WikIPlex.Parsing.IScopeAugmenter}}. You'll then implement 
+the {{Augment}} method.
+{p}
+{code:c#}
+public IList<Scope> Augment(IMacro macro, IList<Scope> capturedScopes, string content)
+{
+    var augmentedScopes = new List<Scope>(capturedScopes.Count);
+
+    int insertAt = 0;
+    for (int i = 0; i < capturedScopes.Count; i = i + 2)
+    {
+        Scope begin = capturedScopes[i];
+        Scope end = capturedScopes[i + 1];
+
+        string beginContent = content.Substring(begin.Index, begin.Length);
+        int depth = Utility.CountChars(':', beginContent);
+
+        for (int j = 0; j < depth; j++)
+        {
+            augmentedScopes.Insert(insertAt, begin);
+            augmentedScopes.Add(end);
+        }
+
+        insertAt = augmentedScopes.Count;
+    }
+
+    return augmentedScopes;
+}
+{code:c#}
+{p}
+The Indentation begin / end scopes always come in a sequential pair, which is why I'm able to grab the begin and end scope in 
+lines 8 and 9. Next, you'll see that we need to determine the depth to indent, so we grab the beginning content (which ultimately 
+will be a string containing only colons). In line 12, we count the number of colons there are, which gives us our depth count. 
+Lines 14 - 18 are adding the N-1 listing of IndentationBegin and IndentationEnd scopes. The method then returns this, newly 
+augmented, list of scopes. Basically the augmentation goes from
+{p}
+{{
+ScopeName.IndentationBegin,
+ScopeName.IndentationEnd
+}}
+to
+{{
+ScopeName.IndentationBegin,
+ScopeName.IndentationBegin,
+ScopeName.IndentationEnd,
+ScopeName.IndentationEnd
+}}
+{step}
+
+{step}
+{p}*Registering a Scope Augmenter*{p}
+{p}
+Just as registering macros and renderers, there is (only) a static endpoint. Since augmenters should not rely on runtime dependencies, 
+there is no runtime equivalent of using scope augmenters. When you register a Scope Augmenter, it is always associated with a single 
+macro type, and during parsing, the WikiPlex parser will query for the Scope Augmenter that is associated with the current macro 
+being used. To register your Scope Augmenter, have the following code in your application startup method
+{p}
+{code:c#}
+ScopeAugmenters.Register<IndentationMacro, IndentationScopeMacro>();
+{code:c#}
+{p}When you call the WikiEngine.Render("content"), it will automatically pick up all registered Scope Augmenters and use them during parsing.{p}
+{step}
+
+{step}
+{p}*Summary*{p}
+{p}
+You now have a fully functioning macro / augmenter / renderer that will take an arbitrary depth and have it render correctly. 
+As previously stated, WikiPlex also ships two other Scope Augmenters, {{ListScopeAugmenter}} and {{TableScopeAugmenter}}, which have a 
+bit more logic associated with them. While Scope Augmenters allow you to manipulate the list of scopes prior to rendering, 
+they should only be used in certain situations in which you cannot capture the correct set of conditions or are unable to 
+contextually determine rendering based on separate scopes.
+{p}
+{step}
+{procedure}
+
+{topic}

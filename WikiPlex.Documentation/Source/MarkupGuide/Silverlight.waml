@@ -1,0 +1,33 @@
+{topic:conceptual=c57ee9bf-4e49-43cc-8326-c97dfe5773e2}
+{intro}The Silverlight macro allows you to insert Silverlight applications into your wiki page.{intro}
+
+{section:Parameters}
+*Required Parameters*
+|| Name || Description || Range ||
+| url | absolute url to the xap file | n/a |
+
+*Optional Parameters*
+|| Name || Description || Range || Default ||
+| height | height of the Silverlight object | px/pt/pc/in/mm/cm/%/em/ex | 200px |
+| width | width of the Silverlight object | px/pt/pc/in/mm/cm/%/em/ex | 200px |
+| version | version of Silverlight to use | 2/3/4/5 | 5 |
+| gpuAcceleration | enables gpu acceleration for Silverlight > 2 | true/false | false |
+
+{p}
+  *Initialization Parameters*
+  If your Silverlight object requires initParams to be set, you can add arbitrary key/value pairs to the markup. They will be combined and rendered correctly at runtime.
+{p}
+{section}
+
+{section:Example}
+*Source Markup*
+{{
+{silverlight:url=http://silverlight.microsoft.com/Assets/ToolkitBanner.xap,height=280,width=880}
+}}
+
+*Rendered Markup*
+{markup}
+<object data="data:application/x-silverlight-2," type="application/x-silverlight-2" style="height:280px;width:880px;"><param name="source" value="http://silverlight.microsoft.com/Assets/ToolkitBanner.xap"></param><param name="windowless" value="true"></param><param name="minRuntimeVersion" value="5.0.61118.0"></param><param name="autoUpgrade" value="true"></param><p>You need to install Microsoft Silverlight to view this content. <a href="http://go.microsoft.com/fwlink/?LinkID=149156&amp;v=5.0.61118.0" style="text-decoration:none;">Get Silverlight!<br /><img src="http://go.microsoft.com/fwlink/?LinkID=108181" alt="Get Microsoft Silverlight" style="border-style:none;" /></a></p></object><iframe style="visibility:hidden;height:0;width:0;border-width:0;"></iframe>
+{markup}
+{section}
+{topic}

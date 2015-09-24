@@ -1,0 +1,8 @@
+﻿this is my content
+----
+it should display
+a horizontal rule
+but ---- this will
+not display a horizontal rule
+and content
+---- can come afterwards

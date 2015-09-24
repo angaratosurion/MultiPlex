@@ -1,0 +1,14 @@
+{topic:conceptual=c660b82e-f634-448c-b312-88884f61b572}
+{p}Version 1.1 was released on August 5, 2009{p}
+
+{section:Changes in This Release}
+# *+Mono Compatibility+* - The WikiPlex source has been tested against the 2.4.2.1 release of Mono running on Linux. The source cleanly compiles and runs the sample application (note: you do still have to setup your own database for this). The only remaining issues running the sample application on Mono are ASP.NET MVC / Mono bugs. 
+# *+Scope Augmenters+* - Scope Augmenters allow changing the resulting scopes prior to rendering based on a macro mapping. Previously - the Table, Ordered List, and Unordered List scope augmentation were hard-coded into the MacroParser. With this release, you can now add your own augmenters to fully control the rendering of WikiPlex. 
+# *+Syndicated Feeds+* - The entire WCF syndication API was removed in lieu of utilizing a simpler, customized syndication framework. The main reasons for this change included: Mono currently not supporting this API and supporting the odd Google Atom specification. Aside from these internal changes, the macro was expanded so that it now supports {{{rss:url=...}}}, {{{feed:url=...}}}, and {{{atom:url=...}}} matching. No matter which format you use, the renderer will still choose the appropriate syndication reader (ie, you can specify rss for an atom feed, and vice versa). 
+# *+Sample Download+* - To be honest, I never opened the sample project from the .zip file, and so I never realized the state that it was in. Be it missing files, incorrect references, whatever - everything is fixed now! Along with that, several people have indicated that they didn't have SQL 2008 Express installed, so within the App_Data directory, there's a Wiki.sql file that you can execute on your local SQL server to create the sample tables/data (oh, and don't forget to change your connection string). 
+# *+Invalid Syntax Highlight Code Blocks+* - Previously, if someone supplied a {{{code:xxx}}} block that didn't match any of the supported languages, their source code would not be formatted as code. In v1.1 this has been changed, as it'll fall back to the non-syntax highlighted display of the code if it cannot find the language. 
+# *+Namespace Cleanup+* - This should only affect advanced users of the wiki engine. Below is a list of the changes: 
+## ScopeName was moved from WikiPlex.Common to WikiPlex 
+## IXmlDocumentReader and XmlDocumentReader were moved from WikiPlex.Common to WikiPlex.Syndication
+{section}
+{topic}

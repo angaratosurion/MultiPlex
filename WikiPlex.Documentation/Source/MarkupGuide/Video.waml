@@ -1,0 +1,28 @@
+{topic:conceptual=1957ba74-0964-4cab-995a-d1ec2afd57a0}
+{intro}The video macro allows you to insert video media into your wiki page.{intro}
+
+{section:Parameters}
+*Required Parameters*
+|| Name || Description || Range ||
+| url | absolute url to video media | n/a |
+| type | media type of the video | flash/quicktime/real/windows/youtube/c9/vimeo |
+
+*Optional Parameters*
+|| Name || Description || Range || Default ||
+| align | alignment of the video | left/center/right | center |
+| height | height of the video | px/pt/pc/in/mm/cm/%/em/ex | 285px |
+| width | width of the video | px/pt/pc/in/mm/cm/%/em/ex | 320px |
+{section}
+
+{section:Example}
+*Source Markup*
+{{
+{video:url=mms://wm.microsoft.com/ms/msnse/0607/28366/CodePlexTeam_Final_MBR.wmv,type=windows}
+}}
+
+*Rendered Markup*
+{markup}
+<div class="video" style="text-align:Center"><span class="player"><object type="application/x-mplayer2" height="285px" width="320px" classid="CLSID:22D6F312-B0F6-11D0-94AB-0080C74C7E95" codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701"><param name="fileName" value="mms://wm.microsoft.com/ms/msnse/0607/28366/CodePlexTeam_Final_MBR.wmv"></param><param name="autostart" value="false"></param><embed type="application/x-mplayer2" height="285px" width="320px" src="mms://wm.microsoft.com/ms/msnse/0607/28366/CodePlexTeam_Final_MBR.wmv" pluginspage="http://www.microsoft.com/windows/windowsmedia/download/default.asp" autoplay="false" autostart="false" /></object></span><br /><span class="external"><a href="mms://wm.microsoft.com/ms/msnse/0607/28366/CodePlexTeam_Final_MBR.wmv" target="_blank">Launch in another window</a></span></div>
+{markup}
+{section}
+{topic}

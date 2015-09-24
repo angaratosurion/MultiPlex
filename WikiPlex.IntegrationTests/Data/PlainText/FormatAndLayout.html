@@ -1,0 +1,143 @@
+﻿Wiki Markup Guide - Format &amp; Layout
+This page provides a guide for doing simple formatting and layout within a wiki page.<br /><br />
+Basic Formatting
+Allows for simple formatting of wiki text.<br /><br />
+Source Markup<br />
+*bold*<br />
+_italics_<br />
++underline+<br />
+--strikethrough--<br />
+^^superscript^^<br />
+,,subscript,,<br />
+<br /><br />
+Rendered Markup
+bold<br />
+italics<br />
+underline<br />
+strikethrough<br />
+superscript<br />
+subscript
+<br /><br />
+Text Alignment
+Allows for alignment of text on the page.<br /><br />
+Source Markup<br />
+<{this is left aligned content}<<br />
+>{this is right aligned content}><br />
+<br /><br />
+Rendered Markup
+this is left aligned content<br />
+this is right aligned content
+<br />
+Code Block
+Allows for text to be formatted as code for languages in which syntax highlighting is not supported.
+<br /><br />
+Source Markup<br />
+// multi-line<br />
+{{<br />
+   public static void Main()<br />
+   {<br />
+     // code goes here<br />
+   }<br />
+}}<br />
+<br />
+// single line<br />
+{{ single line of text }}<br />
+<br /><br />
+Rendered Markup
+// multi-line<br />
+<br />
+   public static void Main()<br />
+   {<br />
+     // code goes here<br />
+   }<br />
+<br /><br />
+// single line
+<br />
+ single line of text  
+ <br /><br /><br />
+Headings
+Allows formatting text as a header.
+<br /><br />
+Source Markup<br />
+! Heading 1<br />
+!! Heading 2<br />
+!!! Heading 3<br />
+!!!! Heading 4<br />
+!!!!! Heading 5<br />
+!!!!!! Heading 6<br />
+<br /><br />
+Rendered Markup
+Heading 1   
+Heading 2
+Heading 3
+Heading 4
+Heading 5
+Heading 6
+<br /><br />
+Escaped Markup
+Allows use of wiki formatting characters as literal text.
+<br /><br />
+Source Markup<br />
+{"text with *unrendered* wiki markup"}
+<br /><br /><br />
+Rendered Text
+text with *unrendered* wiki markup
+<br /><br />
+Note: Only use vertical (not curly) quotes to ensure that formatting will not apply.
+<br /><br />
+Lists
+Allows for the creation of bullted or numbered lists.
+<br /><br />
+Source Markup<br />
+* Bulleted List 1<br />
+** Bulleted List 2<br />
+*** Bulleted List 3<br />
+<br />
+# Numbered List 1<br />
+## Numbered List 1.1<br />
+### Numbered List 1.1.1<br />
+# Numbered List 2<br />
+## Numbered List 2.1<br />
+<br />
+* Bulleted List 1<br />
+## Numbered List 1.1<br />
+*** Bulleted List 1.1.1<br />
+* Bulleted List 2<br />
+** Bulleted List 3<br />
+<br /><br />
+Rendered Markup
+Bulleted List 1<br />
+Bulleted List 2<br />
+Bulleted List 3<br />
+<br />
+Numbered List 1<br />
+Numbered List 1.1<br />
+Numbered List 1.1.1 <br />
+ Numbered List 2<br />
+Numbered List 2.1<br />
+<br />
+Bulleted List 1<br />
+Numbered List 1.1<br />
+Bulleted List 1.1.1 <br />
+ Bulleted List 2<br />
+Bulleted List 2.1<br />
+<br /><br />
+Tables
+Allows for the creation of simple table layouts.
+<br /><br />
+Source Markup<br />
+|| Table Heading 1 || Table Heading 2 || Table Heading 3 ||<br />
+| Row 1 - Cell 1 | Row 1 - Cell 2 | Row 1 - Cell 3 |<br />
+| Row 2 - Cell 1 | Row 2 - Cell 2 | Row 2 - Cell 3 |<br />
+<br /><br />
+Rendered Markup
+  Table Heading 1Table Heading 2Table Heading 3  <br />
+  Row 1 - Cell 1Row 1 - Cell 2Row 1 - Cell 3  <br />
+  Row 2 - Cell 1Row 2 - Cell 2Row 2 - Cell 3  <br />
+<br /><br />
+Note on block level tags
+Block level tags include headings, lists, tables, and multi-line formatted text<br />
+
+Tag must be the first thing on the line <br />
+ Closing tag must be the last thing on the line <br />
+ There should be no leading or trailing whitespace

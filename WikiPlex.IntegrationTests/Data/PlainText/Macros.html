@@ -1,0 +1,84 @@
+﻿Wiki Markup Guide - Macros
+This page provides a guide for adding macros to a wiki page.
+<br /><br />
+Syntax Highlighted Code Snippet
+Allows for a code snippet to be styled according to the language specified.
+<br /><br />
+Source Markup<br />
+{code:c#}<br />
+using System;<br />
+public class HelloWorld<br />
+{<br />
+   public static void Main(params string[] args)<br />
+   {<br />
+   Console.WriteLine("Hello World!");<br />
+   }<br />
+}<br />
+{code:c#}<br />
+<br /><br />
+Rendered Markup
+using System;<br />
+public class HelloWorld<br />
+{<br />
+   public static void Main(params string[] args)<br />
+   {<br />
+   Console.WriteLine("Hello World!");<br />
+   }<br />
+}<br />
+
+Syntax Highlighting Supported Languages
+<br />
+Using {code:language} as shown above.
+<br /><br />
+  LanguageNotes  <br />
+  aspx c#Use for code snippets from .aspx, .ascx, .asax, .asmx, .master, and .skin files that have embedded C# code  <br />
+  aspx vb.netUse for code snippets from .aspx, .ascx, .asax, .asmx, .master, and .skin files that have embedded VB.NET code  <br />
+  ashxUse for code snippets from .ashx files  <br />
+  c#Use for C# code snippets  <br />
+  vb.netUse for VB.NET code snippets  <br />
+  htmlUse for HTML code snippets  <br />
+  sqlUse for SQL code snippets  <br />
+  javascriptUse for JavaScript code snippets  <br />
+  xmlUse for snippets from .xml, .config, .dbml, and .xsd files  <br />
+<br />
+If you would like to see an additional language added to this list, please create an issue in our  IssueTracker.
+<br /><br /><br />
+Rss Macro
+The rss macro allows for the importing of external rss feeds into your wiki page.<br />
+Required Parameters
+  Name   Description   Range  <br />
+  url   absolute url to rss feed   n/a  <br />
+<br />
+Optional Parameters
+  Name   Description   Range   Default  <br />
+  max   maximum number of posts to display up to 20   0-20   20  <br />
+  titlesOnly   show only the date and title of each post   true/false   false  <br />
+<br />
+Source Markup<br />
+{rss:url=http://local/Data/SyndicatedFeedFormatting/Rss.xml,max=1,titlesOnly=false}
+<br /><br />
+Rendered Markup
+<br /><br />
+Video Macro
+The video macro allows you to insert video media into your wiki page<br />
+Required Parameters
+  Name   Description   Range  <br />
+  url   absolute url to video media   n/a  <br />
+  type   media type of the video   flash/quicktime/real/windows/youtube  <br />
+<br />
+Optional Parameters
+  Name   Description   Range   Default  <br />
+  align   alignment of the video   left/center/right   center  <br />
+<br />
+Source Markup<br />
+{video:url=mms://wm.microsoft.com/ms/msnse/0607/28366/CodePlexTeam_Final_MBR.wmv,type=windows}
+<br /><br />
+Rendered Markup
+<br /><br />
+Silverlight Macro<br />
+The Silverlight macro allows you to insert Silverlight applications into your wiki page
+<br /><br />
+Source Markup<br />
+{silverlight:url=http://silverlight.net/samples/sl2/toolkitcontrolsamples/run/controls/Microsoft.Windows.Controls.Samples.xap,height=401,width=600}
+<br /><br />
+Rendered Markup

@@ -1,0 +1,64 @@
+﻿! What is the Silverlight Toolkit?
+The Silverlight Toolkit is a collection of Silverlight controls, components and utilities made available outside the normal Silverlight release cycle. It adds new functionality quickly for designers and developers, and provides the community an efficient way to help shape product development by contributing ideas and bug reports. It includes full source code, unit tests, samples and documentation for 12 new controls covering charting, styling, layout, and user input.
+
+! Get Started
+* *[url:Download the latest release|http://www.codeplex.com/Silverlight/Release/ProjectReleases.aspx]*
+* Visit our [url:online Silverlight Toolkit sample|http://silverlight.net/samples/sl2/toolkitcontrolsamples/run/default.html]
+* Take the guided tour of the Silverlight Toolkit: Part 1 - Controls, Part 2 - Charting and Part 3 - Theming
+
+! Suggestions? Features? Questions?
+* Ask questions in our *[url:Silverlight Toolkit forum|http://silverlight.net/forums/35.aspx]* on [url:Silverlight.net|http://silverlight.net].  The forum is the best resource for Silverlight Toolkit Q&A.
+* Add bugs or feature requests to the [url:Issue Tracker|http://www.codeplex.com/Silverlight/WorkItem/List.aspx]. Help us shape the Silverlight Toolkit with your feedback!
+* Read more about the Silverlight Toolkit on our [url:Team Members RSS feed|http://feeds.feedburner.com/SilverlightToolkitTeamMembersBlogFeeds]
+
+! How is the Silverlight Toolkit Built?
+We use an iterative, evolutionary development model to release new controls and updates often and get feedback from the community to our development team quickly. With access to source code, unit tests and the infrastructure magic we use internally, the community can let us know what it likes and what it wants to change. Anyone can download the source code and start exploring. This transparency will allow the community to help us prioritize features based on real-world usage and actual customer scenarios. We also want to make it easy to reuse skills and source code which is why all our components are designed with Windows Presentation Foundation in mind and the Silverlight Toolkit is released under the Microsoft Public License.
+
+{silverlight:url=http://slkit.blob.core.windows.net/xaps/ToolkitBanner.xap,height=280,width=880}
+
+! Silverlight Toolkit December 2008 Overview
+The Silverlight Toolkit defines four Quality Bands that describe the stability and finish-level of each component. Below is a summary of where the components currently in the Silverlight Toolkit fall within the quality bands. Read the complete list of changes in the Silverlight Toolkit December 2008 release from the November 2008 release. 
+
+* *Components in the Stable Quality Band*
+** *AutoCompleteBox*
+** *DockPanel*
+** *HeaderedContentControl*
+** *HeaderedItemsControl*
+** *Label*
+** *NumericUpDown*
+** *TreeView*
+** *WrapPanel*
+
+* *Components in the  Preview Quality Band*
+** *Charting*
+** *Expander*
+** *ImplicitStyleManager*
+** *Viewbox*
+
+! Themes
+In addition to great controls, the Toolkit also includes a beautiful assortment of professional themes to make your applications stand out and improve the overall look-and-feel of your Silverlight UI. See the overview on Theming for more information.
+
+** *Bureau Black*
+** *Bureau Blue*
+** *Expression Dark*
+** *Expression Light*
+** *Rainier Purple*
+** *Rainier Orange*
+** *Shiny Blue*
+** *Shiny Red*
+** *Whistler Blue*
+
+! Team Member's Blogs
+* [url:Team Members RSS feed|http://feeds.feedburner.com/SilverlightToolkitTeamMembersBlogFeeds]
+* [url:Shawn Burke|http://blogs.msdn.com/sburke]
+* [url:Jeff Wilcox|http://www.jeff.wilcox.name]
+* [url:Mehdi Slaoui Andaloussi|http://blogs.msdn.com/mehdis]
+* [url:Beatriz Stollnitz|http://bea.stollnitz.com/blog]
+* [url:Jafar Husain|http://themechanicalbride.blogspot.com/]
+* [url:Shawn Oster|http://blog.enginefour.com]
+* [url:Keith Smith|http://blogs.msdn.com/keiths]
+* [url:David Anson|http://blogs.msdn.com/delay]
+* [url:Ning Zhang|http://www.ningzhang.org]
+* [url:Ruurd John Boeke|http://www.sitechno.com/blog/]
+* [url:Ted Glaza|http://www.Silverlight.net]
+* [url:Justin Angel|http://silverlight.net/blogs/JustinAngel]

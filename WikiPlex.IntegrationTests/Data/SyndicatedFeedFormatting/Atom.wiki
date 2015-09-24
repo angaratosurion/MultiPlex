@@ -1,0 +1,9 @@
+﻿{rss:url=http://local/Data/SyndicatedFeedFormatting/GoogleAtom.xml}
+
+{rss:url=http://local/Data/SyndicatedFeedFormatting/Atom.xml}
+
+{rss:url=http://local/Data/SyndicatedFeedFormatting/Atom.xml,max=2}
+
+{rss:url=http://local/Data/SyndicatedFeedFormatting/Atom.xml,titlesOnly=true}
+
+{atom:url=http://local/Data/SyndicatedFeedFormatting/Atom.xml,titlesOnly=true}

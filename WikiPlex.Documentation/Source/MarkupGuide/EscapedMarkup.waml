@@ -1,0 +1,17 @@
+{topic:conceptual=5ad5f2ee-12a9-454b-bd58-f40766a1700e}
+{intro}Allows use of wiki formatting characters as literal text.{intro}
+
+{section:Example}
+*Source Markup*
+{{
+{"text with *unrendered* wiki markup"}
+}}
+
+{p}*Rendered Markup*{p}
+{"text with *unrendered* wiki markup"}
+
+{alert:note}
+Only use vertical (not curly) quotes to ensure that formatting will not apply.
+{alert}
+{section}
+{topic}

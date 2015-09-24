@@ -1,0 +1,22 @@
+{topic:conceptual=cdef0380-af97-11df-94e2-0800200c9a66}
+{p}Version 1.4 was released on August 24, 2010{p}
+
+{section:Changes in This Release}
+# +*Infrastructure Changes*+
+## .NET 4 and .NET 3.5 support (separate downloads)
+## Sample website updated to ASP.NET MVC 2
+## Added support to install via Nu / RubyGems ({{nu install WikiPlex}})
+## {{void IFormatter.Format(string, StringBuilder)}} is marked as obsolete. Should utilize {{string IFormatter.Format(string)}} instead
+# +*New Features*+
+## Added support for Silverlight 4, as the default version
+## Added support for {{gpuAcceleration}} for Silverlight 3/4
+## Added support for Vimeo videos
+# +*Bug Fixes*+
+## Runaway syntax highlighting will be killed after 5 seconds resulting in no syntax highlighting.
+## Multi-line comments are properly syntax highlighted for Powershell code
+## Fixed table rendering bug when a cell contains links with alternate text
+## Encoded new line characters are now properly interpreted and replaced with line breaks.
+## "Cleared" elements after aligned content are now properly rendering appropriate spacing.
+## Fixed "{"++"}" not being rendered as plain-text (ie, C{"++"})
+{section}
+{topic}

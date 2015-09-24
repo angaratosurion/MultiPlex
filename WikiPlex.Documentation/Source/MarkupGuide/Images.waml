@@ -1,0 +1,65 @@
+{topic:conceptual=be85c923-9c71-464a-8727-7f13da79ab5f}
+
+{intro}Images allow you to link to images hosted elsewhere and linked from the wiki.{intro}
+
+{section:Optional Parameters}
+_The following parameters should be added at the end of the image url._
+
+|| Name || Description || Range || Default ||
+| height | The height of the image | px/pt/pc/in/mm/cm/%/em/ex | None |
+| width | The width of the image | px/pt/pc/in/mm/cm/%/em/ex | None |
+{section}
+
+{section:Basic Example}
+*Source Markup*
+{{
+[image:http://www.domain.com/myimage.jpg]
+[image:WikiPlex Logo|http://www.domain.com/myimage.jpg]
+[image:WikiPlex Logo|http://www.domain.com/myimage.jpg,height=50,width=150]
+}}
+
+{p}*Rendered Markup*{p}
+{markup}
+<img src="http://download.codeplex.com/Project/Download/FileDownload.aspx?ProjectName=WikiPlex&amp;DownloadId=74720&amp;Build=15321" /><br />
+<img src="http://download.codeplex.com/Project/Download/FileDownload.aspx?ProjectName=WikiPlex&amp;DownloadId=74720&amp;Build=15321" alt="WikiPlex Logo" title="WikiPlex Logo" /><br />
+<img src="http://download.codeplex.com/Project/Download/FileDownload.aspx?ProjectName=WikiPlex&amp;DownloadId=74720&amp;Build=15321" alt="WikiPlex Logo" title="WikiPlex Logo" height="50px" width="150px" />
+{markup}
+
+{section}
+
+{section:Hyperlinking Images}
+{p}_Images can be hyperlinked using the format below._{p}
+*Source Markup*
+{{
+[image:<Friendly Name>|<image name or link to the image>|<URL pointed to by image>]
+
+For example:
+
+[image:My Image|http://www.domain.com/myimage.jpg|http://www.domain.com]
+}}
+
+{p}*Rendered Markup*{p}
+{markup}
+<a href="http://wikiplex.codeplex.com/"><img style="border:none;" src="http://download.codeplex.com/Project/Download/FileDownload.aspx?ProjectName=WikiPlex&amp;DownloadId=74720&amp;Build=15321" alt="WikiPlex" title="WikiPlex" /></a>
+{markup}
+{section}
+
+{section:Wrapped Content}
+{p}_Images also allow you to wrap content around the left or right side of it._{p}
+*Source Markup*
+{{
+<[image:http://www.domain.com/myimage.jpg] This content will flow around the image on the right hand side.
+>[image:http://www.domain.com/myimage.jpg] This content will flow around the image on the left hand side.
+}}
+
+{p}*Rendered Markup*{p}
+{markup}
+<div style="clear:both;"></div>
+<img style="float:left;padding-right:.5em;" src="http://download.codeplex.com/Project/Download/FileDownload.aspx?ProjectName=WikiPlex&amp;DownloadId=74720&amp;Build=15321" /> This content will flow around the image on the right hand side.<br />
+<div style="clear:both;"></div>
+<img style="float:right;padding-left:.5em;" src="http://download.codeplex.com/Project/Download/FileDownload.aspx?ProjectName=WikiPlex&amp;DownloadId=74720&amp;Build=15321" /> This content will flow around the image on the left hand side.
+<div style="clear:both;"></div>
+{markup}
+{section}
+
+{topic}

@@ -1,0 +1,31 @@
+{topic:conceptual=f47d6f1c-c58d-4a7d-a865-a7824defb9e9}
+{intro}Allows for alignment of text on the page. Indentation allows for n-level depth.{intro}
+
+{section:Example}
+*Source Markup*
+{{
+<{this is left aligned content}<
+>{this is right aligned content}>
+
+: this is indented
+:: this is double-indented
+
+or Multi-line indentation
+
+:{
+|cell 1|cell 2|
+|cell 3|cell 4|
+:}
+}}
+
+*Rendered Markup*
+{markup}
+<div style="text-align:left;float:left;">this is left aligned content</div><div style="clear:both;"></div><br />
+<div style="text-align:right;float:right;">this is right aligned content</div><div style="clear:both;"></div><br />
+<blockquote>this is indented</blockquote>
+<blockquote><blockquote>this is double-indented</blockquote></blockquote>
+or Multi-line indentation<br /><br />
+<blockquote><table><tr><td>cell 1</td><td>cell 2</td></tr><tr><td>cell 3</td><td>cell 4</td></tr></table></blockquote>
+{markup}
+{section}
+{topic}
