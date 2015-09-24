@@ -4,8 +4,6 @@ using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MultiPlex.Core.Interfaces;
 
 namespace MultiPlex.Core

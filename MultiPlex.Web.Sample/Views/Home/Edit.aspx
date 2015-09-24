@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<WikiPlex.Web.Sample.Models.Content>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<MultiPlex.Web.Sample.Models.Content>" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <title>Edit Wiki</title>

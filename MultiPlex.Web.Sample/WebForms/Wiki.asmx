@@ -1,1 +1,1 @@
-﻿<%@ WebService Language="C#" CodeBehind="Wiki.asmx.cs" Class="WikiPlex.Web.Sample.WebForms.Wiki" %>
+﻿<%@ WebService Language="C#" CodeBehind="Wiki.asmx.cs" Class="MultiPlex.Web.Sample.WebForms.Wiki" %>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WikiPlex.Web.Sample.WebForms.Default" MasterPageFile="~\Views\Shared\Site.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="MultiPlex.Web.Sample.WebForms.Default" MasterPageFile="~\Views\Shared\Site.Master" %>
 <asp:Content ID="titleContent" ContentPlaceHolderID="head" runat="server">
     <title><asp:Literal ID="title" runat="server" /></title>
     <script type="text/javascript">

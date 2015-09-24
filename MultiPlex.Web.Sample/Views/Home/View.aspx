@@ -1,6 +1,6 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<WikiPlex.Web.Sample.Views.Home.ViewContent>" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<MultiPlex.Web.Sample.Views.Home.ViewContent>" %>
 <asp:Content ID="titleContent" ContentPlaceHolderID="head" runat="server">
-    <title>WikiPlex Sample - <%= Html.Encode(Model.Content.Title.Name) %></title>
+    <title>MultiPlex Sample - <%= Html.Encode(Model.Content.Title.Name) %></title>
     <% if (Model.Editable)
        { %>
     <script type="text/javascript">

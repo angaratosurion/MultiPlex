@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Edit.aspx.cs" Inherits="WikiPlex.Web.Sample.WebForms.Edit" MasterPageFile="~\Views\Shared\Site.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Edit.aspx.cs" Inherits="MultiPlex.Web.Sample.WebForms.Edit" MasterPageFile="~\Views\Shared\Site.Master" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <title>Edit Wiki</title>
