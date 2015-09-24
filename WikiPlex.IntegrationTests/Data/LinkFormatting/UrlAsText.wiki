@@ -1,3 +1,0 @@
-﻿[url:http://localhost]
-[file:http://localhost/file]
-[url:www.microsoft.com]

@@ -1,5 +1,0 @@
-﻿{{single line}}
-
-{{single line}}
-
-Sandcastle will pass through many common HTML tags in XML documentation (code comments), such as {{<p>}}, {{<img>}}, {{<strong>}}, etc.
