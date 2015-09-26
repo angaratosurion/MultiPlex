@@ -3,7 +3,7 @@
 namespace MultiPlex.Web.Controllers
 {
     [HandleError]
-    public class HomeController : MultiPlexCore.Controllers.HomeController
+    public class HomeController : MultiPlex.Core.Controllers.HomeController
     {
         
     }

@@ -16,20 +16,24 @@ using MultiPlex.Formatting.Renderers;
 
 namespace MultiPlex.Core.Managers
 {
-    public class WikiManager
+    public class ContentManager
     {
         private readonly Context db = new Context();
 
         private readonly IWikiEngine wikiEngine;
         private readonly WikiRepository repository;
         UrlHelper url;
-        HtmlHelper html;
+       // HtmlHelper html;
         ContentRepository contrepo= new ContentRepository();
         TitleRepository titlerepo = new TitleRepository();
-        public WikiManager( IWikiEngine wikiEngine,UrlHelper url,HtmlHelper html)
+        string wikiname;
+        
+
+        public ContentManager( IWikiEngine wikiEngine,UrlHelper url,string wikiname)
         {
             this.url = url;
             this.wikiEngine = wikiEngine;
+            this.wikiname = wikiname;
 
         }
         public ViewContent ViewWiki(string wikiname, int id, string slug)
@@ -116,13 +120,13 @@ namespace MultiPlex.Core.Managers
                 return -1;
             }
         }
-        public string GetWikiSource(int id, string slug, int version)
+        public Content GetWikiSource(int id, string slug, int version)
         {
 
             try
             {
                 Content content = repository.GetByVersion(id, version);
-                return content.Source;
+                return content;
             }
             catch (Exception ex)
             {
@@ -137,18 +141,27 @@ namespace MultiPlex.Core.Managers
 
 
 
+        public string GetWikiPreview(int id, string slug, string source)
+        {
+            try
+            {
+                
 
+                return wikiEngine.Render(source, GetRenderers(this.url));
+            }
+        }
 
 
         public static bool IsEditable()
         {
-            return ConfigurationManager.AppSettings["Environment"] == "Debug";
+            //return ConfigurationManager.AppSettings["Environment"] == "Debug";
+            return true;
         }
 
         private IEnumerable<IRenderer> GetRenderers(UrlHelper url)
         {
             var siteRenderers = new IRenderer[] { new TitleLinkRenderer(url,
-                repository) };
+                repository,wikiname) };
             return Renderers.All.Union(siteRenderers);
         }
     }

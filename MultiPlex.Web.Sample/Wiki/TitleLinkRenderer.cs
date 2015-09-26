@@ -28,7 +28,8 @@ namespace MultiPlex.Web.Sample.Wiki
             get { return new[] {WikiScopeName.WikiLink}; }
         }
 
-        protected override string PerformExpand(string scopeName, string input, Func<string, string> htmlEncode, Func<string, string> attributeEncode)
+        protected override string PerformExpand(string scopeName, string input, Func<string, string> htmlEncode, 
+            Func<string, string> attributeEncode)
         {
             string slug = SlugHelper.Generate(input);
             Content content = wikiRepository.Get(slug, input);

@@ -53,6 +53,27 @@ namespace MultiPlex.Core.Data.Repositories
                 return null;
             }
         }
+        public Content Get(String wikiname, string slug,string title)
+        {
+            try
+            {
+                Content ap = null;
+                if ((wikiname != null) && (title!=null) && slug !=null)
+                {
+                    ap = db.Content.First(s => s.Title.Name==title && s.Title.Slug==slug);
+
+
+                }
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
         public List<Content> GetByTitle(String wikiname, int tid)
         {
             try
@@ -89,7 +110,7 @@ namespace MultiPlex.Core.Data.Repositories
                         //  cont.Id = id;
                         cont.Title = title;
                         cont.Source = source;
-                        cont.Wikiname = this.db.Wikis.FirstOrDefault(w => w.WikiName == wikiname);
+                        cont.Wiki = this.db.Wikis.FirstOrDefault(w => w.WikiName == wikiname);
                         cont.WrittenBy = user;
                         if (this.CountWithTitleId(wikiname, tid) > 0)
                         {

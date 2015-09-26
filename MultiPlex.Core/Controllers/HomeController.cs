@@ -7,17 +7,20 @@ using MultiPlex.Formatting.Renderers;
 using MultiPlex.Core.Data.Models;
 using MultiPlex;
 using MultiPlex.Core.Managers;
+using System.ComponentModel.Composition;
 
 namespace MultiPlex.Core.Controllers
 {
     [HandleError]
+    [Export("Home", typeof(IController))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class HomeController : Controller
     {
-        private WikiManager mng;
+        private ContentManager mng;
         UserManager usrmng = new UserManager();
         public HomeController()           
         { 
-            this.mng = new WikiManager( new WikiEngine);
+            this.mng = new ContentManager( new WikiEngine(),this.Url,this.Request.QueryString[0]);
         }
 
        
@@ -49,7 +52,7 @@ namespace MultiPlex.Core.Controllers
         [Authorize]
         public ActionResult EditWiki(string wikiname, int id, string slug)
         {
-            if (!WikiManager.IsEditable())
+            if (!ContentManager.IsEditable())
                 return RedirectToAction("ViewWiki");
             Content content = this.mng.GetWikiforEditWiki(wikiname, id, slug);
            
@@ -65,7 +68,7 @@ namespace MultiPlex.Core.Controllers
             string name,
             string source)
         {
-            if (!WikiManager.IsEditable())
+            if (!ContentManager.IsEditable())
                 return RedirectToAction("ViewWiki");
             
             id = this.mng.EditWikiPost(wikiname, id, slug, name, source,this.usrmng.GetUser(this.User.Identity.Name));
@@ -86,7 +89,7 @@ namespace MultiPlex.Core.Controllers
         [ValidateInput(false)]
         public string GetWikiPreview(int id, string slug, string source)
         {
-            return wikiEngine.Render(source, GetRenderers(this.Url));
+            return this.mng.GetWikiPreview(id, slug, source);
         }
 
        

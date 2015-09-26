@@ -13,15 +13,18 @@ namespace MultiPlex.Core.Wiki
         private const string LinkFormat = "<a href=\"{0}\">{1}</a>";
         private readonly UrlHelper urlHelper;
         private readonly WikiRepository wikiRepository;
+        string wikiname;
 
-        public TitleLinkRenderer() : this(null, new WikiRepository ())
-        {
-        }
+        //public TitleLinkRenderer() : this(null, new WikiRepository ())
+        //{
+        //}
 
-        public TitleLinkRenderer(UrlHelper urlHelper, WikiRepository wikiRepository)
+        public TitleLinkRenderer(UrlHelper urlHelper, WikiRepository wikiRepository,string wikiname)
         {
             this.urlHelper = urlHelper;
             this.wikiRepository = wikiRepository;
+            this.wikiname = wikiname;
+
         }
 
         protected override ICollection<string> ScopeNames
@@ -33,7 +36,7 @@ namespace MultiPlex.Core.Wiki
             Func<string, string> attributeEncode)
         {
             string slug = SlugHelper.Generate(input);
-            Content content = wikiRepository.Get(slug, input);
+            Content content = wikiRepository.Get(wikiname,slug, input);
             int id = content != null ? content.Title.Id : 0;
             string url;
 
