@@ -12,5 +12,10 @@ namespace MultiPlex.Core.Data.Models
         public string RenderedSource { get; set; }
         public int Version { get; set; }
         public DateTime VersionDate { get; set; }
+        [Required]
+        public WikiModel Wiki { get; set; }
+        [Required]
+        public ApplicationUser WrittenBy { get; set; }
+
     }
 }

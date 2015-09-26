@@ -279,6 +279,16 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MultiPlex.Core\MultiPlex.Core.csproj">
+      <Project>{03da9457-2f29-4a8a-b5ce-971f68dd8759}</Project>
+      <Name>MultiPlex.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MultiPlex\MultiPlex.csproj">
+      <Project>{3ea6cbe4-2523-4bb3-8926-9a1746774741}</Project>
+      <Name>MultiPlex</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

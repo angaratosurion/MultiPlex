@@ -157,8 +157,15 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="CommonTools.cs" />
     <Compile Include="Controllers\CustomControllerFactory.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data\Context.cs" />
     <Compile Include="Data\Models\IdentityModels.cs" />
+    <Compile Include="Data\Models\WikiModel.cs" />
+    <Compile Include="Data\Repositories\ContentRepository.cs" />
+    <Compile Include="Data\Repositories\TitleRepository.cs" />
+    <Compile Include="Data\Repositories\WikiRepository.cs" />
+    <Compile Include="Data\ViewModels\ViewContent.cs" />
+    <Compile Include="Helpers\SlugHelper.cs" />
     <Compile Include="Interfaces\IActionVerb.cs" />
     <Compile Include="Interfaces\IActionVerbMetadata.cs" />
     <Compile Include="Interfaces\IControllerMetadata.cs" />
@@ -166,8 +173,13 @@
     <Compile Include="Interfaces\IRouteRegistrarMetadata.cs" />
     <Compile Include="Data\Models\Content.cs" />
     <Compile Include="Data\Models\Title.cs" />
+    <Compile Include="Managers\UserManager.cs" />
+    <Compile Include="Managers\WikiManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\CustomViewEngine.cs" />
+    <Compile Include="Wiki\TitleLinkMacro.cs" />
+    <Compile Include="Wiki\TitleLinkRenderer.cs" />
+    <Compile Include="Wiki\WikiScopeName.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -176,6 +188,13 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MultiPlex\MultiPlex.csproj">
+      <Project>{3ea6cbe4-2523-4bb3-8926-9a1746774741}</Project>
+      <Name>MultiPlex</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

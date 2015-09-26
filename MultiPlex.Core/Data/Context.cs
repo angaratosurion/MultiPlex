@@ -30,7 +30,10 @@ namespace MultiPlex.Core.Data
         {
             return new Context();
         }
-    
+
+        public DbSet<Content > Content { get; set; }
+        public DbSet<Title> Title { get; set; }
+        public DbSet<WikiModel> Wikis { get; set; }
 
     }
 }
