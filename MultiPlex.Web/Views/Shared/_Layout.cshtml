@@ -22,8 +22,18 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @{
+                        var verbs = MultiPlex.Core.Bootstrapper.GetVerbsForCategory("Navigation");
+                        foreach (var verb in verbs)
+                        {
+                            <li>< @Html.ActionLink(verb.Name, verb.Action, verb.Controller)</li>
+                        }
+
+
+                    }
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

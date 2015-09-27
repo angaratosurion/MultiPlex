@@ -191,6 +191,7 @@
     <Compile Include="Managers\ContentManager.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Verbs\HomeVerb.cs" />
     <Compile Include="Views\CustomViewEngine.cs" />
     <Compile Include="Wiki\TitleLinkMacro.cs" />
     <Compile Include="Wiki\TitleLinkRenderer.cs" />
