@@ -9,9 +9,9 @@ using System.Web.Mvc;
 namespace MultiPlex.Web.Controllers
 {
     [HandleError]
-    [Export("Wiki", typeof(IController))]
+    [Export("Home", typeof(IController))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class HomeController : MultiPlex.Core.Controllers.HomeController
+    public class HomeController : Core.Controllers.HomeController
     {
         // GET: Home
         public ActionResult Index()

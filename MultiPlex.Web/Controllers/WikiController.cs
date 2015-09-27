@@ -3,7 +3,7 @@
 namespace MultiPlex.Web.Controllers
 {
     [HandleError]
-    public class WikiController : MultiPlex.Core.Controllers.WikiController
+    public class WikiController : Core.Controllers.WikiController
     {
         
     }

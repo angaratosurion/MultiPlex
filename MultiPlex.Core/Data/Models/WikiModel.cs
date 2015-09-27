@@ -14,8 +14,12 @@ namespace MultiPlex.Core.Data.Models
         [Required]
         [Key]
         public string WikiName { get; set; }
+        [DataType(DataType.MultilineText)]
+        public string Desrcition { get; set; }
+        public virtual Title Titles { get; set; }
+        public virtual List<Content> Content { get; set; }
         [Required]
-        public ApplicationUser Administrtor { get; set; }
-        public List<ApplicationUser> Moderators { get; set; }
+        public virtual ApplicationUser Administrtor { get; set; }
+        public virtual List<ApplicationUser> Moderators { get; set; }
     }
 }

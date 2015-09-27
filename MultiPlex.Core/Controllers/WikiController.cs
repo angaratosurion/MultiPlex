@@ -77,9 +77,9 @@ namespace MultiPlex.Core.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         [OutputCache(Location = OutputCacheLocation.None)]
-        public string GetWikiSource(int id, string slug, int version)
+        public string GetWikiSource(string wikiname,int id, string slug, int version)
         {
-            Content content = this.mng.GetWikiSource(id, slug, version);
+            Content content = this.mng.GetWikiSource(wikiname,id, slug, version);
 
             return content.Source;
         }

@@ -10,7 +10,7 @@ namespace MultiPlex.Core.Data.Repositories
     public class WikiRepository:TitleRepository
     {
         Context db = new Context();
-        public WikiModel Get(string wikiname)
+        public WikiModel GetWiki(string wikiname)
         {
 
             try
@@ -27,6 +27,30 @@ namespace MultiPlex.Core.Data.Repositories
 
                 CommonTools.ErrorReporting(ex);
                 return null;
+            }
+        }
+        public bool WikiExists(string wikiname)
+        {
+            try
+            {
+                bool ap = false;
+                if ( wikiname !=null)
+                {
+                     if (this.GetWiki(wikiname)!=null)
+                    {
+                        ap = true;
+                    }
+                }
+
+
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return false;
             }
         }
     }

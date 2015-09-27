@@ -62,7 +62,7 @@ namespace MultiPlex.Core.Managers
         {
             try
             {
-                var viewData = new ViewContent { Content = repository.GetByVersion(id, version) };
+                var viewData = new ViewContent { Content = repository.GetByVersion(wikiname,id, version) };
               
                 return viewData;
 
@@ -120,12 +120,12 @@ namespace MultiPlex.Core.Managers
                 return -1;
             }
         }
-        public Content GetWikiSource(int id, string slug, int version)
+        public Content GetWikiSource(string wikiname,int id, string slug, int version)
         {
 
             try
             {
-                Content content = repository.GetByVersion(id, version);
+                Content content = repository.GetByVersion(wikiname,id, version);
                 return content;
             }
             catch (Exception ex)

@@ -7,11 +7,12 @@ using MultiPlex.Core.Data.Models;
 
 namespace MultiPlex.Core.Data.Repositories
 {
-   public class ContentRepository
+    public class ContentRepository
     {
         Context db = new Context();
+        WikiRepository wikrerpo = new WikiRepository();
         TitleRepository titlerp = new TitleRepository();
-        public int CountWithTitleId (string wikiname ,int tid)
+        public int CountWithTitleId(string wikiname, int tid)
         {
             try
             {
@@ -32,17 +33,17 @@ namespace MultiPlex.Core.Data.Repositories
                 return -1;
             }
         }
-        public Content Get(String wikiname,int id)
+        public Content Get(String wikiname, int id)
         {
             try
             {
-                  Content ap = null;
+                Content ap = null;
                 if ((wikiname != null) && (id > 0))
                 {
                     ap = db.Content.First(s => s.Id == id);
 
 
-               }
+                }
                 return ap;
 
             }
@@ -53,14 +54,14 @@ namespace MultiPlex.Core.Data.Repositories
                 return null;
             }
         }
-        public Content Get(String wikiname, string slug,string title)
+        public Content Get(String wikiname, string slug, string title)
         {
             try
             {
                 Content ap = null;
-                if ((wikiname != null) && (title!=null) && slug !=null)
+                if ((wikiname != null) && (title != null) && slug != null)
                 {
-                    ap = db.Content.First(s => s.Title.Name==title && s.Title.Slug==slug);
+                    ap = db.Content.First(s => s.Title.Name == title && s.Title.Slug == slug);
 
 
                 }
@@ -81,7 +82,7 @@ namespace MultiPlex.Core.Data.Repositories
                 List<Content> ap = null;
                 if ((wikiname != null) && (tid > 0))
                 {
-                    ap = db.Content.Where(s => s.Title.Id==tid).ToList();
+                    ap = db.Content.Where(s => s.Title.Id == tid).ToList();
 
 
                 }
@@ -95,7 +96,7 @@ namespace MultiPlex.Core.Data.Repositories
                 return null;
             }
         }
-        public void SaveorAdd(string wikiname, int tid, string source,ApplicationUser user)
+        public void SaveorAdd(string wikiname, int tid, string source, ApplicationUser user)
         {
             try
             {
@@ -126,11 +127,11 @@ namespace MultiPlex.Core.Data.Repositories
 
                         this.db.SaveChanges();
                     }
-                }           
+                }
 
-                    
 
-                }        
+
+            }
             catch (Exception ex)
             {
 
@@ -139,6 +140,30 @@ namespace MultiPlex.Core.Data.Repositories
             }
 
         }
-       
+        public Content GetByVersion(string wikiname, int id, int version)
+        {
+            try
+            {
+                Content ap = null;
+                if(wikiname !=null && this.wikrerpo.WikiExists(wikiname) && id >0  && version>0)
+                {
+                    ap = this.db.Content.First(s => s.Title.Id == id && s.Version == version && s.Wiki.WikiName == wikiname);
+                }
+
+                
+
+
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+
+            }
+
+        }
     }
 }

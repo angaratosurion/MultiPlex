@@ -46,7 +46,7 @@ namespace MultiPlex.Core.Application
             routes.MapRoute(
                 "Default",
                 "{wikiname}/{id}/{slug}",
-                new { controller = "Home", action = "ViewWiki", id = 1, slug = "home" },
+                new { controller = "Wiki", action = "ViewWiki", id = 1, slug = "home" },
                 new { id = @"\d+" }
                 );
         }

@@ -13,9 +13,9 @@ namespace MultiPlex.Core.Data.Models
         public int Version { get; set; }
         public DateTime VersionDate { get; set; }
         [Required]
-        public WikiModel Wiki { get; set; }
+        public virtual WikiModel Wiki { get; set; }
         [Required]
-        public ApplicationUser WrittenBy { get; set; }
+        public virtual ApplicationUser WrittenBy { get; set; }
 
     }
 }

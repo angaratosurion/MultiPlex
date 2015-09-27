@@ -58,7 +58,7 @@ namespace MultiPlex.Core.Data.Repositories
 
                 if (wikiname != null && slug!=null)
                 {
-                    WikiModel wiki = this.wrepo.Get(wikiname);
+                    WikiModel wiki = this.wrepo.GetWiki(wikiname);
                     ap = new Title();
                     ap.Name = name;
                     ap.Slug = slug;
