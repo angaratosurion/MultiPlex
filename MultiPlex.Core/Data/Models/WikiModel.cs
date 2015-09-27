@@ -21,5 +21,6 @@ namespace MultiPlex.Core.Data.Models
         [Required]
         public virtual ApplicationUser Administrtor { get; set; }
         public virtual List<ApplicationUser> Moderators { get; set; }
+        public virtual List<Category>Categories { get; set; }
     }
 }

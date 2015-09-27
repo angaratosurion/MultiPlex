@@ -173,6 +173,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WikiController.cs" />
     <Compile Include="Data\Context.cs" />
+    <Compile Include="Data\Models\Category.cs" />
     <Compile Include="Data\Models\IdentityModels.cs" />
     <Compile Include="Data\Models\WikiModel.cs" />
     <Compile Include="Data\Repositories\ContentRepository.cs" />
