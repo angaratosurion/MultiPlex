@@ -10,6 +10,7 @@ namespace MultiPlex.Core.Data.Models
    public class Category
     {
         [Required]
+        [Key]
         public int Id { get; set; }
         [Required]
         [DataType(DataType.Text)]

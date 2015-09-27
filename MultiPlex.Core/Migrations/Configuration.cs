@@ -9,7 +9,8 @@ namespace MultiPlex.Core.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            this.AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(MultiPlex.Core.Data.Context context)

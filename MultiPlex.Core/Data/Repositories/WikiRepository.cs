@@ -53,5 +53,23 @@ namespace MultiPlex.Core.Data.Repositories
                 return false;
             }
         }
+        public List<WikiModel> ListWiki()
+        {
+            try
+            {
+                return this.db.Wikis.ToList();
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        public void CreateWiki()
+        {
+
+        }
     }
 }
