@@ -149,6 +149,12 @@ namespace MultiPlex.Core.Managers
 
                 return wikiEngine.Render(source, GetRenderers(this.url));
             }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
         }
 
 
