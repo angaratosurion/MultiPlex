@@ -1,7 +1,7 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(MultiPlex.Web.Startup))]
+[assembly: OwinStartupAttribute(typeof(MultiPlex.Core.Application.Startup))]
 namespace MultiPlex.Web
 {
     public partial class Startup
