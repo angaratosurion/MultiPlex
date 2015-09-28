@@ -10,7 +10,7 @@ using MultiPlex.Core.Data;
 using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Data.Repositories;
 using MultiPlex.Core.Data.ViewModels;
-using MultiPlex.Core.Wiki;
+using MultiPlex.Core.WikiMacro;
 using MultiPlex.Formatting.Renderers;
 
 

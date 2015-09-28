@@ -49,8 +49,7 @@ namespace MultiPlex.Core.Data
 
         public IDbSet<Content > Content { get; set; }
         public IDbSet<Title> Title { get; set; }
-        public IDbSet<WikiModel> Wikis { get; set; }
+        public IDbSet<Models.Wiki> Wikis { get; set; }
         public IDbSet<Category> Categories { get; set; }
-
     }
 }

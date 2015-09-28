@@ -3,7 +3,7 @@ using MultiPlex.Compilation;
 using MultiPlex.Compilation.Macros;
 using MultiPlex;
 
-namespace MultiPlex.Core.Wiki
+namespace MultiPlex.Core.WikiMacro
 {
     public class TitleLinkMacro : IMacro
     {

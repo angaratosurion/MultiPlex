@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MultiPlex.Core.Data.Models
 {
-   public class WikiModel
+   public class Wiki
     {
         [Required]
         public int id { get; set; }

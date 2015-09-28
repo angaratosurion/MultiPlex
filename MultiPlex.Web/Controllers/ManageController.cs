@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -10,7 +11,9 @@ using MultiPlex.Web.Models;
 
 namespace MultiPlex.Web.Controllers
 {
-    [Authorize]
+    [Export("Manage", typeof(IController))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
+    [Authorize]   
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

@@ -174,7 +174,7 @@
     <Compile Include="Data\Context.cs" />
     <Compile Include="Data\Models\Category.cs" />
     <Compile Include="Data\Models\IdentityModels.cs" />
-    <Compile Include="Data\Models\WikiModel.cs" />
+    <Compile Include="Data\Models\Wiki.cs" />
     <Compile Include="Data\Repositories\WikiRepository.cs" />
     <Compile Include="Data\ViewModels\ViewContent.cs" />
     <Compile Include="Helpers\SlugHelper.cs" />
@@ -192,9 +192,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Verbs\HomeVerb.cs" />
     <Compile Include="Views\CustomViewEngine.cs" />
-    <Compile Include="Wiki\TitleLinkMacro.cs" />
-    <Compile Include="Wiki\TitleLinkRenderer.cs" />
-    <Compile Include="Wiki\WikiScopeName.cs" />
+    <Compile Include="WikiMacro\TitleLinkMacro.cs" />
+    <Compile Include="WikiMacro\TitleLinkRenderer.cs" />
+    <Compile Include="WikiMacro\WikiScopeName.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

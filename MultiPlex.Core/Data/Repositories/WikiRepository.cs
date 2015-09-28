@@ -12,12 +12,12 @@ namespace MultiPlex.Core.Data.Repositories
         //Context db = new Context();
         Context db = new Context();
         #region Wiki
-        public WikiModel GetWiki(string wikiname)
+        public Wiki GetWiki(string wikiname)
         {
 
             try
             {
-                WikiModel ap = null;
+                Models.Wiki ap = null;
                 if (wikiname != null)
                 {
                     ap = db.Wikis.FirstOrDefault(w => w.WikiName == wikiname);
@@ -55,7 +55,7 @@ namespace MultiPlex.Core.Data.Repositories
                 return false;
             }
         }
-        public List<WikiModel> ListWiki()
+        public List<Models.Wiki> ListWiki()
         {
             try
             {
@@ -123,7 +123,7 @@ namespace MultiPlex.Core.Data.Repositories
 
                 if (wikiname != null && slug != null)
                 {
-                    WikiModel wiki = this.GetWiki(wikiname);
+                    Models.Wiki wiki = this.GetWiki(wikiname);
                     ap = new Title();
                     ap.Name = name;
                     ap.Slug = slug;

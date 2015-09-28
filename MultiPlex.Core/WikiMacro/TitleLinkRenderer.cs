@@ -6,7 +6,7 @@ using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Helpers;
 using MultiPlex.Core.Data.Repositories;
 
-namespace MultiPlex.Core.Wiki
+namespace MultiPlex.Core.WikiMacro
 {
     public class TitleLinkRenderer : Renderer
     {

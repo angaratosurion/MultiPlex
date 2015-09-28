@@ -18,7 +18,7 @@ namespace MultiPlex.Core.Data.Models
         [Timestamp]
         public Byte[] RowVersion { get; set; }
         [Required]
-        public virtual WikiModel Wiki { get; set; }
+        public virtual Wiki Wiki { get; set; }
         [Required]        
         public  ApplicationUser WrittenBy { get; set; }
 

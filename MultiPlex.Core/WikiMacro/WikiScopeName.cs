@@ -1,4 +1,4 @@
-﻿namespace MultiPlex.Core.Wiki
+﻿namespace MultiPlex.Core.WikiMacro
 {
     public class WikiScopeName
     {

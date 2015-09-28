@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Composition;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -12,7 +13,10 @@ using MultiPlex.Web.Models;
 
 namespace MultiPlex.Web.Controllers
 {
+    [Export("Account", typeof(IController))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     [Authorize]
+   
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
