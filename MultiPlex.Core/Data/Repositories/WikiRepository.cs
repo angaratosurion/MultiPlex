@@ -90,16 +90,40 @@ namespace MultiPlex.Core.Data.Repositories
 
         #endregion
         #region Title
-        public List<Content> GetHistory(int titleid)
+        public List<Title> GetTitlebyWiki(string wikiname)
         {
             try
             {
-                List<Content> ap = null;
-                if ((titleid > 0))
+                List<Title> ap = null;
+                if ( !CommonTools.isEmpty(wikiname ) && this.WikiExists(wikiname))
                 {
-                    ap = db.Content.Where(s => s.Title.Id == titleid).ToList();
+                    ap = this.db.Title.Where(t => t.Wiki.Name == wikiname).ToList();
+                }
 
 
+                return ap;
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+       public List<Title> GetTitleByCategory(string wikiname,int catid)
+        {
+            try
+            {
+                List<Title> ap = null;
+                 if (!CommonTools.isEmpty(wikiname) && catid>0 && this.WikiExists(wikiname))
+                {
+                    Category cat = this.GetCategorybyId(catid);
+                    if (cat != null)
+                    {
+                        ap = this.GetTitlebyWiki(wikiname).Where(t => t.Categories.Contains(cat)).ToList();
+                    }
+
+                  
                 }
                 return ap;
 
@@ -158,7 +182,27 @@ namespace MultiPlex.Core.Data.Repositories
 
         #endregion
         #region Content
+        public List<Content> GetHistory(int titleid)
+        {
+            try
+            {
+                List<Content> ap = null;
+                if ((titleid > 0))
+                {
+                    ap = db.Content.Where(s => s.Title.Id == titleid).ToList();
 
+
+                }
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
         public int CountWithTitleId(string wikiname, int tid)
         {
             try
@@ -313,5 +357,63 @@ namespace MultiPlex.Core.Data.Repositories
 
         }
         #endregion
+
+        #region Categories
+        public List<Category> GetCategories()
+        {
+            try
+            {
+                return this.db.Categories.ToList();
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        public Category GetCategorybyId(int id)
+        {
+            try
+            {
+                Category ap = null;
+                if ( id >0)
+                {
+                    ap = this.db.Categories.First(c => c.Id == id);
+                }
+                return ap;
+
+            }
+             catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        public void CreateCategory(Category cat)
+        {
+            try
+            {
+              
+                if (cat != null)
+                {
+                    this.db.Categories.Add(cat);
+                    this.db.SaveChanges();
+                }
+               
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+              
+            }
+        }
+
+
+        #endregion
+
+
     }
 }

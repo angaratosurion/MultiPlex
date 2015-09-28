@@ -8,47 +8,67 @@
 <div>
     <h4>Wiki</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <table class="table">
+        
+        <tbody>
+            <tr>
+                <td>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>   
-        <dt>
-            @Html.DisplayNameFor(model => model.AdmininstratorId)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Description)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Admininstrator)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AdmininstratorId)
-        </dd>
-        <dd>@Html.DisplayNameFor(model => model.Moderators)
-        </dd>
-        <dt>
-            <ul class="nav navbar-nav">
-                @{
-                    var mods = Model.Moderators;
-                    foreach (var mod in mods)
-                    {<li> @Html.DisplayForModel(mod.UserName);  </li>
-                        }
+                        <dd>
+                            @Html.DisplayFor(model => model.Admininstrator)
+                        </dd>
+                        <dd>
+                            @Html.DisplayNameFor(model => model.Moderators)
+                        </dd>
+                        <dt>
+                            <ul class="nav navbar-nav">
+                                @{
+                                    var mods = Model.Moderators;
+                                    foreach (var mod in mods)
+                                    {
+                                        <li> @Html.DisplayForModel(mod.UserName);  </li>
+                                    }
 
-                    }
-                    </ul>
+                                }
+                            </ul>
+                        </dt>
+                    </dl>
+                </td>
+                <td>             
+                  
+                    <ul class="nav navbar-nav">
+                        @{
+                            var categories = Model.Categories;
+                            foreach (var cat in categories)
+                            {
+                                @Html.ActionLink(cat.Name, "Categories",  new { wid = Model.Name, cid = cat.Id });
+                            }
+}                       
+                     </ul>
 
-
-
-</dt>
-
-    </dl>
+</td>
+            </tr>
+    </tbody>
+    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Name }) |

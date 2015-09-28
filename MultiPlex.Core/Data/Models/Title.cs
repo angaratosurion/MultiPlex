@@ -28,5 +28,6 @@ namespace MultiPlex.Core.Data.Models
         [Required]
         public virtual ApplicationUser WrittenBy { get; set; }
         public virtual List<File> Files { get; set; }
+        public virtual List<Category> Categories { get; set; }
     }
 }
