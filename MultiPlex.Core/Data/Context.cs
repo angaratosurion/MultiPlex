@@ -25,6 +25,22 @@ namespace MultiPlex.Core.Data
             
             
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Content>()
+                .HasRequired(s => s.WrittenBy)
+                .WithMany().WillCascadeOnDelete(false);
+            modelBuilder.Entity<Title>()
+                .HasRequired(t => t.WrittenBy)
+                .WithMany().WillCascadeOnDelete(false);
+
+
+
+
+            modelBuilder.Entity<Title>()
+                .HasRequired(t=>t.Wiki)
+                .WithMany().WillCascadeOnDelete(false);
+          
+
+
         }
         public static Context Create()
         {

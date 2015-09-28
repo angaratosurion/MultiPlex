@@ -16,7 +16,7 @@ namespace MultiPlex.Core.Data.Models
         public string WikiName { get; set; }
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
-        public virtual Title Titles { get; set; }
+        public virtual List<Title> Titles { get; set; }
         public virtual List<Content> Content { get; set; }
         [Required]
         public virtual ApplicationUser Administrtor { get; set; }

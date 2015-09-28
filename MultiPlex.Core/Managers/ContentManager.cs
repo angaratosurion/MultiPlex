@@ -24,8 +24,7 @@ namespace MultiPlex.Core.Managers
         private readonly WikiRepository repository;
         UrlHelper url;
        // HtmlHelper html;
-        ContentRepository contrepo= new ContentRepository();
-        TitleRepository titlerepo = new TitleRepository();
+       
         string wikiname;
         
 
@@ -40,12 +39,12 @@ namespace MultiPlex.Core.Managers
         {
             try
             {
-                var viewData = new ViewContent { Content = this.contrepo.Get(wikiname,id) };
+                var viewData = new ViewContent { Content = this.repository.GetContent(wikiname,id) };
 
                 
 
                 viewData.Content.RenderedSource = wikiEngine.Render(viewData.Content.Source, GetRenderers(url));
-                viewData.History =this.titlerepo.GetHistory(id);
+                viewData.History =this.repository.GetHistory(id);
                 viewData.Editable = IsEditable();
 
                 return viewData;
@@ -79,7 +78,7 @@ namespace MultiPlex.Core.Managers
         {
             try
             {
-                Content content = this.contrepo.Get(wikiname,id);
+                Content content = this.repository.GetContent(wikiname,id);
                 if (content == null)
                     content = new Content { Title = new Title { Slug = slug } };
                 return content;
@@ -101,14 +100,14 @@ namespace MultiPlex.Core.Managers
             {
 
                 
-                Title title = this.titlerepo.Get(wikiname, titleid);
+                Title title = this.repository.Get(wikiname, titleid);
                 if (title == null)
                 {
 
-                    title = this.titlerepo.Add(wikiname, name, slug, user);
+                    title = this.repository.Add(wikiname, name, slug, user);
                 }
 
-                    this.contrepo.SaveorAdd(wikiname, title.Id, source, user);
+                    this.repository.SaveorAddContent(wikiname, title.Id, source, user);
                 return titleid;
 
                

@@ -15,8 +15,10 @@ namespace MultiPlex.Core.Data.Models
         [Required]
         [DataType(DataType.Text)]
         public string Name{ get; set; }
-        public virtual List<Context> Content { get; set; }
+      
         [Required]
         public virtual WikiModel Wiki { get; set; }
+        [Timestamp]
+        public Byte[] RowVersion { get; set; }
     }
 }

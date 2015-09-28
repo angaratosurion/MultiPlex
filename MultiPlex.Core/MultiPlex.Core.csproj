@@ -175,8 +175,6 @@
     <Compile Include="Data\Models\Category.cs" />
     <Compile Include="Data\Models\IdentityModels.cs" />
     <Compile Include="Data\Models\WikiModel.cs" />
-    <Compile Include="Data\Repositories\ContentRepository.cs" />
-    <Compile Include="Data\Repositories\TitleRepository.cs" />
     <Compile Include="Data\Repositories\WikiRepository.cs" />
     <Compile Include="Data\ViewModels\ViewContent.cs" />
     <Compile Include="Helpers\SlugHelper.cs" />

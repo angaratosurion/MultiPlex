@@ -15,10 +15,12 @@ namespace MultiPlex.Core.Data.Models
         [DataType(DataType.DateTime)]
         
         public DateTime VersionDate { get; set; }
+        [Timestamp]
+        public Byte[] RowVersion { get; set; }
         [Required]
         public virtual WikiModel Wiki { get; set; }
-        [Required]
-        public virtual ApplicationUser WrittenBy { get; set; }
+        [Required]        
+        public  ApplicationUser WrittenBy { get; set; }
 
     }
 }

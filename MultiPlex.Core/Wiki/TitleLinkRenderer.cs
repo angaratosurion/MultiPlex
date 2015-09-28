@@ -36,7 +36,7 @@ namespace MultiPlex.Core.Wiki
             Func<string, string> attributeEncode)
         {
             string slug = SlugHelper.Generate(input);
-            Content content = wikiRepository.Get(wikiname,slug, input);
+            Content content = wikiRepository.GetContent(wikiname,slug, input);
             int id = content != null ? content.Title.Id : 0;
             string url;
 
