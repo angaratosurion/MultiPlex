@@ -20,7 +20,7 @@ namespace MultiPlex.Core.Data.Repositories
                 Models.Wiki ap = null;
                 if (wikiname != null)
                 {
-                    ap = db.Wikis.FirstOrDefault(w => w.WikiName == wikiname);
+                    ap = db.Wikis.FirstOrDefault(w => w.Name == wikiname);
                 }
                 return ap;
             }
@@ -69,8 +69,22 @@ namespace MultiPlex.Core.Data.Repositories
                 return null;
             }
         }
-        public void CreateWiki()
+        public void CreateWiki(Wiki wk)
         {
+            try
+            {
+                if ( wk!=null && this.WikiExists(wk.Name)==false)
+                {
+                    this.db.Wikis.Add(wk);
+                    this.db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                //return null;
+            }
 
         }
 
@@ -104,7 +118,7 @@ namespace MultiPlex.Core.Data.Repositories
                 Title ap = null;
                 if (wikiname != null && (titleid > 0))
                 {
-                    ap = db.Title.FirstOrDefault(t => t.Id == titleid && t.Wiki.WikiName == wikiname);
+                    ap = db.Title.FirstOrDefault(t => t.Id == titleid && t.Wiki.Name == wikiname);
                 }
                 return ap;
             }
@@ -244,7 +258,7 @@ namespace MultiPlex.Core.Data.Repositories
                         //  cont.Id = id;
                         cont.Title = title;
                         cont.Source = source;
-                        cont.Wiki = db.Wikis.FirstOrDefault(w => w.WikiName == wikiname);
+                        cont.Wiki = db.Wikis.FirstOrDefault(w => w.Name == wikiname);
                         cont.WrittenBy = user;
                         if (this.CountWithTitleId(wikiname, tid) > 0)
                         {
@@ -280,7 +294,7 @@ namespace MultiPlex.Core.Data.Repositories
                 Content ap = null;
                 if (wikiname != null && this.WikiExists(wikiname) && id > 0 && version > 0)
                 {
-                    ap = db.Content.First(s => s.Title.Id == id && s.Version == version && s.Wiki.WikiName == wikiname);
+                    ap = db.Content.First(s => s.Title.Id == id && s.Version == version && s.Wiki.Name == wikiname);
                 }
 
 

@@ -5,28 +5,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace MultiPlex.Core.Data.Models
 {
-    
-
-    public class Title
-    {  
-            [Required]                
+   public class File
+    {
+        [Required]
         public int Id { get; set; }
         [Required]
-        [DataType(DataType.Text)]
-        public string Name { get; set; }
+        public string FileName { get; set; }
         [Required]
-        [DataType(DataType.Text)]
-        public string Slug { get; set; }
-        public int MaxVersion { get; set; }
+        public string Path { get; set; }
+       
         [Timestamp]
         public Byte[] RowVersion { get; set; }
         [Required]
+        public virtual ApplicationUser Owner { get; set; }
+        [Required]
         public virtual Wiki Wiki { get; set; }
         [Required]
-        public virtual ApplicationUser WrittenBy { get; set; }
-        public virtual List<File> Files { get; set; }
+        public virtual Title Title { get; set; }
+
     }
 }

@@ -28,5 +28,26 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
+        public Wiki GetWiki(string name)
+        {
+            try
+            {
+                Wiki ap = null;
+                if ( !CommonTools.isEmpty(name))
+                {
+                    ap = this.wrepo.GetWiki(name);
+                }
+
+
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
     }
 }

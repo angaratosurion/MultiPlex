@@ -38,6 +38,12 @@ namespace MultiPlex.Core.Data
             modelBuilder.Entity<Title>()
                 .HasRequired(t=>t.Wiki)
                 .WithMany().WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<File>()
+                .HasRequired(f => f.Wiki)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
           
 
 
@@ -51,5 +57,6 @@ namespace MultiPlex.Core.Data
         public IDbSet<Title> Title { get; set; }
         public IDbSet<Models.Wiki> Wikis { get; set; }
         public IDbSet<Category> Categories { get; set; }
+        public IDbSet<File> Files { get; set; }
     }
 }

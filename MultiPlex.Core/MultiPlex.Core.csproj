@@ -173,6 +173,7 @@
     <Compile Include="Controllers\WikiController.cs" />
     <Compile Include="Data\Context.cs" />
     <Compile Include="Data\Models\Category.cs" />
+    <Compile Include="Data\Models\File.cs" />
     <Compile Include="Data\Models\IdentityModels.cs" />
     <Compile Include="Data\Models\Wiki.cs" />
     <Compile Include="Data\Repositories\WikiRepository.cs" />
@@ -185,12 +186,14 @@
     <Compile Include="Interfaces\IRouteRegistrarMetadata.cs" />
     <Compile Include="Data\Models\Content.cs" />
     <Compile Include="Data\Models\Title.cs" />
+    <Compile Include="Managers\FileManager.cs" />
     <Compile Include="Managers\UserManager.cs" />
     <Compile Include="Managers\ContentManager.cs" />
     <Compile Include="Managers\WikiManager.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Verbs\HomeVerb.cs" />
+    <Compile Include="Verbs\AdminVerb.cs" />
     <Compile Include="Views\CustomViewEngine.cs" />
     <Compile Include="WikiMacro\TitleLinkMacro.cs" />
     <Compile Include="WikiMacro\TitleLinkRenderer.cs" />

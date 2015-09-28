@@ -13,7 +13,7 @@ namespace MultiPlex.Core.Data.Models
         public int id { get; set; }
         [Required]
         [Key]
-        public string WikiName { get; set; }
+        public string Name { get; set; }
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         public virtual List<Title> Titles { get; set; }
@@ -22,5 +22,6 @@ namespace MultiPlex.Core.Data.Models
         public virtual ApplicationUser Administrtor { get; set; }
         public virtual List<ApplicationUser> Moderators { get; set; }
         public virtual List<Category>Categories { get; set; }
+        public virtual List<File> Files { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace MultiPlex.Core
 {
    public class CommonTools
     {
-       public Boolean isEmpty(string str)
+       public static  Boolean isEmpty(string str)
        {
            try
            {
