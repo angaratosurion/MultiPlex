@@ -41,7 +41,7 @@ namespace MultiPlex.Core.WikiMacro
             string url;
 
             if (urlHelper != null)
-                url = urlHelper.RouteUrl("Default", new { id, slug });
+                url = urlHelper.RouteUrl("Default", new {wikiname, id, slug });
             else
                 url = "/WebForms/?i=" + id + "&p=" + slug;
 
