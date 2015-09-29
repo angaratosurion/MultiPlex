@@ -203,6 +203,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\TitleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -286,7 +288,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Modules\" />
+    <Folder Include="Views\Admin\" />
     <Folder Include="Views\Category\" />
+    <Folder Include="Views\Content\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

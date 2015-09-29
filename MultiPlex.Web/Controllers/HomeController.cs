@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using MultiPlex.Core;
 using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Managers;
@@ -49,6 +50,29 @@ namespace MultiPlex.Web.Controllers
                     return HttpNotFound();
                 }
                 return View(wk);
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        public ActionResult Categories(string wikiname, int cid)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(wikiname) && cid>=0)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                }
+                //   RouteDataValueProvider
+               RouteValueDictionary vals = new RouteValueDictionary();
+                vals.Add("wikiname", wikiname);
+                vals.Add("cid", cid);
+              return  RedirectToAction("Index", "Title",vals);
 
             }
             catch (Exception ex)

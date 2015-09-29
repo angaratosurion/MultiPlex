@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -11,6 +12,9 @@ using MultiPlex.Core.Managers;
 
 namespace MultiPlex.Web.Controllers
 {
+
+    [Export("Title", typeof(IController))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class TitleController : Controller
     {
         TitleManager tmngr = new TitleManager();
@@ -38,18 +42,18 @@ namespace MultiPlex.Web.Controllers
         //        return null;
         //    }
         //}
-        public ActionResult Details(string wid,int catid)
+        public ActionResult Index(string wikiname, int catid)
         {
             try
             {
-                if (CommonTools.isEmpty(wid))
+                if (CommonTools.isEmpty(wikiname))
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
                 }
-                List<Title> titles = this.tmngr.GetTitlesbyCategory(wid, catid);
-                if (titles== null)
-                { 
+                List<Title> titles = this.tmngr.GetTitlesbyCategory(wikiname, catid);
+                if (titles == null)
+                {
                     return HttpNotFound();
                 }
                 return View(titles);
@@ -61,5 +65,41 @@ namespace MultiPlex.Web.Controllers
                 return null;
             }
         }
+        //    [Authorize]
+        //    public ActionResult Create()
+        //    {
+        //        try
+        //        {
+        //            return View();
+        //        }
+        //        catch (Exception ex)
+        //        {
+
+        //            CommonTools.ErrorReporting(ex);
+        //            return null;
+        //        }
+
+        //    }
+
+        //    [HttpPost]
+        //    [ValidateAntiForgeryToken]
+        //    public ActionResult Create(Title title)
+        //    {
+        //        try
+        //        {
+        //            if (ModelState.IsValid)
+        //            {
+
+        //            }
+        //            return title;
+        //        }
+        //        catch (Exception ex)
+        //        {
+
+        //            CommonTools.ErrorReporting(ex);
+        //            return null;
+        //        }
+        //    }
+        //}
     }
 }

@@ -60,7 +60,7 @@
                             var categories = Model.Categories;
                             foreach (var cat in categories)
                             {
-                                @Html.ActionLink(cat.Name, "Categories",  new { wid = Model.Name, cid = cat.Id });
+                                @Html.ActionLink(cat.Name, "Categories",  new { wikiname = Model.Name, cid = cat.Id });
                             }
 }                       
                      </ul>

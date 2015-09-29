@@ -49,5 +49,21 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
+        public void CreateWiki(Wiki wk)
+        {
+            try
+            {
+                if ( wk!=null)
+                {
+                    this.wrepo.CreateWiki(wk);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                //return null;
+            }
+        }
     }
 }

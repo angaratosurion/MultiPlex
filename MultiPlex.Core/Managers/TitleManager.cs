@@ -25,5 +25,22 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
+        public void Create(Title title,ApplicationUser user)
+        {
+            try
+            {
+                if ( title !=null && user!=null)
+                {
+                   // this.wrepo.Add()
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+               // return null;
+            }
+        }
     }
 }

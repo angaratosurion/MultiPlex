@@ -11,9 +11,9 @@ using System.ComponentModel.Composition;
 
 namespace MultiPlex.Core.Controllers
 {
-    [HandleError]
-    [Export("Wiki", typeof(IController))]
-    [PartCreationPolicy(CreationPolicy.NonShared)]
+    //[HandleError]
+    //[Export("Wiki", typeof(IController))]
+    //[PartCreationPolicy(CreationPolicy.NonShared)]
     public class WikiController : Controller
     {
         private ContentManager mng;
