@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MultiPlex.Core.Data;
 
 namespace MultiPlex.Core
 {
    public class CommonTools
     {
+        public static Context db = new Context();
        public static  Boolean isEmpty(string str)
        {
            try

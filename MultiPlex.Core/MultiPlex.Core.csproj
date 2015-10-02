@@ -204,9 +204,7 @@
     <Compile Include="WikiMacro\WikiScopeName.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="app.config" />
     <None Include="connectionstrings.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -18,7 +18,7 @@ namespace MultiPlex.Core.Managers
 {
     public class ContentManager
     {
-        private readonly Context db = new Context();
+       
 
         private readonly IWikiEngine wikiEngine;
         private readonly WikiRepository repository;

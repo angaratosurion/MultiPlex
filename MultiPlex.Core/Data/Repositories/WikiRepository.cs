@@ -10,7 +10,8 @@ namespace MultiPlex.Core.Data.Repositories
     public class WikiRepository
     {
         //Context db = new Context();
-        Context db = new Context();
+        // Context db = new Context();
+        Context db = CommonTools.db;
         #region Wiki
         public Wiki GetWiki(string wikiname)
         {

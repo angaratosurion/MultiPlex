@@ -10,7 +10,8 @@ namespace MultiPlex.Core.Managers
 {
     public class UserManager
     {
-        Context db = new Context();
+        // Context db = new Context();
+        Context db = CommonTools.db;
         public ApplicationUser GetUser (string id)
         {
             try

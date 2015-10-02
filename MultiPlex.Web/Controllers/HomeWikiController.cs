@@ -40,7 +40,7 @@ namespace MultiPlex.Web.Controllers
 
 
         }
-        public ActionResult Detais(string id)
+        public ActionResult Details(string id)
         {
             try
             {
