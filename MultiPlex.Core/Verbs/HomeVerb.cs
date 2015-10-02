@@ -9,7 +9,7 @@ using MultiPlex.Core.Interfaces;
 namespace MultiPlex.Core.Verbs
 {
     [Export(typeof(IActionVerb)), ExportMetadata("Category", "Navigation")]
-    public class HomeVerb : IActionVerb
+    public class HomeWikiVerb : IActionVerb
     {
         public string Action
         {
@@ -23,7 +23,7 @@ namespace MultiPlex.Core.Verbs
         {
             get
             {
-                return "Home";
+                return "HomeWiki";
             }
         }
 
@@ -31,7 +31,7 @@ namespace MultiPlex.Core.Verbs
         {
             get
             {
-                return "Home";
+                return "HomeWiki";
             }
         }
     }

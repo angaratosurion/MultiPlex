@@ -61,7 +61,7 @@ namespace MultiPlex.Web.Sample.WebForms
         {
             string slug = Request.QueryString["p"];
             if (string.IsNullOrEmpty(slug))
-                slug = "home";
+                slug = "HomeWiki";
             return slug;
         }
 

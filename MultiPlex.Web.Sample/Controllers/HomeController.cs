@@ -6,23 +6,23 @@ using System.Web.UI;
 using MultiPlex.Formatting.Renderers;
 using MultiPlex.Web.Sample.Models;
 using MultiPlex.Web.Sample.Repositories;
-using MultiPlex.Web.Sample.Views.Home;
+using MultiPlex.Web.Sample.Views.HomeWiki;
 using MultiPlex.Web.Sample.Wiki;
 
 namespace MultiPlex.Web.Sample.Controllers
 {
     [HandleError]
-    public class HomeController : Controller
+    public class HomeWikiController : Controller
     {
         private readonly IWikiRepository repository;
         private readonly IWikiEngine wikiEngine;
 
-        public HomeController()
+        public HomeWikiController()
             : this(new WikiRepository(), new WikiEngine())
         {
         }
 
-        public HomeController(IWikiRepository repository, IWikiEngine wikiEngine)
+        public HomeWikiController(IWikiRepository repository, IWikiEngine wikiEngine)
         {
             this.repository = repository;
             this.wikiEngine = wikiEngine;

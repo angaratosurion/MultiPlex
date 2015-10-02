@@ -16,11 +16,12 @@ namespace MultiPlex.Web.Controllers
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class HomeWikiController : Controller
     { WikiManager wmngr;
+        UserManager usrmngr = new UserManager();
         public HomeWikiController()
         {
             wmngr = new WikiManager(this.Server);
         }
-        // GET: Home
+        // GET: HomeWiki
         public ActionResult Index()
         {
             try
@@ -96,12 +97,20 @@ namespace MultiPlex.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Wiki wk)
         {
-            if (ModelState.IsValid)
+            ApplicationUser usr =null ;
+            string ttusr = this.User.Identity.Name;
+            usr=this.usrmngr.GetUser(ttusr);
+            wk.Administrtor = usr;
+            //if (ModelState.IsValid)
             {
+                
+                if (usr != null)
+                {
 
+                    
+                    wmngr.CreateWiki(wk);
 
-                wmngr.CreateWiki(wk);
-
+                }
                 return RedirectToAction("Index");
             }
 

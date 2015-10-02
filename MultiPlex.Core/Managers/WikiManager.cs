@@ -15,7 +15,7 @@ namespace MultiPlex.Core.Managers
     {
         HttpServerUtilityBase util;
         WikiRepository wrepo = new WikiRepository();
-        Context db = new Context();
+      
         SettingsManager setmngr = new SettingsManager();
         FileManager flmng;
         const string AppDataDir = "App_Data";

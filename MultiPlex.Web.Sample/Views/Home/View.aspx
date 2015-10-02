@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<MultiPlex.Web.Sample.Views.Home.ViewContent>" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<MultiPlex.Web.Sample.Views.HomeWiki.ViewContent>" %>
 <asp:Content ID="titleContent" ContentPlaceHolderID="head" runat="server">
     <title>MultiPlex Sample - <%= Html.Encode(Model.Content.Title.Name) %></title>
     <% if (Model.Editable)

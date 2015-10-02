@@ -30,6 +30,8 @@
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
+        @Html.HiddenFor(model => model.Administrtor, new { Value = Profile.UserName });
+      
 
        
 

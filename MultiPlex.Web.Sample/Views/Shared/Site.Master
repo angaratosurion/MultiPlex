@@ -22,8 +22,8 @@
                 <img src="../../Content/Logo.png" />
             </div>
             <div id="menu">
-                <a href="<%= ResolveClientUrl("~/") %>">Home (MVC)</a> |
-                <a href="<%= ResolveClientUrl("~/WebForms") %>">Home (WebForms)</a>
+                <a href="<%= ResolveClientUrl("~/") %>">HomeWiki (MVC)</a> |
+                <a href="<%= ResolveClientUrl("~/WebForms") %>">HomeWiki (WebForms)</a>
             </div>
         </div>
 

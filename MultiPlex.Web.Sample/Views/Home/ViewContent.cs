@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using MultiPlex.Web.Sample.Models;
 
-namespace MultiPlex.Web.Sample.Views.Home
+namespace MultiPlex.Web.Sample.Views.HomeWiki
 {
     public class ViewContent
     {

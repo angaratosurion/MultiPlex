@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using MultiPlex.Core.Application;
 using MultiPlex.Web.Models;
 
 namespace MultiPlex.Web.Controllers

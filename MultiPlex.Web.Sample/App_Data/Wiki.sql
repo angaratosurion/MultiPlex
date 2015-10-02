@@ -15,7 +15,7 @@ CREATE TABLE [dbo].[Title](
 ) ON [PRIMARY]
 GO
 SET IDENTITY_INSERT [dbo].[Title] ON
-INSERT [dbo].[Title] ([Id], [Name], [Slug]) VALUES (1, N'Home', N'home')
+INSERT [dbo].[Title] ([Id], [Name], [Slug]) VALUES (1, N'HomeWiki', N'HomeWiki')
 INSERT [dbo].[Title] ([Id], [Name], [Slug]) VALUES (2, N'Silverlight Support', N'silverlight-support')
 INSERT [dbo].[Title] ([Id], [Name], [Slug]) VALUES (3, N'Video Support', N'video-support')
 INSERT [dbo].[Title] ([Id], [Name], [Slug]) VALUES (4, N'RSS Support', N'rss-support')
@@ -292,7 +292,7 @@ _Allows for the creation of simple table layouts._
 || Table Heading 1 || Table Heading 2 || Table Heading 3 ||
 | Row 1 - Cell 1 | Row 1 - Cell 2 | Row 1 - Cell 3 |
 | Row 2 - Cell 1 | Row 2 - Cell 2 | Row 2 - Cell 3 |', 1, CAST(0x00009BDB017AD902 AS DateTime))
-INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (13, 6, N'[Home] > Formatting and Layout
+INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (13, 6, N'[HomeWiki] > Formatting and Layout
 !! Formatting and Layout
 This page provides a guide for doing simple formatting utilizing various macros.
 
@@ -308,7 +308,7 @@ _Block level tags include headings, lists, tables, and multi-line formatted text
 * Tag must be the first thing on the line
 * Closing tag must be the last thing on the line
 * There should be no leading or trailing whitespace', 2, CAST(0x00009BDB017D8227 AS DateTime))
-INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (14, 7, N'[Home] > [Formatting and Layout] > Basic Formatting
+INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (14, 7, N'[HomeWiki] > [Formatting and Layout] > Basic Formatting
 !! Basic Formatting
 _Allows for simple formatting of wiki text._
 
@@ -325,7 +325,7 @@ _italics_
 _italics_
 +underline+
 --strikethrough--', 2, CAST(0x00009BDB017D9E63 AS DateTime))
-INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (15, 8, N'[Home] > [Formatting and Layout] > Headings
+INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (15, 8, N'[HomeWiki] > [Formatting and Layout] > Headings
 !! Headings
 _Allows formatting text as a header._
 
@@ -346,7 +346,7 @@ _Allows formatting text as a header._
 !!!! Heading 4
 !!!!! Heading 5
 !!!!!! Heading 6', 2, CAST(0x00009BDB017DBA26 AS DateTime))
-INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (16, 9, N'[Home] > [Formatting and Layout] > Code Blocks
+INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (16, 9, N'[HomeWiki] > [Formatting and Layout] > Code Blocks
 !! Code Block
 _Allows for text to be formatted as code for languages in which syntax highlighting is not supported._
 
@@ -375,7 +375,7 @@ _Allows for text to be formatted as code for languages in which syntax highlight
 
 // single line
 {{ single line of text }}', 2, CAST(0x00009BDB017DC7C0 AS DateTime))
-INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (17, 10, N'[Home] > [Formatting and Layout] > Escaped Markup
+INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (17, 10, N'[HomeWiki] > [Formatting and Layout] > Escaped Markup
 !! Escaped Markup
 _Allows use of wiki formatting characters as literal text._
 
@@ -388,7 +388,7 @@ _Allows use of wiki formatting characters as literal text._
 {"text with *unrendered* wiki markup"}
 
 *Note: Only use vertical (not curly) quotes to ensure that formatting will not apply.*', 2, CAST(0x00009BDB017DD5B1 AS DateTime))
-INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (18, 11, N'[Home] > [Formatting and Layout] > Lists
+INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (18, 11, N'[HomeWiki] > [Formatting and Layout] > Lists
 !! Lists
 _Allows for the creation of bullted or numbered lists._
 
@@ -415,7 +415,7 @@ _Allows for the creation of bullted or numbered lists._
 ### Numbered List 1.1.1
 # Numbered List 2
 ## Numbered List 2.1', 2, CAST(0x00009BDB017DE4AC AS DateTime))
-INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (19, 12, N'[Home] > [Formatting and Layout] > Tables
+INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (19, 12, N'[HomeWiki] > [Formatting and Layout] > Tables
 !! Tables
 _Allows for the creation of simple table layouts._
 
@@ -430,7 +430,7 @@ _Allows for the creation of simple table layouts._
 || Table Heading 1 || Table Heading 2 || Table Heading 3 ||
 | Row 1 - Cell 1 | Row 1 - Cell 2 | Row 1 - Cell 3 |
 | Row 2 - Cell 1 | Row 2 - Cell 2 | Row 2 - Cell 3 |', 2, CAST(0x00009BDB017DF05B AS DateTime))
-INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (20, 5, N'[Home] > Syntax Highlighting
+INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (20, 5, N'[HomeWiki] > Syntax Highlighting
 !! Syntax Highlighted Code Snippet
 _Allows for a code snippet to be styled according to the language specified._
 
@@ -476,7 +476,7 @@ Using {"{code:language}"} as shown above.
 | xml | Use for snippets from .xml, .config, .dbml, and .xsd files |
 | php | Use for PHP code snippets |
 | css | Use for CSS code snippets |', 2, CAST(0x00009BDB017E23C9 AS DateTime))
-INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (21, 4, N'[Home] > Rss Macro
+INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (21, 4, N'[HomeWiki] > Rss Macro
 !! Rss Macro
 _The rss macro allows for the importing of external rss feeds into your wiki page._
 !!!!! Required Parameters
@@ -494,7 +494,7 @@ _The rss macro allows for the importing of external rss feeds into your wiki pag
 }}
 !!!!! Rendered Markup
 {rss:url=http://blogs.msdn.com/codeplex/rss.xml,max=1,titlesOnly=false}', 2, CAST(0x00009BDB017E3422 AS DateTime))
-INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (22, 3, N'[Home] > Video Support
+INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (22, 3, N'[HomeWiki] > Video Support
 !! Video Support
 _The video macro allows you to insert video media into your wiki page_
 !!!!! Required Parameters
@@ -512,7 +512,7 @@ _The video macro allows you to insert video media into your wiki page_
 }}
 !!!!! Rendered Markup
 {video:url=mms://wm.microsoft.com/ms/msnse/0607/28366/CodePlexTeam_Final_MBR.wmv,type=windows}', 2, CAST(0x00009BDB017E4860 AS DateTime))
-INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (23, 4, N'[Home] > Rss Support
+INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (23, 4, N'[HomeWiki] > Rss Support
 !! Rss Support
 _The rss macro allows for the importing of external rss feeds into your wiki page._
 !!!!! Required Parameters
@@ -530,7 +530,7 @@ _The rss macro allows for the importing of external rss feeds into your wiki pag
 }}
 !!!!! Rendered Markup
 {rss:url=http://blogs.msdn.com/codeplex/rss.xml,max=1,titlesOnly=false}', 3, CAST(0x00009BDB017E571F AS DateTime))
-INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (24, 2, N'[Home] > Silverlight Support
+INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (24, 2, N'[HomeWiki] > Silverlight Support
 !! Silverlight Macro
 
 _The Silverlight macro allows you to insert Silverlight applications into your wiki page_
@@ -541,7 +541,7 @@ _The Silverlight macro allows you to insert Silverlight applications into your w
 }}
 !!!!! Rendered Markup
 {silverlight:url=http://slkit.blob.core.windows.net/xaps/ToolkitBanner.xap,height=280,width=880}', 2, CAST(0x00009BDB017E6BC4 AS DateTime))
-INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (25, 6, N'[Home] > Formatting and Layout
+INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (25, 6, N'[HomeWiki] > Formatting and Layout
 !! Formatting and Layout
 This page provides a guide for doing simple formatting utilizing various macros.
 
@@ -558,7 +558,7 @@ _Block level tags include headings, lists, tables, and multi-line formatted text
 * Tag must be the first thing on the line
 * Closing tag must be the last thing on the line
 * There should be no leading or trailing whitespace', 3, CAST(0x00009BDB017E89FB AS DateTime))
-INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (26, 13, N'[Home] > [Formatting and Layout] > Horizontal Rules
+INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (26, 13, N'[HomeWiki] > [Formatting and Layout] > Horizontal Rules
 !! Horizontal Rules
 _Allows for a visual break in your wiki content_
 
@@ -577,7 +577,7 @@ bottom content
 
 *Notes:*
 The horizontal rule must be the first thing on a line. Content can follow it, but when rendered - will render on a new line.', 1, CAST(0x00009BDB017F8BCC AS DateTime))
-INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (27, 6, N'[Home] > Formatting and Layout
+INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (27, 6, N'[HomeWiki] > Formatting and Layout
 !! Formatting and Layout
 This page provides a guide for doing simple formatting utilizing various macros.
 
@@ -595,7 +595,7 @@ _Block level tags include headings, lists, tables, and multi-line formatted text
 * Tag must be the first thing on the line
 * Closing tag must be the last thing on the line
 * There should be no leading or trailing whitespace', 4, CAST(0x00009BE500F8DEEB AS DateTime))
-INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (28, 14, N'[Home] > [Formatting and Layout] > Text Alignment
+INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (28, 14, N'[HomeWiki] > [Formatting and Layout] > Text Alignment
 
 !! Text Alignment
 _Allows for alignment of text on the page._
@@ -613,7 +613,7 @@ _Allows for alignment of text on the page._
 >{this is right aligned content}>
 ><{this is center aligned content}><
 <>{this is justified aligned content}<>', 1, CAST(0x00009BE500F91E8E AS DateTime))
-INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (29, 14, N'[Home] > [Formatting and Layout] > Text Alignment
+INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (29, 14, N'[HomeWiki] > [Formatting and Layout] > Text Alignment
 
 !! Text Alignment
 _Allows for alignment of text on the page._
@@ -627,7 +627,7 @@ _Allows for alignment of text on the page._
 !!!!! Rendered Markup
 <{this is left aligned content}<
 >{this is right aligned content}>', 2, CAST(0x00009C2A0106ACC0 AS DateTime))
-INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (30, 6, N'[Home] > Formatting and Layout
+INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (30, 6, N'[HomeWiki] > Formatting and Layout
 !! Formatting and Layout
 This page provides a guide for doing simple formatting utilizing various macros.
 
@@ -647,7 +647,7 @@ _Block level tags include headings, lists, tables, and multi-line formatted text
 * Tag must be the first thing on the line
 * Closing tag must be the last thing on the line
 * There should be no leading or trailing whitespace', 5, CAST(0x00009C4701825721 AS DateTime))
-INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (31, 15, N'[Home] > [Formatting and Layout] > Links
+INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (31, 15, N'[HomeWiki] > [Formatting and Layout] > Links
 !! External Links
 _External links allow you to link to any url outside your project._
 
@@ -692,7 +692,7 @@ _Anchors are links that allow you to link to certain content via a hashtag._
 
 // link to an anchor
 [#anchorName] ', 1, CAST(0x00009C470184859B AS DateTime))
-INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (32, 16, N'[Home] > [Formatting and Layout] > Images
+INSERT [dbo].[Content] ([Id], [TitleId], [Source], [Version], [VersionDate]) VALUES (32, 16, N'[HomeWiki] > [Formatting and Layout] > Images
 !! Images
 _Images allow you to link to images hosted elsewhere and linked from the wiki._
 

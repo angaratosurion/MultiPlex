@@ -18,7 +18,7 @@ namespace MultiPlex.Core.Managers
                 ApplicationUser ap = null;
                 if ( id !=null)
                 {
-                    ap = this.db.Users.First(u => u.Id == id);
+                    ap = this.db.Users.First(u => u.UserName == id);
                 }
                 return ap;
             }
