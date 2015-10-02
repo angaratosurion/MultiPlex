@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using MultiPlex.Core.Configuration;
 using MultiPlex.Core.Data;
 using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Data.Repositories;
@@ -11,9 +13,20 @@ namespace MultiPlex.Core.Managers
 {
  public   class WikiManager
     {
+        HttpServerUtilityBase util;
         WikiRepository wrepo = new WikiRepository();
         Context db = new Context();
-
+        SettingsManager setmngr = new SettingsManager();
+        FileManager flmng;
+        const string AppDataDir = "App_Data";
+        public WikiManager(HttpServerUtilityBase tul)
+        {
+            if (tul != null)
+            {
+                util = tul;
+                this.flmng = new FileManager(tul);
+            }
+        }
         public List<Data.Models.Wiki> ListWiki()
         {
             try
@@ -56,6 +69,19 @@ namespace MultiPlex.Core.Managers
                 if ( wk!=null)
                 {
                     this.wrepo.CreateWiki(wk);
+                    string wkrotfold = this.setmngr.WikiRootFolderName();
+                    string wkpath;
+
+                    if (CommonTools.isEmpty(wkrotfold ))
+                    {
+                        wkrotfold = "wikifiles";
+                    }
+                    wkpath = "~/" + AppDataDir + "/" + wkrotfold + "/" + wk.Name;
+                    if (! this.flmng.DirectoryExists(wkpath))
+                    {
+                        this.flmng.CreateDirectory(wkpath);
+
+                    }
                 }
             }
             catch (Exception ex)

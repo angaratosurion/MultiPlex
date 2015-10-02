@@ -372,19 +372,67 @@ namespace MultiPlex.Core.Data.Repositories
                 return null;
             }
         }
+        public Boolean CategoryExistsinWiki(string catname,string wikiname)
+        {
+            try
+            {
+                Boolean ap = false;
+                if (!CommonTools.isEmpty(wikiname) && this.WikiExists(wikiname)
+                    &&!CommonTools.isEmpty(catname))
+                {
+                    List<Category> cats = this.GetCategorybyWiki(wikiname);  
+                    if ( cats==null )
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        ap=cats.Exists(s => s.Name==catname);
+                    }
+                }
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return false;
+            }
+        }
+
+        public List<Category> GetCategorybyWiki(string wikiname)
+        {
+            try
+            {
+                List<Category> ap = null;
+                if ( !CommonTools.isEmpty(wikiname) && this.WikiExists(wikiname))
+                {
+                    ap = this.db.Categories.Where(c => c.Wiki.Name == wikiname).ToList();
+                }
+                return ap;
+
+            }
+             catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
         public Category GetCategorybyId(int id)
         {
             try
             {
                 Category ap = null;
-                if ( id >0)
+                if (id > 0)
                 {
                     ap = this.db.Categories.First(c => c.Id == id);
                 }
                 return ap;
 
             }
-             catch (Exception ex)
+            catch (Exception ex)
             {
 
                 CommonTools.ErrorReporting(ex);
@@ -398,8 +446,11 @@ namespace MultiPlex.Core.Data.Repositories
               
                 if (cat != null)
                 {
-                    this.db.Categories.Add(cat);
-                    this.db.SaveChanges();
+                    if (this.CategoryExistsinWiki(cat.Name,cat.Wiki.Name) == false)
+                    {
+                        this.db.Categories.Add(cat);
+                        this.db.SaveChanges();
+                    }
                 }
                
             }

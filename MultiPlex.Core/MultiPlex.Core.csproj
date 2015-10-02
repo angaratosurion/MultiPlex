@@ -169,6 +169,8 @@
     <Compile Include="Application\App_Start\WebApiConfig.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="CommonTools.cs" />
+    <Compile Include="Configuration\ConfigurationConstants.cs" />
+    <Compile Include="Configuration\SettingsManager.cs" />
     <Compile Include="Controllers\CustomControllerFactory.cs" />
     <Compile Include="Controllers\WikiController.cs" />
     <Compile Include="Data\Context.cs" />

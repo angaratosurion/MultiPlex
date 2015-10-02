@@ -16,7 +16,7 @@ namespace MultiPlex.Core.Application
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "HomeWiki", action = "Index", id = UrlParameter.Optional }
             );
             //routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             //routes.IgnoreRoute("content/{*pathInfo}");
@@ -25,21 +25,21 @@ namespace MultiPlex.Core.Application
             routes.MapRoute(
                 "History",
                 "{wikiname}/{id}/{slug}/v{version}",
-                new { controller = "Home", action = "ViewWikiVersion" },
+                new { controller = "HomeWiki", action = "ViewWikiVersion" },
                 new { id = @"\d+", version = @"\d+" }
                 );
 
             routes.MapRoute(
                 "Source",
                 "{wikiname}/{id}/{slug}/source/v{version}",
-                new { controller = "Home", action = "GetWikiSource" },
+                new { controller = "HomeWiki", action = "GetWikiSource" },
                 new { id = @"\d+", version = @"\d+" }
                 );
 
             routes.MapRoute(
                 "Act",
                 "{id}/{slug}/{action}",
-                new { controller = "Home", action = "ViewWiki" },
+                new { controller = "HomeWiki", action = "ViewWiki" },
                 new { id = @"\d+", action = @"\w+" }
                 );
 

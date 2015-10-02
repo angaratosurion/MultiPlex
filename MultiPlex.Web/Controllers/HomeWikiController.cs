@@ -12,10 +12,14 @@ using MultiPlex.Core.Managers;
 
 namespace MultiPlex.Web.Controllers
 {
-    [Export("Home", typeof(IController))]
+    [Export("HomeWiki", typeof(IController))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class HomeController : Controller
-    { WikiManager wmngr= new WikiManager();
+    public class HomeWikiController : Controller
+    { WikiManager wmngr;
+        public HomeWikiController()
+        {
+            wmngr = new WikiManager(this.Server);
+        }
         // GET: Home
         public ActionResult Index()
         {
@@ -72,7 +76,7 @@ namespace MultiPlex.Web.Controllers
                RouteValueDictionary vals = new RouteValueDictionary();
                 vals.Add("wikiname", wikiname);
                 vals.Add("cid", cid);
-              return  RedirectToAction("Index", "Title",vals);
+              return  RedirectToAction("Index", "Content", vals);
 
             }
             catch (Exception ex)
@@ -81,6 +85,27 @@ namespace MultiPlex.Web.Controllers
                 CommonTools.ErrorReporting(ex);
                 return null;
             }
+        }
+
+        [Authorize]
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Wiki wk)
+        {
+            if (ModelState.IsValid)
+            {
+
+
+                wmngr.CreateWiki(wk);
+
+                return RedirectToAction("Index");
+            }
+
+            return View(wk);
         }
     }
 }
