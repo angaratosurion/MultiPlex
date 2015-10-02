@@ -24,14 +24,15 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+               @*@Html.DisplayFor(modelItem => item.Name)*@
+                @Html.ActionLink(item.Name, "ViewWiki", new { wikiname = item.Wiki.Name, id = item.Id, slug = item.Slug });
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Id)
-            </td>
+            </td>*@
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Name }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Name }) |
+
+                @Html.ActionLink("Edit", "EditWiki", new { wikiname = item.Wiki.Name, id = item.Id, slug = item.Slug }) ;            
                 @Html.ActionLink("Delete", "Delete", new { id = item.Name })
             </td>
         </tr>
