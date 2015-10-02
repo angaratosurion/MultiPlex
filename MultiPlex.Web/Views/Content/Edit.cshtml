@@ -1,0 +1,27 @@
+﻿@model MultiPlex.Web.Sample.Models.Content
+
+@section head {
+
+    <title>Edit Wiki</title>
+
+}
+
+
+
+    <h2>Edit</h2>
+    @using (Html.BeginRouteForm("Act", new { action = "EditWiki", Model.Title.Slug }, FormMethod.Post)) { 
+        <fieldset>
+            <label for="Name">Title:</label>
+            @Html.TextBox("Name", Model.Title.Name)
+            <label for="Source">Source:</label>
+            @Html.TextArea("Source")
+            <label></label>
+            <input type="submit" value="Save" />
+            @if (Model.Title.Id > 0) { 
+            <input type="button" value="Cancel" onclick="window.location.href='@Url.RouteUrl("Default")'" />
+             } 
+        </fieldset>
+     } 
+
+
+
