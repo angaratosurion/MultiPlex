@@ -58,11 +58,24 @@
                     <ul class="nav navbar-nav">
                         @{
                             var categories = Model.Categories;
-                            foreach (var cat in categories)
+                            if (categories.Count>0)
                             {
-                                @Html.ActionLink(cat.Name, "Categories",  new { wikiname = Model.Name, cid = cat.Id });
+                                foreach (var cat in categories)
+                                {
+                                @Html.ActionLink(cat.Name, "ListCategories", new { wikiname = Model.Name,
+                               cid = cat.Id });
+
+                                }
                             }
-}                       
+                            else
+                            {
+                                @Html.ActionLink("Create New Category", "CreateCategories", new
+                           {
+                               wikiname = Model.Name
+                           });
+
+                           }
+                                }
                      </ul>
 
 </td>

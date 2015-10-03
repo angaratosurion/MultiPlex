@@ -20,19 +20,71 @@ namespace MultiPlex.Web.Controllers
         UserManager usrmng = new UserManager();
         TitleManager tmngr = new TitleManager();
         ContentManager contmngr;
+        CategoryManager catmngr = new CategoryManager();
+        WikiRepository rep = new WikiRepository();
         public ContentController()
         {
-            contmngr = new ContentManager(new WikiEngine(), this.Url, this.RouteData.Values["wid"].ToString());
+
         }
+
+        [Authorize]
+        public ActionResult CreateCategory(string wikiname)
+        {
+            contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
+
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateCategory(Category cat,string wikiname)
+        {
+
+            try
+            {
+
+                contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
+
+                if (ModelState.IsValid)
+                {
+                    if (cat !=null&& !CommonTools.isEmpty(wikiname))
+                    {
+                         Wiki wk=  this.rep.GetWiki(wikiname);
+                        if ( wk !=null)
+                        {
+                            cat.Wiki = wk;
+                            this.catmngr.Add(cat);
+                            
+
+                        }
+                       
+                    }
+                    
+
+                    return RedirectToAction("Index");
+                }
+
+                return View(cat);
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+
         public ActionResult Index(string wid, int catid)
         {
             try
             {
+               
                 if (CommonTools.isEmpty(wid))
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
                 }
+                contmngr = new ContentManager(new WikiEngine(), this.Url, wid);
+
                 List<Title> titles = this.tmngr.GetTitlesbyCategory(wid, catid);
                 if (titles == null)
                 {
@@ -56,6 +108,8 @@ namespace MultiPlex.Web.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
+                contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
+
                 var viewData =this.contmngr.ViewWiki(wikiname, id, slug);
                 if (viewData.Content == null)
                     return RedirectToAction("EditWiki", new { id, slug });
@@ -75,6 +129,8 @@ namespace MultiPlex.Web.Controllers
         {
             try
             {
+                contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
+
                 var viewData = this.contmngr.ViewWikiVersion(wikiname, id, slug, version);
 
                 if (viewData.Content == null)
@@ -98,6 +154,8 @@ namespace MultiPlex.Web.Controllers
             {
                 if (!ContentManager.IsEditable())
                     return RedirectToAction("ViewWiki");
+                contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
+
                 Content content = this.contmngr.GetWikiforEditWiki(wikiname, id, slug);
 
 
@@ -126,6 +184,7 @@ namespace MultiPlex.Web.Controllers
             { 
                 if (!ContentManager.IsEditable())
                     return RedirectToAction("ViewWiki");
+                contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
 
                 id = this.contmngr.EditWikiPost(wikiname, id, slug, name, source, this.usrmng.GetUser(this.User.Identity.Name));
                 return RedirectToAction("ViewWiki", new { wikiname, id, slug });
@@ -144,6 +203,8 @@ namespace MultiPlex.Web.Controllers
         public string GetWikiSource(string wikiname, int id, string slug, int version)
         {
             try {
+                contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
+
                 Content content = this.contmngr.GetWikiSource(wikiname, id, slug, version);
 
                 return content.Source;
@@ -158,10 +219,12 @@ namespace MultiPlex.Web.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         [OutputCache(Location = OutputCacheLocation.None)]
         [ValidateInput(false)]
-        public string GetWikiPreview(int id, string slug, string source)
+        public string GetWikiPreview(string wikiname,int id, string slug, string source)
         {
             try
             {
+                contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
+
                 return this.contmngr.GetWikiPreview(id, slug, source);
             }
             catch (Exception ex)

@@ -14,7 +14,7 @@ namespace MultiPlex.Core.Managers
    public  class FileManager
    {
        CommonTools cmtools = new CommonTools();
-       HttpServerUtilityBase util;
+        static HttpServerUtilityBase util;
         //const string   filesdir="files",AppDataDir="App_Data";
 
         [DllImport("kernel32.dll")]
@@ -31,13 +31,13 @@ namespace MultiPlex.Core.Managers
        }
        #region Common
      
-       public string PhysicalPathFromUrl(string path)
+       public static string PhysicalPathFromUrl(string path)
        {
            try
            {
                string ap = null;
               
-               if (path != null && this.DirectoryExists(path))
+               if (path != null &&  DirectoryExists(path))
                {
                    ap = util.MapPath(path);
                }
@@ -51,12 +51,12 @@ namespace MultiPlex.Core.Managers
        #endregion
        #region Directory
      
-       public Boolean DirectoryExists(String path)
+       public static Boolean DirectoryExists(String path)
        {
            try
            {
                Boolean ap = false;
-               path = this.PhysicalPathFromUrl(path);
+               path =  PhysicalPathFromUrl(path);
                if (CommonTools.isEmpty(path) && Directory.Exists(path))
                {
                    ap = true;
@@ -69,15 +69,15 @@ namespace MultiPlex.Core.Managers
                return false;
            }
        }
-       public Boolean CreateDirectory(string path)
+        public static Boolean CreateDirectory(string path)
        {
            try
            {
                Boolean ap = false;
 
-               if (this.DirectoryExists(path)!=false)
+               if ( DirectoryExists(path)!=false)
                {
-                   string t = this.PhysicalPathFromUrl(path);
+                   string t =  PhysicalPathFromUrl(path);
                    Directory.CreateDirectory(t);
                    ap = true;
                }
@@ -91,14 +91,14 @@ namespace MultiPlex.Core.Managers
                return false;
            }
        }
-       public Boolean DeleteDirectory(string path)
+       public static Boolean DeleteDirectory(string path)
        {
            try
            {
                Boolean ap = false;
-               if (CommonTools.isEmpty(path) && this.DirectoryExists(path))
+               if (CommonTools.isEmpty(path) &&  DirectoryExists(path))
                {
-                   string t = this.PhysicalPathFromUrl(path);
+                   string t =  PhysicalPathFromUrl(path);
                    Directory.Delete(t,true);
                    ap = true;
                }
@@ -114,17 +114,17 @@ namespace MultiPlex.Core.Managers
                return false;
            }
        }
-       public Boolean MoveDirectory(string src, string trg)
+       public static Boolean MoveDirectory(string src, string trg)
        {
            try
            {
                Boolean ap = false;
 
                if (CommonTools.isEmpty(src) && CommonTools.isEmpty(trg)
-                   && this.DirectoryExists(src))//&& this.Exists(trg))
+                   &&  DirectoryExists(src))//&&  Exists(trg))
                {
-                   src = this.PhysicalPathFromUrl(src);
-                   trg = this.PhysicalPathFromUrl(trg);
+                   src =  PhysicalPathFromUrl(src);
+                   trg =  PhysicalPathFromUrl(trg);
                    Directory.Move(src, trg);
                    ap = true;
                }
@@ -138,17 +138,17 @@ namespace MultiPlex.Core.Managers
                return false;
            }
        }
-        public Boolean CreateDirectoryLink(string src, string trg)
+        public static Boolean CreateDirectoryLink(string src, string trg)
         {
             try
             {
                 Boolean ap = false;
 
                 if (CommonTools.isEmpty(src) && CommonTools.isEmpty(trg)
-                    && this.DirectoryExists(src))//&& this.Exists(trg))
+                    &&  DirectoryExists(src))//&&  Exists(trg))
                 {
-                    src = this.PhysicalPathFromUrl(src);
-                    trg = this.PhysicalPathFromUrl(trg);
+                    src =  PhysicalPathFromUrl(src);
+                    trg =  PhysicalPathFromUrl(trg);
                    ap= CreateSymbolicLink(src, trg, SYMLINK_FLAG_DIRECTORY);
 
                 }
@@ -166,12 +166,12 @@ namespace MultiPlex.Core.Managers
         }
         #endregion
         #region files
-        public Boolean FileExists(String path)
+        public static Boolean FileExists(String path)
        {
            try
            {
                Boolean ap = false;
-               path = this.PhysicalPathFromUrl(path);
+               path =  PhysicalPathFromUrl(path);
                if (CommonTools.isEmpty(path) && File.Exists(path))
                {
                    ap = true;
@@ -184,15 +184,15 @@ namespace MultiPlex.Core.Managers
                return false;
            }
        }
-       public Boolean CreateFile(string path, HttpPostedFileBase data)
+       public static Boolean CreateFile(string path, HttpPostedFileBase data)
        {
            try
            {
                Boolean ap = false;
-               if (CommonTools.isEmpty(path) && !this.FileExists(path) && data !=null)
+               if (CommonTools.isEmpty(path) && !FileExists(path) && data !=null)
                {
                     /* int count = data.Count();
-                     path = this.PhysicalPathFromUrl(path);
+                     path =  PhysicalPathFromUrl(path);
                      FileStream fil=File.Create(path);
                      fil.Write(data, 0, count);
                      fil.Flush();
@@ -212,14 +212,14 @@ namespace MultiPlex.Core.Managers
                return false;
            }
        }
-       public Boolean DeleteFile(string path)
+       public static Boolean DeleteFile(string path)
        {
            try
            {
                Boolean ap = false;
-               if (CommonTools.isEmpty(path) && this.FileExists(path))
+               if (CommonTools.isEmpty(path) &&  FileExists(path))
                {
-                   path = this.PhysicalPathFromUrl(path);
+                   path =  PhysicalPathFromUrl(path);
                    File.Delete(path);
                    ap = true;
                }
@@ -235,17 +235,17 @@ namespace MultiPlex.Core.Managers
                return false;
            }
        }
-       public Boolean CopyFile(string src,string trg)
+       public static Boolean CopyFile(string src,string trg)
        {
            try
            {
                Boolean ap = false;
 
                if (CommonTools.isEmpty(src) && CommonTools.isEmpty(trg)
-                   && this.FileExists(src) )//&& this.Exists(trg))
+                   &&  FileExists(src) )//&&  Exists(trg))
                {
-                   src = this.PhysicalPathFromUrl(src);
-                   trg = this.PhysicalPathFromUrl(trg);
+                   src =  PhysicalPathFromUrl(src);
+                   trg =  PhysicalPathFromUrl(trg);
                    File.Copy(src, trg,true);
                    ap = true;
                }
@@ -259,17 +259,17 @@ namespace MultiPlex.Core.Managers
                return false;
            }
        }
-       public Boolean MoveFile(string src, string trg)
+        public static Boolean MoveFile(string src, string trg)
        {
            try
            {
                Boolean ap = false;
 
                if (CommonTools.isEmpty(src) && CommonTools.isEmpty(trg)
-                   && this.FileExists(src))//&& this.Exists(trg))
+                   &&  FileExists(src))//&&  Exists(trg))
                {
-                   src = this.PhysicalPathFromUrl(src);
-                   trg = this.PhysicalPathFromUrl(trg);
+                   src =  PhysicalPathFromUrl(src);
+                   trg =  PhysicalPathFromUrl(trg);
                    File.Move(src, trg);
                    ap = true;
                }
@@ -284,17 +284,17 @@ namespace MultiPlex.Core.Managers
            }
        }
      
-        public Boolean CreateFileLink(string src,string trg)
+        public static Boolean CreateFileLink(string src,string trg)
         {
             try
             {
                 Boolean ap = false;
 
                 if (CommonTools.isEmpty(src) && CommonTools.isEmpty(trg)
-                    && this.FileExists(src))//&& this.Exists(trg))
+                    &&  FileExists(src))//&&  Exists(trg))
                 {
-                    src = this.PhysicalPathFromUrl(src);
-                    trg = this.PhysicalPathFromUrl(trg);
+                    src =  PhysicalPathFromUrl(src);
+                    trg =  PhysicalPathFromUrl(trg);
                  ap=   CreateSymbolicLink(src, trg, 0);
                    // ap = true;
                 }

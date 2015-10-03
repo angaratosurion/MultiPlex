@@ -19,7 +19,7 @@ namespace MultiPlex.Web.Controllers
         UserManager usrmngr = new UserManager();
         public HomeWikiController()
         {
-            wmngr = new WikiManager(this.Server);
+            wmngr = new WikiManager(this.Server,this);
         }
         // GET: HomeWiki
         public ActionResult Index()
@@ -64,7 +64,7 @@ namespace MultiPlex.Web.Controllers
                 return null;
             }
         }
-        public ActionResult Categories(string wikiname, int cid)
+        public ActionResult ListCategories(string wikiname, int cid)
         {
             try
             {
@@ -78,6 +78,28 @@ namespace MultiPlex.Web.Controllers
                 vals.Add("wikiname", wikiname);
                 vals.Add("cid", cid);
               return  RedirectToAction("Index", "Content", vals);
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        public ActionResult CreateCategories(string wikiname)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(wikiname))
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                }
+                //   RouteDataValueProvider
+                RouteValueDictionary vals = new RouteValueDictionary();
+                vals.Add("wikiname", wikiname);
+                return RedirectToAction("CreateCategory", "Content", vals);
 
             }
             catch (Exception ex)
@@ -101,7 +123,7 @@ namespace MultiPlex.Web.Controllers
             string ttusr = this.User.Identity.Name;
             usr=this.usrmngr.GetUser(ttusr);
             wk.Administrtor = usr;
-            //if (ModelState.IsValid)
+          //  if (ModelState.IsValid)
             {
                 
                 if (usr != null)

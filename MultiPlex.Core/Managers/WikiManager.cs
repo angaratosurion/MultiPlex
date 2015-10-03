@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Mvc;
 using MultiPlex.Core.Configuration;
 using MultiPlex.Core.Data;
 using MultiPlex.Core.Data.Models;
@@ -19,12 +20,21 @@ namespace MultiPlex.Core.Managers
         SettingsManager setmngr = new SettingsManager();
         FileManager flmng;
         const string AppDataDir = "App_Data";
-        public WikiManager(HttpServerUtilityBase tul)
+        public WikiManager(HttpServerUtilityBase tul,Controller cont)
         {
             if (tul != null)
             {
                 util = tul;
                 this.flmng = new FileManager(tul);
+            }
+            else
+            {
+                if ( cont !=null)
+                {
+                    util = cont.Server;
+                    this.flmng = new FileManager(tul);
+                }
+
             }
         }
         public List<Data.Models.Wiki> ListWiki()
@@ -77,9 +87,9 @@ namespace MultiPlex.Core.Managers
                         wkrotfold = "wikifiles";
                     }
                     wkpath = "~/" + AppDataDir + "/" + wkrotfold + "/" + wk.Name;
-                    if (! this.flmng.DirectoryExists(wkpath))
+                    if (! FileManager.DirectoryExists(wkpath))
                     {
-                        this.flmng.CreateDirectory(wkpath);
+                        FileManager.CreateDirectory(wkpath);
 
                     }
                 }

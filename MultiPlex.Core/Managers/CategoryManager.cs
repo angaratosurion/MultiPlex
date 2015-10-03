@@ -11,7 +11,7 @@ namespace MultiPlex.Core.Managers
 {
   public  class CategoryManager
     {
-        Context db = new Context();
+       
         WikiRepository rp = new WikiRepository();
 
         public void Add(Category cat)
@@ -22,6 +22,7 @@ namespace MultiPlex.Core.Managers
                 if ( cat !=null)
                 {
                     rp.CreateCategory(cat);
+                    
                     
                 }
 
