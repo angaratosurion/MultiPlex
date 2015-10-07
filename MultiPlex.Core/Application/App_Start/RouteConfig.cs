@@ -15,8 +15,8 @@ namespace MultiPlex.Core.Application
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "HomeWiki", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}/{wikiname}",
+                defaults: new { controller = "HomeWiki", action = "Index", wikiname = UrlParameter.Optional }
             );
             //routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             //routes.IgnoreRoute("content/{*pathInfo}");

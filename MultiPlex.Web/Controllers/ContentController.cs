@@ -44,23 +44,27 @@ namespace MultiPlex.Web.Controllers
 
                 contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
 
-                if (ModelState.IsValid)
+                if (cat != null && !CommonTools.isEmpty(wikiname))
                 {
-                    if (cat !=null&& !CommonTools.isEmpty(wikiname))
-                    {
+                  
                          Wiki wk=  this.rep.GetWiki(wikiname);
                         if ( wk !=null)
                         {
+                            
                             cat.Wiki = wk;
-                            this.catmngr.Add(cat);
+                           // if (ModelState.IsValid)
+                            {
+                                this.catmngr.Add(cat);
+                                return RedirectToAction("Index");
+                            }
                             
 
                         }
-                       
-                    }
+                    return RedirectToAction("CreateCategory");
+                   
                     
 
-                    return RedirectToAction("Index");
+                    
                 }
 
                 return View(cat);
@@ -73,11 +77,12 @@ namespace MultiPlex.Web.Controllers
             }
         }
 
-        public ActionResult Index(string wid, int catid)
+        public ActionResult Index(string wikiname, int? cid)
         {
             try
             {
-               
+                string wid = wikiname;
+                int tcatid = Convert.ToInt32(cid);
                 if (CommonTools.isEmpty(wid))
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -85,7 +90,7 @@ namespace MultiPlex.Web.Controllers
                 }
                 contmngr = new ContentManager(new WikiEngine(), this.Url, wid);
 
-                List<Title> titles = this.tmngr.GetTitlesbyCategory(wid, catid);
+                List<Title> titles = this.tmngr.GetTitlesbyCategory(wid, tcatid);
                 if (titles == null)
                 {
                     return HttpNotFound();

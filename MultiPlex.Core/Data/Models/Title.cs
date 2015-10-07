@@ -21,8 +21,8 @@ namespace MultiPlex.Core.Data.Models
         [DataType(DataType.Text)]
         public string Slug { get; set; }
         public int MaxVersion { get; set; }
-        [Timestamp]
-        public Byte[] RowVersion { get; set; }
+        //[Timestamp]
+        //public Byte[] RowVersion { get; set; }
         [Required]
         public virtual Wiki Wiki { get; set; }
         [Required]

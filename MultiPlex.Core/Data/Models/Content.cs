@@ -15,8 +15,8 @@ namespace MultiPlex.Core.Data.Models
         [DataType(DataType.DateTime)]
         
         public DateTime VersionDate { get; set; }
-        [Timestamp]
-        public Byte[] RowVersion { get; set; }
+        //[Timestamp]
+        //public Byte[] RowVersion { get; set; }
         [Required]
         public virtual Wiki Wiki { get; set; }
         [Required]        

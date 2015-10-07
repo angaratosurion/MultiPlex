@@ -15,9 +15,13 @@ namespace MultiPlex.Core.Data.Models
         public string FileName { get; set; }
         [Required]
         public string Path { get; set; }
-       
-        [Timestamp]
-        public Byte[] RowVersion { get; set; }
+        public int Version { get; set; }
+        [DataType(DataType.DateTime)]
+
+        public DateTime VersionDate { get; set; }
+
+        //[Timestamp]
+        //public Byte[] RowVersion { get; set; }
         [Required]
         public virtual ApplicationUser Owner { get; set; }
         [Required]

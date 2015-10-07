@@ -44,6 +44,15 @@ namespace MultiPlex.Core.Managers
                 if ( !CommonTools.isEmpty(name))
                 {
                     ap = this.wrepo.GetWiki(name);
+                    if ( ap.Categories ==null)
+                    {
+                        ap.Categories = new List<Category>();
+                    }
+                    if ( ap.Titles ==null)
+                    {
+                        ap.Titles = new List<Title>();
+                    }
+
                 }
 
 
