@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MultiPlex.Core.Data;
+using MultiPlex.Core.Managers;
 
 namespace MultiPlex.Core
 {
    public class CommonTools
     {
         public static Context db = new Context();
+        public static FileManager filemngr;
        public static  Boolean isEmpty(string str)
        {
            try

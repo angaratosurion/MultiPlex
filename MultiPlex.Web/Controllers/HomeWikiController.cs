@@ -19,7 +19,7 @@ namespace MultiPlex.Web.Controllers
         UserManager usrmngr = new UserManager();
         public HomeWikiController()
         {
-            wmngr = new WikiManager(this.Server,this);
+            wmngr = new WikiManager();
         }
         // GET: HomeWiki
         public ActionResult Index()
@@ -128,7 +128,8 @@ namespace MultiPlex.Web.Controllers
                 
                 if (usr != null)
                 {
-
+                    wk.Moderators = new List<ApplicationUser>();
+                    wk.Moderators.Add(usr);
                     
                     wmngr.CreateWiki(wk);
 

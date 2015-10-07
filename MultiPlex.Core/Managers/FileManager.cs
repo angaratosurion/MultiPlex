@@ -8,13 +8,14 @@ using System.Web;
 using System.Web.Administration;
 using System.Runtime.InteropServices;
 using System.IO;
+using System.Web.Hosting;
 
 namespace MultiPlex.Core.Managers
 {
    public  class FileManager
    {
        CommonTools cmtools = new CommonTools();
-        static HttpServerUtilityBase util;
+      //  static HttpServerUtilityBase util;
         //const string   filesdir="files",AppDataDir="App_Data";
 
         [DllImport("kernel32.dll")]
@@ -22,32 +23,10 @@ namespace MultiPlex.Core.Managers
 
         static int SYMLINK_FLAG_DIRECTORY = 1;
 
-        public FileManager (HttpServerUtilityBase tul)
-       {
-           if ( tul !=null)
-           {
-               util = tul;
-           }
-       }
+     
        #region Common
      
-       public static string PhysicalPathFromUrl(string path)
-       {
-           try
-           {
-               string ap = null;
-              
-               if (path != null &&  DirectoryExists(path))
-               {
-                   ap = util.MapPath(path);
-               }
-               return ap;
-
-           }
-            catch (Exception ex){CommonTools.ErrorReporting(ex);
-               return null;
-           }
-       }
+      
        #endregion
        #region Directory
      
@@ -56,7 +35,7 @@ namespace MultiPlex.Core.Managers
            try
            {
                Boolean ap = false;
-               path =  PhysicalPathFromUrl(path);
+               path =  HostingEnvironment.MapPath(path);
                if (CommonTools.isEmpty(path) && Directory.Exists(path))
                {
                    ap = true;
@@ -75,9 +54,9 @@ namespace MultiPlex.Core.Managers
            {
                Boolean ap = false;
 
-               if ( DirectoryExists(path)!=false)
+               if ( DirectoryExists(path)==false)
                {
-                   string t =  PhysicalPathFromUrl(path);
+                   string t =  HostingEnvironment.MapPath(path);
                    Directory.CreateDirectory(t);
                    ap = true;
                }
@@ -98,7 +77,7 @@ namespace MultiPlex.Core.Managers
                Boolean ap = false;
                if (CommonTools.isEmpty(path) &&  DirectoryExists(path))
                {
-                   string t =  PhysicalPathFromUrl(path);
+                   string t =  HostingEnvironment.MapPath(path);
                    Directory.Delete(t,true);
                    ap = true;
                }
@@ -123,8 +102,8 @@ namespace MultiPlex.Core.Managers
                if (CommonTools.isEmpty(src) && CommonTools.isEmpty(trg)
                    &&  DirectoryExists(src))//&&  Exists(trg))
                {
-                   src =  PhysicalPathFromUrl(src);
-                   trg =  PhysicalPathFromUrl(trg);
+                   src = HostingEnvironment.MapPath(src);
+                   trg = HostingEnvironment.MapPath(trg);
                    Directory.Move(src, trg);
                    ap = true;
                }
@@ -147,8 +126,8 @@ namespace MultiPlex.Core.Managers
                 if (CommonTools.isEmpty(src) && CommonTools.isEmpty(trg)
                     &&  DirectoryExists(src))//&&  Exists(trg))
                 {
-                    src =  PhysicalPathFromUrl(src);
-                    trg =  PhysicalPathFromUrl(trg);
+                    src = HostingEnvironment.MapPath(src);
+                    trg = HostingEnvironment.MapPath(trg);
                    ap= CreateSymbolicLink(src, trg, SYMLINK_FLAG_DIRECTORY);
 
                 }
@@ -171,7 +150,7 @@ namespace MultiPlex.Core.Managers
            try
            {
                Boolean ap = false;
-               path =  PhysicalPathFromUrl(path);
+               path =  HostingEnvironment.MapPath(path);
                if (CommonTools.isEmpty(path) && File.Exists(path))
                {
                    ap = true;
@@ -192,7 +171,7 @@ namespace MultiPlex.Core.Managers
                if (CommonTools.isEmpty(path) && !FileExists(path) && data !=null)
                {
                     /* int count = data.Count();
-                     path =  PhysicalPathFromUrl(path);
+                     path =  HostingEnvironment.MapPath(path);
                      FileStream fil=File.Create(path);
                      fil.Write(data, 0, count);
                      fil.Flush();
@@ -219,7 +198,7 @@ namespace MultiPlex.Core.Managers
                Boolean ap = false;
                if (CommonTools.isEmpty(path) &&  FileExists(path))
                {
-                   path =  PhysicalPathFromUrl(path);
+                   path =  HostingEnvironment.MapPath(path);
                    File.Delete(path);
                    ap = true;
                }
@@ -244,8 +223,8 @@ namespace MultiPlex.Core.Managers
                if (CommonTools.isEmpty(src) && CommonTools.isEmpty(trg)
                    &&  FileExists(src) )//&&  Exists(trg))
                {
-                   src =  PhysicalPathFromUrl(src);
-                   trg =  PhysicalPathFromUrl(trg);
+                   src = HostingEnvironment.MapPath(src);
+                   trg = HostingEnvironment.MapPath(trg);
                    File.Copy(src, trg,true);
                    ap = true;
                }
@@ -268,8 +247,8 @@ namespace MultiPlex.Core.Managers
                if (CommonTools.isEmpty(src) && CommonTools.isEmpty(trg)
                    &&  FileExists(src))//&&  Exists(trg))
                {
-                   src =  PhysicalPathFromUrl(src);
-                   trg =  PhysicalPathFromUrl(trg);
+                   src = HostingEnvironment.MapPath(src);
+                   trg = HostingEnvironment.MapPath(trg);
                    File.Move(src, trg);
                    ap = true;
                }
@@ -293,8 +272,8 @@ namespace MultiPlex.Core.Managers
                 if (CommonTools.isEmpty(src) && CommonTools.isEmpty(trg)
                     &&  FileExists(src))//&&  Exists(trg))
                 {
-                    src =  PhysicalPathFromUrl(src);
-                    trg =  PhysicalPathFromUrl(trg);
+                    src = HostingEnvironment.MapPath(src);
+                    trg = HostingEnvironment.MapPath(trg);
                  ap=   CreateSymbolicLink(src, trg, 0);
                    // ap = true;
                 }
