@@ -34,5 +34,53 @@ namespace MultiPlex.Core.Managers
                // return null;
             }
         }
+        public List<Category> GetCategoryListByWiki(string wikiname)
+        {
+
+            try
+            {
+                List<Category> ap = null;
+
+                if (CommonTools.isEmpty(wikiname)== false)
+                {
+                    ap = rp.GetCategorybyWiki(wikiname); 
+
+
+                }
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+               return null;
+            }
+
+        }
+        public Category GetCategoryListById(int id)
+        {
+
+            try
+            {
+                Category ap = null;
+
+                if (id>0)
+                {
+                    ap = rp.GetCategorybyId(id);
+
+
+                }
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+
+        }
     }
 }

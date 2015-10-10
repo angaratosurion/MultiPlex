@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using System.Web.UI;
 using MultiPlex.Core;
 using MultiPlex.Core.Data.Models;
@@ -21,7 +22,8 @@ namespace MultiPlex.Web.Controllers
         TitleManager tmngr = new TitleManager();
         ContentManager contmngr;
         CategoryManager catmngr = new CategoryManager();
-        WikiRepository rep = new WikiRepository();
+        WikiManager wkmngr = new WikiManager();
+       // WikiRepository rep = new WikiRepository();
         public ContentController()
         {
 
@@ -33,6 +35,60 @@ namespace MultiPlex.Web.Controllers
             contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
 
             return View();
+        }
+        [Authorize]
+        public ActionResult CreateContent(string wikiname,int cid)
+        {
+            try
+            {
+                Title title = new Title();
+                Content content = new Content();
+                
+                return View(Tuple.Create(title,content));
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateContent(string wikiname, int cid,Tuple<Title,Content> tuple)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(wikiname) == false && (cid > 0) && tuple !=null 
+                    && tuple.Item1 !=null && tuple.Item2!=null)
+                {
+                    Category cat = this.catmngr.GetCategoryListById(cid);
+                    Wiki wk = wkmngr.GetWiki(wikiname);
+                    ApplicationUser usr = this.usrmng.GetUser(this.User.Identity.Name);
+                     if ( wk !=null && cat !=null && usr !=null)
+                    {
+                        tuple.Item1.Categories = new List<Category>();
+                        tuple.Item1.Categories.Add(cat);
+                        tuple.Item1.Wiki = wk;
+                        tuple.Item1.WrittenBy = usr;
+                        
+                        tuple.Item2.Title = tuple.Item1;
+                        tuple.Item2.Version = 1;
+                        tuple.Item2.Wiki = wk;
+                        tuple.Item2.WrittenBy = usr;
+                        tuple.Item2.VersionDate = DateTime.Now;
+
+                        return RedirectToAction("Index");
+                    }
+                }
+                return RedirectToAction("CreateContent");
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -47,7 +103,7 @@ namespace MultiPlex.Web.Controllers
                 if (cat != null && !CommonTools.isEmpty(wikiname))
                 {
                   
-                         Wiki wk=  this.rep.GetWiki(wikiname);
+                         Wiki wk=  this.wkmngr.GetWiki(wikiname);
                         if ( wk !=null)
                         {
                             
@@ -93,7 +149,11 @@ namespace MultiPlex.Web.Controllers
                 List<Title> titles = this.tmngr.GetTitlesbyCategory(wid, tcatid);
                 if (titles == null)
                 {
-                    return HttpNotFound();
+                    //return HttpNotFound();
+                    RouteValueDictionary vals = new RouteValueDictionary();
+                    vals.Add("wikiname", wikiname);
+                    vals.Add("cid", cid);
+                    return RedirectToAction("CreateContent", "Content", vals);
                 }
                 return View(titles);
             }

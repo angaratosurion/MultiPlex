@@ -288,6 +288,7 @@
     <Content Include="Views\Content\View.cshtml" />
     <Content Include="Views\HomeWiki\Create.cshtml" />
     <Content Include="Views\Content\CreateCategory.cshtml" />
+    <Content Include="Views\Content\CreateContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\wiki\" />
