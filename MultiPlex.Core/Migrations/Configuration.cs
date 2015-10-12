@@ -4,8 +4,11 @@ namespace MultiPlex.Core.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using Data.Models;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<MultiPlex.Core.Data.Context>
+    public  class Configuration : DbMigrationsConfiguration<MultiPlex.Core.Data.Context>
     {
         public Configuration()
         {
@@ -27,6 +30,14 @@ namespace MultiPlex.Core.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            var userStore = new UserStore<ApplicationUser>(context);
+            var mngr = new UserManager<ApplicationUser>(userStore);
+            context.Roles.AddOrUpdate(r => r.Name, new IdentityRole { Name = "Administrators" });
+            ApplicationUser adm = new ApplicationUser();
+            adm.Email = "admin@localhost.com";
+          
+            mngr.Create(adm, "Adm!n0");
+            context.SaveChanges();
         }
     }
 }

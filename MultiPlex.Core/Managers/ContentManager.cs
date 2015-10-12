@@ -21,7 +21,10 @@ namespace MultiPlex.Core.Managers
        
 
         private readonly IWikiEngine wikiEngine;
-        private readonly WikiRepository repository;
+        private readonly WikiRepository repository = new WikiRepository();
+
+        
+
         UrlHelper url;
        // HtmlHelper html;
        
@@ -35,6 +38,31 @@ namespace MultiPlex.Core.Managers
             this.wikiname = wikiname;
 
         }
+        public void AddContent(String wikiname , Title title, Content cont,int cid,ApplicationUser usr )
+        {
+            try
+            {
+                if (CommonTools.isEmpty(wikiname) == false && (cid > 0)
+                  && title != null && cont != null)
+                {
+                    Category cat = CommonTools.catmngr.GetCategoryListById(cid);
+                    Wiki wk = CommonTools.wkmngr.GetWiki(wikiname);
+
+                    if (wk != null && cat != null && usr != null)
+                    {
+                        
+                        repository.AddContentTitle(wikiname, title, cont,cat,usr);
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                //return null;
+            }
+        }
         public ViewContent ViewWiki(string wikiname, int id, string slug)
         {
             try
@@ -47,6 +75,20 @@ namespace MultiPlex.Core.Managers
                 viewData.History =this.repository.GetHistory(id);
                 viewData.Editable = IsEditable();
 
+                return viewData;
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        public Content GetContent(string wikiname, int id)
+        {
+            try
+            {
+                var viewData =  this.repository.GetContent(wikiname, id) ;
                 return viewData;
             }
             catch (Exception ex)
@@ -74,24 +116,31 @@ namespace MultiPlex.Core.Managers
             }
         }
         
-        public Content GetWikiforEditWiki(string wikiname, int id, string slug)
-        {
-            try
-            {
-                Content content = this.repository.GetContent(wikiname,id);
-                if (content == null)
-                    content = new Content { Title = new Title { Slug = slug } };
-                return content;
+        //public Content GetWikiforEditWiki(string wikiname, int id, string slug)
+        //{
+        //    try
+        //    {
+        //        Content content = this.GetContent(wikiname, id);
+        //        if (content == null)
+        //        {
+        //            //  content = new Content { Title = new Title { Slug = slug } };
+        //            content = new Content();
+        //            Title tile = new Title();
+
+        //            content.Title = tile;
+        //            //content = new Content{Title = new Title()};
+        //        }
+        //        return content;
                
 
-            }
-            catch (Exception ex)
-            {
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                CommonTools.ErrorReporting(ex);
-                return null;
-            }
-        }
+        //        CommonTools.ErrorReporting(ex);
+        //        return null;
+        //    }
+        //}
         public int EditWikiPost(string wikiname, int titleid, string slug,
             string name,
             string source,ApplicationUser user)
@@ -103,7 +152,7 @@ namespace MultiPlex.Core.Managers
                 Title title = this.repository.Get(wikiname, titleid);
                 if (title == null)
                 {
-
+                    slug = name.Replace(" ", "_");
                     title = this.repository.Add(wikiname, name, slug, user);
                 }
 

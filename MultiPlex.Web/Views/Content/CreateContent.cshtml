@@ -13,14 +13,15 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelForModel(Model.Item1.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(m=>m.Item1.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorForModel(Model.Item1.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @* @Html.ValidationMessageFor(model => Model.Item1.Name, "", new { @class = "text-danger" }) *@
-                @Html.LabelForModel(Model.Item2.Source, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(m=>m.Item1.Name, new { htmlAttributes = new { @class = "form-control" } })
+                      
+     @Html.ValidationMessageFor(model => model.Item1.Name, "", new { @class = "text-danger" }) 
+                @Html.LabelFor(m=>m.Item2.Source, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorForModel(Model.Item2.Source, new { htmlAttributes = new { @class = "form-control" } })
-                    @* @Html.ValidationMessageFor(model => Model.Item1.Name, "", new { @class = "text-danger" }) *@
+                    @Html.EditorFor(m=>m.Item2.Source, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.Item1.Name, "", new { @class = "text-danger" }) 
                 
                 </div>
         </div>

@@ -54,7 +54,7 @@ namespace MultiPlex.Core.Controllers
         {
             if (!ContentManager.IsEditable())
                 return RedirectToAction("ViewWiki");
-            Content content = this.mng.GetWikiforEditWiki(wikiname, id, slug);
+            Content content = this.mng.GetContent(wikiname, id);
            
             
             

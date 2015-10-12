@@ -12,7 +12,10 @@ namespace MultiPlex.Core
     {
         public static Context db = new Context();
         public static FileManager filemngr;
-       public static  Boolean isEmpty(string str)
+        public static UserManager usrmng = new UserManager();
+        public static WikiManager wkmngr = new WikiManager();
+        public static CategoryManager catmngr = new CategoryManager();
+        public static  Boolean isEmpty(string str)
        {
            try
            {

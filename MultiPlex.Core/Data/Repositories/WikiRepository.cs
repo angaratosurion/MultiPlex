@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,7 +47,7 @@ namespace MultiPlex.Core.Data.Repositories
                 }
 
 
-                return false;
+                return ap;
 
             }
             catch (Exception ex)
@@ -116,7 +117,7 @@ namespace MultiPlex.Core.Data.Repositories
             try
             {
                 List<Title> ap = null;
-                 if (!CommonTools.isEmpty(wikiname) && catid>0 && this.WikiExists(wikiname))
+                 if (CommonTools.isEmpty(wikiname)==false && catid>0 && this.WikiExists(wikiname))
                 {
                     Category cat = this.GetCategorybyId(catid);
                     if (cat != null)
@@ -160,7 +161,7 @@ namespace MultiPlex.Core.Data.Repositories
             {
                 Title ap = null;
 
-                if (wikiname != null && slug != null)
+                if (wikiname != null)// && slug != null)
                 {
                     Models.Wiki wiki = this.GetWiki(wikiname);
                     ap = new Title();
@@ -332,6 +333,62 @@ namespace MultiPlex.Core.Data.Repositories
             }
 
         }
+
+        public void AddContentTitle(string wikiname, Title title , Content cont,Category cat,ApplicationUser usr)
+        {
+            try
+            {
+                if (wikiname != null && title !=null && cont != null && cat!=null)
+                {
+                  var  a=this.CategoryExistsinWiki(cat.Name, wikiname);
+                    Wiki wk = this.GetWiki(wikiname);
+                   // if (wk != null &&a ==true)
+                    {
+                        //  cont.Id = id;
+                       
+
+                        title.Categories = new List<Category>();
+                        title.Categories.Add(cat);
+                        title.Wiki = wk;
+                        title.WrittenBy = usr;
+                        title.Slug = title.Name.Replace(" ", "_");
+
+                        cont.Title = title;
+                        cont.Version = 1;
+                        cont.Wiki = wk;
+                        cont.WrittenBy = usr;
+                        cont.VersionDate = DateTime.Now;
+                        wk.Content = new List<Core.Data.Models.Content>();
+                        wk.Content.Add(cont);
+                        if (wk == null)
+                        {
+                            wk.Titles = new List<Title>();
+                        }
+                        wk.Titles.Add(title);
+                        db.Content.Add(cont);
+                        db.Title.Add(title);
+                       
+
+                        db.SaveChanges();
+                    }
+                }
+
+
+
+            }
+            catch(ValidationException x)
+            {
+                throw (x);
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                //return null;
+            }
+
+        }
+
         public Content GetByVersion(string wikiname, int id, int version)
         {
             try

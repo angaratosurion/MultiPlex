@@ -55,32 +55,22 @@ namespace MultiPlex.Web.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateContent(string wikiname, int cid,Tuple<Title,Content> tuple)
+        public ActionResult CreateContent(string wikiname, int cid, [Bind(Prefix ="item1")]Title title,
+            [Bind(Prefix ="item2")] Content cont)
         {
             try
             {
-                if (CommonTools.isEmpty(wikiname) == false && (cid > 0) && tuple !=null 
-                    && tuple.Item1 !=null && tuple.Item2!=null)
-                {
-                    Category cat = this.catmngr.GetCategoryListById(cid);
-                    Wiki wk = wkmngr.GetWiki(wikiname);
-                    ApplicationUser usr = this.usrmng.GetUser(this.User.Identity.Name);
-                     if ( wk !=null && cat !=null && usr !=null)
-                    {
-                        tuple.Item1.Categories = new List<Category>();
-                        tuple.Item1.Categories.Add(cat);
-                        tuple.Item1.Wiki = wk;
-                        tuple.Item1.WrittenBy = usr;
-                        
-                        tuple.Item2.Title = tuple.Item1;
-                        tuple.Item2.Version = 1;
-                        tuple.Item2.Wiki = wk;
-                        tuple.Item2.WrittenBy = usr;
-                        tuple.Item2.VersionDate = DateTime.Now;
 
-                        return RedirectToAction("Index");
+                if (CommonTools.isEmpty(wikiname) == false && (cid > 0)
+                  && title != null && cont != null)
+                {
+                    contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
+                    ApplicationUser usr = CommonTools.usrmng.GetUser(this.User.Identity.Name);
+                    this.contmngr.AddContent(wikiname, title, cont,cid,usr);
+
+                    return RedirectToAction("ViewWiki", new  {wikiname,title.Id,title.Slug });
                     }
-                }
+                
                 return RedirectToAction("CreateContent");
             }
             catch (Exception ex)
@@ -153,8 +143,10 @@ namespace MultiPlex.Web.Controllers
                     RouteValueDictionary vals = new RouteValueDictionary();
                     vals.Add("wikiname", wikiname);
                     vals.Add("cid", cid);
-                    //return RedirectToAction("CreateContent", "Content", vals);
-                    return RedirectToAction("EditWiki", "Content", vals);
+                    //vals.Add("id", 0);
+                    //vals.Add("slug", "");
+                   return RedirectToAction("CreateContent", "Content", vals);
+                  //  return RedirectToAction("EditWiki", "Content", vals);
                 }
                 return View(titles);
             }
@@ -178,7 +170,7 @@ namespace MultiPlex.Web.Controllers
 
                 var viewData =this.contmngr.ViewWiki(wikiname, id, slug);
                 if (viewData.Content == null)
-                    return RedirectToAction("EditWiki", new { id, slug });
+                    return RedirectToAction("EditWiki", new {wikiname, id, slug });
 
                 return View("View", viewData);
             }
@@ -218,14 +210,11 @@ namespace MultiPlex.Web.Controllers
         {
             try
             {
-                if (!ContentManager.IsEditable())
-                    return RedirectToAction("ViewWiki");
+                if (!ContentManager.IsEditable()) { 
+                    return RedirectToAction("ViewWiki"); }
                 contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
 
-                Content content = this.contmngr.GetWikiforEditWiki(wikiname, Convert.ToInt32(id), slug);
-
-
-
+                Content content = this.contmngr.GetContent(wikiname, Convert.ToInt32(id));
 
                 return View("Edit", content);
             }
@@ -242,18 +231,17 @@ namespace MultiPlex.Web.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditWiki(string wikiname, int id, string slug,
-            string name,
-            string source)
+        public ActionResult EditWiki(string wikiname, Content cont)
         {
             try
             { 
                 if (!ContentManager.IsEditable())
                     return RedirectToAction("ViewWiki");
                 contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
-
-                id = this.contmngr.EditWikiPost(wikiname, id, slug, name, source, this.usrmng.GetUser(this.User.Identity.Name));
-                return RedirectToAction("ViewWiki", new { wikiname, id, slug });
+                int id = cont.Title.Id;
+                id = this.contmngr.EditWikiPost(wikiname, id, cont.Title.Slug, cont.Title.Name
+                    , cont.Source, this.usrmng.GetUser(this.User.Identity.Name));
+                return RedirectToAction("ViewWiki", new { wikiname, id, cont.Title.Slug });
             }
             catch (Exception ex)
             {

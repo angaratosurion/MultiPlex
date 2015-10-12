@@ -1,4 +1,5 @@
 ﻿@model MultiPlex.Core.Data.ViewModels.ViewContent
+@* 
 @section head {
 
     <title>MultiPlex Sample - @Model.Content.Title.Name</title>
@@ -52,12 +53,13 @@
     </script>
      } 
 
-}
+}*@
 
 
     @if (Model.Editable) { 
     <div id="editWiki" class="editWiki">
-        <a id="editWikiContent" href="#">Edit Content</a>
+        @Html.ActionLink("Edit Content", "EditWiki", new { wikiname = Model.Content.Wiki.Name, id = Model.Content.Id,
+         slug = Model.Content.Title.Slug }) ;   
     </div>
      } 
     
@@ -80,7 +82,7 @@
     
     <div class="clear"></div>
     
-    @if (Model.Editable) { 
+    @*@if (Model.Editable) { 
     <div id="editWikiForm" class="editWikiForm">
         @using (Html.BeginRouteForm("Act", new { action = "EditWiki", Model.Content.Title.Slug }, FormMethod.Post)) { 
             @Html.Hidden("Name", Model.Content.Title.Name)
@@ -96,7 +98,7 @@
                 <input id="cancelEdit" type="button" value="Cancel" />
             </fieldset>
          } 
-    </div>
+    </div>*@
      } 
 
 
