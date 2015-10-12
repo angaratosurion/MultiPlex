@@ -153,7 +153,8 @@ namespace MultiPlex.Web.Controllers
                     RouteValueDictionary vals = new RouteValueDictionary();
                     vals.Add("wikiname", wikiname);
                     vals.Add("cid", cid);
-                    return RedirectToAction("CreateContent", "Content", vals);
+                    //return RedirectToAction("CreateContent", "Content", vals);
+                    return RedirectToAction("EditWiki", "Content", vals);
                 }
                 return View(titles);
             }
@@ -213,7 +214,7 @@ namespace MultiPlex.Web.Controllers
             }
         }
         [Authorize]
-        public ActionResult EditWiki(string wikiname, int id, string slug)
+        public ActionResult EditWiki(string wikiname, int? id, string slug)
         {
             try
             {
@@ -221,7 +222,7 @@ namespace MultiPlex.Web.Controllers
                     return RedirectToAction("ViewWiki");
                 contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
 
-                Content content = this.contmngr.GetWikiforEditWiki(wikiname, id, slug);
+                Content content = this.contmngr.GetWikiforEditWiki(wikiname, Convert.ToInt32(id), slug);
 
 
 
