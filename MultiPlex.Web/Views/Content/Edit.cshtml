@@ -9,13 +9,14 @@
 
 
     <h2>Edit</h2>
-    @using (Html.BeginRouteForm("Act", new { action = "EditWiki", Model.Title.Slug }, FormMethod.Post))
+    @using (Html.BeginRouteForm("Act", new { action = "EditContent", Model.Title.Slug }, FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         <fieldset>
             <label for="Name">Title:</label>
             @Html.TextBox("Name", Model.Title.Name)
             <label for="Source">Source:</label>
+            <br />
             <br/>
             @Html.TextArea("Source")
             <label></label>

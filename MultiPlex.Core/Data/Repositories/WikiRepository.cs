@@ -358,9 +358,12 @@ namespace MultiPlex.Core.Data.Repositories
                         cont.Wiki = wk;
                         cont.WrittenBy = usr;
                         cont.VersionDate = DateTime.Now;
-                        wk.Content = new List<Core.Data.Models.Content>();
+                        if (wk.Content == null)
+                        {
+                            wk.Content = new List<Core.Data.Models.Content>();
+                        }
                         wk.Content.Add(cont);
-                        if (wk == null)
+                        if (wk.Titles == null)
                         {
                             wk.Titles = new List<Title>();
                         }
@@ -502,12 +505,19 @@ namespace MultiPlex.Core.Data.Repositories
             try
             {
               
-                if (cat != null)
+                if ( cat != null)
                 {
                     if (this.CategoryExistsinWiki(cat.Name,cat.Wiki.Name) == false)
-                    {
-                        this.db.Categories.Add(cat);
-                        this.db.SaveChanges();
+                    {    Wiki  wk= this.GetWiki(cat.Wiki.Name);
+                        if (wk != null)
+                        {  if ( wk.Categories == null )
+                            {
+                                wk.Categories = new List<Category>();
+                            }
+                            wk.Categories.Add(cat);
+                            this.db.Categories.Add(cat);
+                            this.db.SaveChanges();
+                        }
                     }
                 }
                

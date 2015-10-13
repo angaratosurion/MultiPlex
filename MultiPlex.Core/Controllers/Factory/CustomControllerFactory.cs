@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.SessionState;
 
-namespace MultiPlex.Core.Controllers
+namespace MultiPlex.Core.Controllers.Factory
 {
     public class CustomControllerFactory : IControllerFactory
     {

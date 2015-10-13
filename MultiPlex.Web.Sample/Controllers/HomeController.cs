@@ -28,7 +28,7 @@ namespace MultiPlex.Web.Sample.Controllers
             this.wikiEngine = wikiEngine;
         }
 
-        public ActionResult ViewWiki(int id, string slug)
+        public ActionResult ViewContent(int id, string slug)
         {
             var viewData = new ViewContent { Content = repository.Get(id) };
 
@@ -42,12 +42,12 @@ namespace MultiPlex.Web.Sample.Controllers
             return View("View", viewData);
         }
 
-        public ActionResult ViewWikiVersion(int id, string slug, int version)
+        public ActionResult ViewContentVersion(int id, string slug, int version)
         {
             var viewData = new ViewContent { Content = repository.GetByVersion(id, version) };
 
             if (viewData.Content == null)
-                return RedirectToAction("ViewWiki", new { id, slug });
+                return RedirectToAction("ViewContent", new { id, slug });
 
             viewData.Content.RenderedSource = wikiEngine.Render(viewData.Content.Source, GetRenderers());
             viewData.History = repository.GetHistory(id);
@@ -60,7 +60,7 @@ namespace MultiPlex.Web.Sample.Controllers
         public ActionResult EditWiki(int id, string slug)
         {
             if (!IsEditable())
-                return RedirectToAction("ViewWiki");
+                return RedirectToAction("ViewContent");
 
             Content content = repository.Get(id);
 
@@ -75,10 +75,10 @@ namespace MultiPlex.Web.Sample.Controllers
         public ActionResult EditWiki(int id, string slug, string name, string source)
         {
             if (!IsEditable())
-                return RedirectToAction("ViewWiki");
+                return RedirectToAction("ViewContent");
 
             id = repository.Save(id, slug, name, source);
-            return RedirectToAction("ViewWiki", new { id, slug });
+            return RedirectToAction("ViewContent", new { id, slug });
         }
 
         [AcceptVerbs(HttpVerbs.Post)]

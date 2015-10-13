@@ -25,7 +25,7 @@ namespace MultiPlex.Web
         //    //routes.MapRoute(
         //    //    "History",
         //    //    "{id}/{slug}/v{version}",
-        //    //    new { controller = "HomeWiki", action = "ViewWikiVersion" },
+        //    //    new { controller = "HomeWiki", action = "ViewContentVersion" },
         //    //    new { id = @"\d+", version = @"\d+" }
         //    //    );
 
@@ -39,14 +39,14 @@ namespace MultiPlex.Web
         //    //routes.MapRoute(
         //    //    "Act",
         //    //    "{id}/{slug}/{action}",
-        //    //    new { controller = "HomeWiki", action = "ViewWiki" },
+        //    //    new { controller = "HomeWiki", action = "ViewContent" },
         //    //    new { id = @"\d+", action = @"\w+" }
         //    //    );
 
         //    //routes.MapRoute(
         //    //    "Default",
         //    //    "{id}/{slug}",
-        //    //    new { controller = "HomeWiki", action = "ViewWiki", id = 1, slug = "HomeWiki" },
+        //    //    new { controller = "HomeWiki", action = "ViewContent", id = 1, slug = "HomeWiki" },
         //    //    new { id = @"\d+" }
         //    //    );
         //}

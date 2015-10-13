@@ -171,8 +171,7 @@
     <Compile Include="CommonTools.cs" />
     <Compile Include="Configuration\ConfigurationConstants.cs" />
     <Compile Include="Configuration\SettingsManager.cs" />
-    <Compile Include="Controllers\CustomControllerFactory.cs" />
-    <Compile Include="Controllers\WikiController.cs" />
+    <Compile Include="Controllers\Factory\CustomControllerFactory.cs" />
     <Compile Include="Data\Context.cs" />
     <Compile Include="Data\Models\Category.cs" />
     <Compile Include="Data\Models\File.cs" />

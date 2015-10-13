@@ -25,7 +25,7 @@ namespace MultiPlex.Core.Application
             routes.MapRoute(
                 "History",
                 "{wikiname}/{id}/{slug}/v{version}",
-                new { controller = "HomeWiki", action = "ViewWikiVersion" },
+                new { controller = "HomeWiki", action = "ViewContentVersion" },
                 new { id = @"\d+", version = @"\d+" }
                 );
 
@@ -39,14 +39,14 @@ namespace MultiPlex.Core.Application
             routes.MapRoute(
                 "Act",
                 "{id}/{slug}/{action}",
-                new { controller = "HomeWiki", action = "ViewWiki" },
+                new { controller = "HomeWiki", action = "ViewContent" },
                 new { id = @"\d+", action = @"\w+" }
                 );
 
             //routes.MapRoute(
             //    "Default",
             //    "{wikiname}/{id}/{slug}",
-            //    new { controller = "Wiki", action = "ViewWiki", id = 1, slug = "HomeWiki" },
+            //    new { controller = "Wiki", action = "ViewContent", id = 1, slug = "HomeWiki" },
             //    new { id = @"\d+" }
             //    );
         }

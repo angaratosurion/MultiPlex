@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using MultiPlex.Core.Controllers;
+using MultiPlex.Core.Controllers.Factory;
 using MultiPlex.Core.Interfaces;
 using MultiPlex.Core.Views;
 

@@ -12,7 +12,7 @@
                 position: [cntPos.left - 450 + cnt.outerWidth(), cntPos.top + cnt.outerHeight()],
                 show: 'blind',
                 hide: 'blind',
-                beforeclose: function() { $('#originalWikiContent').show(); $('#previewWikiContent').hide(); }
+                beforeclose: function() { $('#originalWikiContent').show(); $('#preViewContentContent').hide(); }
             });
             cnt.click(function() {
                 if (!dlg.dialog('isOpen')) {
@@ -26,7 +26,7 @@
                             $('#<%= Source.ClientID %>').val(data.d);
                             var original = $('#originalWikiContent');
                             original.hide();
-                            $('#previewWikiContent').html(original.html()).show();
+                            $('#preViewContentContent').html(original.html()).show();
                             dlg.dialog('open');
                         }
                     });
@@ -49,7 +49,7 @@
                         url: 'Wiki.asmx/GetWikiPreview',
                         data: "{id: '<asp:Literal id="previewId" runat="server" />', slug: '<asp:Literal id="previewSlug" runat="server" />', source: '" + self.val()  + "'}",
                         dataType: 'json',
-                        success: function(data) { $('#previewWikiContent').html(data.d); }
+                        success: function(data) { $('#preViewContentContent').html(data.d); }
                     });
                 }, 250);
             });
@@ -82,7 +82,7 @@
     
     <div id="wikiContent">
         <div id="originalWikiContent"><asp:Literal ID="renderedSource" runat="server" /></div>
-        <div id="previewWikiContent" style="display:none;"></div>
+        <div id="preViewContentContent" style="display:none;"></div>
     </div>
     
     <div class="clear"></div>

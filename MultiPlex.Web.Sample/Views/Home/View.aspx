@@ -14,7 +14,7 @@
                 position: [cntPos.left - 450 + cnt.outerWidth(), cntPos.top + cnt.outerHeight()],
                 show: 'blind',
                 hide: 'blind',
-                beforeclose: function () { $('#originalWikiContent').show(); $('#previewWikiContent').hide(); }
+                beforeclose: function () { $('#originalWikiContent').show(); $('#preViewContentContent').hide(); }
             });
             cnt.click(function () {
                 if (!dlg.dialog('isOpen')) {
@@ -22,7 +22,7 @@
                         $('#Source').val(data);
                         var original = $('#originalWikiContent');
                         original.hide();
-                        $('#previewWikiContent').html(original.html()).show();
+                        $('#preViewContentContent').html(original.html()).show();
                         dlg.dialog('open');
                     });
                 } else {
@@ -40,7 +40,7 @@
                 timeout = setTimeout(function () {
                     $.post('<%= Url.RouteUrl("Act", new { action = "GetWikiPreview", Model.Content.Title.Id, Model.Content.Title.Slug }) %>',
                            { source: self.val() },
-                           function (data) { $('#previewWikiContent').html(data); });
+                           function (data) { $('#preViewContentContent').html(data); });
                 }, 250);
             });
 
@@ -73,7 +73,7 @@
     
     <div id="wikiContent">
         <div id="originalWikiContent"><%= Model.Content.RenderedSource%></div>
-        <div id="previewWikiContent" style="display:none;"></div>
+        <div id="preViewContentContent" style="display:none;"></div>
     </div>
     
     <div class="clear"></div>

@@ -68,7 +68,7 @@ namespace MultiPlex.Web.Controllers
                     ApplicationUser usr = CommonTools.usrmng.GetUser(this.User.Identity.Name);
                     this.contmngr.AddContent(wikiname, title, cont,cid,usr);
 
-                    return RedirectToAction("ViewWiki", new  {wikiname,title.Id,title.Slug });
+                    return RedirectToAction("ViewContent", new  {wikiname,title.Id,title.Slug });
                     }
                 
                 return RedirectToAction("CreateContent");
@@ -146,7 +146,7 @@ namespace MultiPlex.Web.Controllers
                     //vals.Add("id", 0);
                     //vals.Add("slug", "");
                    return RedirectToAction("CreateContent", "Content", vals);
-                  //  return RedirectToAction("EditWiki", "Content", vals);
+                  //  return RedirectToAction("EditContent", "Content", vals);
                 }
                 return View(titles);
             }
@@ -157,7 +157,7 @@ namespace MultiPlex.Web.Controllers
                 return null;
             }
         }
-        public ActionResult ViewWiki(string wikiname, int id, string slug)
+        public ActionResult ViewContent(string wikiname, int id, string slug)
         {
             try
             {
@@ -168,9 +168,9 @@ namespace MultiPlex.Web.Controllers
                 }
                 contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
 
-                var viewData =this.contmngr.ViewWiki(wikiname, id, slug);
+                var viewData =this.contmngr.ViewContent(wikiname, id, slug);
                 if (viewData.Content == null)
-                    return RedirectToAction("EditWiki", new {wikiname, id, slug });
+                    return RedirectToAction("EditContent", new {wikiname, id, slug });
 
                 return View("View", viewData);
             }
@@ -182,17 +182,17 @@ namespace MultiPlex.Web.Controllers
             }
         }
 
-        public ActionResult ViewWikiVersion(string wikiname, int id, string slug,
+        public ActionResult ViewContentVersion(string wikiname, int id, string slug,
             int version)
         {
             try
             {
                 contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
 
-                var viewData = this.contmngr.ViewWikiVersion(wikiname, id, slug, version);
+                var viewData = this.contmngr.ViewContentVersion(wikiname, id, slug, version);
 
                 if (viewData.Content == null)
-                    return RedirectToAction("ViewWiki", new { wikiname, id, slug });
+                    return RedirectToAction("ViewContent", new { wikiname, id, slug });
 
 
 
@@ -206,12 +206,12 @@ namespace MultiPlex.Web.Controllers
             }
         }
         [Authorize]
-        public ActionResult EditWiki(string wikiname, int? id, string slug)
+        public ActionResult EditContent(string wikiname, int? id, string slug)
         {
             try
             {
                 if (!ContentManager.IsEditable()) { 
-                    return RedirectToAction("ViewWiki"); }
+                    return RedirectToAction("ViewContent"); }
                 contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
 
                 Content content = this.contmngr.GetContent(wikiname, Convert.ToInt32(id));
@@ -231,17 +231,24 @@ namespace MultiPlex.Web.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditWiki(string wikiname, Content cont)
+        public ActionResult EditContent(string wikiname, Content cont,int id)
         {
             try
-            { 
+            {
                 if (!ContentManager.IsEditable())
-                    return RedirectToAction("ViewWiki");
+                {
+                    return RedirectToAction("ViewContent");
+                }
                 contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
-                int id = cont.Title.Id;
-                id = this.contmngr.EditWikiPost(wikiname, id, cont.Title.Slug, cont.Title.Name
-                    , cont.Source, this.usrmng.GetUser(this.User.Identity.Name));
-                return RedirectToAction("ViewWiki", new { wikiname, id, cont.Title.Slug });
+                if (cont != null)
+                {
+                    //int id = cont.Title.Id;
+                     this.contmngr.EditContentPost(wikiname, cont, 
+                        this.usrmng.GetUser(this.User.Identity.Name));
+                    Content ct = this.contmngr.GetContent(wikiname, id);
+                    return RedirectToAction("ViewContent", new { wikiname, id, ct.Title.Slug });
+                }
+                return View("Edit", cont);
             }
             catch (Exception ex)
             {
