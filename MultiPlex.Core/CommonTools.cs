@@ -36,7 +36,12 @@ namespace MultiPlex.Core
        }
        public static void ErrorReporting (Exception ex)
        {
-           throw (ex);
-       }
+           //throw (ex);
+           
+            NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+            logger.Fatal(ex);
+            throw (ex);
+
+        }
     }
 }

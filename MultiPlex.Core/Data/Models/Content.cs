@@ -10,8 +10,10 @@ namespace MultiPlex.Core.Data.Models
         [Required]
         public virtual Title Title { get; set; }
         public string Source { get; set; }
-        public string RenderedSource { get; set; }       
+        public string RenderedSource { get; set; } 
+        [Required]      
         public int Version { get; set; }
+        [Required]
         [DataType(DataType.DateTime)]
         
         public DateTime VersionDate { get; set; }

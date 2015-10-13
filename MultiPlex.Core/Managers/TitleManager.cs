@@ -25,6 +25,20 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
+        public Title GetTitlebyId(string wikiname, int id)
+        {
+            try
+            {
+                return wrepo.Get(wikiname, id);
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
         public void Create(Title title,ApplicationUser user)
         {
             try

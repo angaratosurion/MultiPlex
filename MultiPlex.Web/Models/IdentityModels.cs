@@ -19,16 +19,16 @@ namespace MultiPlex.Web.Models
     //    //}
     //}
 
-    //public class ApplicationDbContext : Context // IdentityDbContext<ApplicationUser>
-    //{
-    //    //public ApplicationDbContext()
-    //    //    : base("DefaultConnection", throwIfV1Schema: false)
-    //    //{
-    //    //}
+    public class ApplicationDbContext : Context // IdentityDbContext<ApplicationUser>
+    {
+        //public ApplicationDbContext()
+        //    : base("DefaultConnection", throwIfV1Schema: false)
+        //{
+        //}
 
-    //    //public static ApplicationDbContext Create()
-    //    //{
-    //    //    return new ApplicationDbContext();
-    //    //}
-    //}
+        //public static ApplicationDbContext Create()
+        //{
+        //    return new ApplicationDbContext();
+        //}
+    }
 }

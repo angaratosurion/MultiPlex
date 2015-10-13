@@ -115,71 +115,22 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
-        
-        //public Content GetWikiforEditWiki(string wikiname, int id, string slug)
-        //{
-        //    try
-        //    {
-        //        Content content = this.GetContent(wikiname, id);
-        //        if (content == null)
-        //        {
-        //            //  content = new Content { Title = new Title { Slug = slug } };
-        //            content = new Content();
-        //            Title tile = new Title();
-
-        //            content.Title = tile;
-        //            //content = new Content{Title = new Title()};
-        //        }
-        //        return content;
-               
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        CommonTools.ErrorReporting(ex);
-        //        return null;
-        //    }
-        //}
-        public int EditContentPost(string wikiname, int titleid, string slug,
-            string name,
-            string source,ApplicationUser user)
-        {
-            try
-            {
-
-                
-                Title title = this.repository.Get(wikiname, titleid);
-                if (title == null)
-                {
-                    slug = name.Replace(" ", "_");
-                    title = this.repository.Add(wikiname, name, slug, user);
-                }
-
-                    this.repository.SaveorAddContent(wikiname, title.Id, source, user);
-                return titleid;
-
-               
-            }
-            catch (Exception ex)
-            {
-
-                CommonTools.ErrorReporting(ex);
-                return -1;
-            }
-        }
-        public void EditContentPost(string wikiname, Content cont, ApplicationUser user)
+       
+        public void EditContentPost(string wikiname, Content cont, ApplicationUser user,int id)
         {
             try
             {
                 if (cont != null)
                 {
+                    Title title =this.repository.Get(wikiname, id);
+                    if (CommonTools.isEmpty(wikiname) == false 
+                 && title != null && cont != null)
+                    {
+                       
+                            this.repository.AddContent(wikiname, title, cont,  user);
 
-                    Title title = this.repository.Get(wikiname, cont.Title.Id);
-                   
 
-                    this.repository.SaveorAddContent(wikiname, title.Id, cont.Source, user);
-                    //return titleid;
+                    }
                 }
 
 

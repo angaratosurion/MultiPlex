@@ -215,6 +215,7 @@ namespace MultiPlex.Web.Controllers
                 contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
 
                 Content content = this.contmngr.GetContent(wikiname, Convert.ToInt32(id));
+                content.Title = this.tmngr.GetTitlebyId(wikiname,Convert.ToInt32(id));
 
                 return View("Edit", content);
             }
@@ -243,8 +244,9 @@ namespace MultiPlex.Web.Controllers
                 if (cont != null)
                 {
                     //int id = cont.Title.Id;
+
                      this.contmngr.EditContentPost(wikiname, cont, 
-                        this.usrmng.GetUser(this.User.Identity.Name));
+                        this.usrmng.GetUser(this.User.Identity.Name),id);
                     Content ct = this.contmngr.GetContent(wikiname, id);
                     return RedirectToAction("ViewContent", new { wikiname, id, ct.Title.Slug });
                 }

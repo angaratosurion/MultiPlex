@@ -10,7 +10,7 @@ using MultiPlex.Core.Application;
 
 namespace MultiPlex.Web
 {
-    public class MvcApplication :MultiPlex.Core.Application.Application //System.Web.HttpApplication
+    public class MvcApplication : MultiPlex.Core.Application.Application //System.Web.HttpApplication
     {
         protected void Application_Start()
         {
@@ -20,6 +20,10 @@ namespace MultiPlex.Web
             //FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             //RouteConfig.RegisterRoutes(RouteTable.Routes);
             //BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+        protected void Application_Error()
+        {
+            base.Application_Error();
         }
     }
 }

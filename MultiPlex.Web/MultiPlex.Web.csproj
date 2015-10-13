@@ -230,8 +230,8 @@
     <Content Include="..\MultiPlex.Core\connectionstrings.config">
       <Link>connectionstrings.config</Link>
     </Content>
-    <Content Include="NLog.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="..\MultiPlex.Core\NLog.config">
+      <Link>NLog.config</Link>
     </Content>
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>

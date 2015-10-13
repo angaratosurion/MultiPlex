@@ -50,5 +50,11 @@ namespace MultiPlex.Core.Application
                 CommonTools.ErrorReporting(ex);
             }
         }
+        protected void Application_Error()
+        {
+            Exception lastException = Server.GetLastError();
+            CommonTools.ErrorReporting(lastException);
+        }
+
     }
 }

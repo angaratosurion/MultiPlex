@@ -9,11 +9,11 @@ namespace MultiPlex.Web.Migrations
     using Core.Data.Models;
     using Microsoft.AspNet.Identity;
 
-    internal sealed class Configuration : MultiPlex.Core.Migrations.Configuration//DbMigrationsConfiguration<Context>
+    internal sealed class Configuration : MultiPlex.Core.Migrations.Configuration// DbMigrationsConfiguration<MultiPlex.Web.Models.ApplicationDbContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(Context context)
@@ -38,7 +38,6 @@ namespace MultiPlex.Web.Migrations
 
             mngr.Create(adm, "Adm!n0");
             context.SaveChanges();
-
         }
     }
 }

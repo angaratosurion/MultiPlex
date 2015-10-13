@@ -392,6 +392,59 @@ namespace MultiPlex.Core.Data.Repositories
 
         }
 
+        public void AddContent(string wikiname, Title title, Content cont,  ApplicationUser usr)
+        {
+            try
+            {
+                if (wikiname != null && title != null && cont != null )
+                {
+                  //  var a = this.CategoryExistsinWiki(cat.Name, wikiname);
+                    Wiki wk = this.GetWiki(wikiname);
+                   if (wk != null   && title !=null)
+                    {
+                        //  cont.Id = id;
+
+
+
+                        cont.Title = title;
+                        cont.Version = cont.Version+ 1;
+                        cont.Wiki = wk;
+                        cont.WrittenBy = usr;
+                        cont.VersionDate = DateTime.Now;
+                        if (wk.Content == null)
+                        {
+                            wk.Content = new List<Core.Data.Models.Content>();
+                        }
+                        wk.Content.Add(cont);
+                        if (wk.Titles == null)
+                        {
+                            wk.Titles = new List<Title>();
+                        }
+                        wk.Titles.Add(title);
+                        db.Content.Add(cont);
+                        db.Title.Add(title);
+
+
+                        db.SaveChanges();
+                    }
+                }
+
+
+
+            }
+            catch (ValidationException x)
+            {
+                throw (x);
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                //return null;
+            }
+
+        }
+
         public Content GetByVersion(string wikiname, int id, int version)
         {
             try
