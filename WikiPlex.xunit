@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<xunit>
-  <assemblies>
-    <assembly filename="WikiPlex.IntegrationTests\bin\Debug\WikiPlex.IntegrationTests.dll" shadow-copy="true" />
-    <assembly filename="WikiPlex.Tests\bin\Debug\WikiPlex.Tests.dll" shadow-copy="true" />
-  </assemblies>
-</xunit>
