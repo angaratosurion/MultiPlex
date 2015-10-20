@@ -54,9 +54,9 @@
                     </dl>
                 </td>
                 <td>             
-                  
+                   @Html.DisplayNameFor(model => model.Categories);
                     <ul class="nav navbar-nav">
-                        @{
+                        @{ 
                             var categories = Model.Categories;
                             if (categories.Count>0)
                             {

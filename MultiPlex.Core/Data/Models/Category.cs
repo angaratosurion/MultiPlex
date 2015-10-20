@@ -18,8 +18,8 @@ namespace MultiPlex.Core.Data.Models
       
         [Required]
         public virtual Wiki Wiki { get; set; }
-        //    [Timestamp]
-        //    public Byte[] RowVersion { get; set; }
-        //
+        [Timestamp]
+        public Byte[] RowVersion { get; set; }
+
     }
 }

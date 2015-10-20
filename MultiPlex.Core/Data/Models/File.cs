@@ -20,8 +20,8 @@ namespace MultiPlex.Core.Data.Models
 
         public DateTime VersionDate { get; set; }
 
-        //[Timestamp]
-        //public Byte[] RowVersion { get; set; }
+        [Timestamp]
+        public Byte[] RowVersion { get; set; }
         [Required]
         public virtual ApplicationUser Owner { get; set; }
         [Required]

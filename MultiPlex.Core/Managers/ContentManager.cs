@@ -122,12 +122,13 @@ namespace MultiPlex.Core.Managers
             {
                 if (cont != null)
                 {
-                    Title title =this.repository.Get(wikiname, id);
+                    //Title title =this.repository.Get(wikiname, id);
+                 //   Title title = cont.Title;
                     if (CommonTools.isEmpty(wikiname) == false 
-                 && title != null && cont != null)
+                 && id >0 && cont != null)
                     {
                        
-                            this.repository.AddContent(wikiname, title, cont,  user);
+                            this.repository.AddContent(wikiname, id, cont,  user);
 
 
                     }

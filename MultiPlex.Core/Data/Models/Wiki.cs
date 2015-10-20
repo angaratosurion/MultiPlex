@@ -23,5 +23,7 @@ namespace MultiPlex.Core.Data.Models
         public virtual List<ApplicationUser> Moderators { get; set; }
         public virtual List<Category>Categories { get; set; }
         public virtual List<File> Files { get; set; }
+        [Timestamp]
+        public Byte[] RowVersion { get; set; }
     }
 }

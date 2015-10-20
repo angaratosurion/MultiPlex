@@ -9,6 +9,8 @@ namespace MultiPlex.Core.Data.Models
         public int Id { get; set; }
         [Required]
         public virtual Title Title { get; set; }
+        [DataType(DataType.MultilineText)]
+        [Required]
         public string Source { get; set; }
         public string RenderedSource { get; set; } 
         [Required]      
@@ -17,8 +19,8 @@ namespace MultiPlex.Core.Data.Models
         [DataType(DataType.DateTime)]
         
         public DateTime VersionDate { get; set; }
-        //[Timestamp]
-        //public Byte[] RowVersion { get; set; }
+        [Timestamp]
+        public Byte[] RowVersion { get; set; }
         [Required]
         public virtual Wiki Wiki { get; set; }
         [Required]        
