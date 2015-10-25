@@ -128,6 +128,7 @@ namespace MultiPlex.Core.Managers
                  && id >0 && cont != null)
                     {
                        
+
                             this.repository.AddContent(wikiname, id, cont,  user);
 
 

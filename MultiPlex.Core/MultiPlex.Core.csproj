@@ -178,6 +178,7 @@
     <Compile Include="Data\Models\IdentityModels.cs" />
     <Compile Include="Data\Models\Wiki.cs" />
     <Compile Include="Data\Repositories\WikiRepository.cs" />
+    <Compile Include="Data\ViewModels\EditContent.cs" />
     <Compile Include="Data\ViewModels\ViewContent.cs" />
     <Compile Include="Helpers\SlugHelper.cs" />
     <Compile Include="Interfaces\IActionVerb.cs" />

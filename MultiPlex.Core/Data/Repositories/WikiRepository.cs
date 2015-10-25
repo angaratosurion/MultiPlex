@@ -400,7 +400,7 @@ namespace MultiPlex.Core.Data.Repositories
                 {
                   //  var a = this.CategoryExistsinWiki(cat.Name, wikiname);
                     Wiki wk = this.GetWiki(wikiname);
-                    Content cont1 = new Content();
+                    //Content cont1 = new Content();
                     Title title = this.Get(wikiname, tid);
                     
                    if (wk != null   && title !=null)
@@ -409,33 +409,34 @@ namespace MultiPlex.Core.Data.Repositories
 
                         if (this.CountWithTitleId(wikiname, title.Id) > 0)
                         {
-                            cont1.Version = this.CountWithTitleId(wikiname, title.Id) + 1;
+                            cont.Version = this.CountWithTitleId(wikiname, title.Id) + 1;
                         }
                         else
                         {
-                            cont1.Version = 1;
+                            cont.Version = 1;
                         }
-                        cont1.Id = db.Content.Count() + 1;
-                        cont1.Title = title;
+                        //cont1.Id = db.Content.Count() + 1;
+                        cont.Title = title;
                        // cont1.Version = cont.Version+ 1;
-                        cont1.Wiki = wk;
-                        cont1.WrittenBy = usr;
-                        cont1.VersionDate = DateTime.Now;
-                        cont1.Source = cont.Source;
+                        cont.Wiki = wk;
+                        cont.WrittenBy = usr;
+                        cont.VersionDate = DateTime.Now;
+                        //cont1.Source = cont.Source;
                         
                        
                         if (wk.Content == null)
                         {
                             wk.Content = new List<Core.Data.Models.Content>();
                         }
-                        wk.Content.Add(cont1);
+                        wk.Content.Add(cont);
                         if (wk.Titles == null)
                         {
                             wk.Titles = new List<Title>();
                         }
-                       // db.Content.Add(cont);
-                       // wk.Titles.Add(title);
-                        db.Content.Add(cont1);
+                        // db.Content.Add(cont);
+                        // wk.Titles.Add(title);
+                      // db.Entry(cont).State = System.Data.Entity.EntityState.Added;
+                        db.Content.Add(cont);
                       //  db.Title.Add(title);
 
 

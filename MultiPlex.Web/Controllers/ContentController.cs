@@ -10,6 +10,7 @@ using System.Web.UI;
 using MultiPlex.Core;
 using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Data.Repositories;
+using MultiPlex.Core.Data.ViewModels;
 using MultiPlex.Core.Managers;
 
 namespace MultiPlex.Web.Controllers
@@ -216,8 +217,10 @@ namespace MultiPlex.Web.Controllers
 
                 Content content = this.contmngr.GetContent(wikiname, Convert.ToInt32(id));
                 content.Title = this.tmngr.GetTitlebyId(wikiname,Convert.ToInt32(id));
-
-                return View("Edit", content);
+                EditContent cont = new EditContent();
+                    cont.Source = content.Source;
+                cont.Title = content.Title;
+                return View("Edit", cont);
             }
             catch (Exception ex)
             {
@@ -232,10 +235,11 @@ namespace MultiPlex.Web.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditContent(string wikiname, Content cont,int id)
+        public ActionResult EditContent(string wikiname, EditContent econt,int id)
         {
             try
             {
+                Content cont = new Content();
                 if (!ContentManager.IsEditable())
                 {
                     return RedirectToAction("ViewContent");
@@ -244,13 +248,15 @@ namespace MultiPlex.Web.Controllers
                 if (cont != null)
                 {
                     //int id = cont.Title.Id;
+                    cont.Source = econt.Source;
+                    
 
                      this.contmngr.EditContentPost(wikiname, cont, 
                         this.usrmng.GetUser(this.User.Identity.Name),id);
                     Content ct = this.contmngr.GetContent(wikiname, id);
                     return RedirectToAction("ViewContent", new { wikiname, id, ct.Title.Slug });
                 }
-                return View("Edit", cont);
+                return View("Edit", econt);
             }
             catch (Exception ex)
             {

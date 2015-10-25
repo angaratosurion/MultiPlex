@@ -1,4 +1,4 @@
-﻿@model MultiPlex.Core.Data.Models.Content
+﻿@model MultiPlex.Core.Data.ViewModels.EditContent
 
 @*@section head {
 
@@ -21,7 +21,7 @@
             @Html.TextArea("Source")
             <label></label>
             <input type="submit" value="Save" />
-            @if (Model.Title.Id > 0) { 
+            @if (@Model.Title.Id > 0) { 
             <input type="button" value="Cancel" onclick="window.location.href='@Url.RouteUrl("Default")'" />
              } 
         </fieldset>
