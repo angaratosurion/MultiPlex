@@ -11,7 +11,7 @@ namespace MultiPlex.Core
    public class CommonTools
     {
         public static Context db = new Context();
-        public static FileManager filemngr;
+        public static FileSystemManager filemngr;
         public static UserManager usrmng = new UserManager();
         public static WikiManager wkmngr = new WikiManager();
         public static CategoryManager catmngr = new CategoryManager();

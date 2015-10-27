@@ -1,5 +1,5 @@
 ﻿@model MultiPlex.Core.Data.ViewModels.ViewContent
-@* 
+ 
 @section head {
 
     <title>MultiPlex Sample - @Model.Content.Title.Name</title>
@@ -53,13 +53,13 @@
     </script>
      } 
 
-}*@
-
+}
+<h2>@Model.Content.Title.Name</h2>
 
     @if (Model.Editable) { 
     <div id="EditContent" class="EditContent">
         @Html.ActionLink("Edit Content", "EditContent", new { wikiname = Model.Content.Wiki.Name, id = Model.Content.Id,
-         slug = Model.Content.Title.Slug }) ;   
+         slug = Model.Content.Title.Slug }) 
         <br/>
         <hr/>
     </div>
@@ -78,10 +78,10 @@
     </div>
     
     <div id="wikiContent">
-        <div id="originalWikiContent">@Model.Content.RenderedSource</div>
+        <div id="originalWikiContent"> @Html.Raw(@Model.Content.RenderedSource)</div>
         <div id="preViewContentContent" style="display:none;"></div>
     </div>
-    
+
     <div class="clear"></div>
     
     @*@if (Model.Editable) { 

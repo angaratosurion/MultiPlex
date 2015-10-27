@@ -19,7 +19,7 @@ namespace MultiPlex.Core.Managers
         WikiRepository wrepo = new WikiRepository();
       
         SettingsManager setmngr = new SettingsManager();
-        FileManager flmng= new FileManager();
+        FileSystemManager flmng= new FileSystemManager();
         const string AppDataDir = "App_Data";
       
         public List<Data.Models.Wiki> ListWiki()
@@ -81,9 +81,9 @@ namespace MultiPlex.Core.Managers
                         wkrotfold = "wikifiles";
                     }
                     wkpath = "~/" + AppDataDir + "/" + wkrotfold + "/" + wk.Name;
-                    if ( FileManager.DirectoryExists(wkpath)==false)
+                    if ( FileSystemManager.DirectoryExists(wkpath)==false)
                     {
-                        FileManager.CreateDirectory(wkpath);
+                        FileSystemManager.CreateDirectory(wkpath);
 
                     }
                 }

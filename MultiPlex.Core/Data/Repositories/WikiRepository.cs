@@ -406,6 +406,16 @@ namespace MultiPlex.Core.Data.Repositories
                    if (wk != null   && title !=null)
                     {
                         //  cont.Id = id;
+                        int i = cont.Id;
+                        if (i > 0)
+                        {
+                            i++;
+                        }
+                        else
+                        {
+                            i = db.Content.Count() + 1;
+                        }
+                        cont.Id = i;
 
                         if (this.CountWithTitleId(wikiname, title.Id) > 0)
                         {
@@ -417,29 +427,28 @@ namespace MultiPlex.Core.Data.Repositories
                         }
                         //cont1.Id = db.Content.Count() + 1;
                         cont.Title = title;
-                       // cont1.Version = cont.Version+ 1;
+                        // cont1.Version = cont.Version+ 1;
+
+                        //if (wk.Content == null)
+                        //{
+                        //    wk.Content = new List<Core.Data.Models.Content>();
+                        //}
+                        wk.Content.Add(cont);
                         cont.Wiki = wk;
                         cont.WrittenBy = usr;
                         cont.VersionDate = DateTime.Now;
                         //cont1.Source = cont.Source;
                         
                        
-                        if (wk.Content == null)
-                        {
-                            wk.Content = new List<Core.Data.Models.Content>();
-                        }
-                        wk.Content.Add(cont);
-                        if (wk.Titles == null)
-                        {
-                            wk.Titles = new List<Title>();
-                        }
-                        // db.Content.Add(cont);
-                        // wk.Titles.Add(title);
+                        //if (wk.Titles == null)
+                        //{
+                        //    wk.Titles = new List<Title>();
+                        //}
+                       
                       // db.Entry(cont).State = System.Data.Entity.EntityState.Added;
                         db.Content.Add(cont);
-                      //  db.Title.Add(title);
-
-
+                        //  db.Title.Add(title);
+                       
                         db.SaveChanges();
                     }
                 }

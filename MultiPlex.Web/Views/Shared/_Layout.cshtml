@@ -18,7 +18,14 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Application name", "Index", "HomeWiki", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
+                <div id="header">
+                    @if (IsSectionDefined("head"))
+                    {
+                    @RenderSection("head");
+
+                    }
+                    </div>
+                </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @*<li>@Html.ActionLink("HomeWiki", "Index", "HomeWiki")</li>*@

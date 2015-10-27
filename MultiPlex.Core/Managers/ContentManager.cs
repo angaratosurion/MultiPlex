@@ -127,8 +127,8 @@ namespace MultiPlex.Core.Managers
                     if (CommonTools.isEmpty(wikiname) == false 
                  && id >0 && cont != null)
                     {
-                       
 
+                       
                             this.repository.AddContent(wikiname, id, cont,  user);
 
 

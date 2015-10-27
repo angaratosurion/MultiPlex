@@ -12,7 +12,7 @@ using System.Web.Hosting;
 
 namespace MultiPlex.Core.Managers
 {
-   public  class FileManager
+   public  class FileSystemManager
    {
        CommonTools cmtools = new CommonTools();
       //  static HttpServerUtilityBase util;

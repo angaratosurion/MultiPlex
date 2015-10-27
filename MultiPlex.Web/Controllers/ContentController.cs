@@ -220,6 +220,7 @@ namespace MultiPlex.Web.Controllers
                 EditContent cont = new EditContent();
                     cont.Source = content.Source;
                 cont.Title = content.Title;
+                content = null;
                 return View("Edit", cont);
             }
             catch (Exception ex)
@@ -249,8 +250,8 @@ namespace MultiPlex.Web.Controllers
                 {
                     //int id = cont.Title.Id;
                     cont.Source = econt.Source;
-                    
 
+                    
                      this.contmngr.EditContentPost(wikiname, cont, 
                         this.usrmng.GetUser(this.User.Identity.Name),id);
                     Content ct = this.contmngr.GetContent(wikiname, id);
