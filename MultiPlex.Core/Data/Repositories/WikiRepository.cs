@@ -181,7 +181,29 @@ namespace MultiPlex.Core.Data.Repositories
             }
 
         }
+        public void DeleteTitleById(string wikiname, int titleid)
+        {
+            try
+            {
+                if (wikiname != null && (titleid > 0) &&  this.WikiExists(wikiname))
+                {
+                    Wiki wk = this.GetWiki(wikiname);
+                    this.DeleteByTitle(wikiname, titleid);
+                    Title  title= this.Get(wikiname, titleid);
+                    title.Categories.Clear();
+                    this.db.Title.Remove(title);
+                    this.db.SaveChanges();
 
+                }
+
+                }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+               
+            }
+        }
         #endregion
         #region Content
         public List<Content> GetHistory(int titleid)
@@ -425,8 +447,8 @@ namespace MultiPlex.Core.Data.Repositories
                         {
                             cont.Version = 1;
                         }
-
-                       
+                      
+                      
                         //cont1.Id = db.Content.Count() + 1;
                         cont.Title = title;
                         // cont1.Version = cont.Version+ 1;
@@ -497,6 +519,60 @@ namespace MultiPlex.Core.Data.Repositories
             }
 
         }
+       public void DeleteById(string wikiname, int id)
+        {
+            try
+            { 
+                if (wikiname != null && this.WikiExists(wikiname) && id > 0)
+                {
+                    Wiki wk = this.GetWiki(wikiname);
+                    if ( wk.Content !=null && wk.Content.Count>0)
+                    {
+                        wk.Content.Remove(this.GetContent(wikiname, id));
+                        db.Content.Remove(this.GetContent(wikiname, id));
+                        this.db.SaveChanges();
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                
+            }
+        }
+        public void DeleteByTitle(string wikiname, int tid)
+        {
+            try
+            {
+                if (wikiname != null && this.WikiExists(wikiname) && tid > 0)
+                {
+                    Wiki wk = this.GetWiki(wikiname);
+                    if (wk.Content != null && wk.Content.Count > 0)
+                    {
+                        List<Content> conts = this.GetByTitle(wikiname, tid);
+                        if (conts != null)
+                        {
+                            foreach ( Content ct  in conts)
+                            {
+                                this.DeleteById(wikiname, ct.Id);
+                            }                           
+                        }
+                        //this.db.SaveChanges();
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+
+            }
+        }
+
+
         #endregion
 
         #region Categories
