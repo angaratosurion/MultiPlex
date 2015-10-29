@@ -9,3 +9,4 @@ _zip/
 sample/
 *.sln.cache
 packages/
+*.log

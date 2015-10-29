@@ -425,6 +425,8 @@ namespace MultiPlex.Core.Data.Repositories
                         {
                             cont.Version = 1;
                         }
+
+                       
                         //cont1.Id = db.Content.Count() + 1;
                         cont.Title = title;
                         // cont1.Version = cont.Version+ 1;
@@ -438,17 +440,18 @@ namespace MultiPlex.Core.Data.Repositories
                         cont.WrittenBy = usr;
                         cont.VersionDate = DateTime.Now;
                         //cont1.Source = cont.Source;
-                        
-                       
+
+
                         //if (wk.Titles == null)
                         //{
                         //    wk.Titles = new List<Title>();
                         //}
+
                        
-                      // db.Entry(cont).State = System.Data.Entity.EntityState.Added;
                         db.Content.Add(cont);
+
                         //  db.Title.Add(title);
-                       
+
                         db.SaveChanges();
                     }
                 }
