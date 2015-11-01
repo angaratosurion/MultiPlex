@@ -23,6 +23,7 @@ namespace MultiPlex.Core.Data.Models
         public int MaxVersion { get; set; }
         [Timestamp]
         public Byte[] RowVersion { get; set; }
+        public Boolean isLocked { get; set; }
         [Required]
         public virtual Wiki Wiki { get; set; }
         [Required]

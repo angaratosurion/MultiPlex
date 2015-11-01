@@ -15,6 +15,10 @@ namespace MultiPlex.Web.Migrations
         {
             AutomaticMigrationsEnabled = false;
         }
+        public void pubSeed(Context context)
+        {
+            this.Seed(context);
+        }            
 
         protected override void Seed(Context context)
         {
@@ -34,10 +38,19 @@ namespace MultiPlex.Web.Migrations
             var mngr = new UserManager<ApplicationUser>(userStore);
             context.Roles.AddOrUpdate(r => r.Name, new IdentityRole { Name = "Administrators" });
             ApplicationUser adm = new ApplicationUser();
+            
+            
+
             adm.Email = "admin@localhost.com";
 
             mngr.Create(adm, "Adm!n0");
+           
             context.SaveChanges();
+            IdentityRole adrol = context.Roles.First(x => x.Name == "Administrators");
+            adm = mngr.FindByEmail("admin@localhost.com");
+            mngr.AddToRole(adm.Id, adrol.Name);
+            context.SaveChanges();
+
         }
     }
 }

@@ -11,6 +11,8 @@ namespace MultiPlex.Core.Managers
    public class TitleManager
     {
         WikiRepository wrepo = new WikiRepository();
+        //UserManager usrmngr = new UserManager();
+
         public List<Title> GetTitlesbyCategory(string wikiname,int catid)
         {
             try
@@ -39,13 +41,21 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
-        public void Create(Title title,ApplicationUser user)
+       
+        public void Delete(Title title,ApplicationUser user)
         {
+
             try
             {
-                if ( title !=null && user!=null)
+                if (title != null && user != null)
                 {
-                   // this.wrepo.Add()
+                    Wiki wk = CommonTools.wkmngr.GetWiki(title.Wiki.Name);
+                    if ( wk !=null &&( wk.Administrtor== user )
+                        && CommonTools.usrmng.UserHasAccessToWiki(user,wk,true))
+                    {
+                        wrepo.DeleteTitleById(wk.Name, title.Id);
+                    }
+                    
                 }
 
             }
@@ -53,7 +63,7 @@ namespace MultiPlex.Core.Managers
             {
 
                 CommonTools.ErrorReporting(ex);
-               // return null;
+                // return null;
             }
         }
     }

@@ -39,6 +39,9 @@ namespace MultiPlex.Core.Migrations
 
             mngr.Create(adm, "Adm!n0");
             context.SaveChanges();
+            IdentityRole adrol = context.Roles.First(x => x.Name == "Administrators");
+            adm = mngr.FindByEmail("admin@localhost.com");
+            mngr.AddToRole(adm.Id, adrol.Name);
         }
     }
 }

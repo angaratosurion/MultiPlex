@@ -15,6 +15,7 @@ namespace MultiPlex.Core
         public static UserManager usrmng = new UserManager();
         public static WikiManager wkmngr = new WikiManager();
         public static CategoryManager catmngr = new CategoryManager();
+        public static TitleManager titlemngr = new TitleManager();
         public static  Boolean isEmpty(string str)
        {
            try

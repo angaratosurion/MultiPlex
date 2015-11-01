@@ -34,7 +34,7 @@
             <td>
 
                 @Html.ActionLink("Edit", "EditContent", new { wikiname = item.Wiki.Name, id = item.Id, slug = item.Slug }) ;            
-                @Html.ActionLink("Delete", "Delete", new { id = item.Name })
+                @Html.ActionLink("Delete", "Delete", new { wikiname = item.Wiki.Name, id = item.Id })
             </td>
         </tr>
     }

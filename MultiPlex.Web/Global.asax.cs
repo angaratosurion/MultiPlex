@@ -14,6 +14,7 @@ namespace MultiPlex.Web
     {
         protected void Application_Start()
         {
+            MultiPlex.Web.Migrations.Configuration migr = new Migrations.Configuration();
             base.Application_Start();
             //AreaRegistration.RegisterAllAreas();
             //GlobalConfiguration.Configure(WebApiConfig.Register);

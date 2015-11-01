@@ -304,6 +304,64 @@ namespace MultiPlex.Web.Controllers
                 return null;
             }
         }
+        [Authorize]
+        public ActionResult Delete(string wikiname, int ?id)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Title title = CommonTools.titlemngr.GetTitlebyId(wikiname, Convert.ToInt32(id));
+                if (title == null)
+                {
+                    return HttpNotFound();
+                }
+
+
+
+                return View(title);
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        // POST: ProjectNews/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string wikiname,  int ? id)
+        {
+
+            try
+            {
+                int cat = 0;
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Title title = CommonTools.titlemngr.GetTitlebyId(wikiname, Convert.ToInt32(id));
+                if (title != null)
+                {
+                    cat = title.Categories[0].Id;
+                    CommonTools.titlemngr.Delete(title, usrmng.GetUser(this.User.Identity.Name));
+                }
+                RouteValueDictionary vals = new RouteValueDictionary();
+                vals.Add("wikiname", wikiname);
+                vals.Add("cid", cat);
+                return RedirectToAction("Index",vals);
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+
     }
 
 
