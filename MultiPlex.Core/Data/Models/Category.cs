@@ -14,7 +14,7 @@ namespace MultiPlex.Core.Data.Models
         public int Id { get; set; }
         [Required]
         [DataType(DataType.Text)]
-        public string Name{ get; set; }
+        public string Title{ get; set; }
       
         [Required]
         public virtual Wiki Wiki { get; set; }

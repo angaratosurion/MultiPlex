@@ -61,14 +61,14 @@ namespace MultiPlex.Core.Managers
             try
             {
                 Boolean ap = false;
-                if ( user !=null && this.UserExists(user.Id)==true)
+                if ( user !=null && UserExists(user.UserName.ToString())==true)
                 {
                      if ( isDelete ==true)
                     {
                         IdentityRole role = this.GetRole(AdminRoles);
                          if ( role !=null)
                         {
-                             if ( role.Users.First(x=>x.UserId== user.Id)!=null && wk.Administrtor == user)
+                             if ( role.Users.First(x=>x.UserId== user.Id)!=null && wk.Administrtor.UserName == user.UserName)
                             {
                                 ap = true;
                             }

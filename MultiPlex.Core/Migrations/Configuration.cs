@@ -20,28 +20,36 @@ namespace MultiPlex.Core.Migrations
         protected override void Seed(MultiPlex.Core.Data.Context context)
         {
             //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
             var userStore = new UserStore<ApplicationUser>(context);
             var mngr = new UserManager<ApplicationUser>(userStore);
-            context.Roles.AddOrUpdate(r => r.Name, new IdentityRole { Name = "Administrators" });
-            Data.Models.ApplicationUser adm = new ApplicationUser();
-            adm.Email = "admin@localhost.com";
+            IdentityRole role = new IdentityRole("Administrators");
+            context.Roles.AddOrUpdate(r => r.Name,role );
+         
+            //var passwordHash = new PasswordHasher();
+            //string password = passwordHash.HashPassword("Adm!n0");
+            //context.Users.AddOrUpdate(u => u.UserName,
+            //    new ApplicationUser
+            //    {
+            //        UserName = "admin@localhost.com",
+            //        PasswordHash = password,
+            //        Email= "admin@localhost.com"
+            //        //   PhoneNumber = "08869879"
 
-            mngr.Create(adm, "Adm!n0");
+            //    });
+
+
+
+
             context.SaveChanges();
+            ApplicationUser adm = new ApplicationUser();
+            adm.Email = "admin@localhost.com";
+            mngr.Create(adm, "Adm!n0");
             IdentityRole adrol = context.Roles.First(x => x.Name == "Administrators");
             adm = mngr.FindByEmail("admin@localhost.com");
-            mngr.AddToRole(adm.Id, adrol.Name);
+            if (adm != null)
+            {
+                mngr.AddToRole(adm.Id, adrol.Name);
+            }
         }
     }
 }

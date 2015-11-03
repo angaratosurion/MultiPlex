@@ -102,7 +102,11 @@ namespace MultiPlex.Web.Controllers
                            // if (ModelState.IsValid)
                             {
                                 this.catmngr.Add(cat);
-                                return RedirectToAction("Index");
+                            RouteValueDictionary vals = new RouteValueDictionary();
+                            vals.Add("wikiname", wikiname);
+                           
+                            vals.Add("cid", cat.Id);
+                            return RedirectToAction("Index",vals);
                             }
                             
 

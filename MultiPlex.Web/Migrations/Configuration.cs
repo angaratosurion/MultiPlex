@@ -13,7 +13,8 @@ namespace MultiPlex.Web.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            this.AutomaticMigrationDataLossAllowed = true;
         }
         public void pubSeed(Context context)
         {

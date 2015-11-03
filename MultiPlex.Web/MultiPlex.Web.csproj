@@ -290,11 +290,11 @@
     <Content Include="Views\Content\CreateCategory.cshtml" />
     <Content Include="Views\Content\CreateContent.cshtml" />
     <Content Include="Views\Content\Delete.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\wiki\" />
     <Folder Include="Modules\" />
-    <Folder Include="Views\Admin\" />
     <Folder Include="Views\Category\" />
     <Folder Include="Views\Title\" />
   </ItemGroup>

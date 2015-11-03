@@ -362,7 +362,7 @@ namespace MultiPlex.Core.Data.Repositories
             {
                 if (wikiname != null && title !=null && cont != null && cat!=null)
                 {
-                  var  a=this.CategoryExistsinWiki(cat.Name, wikiname);
+                  var  a=this.CategoryExistsinWiki(cat.Title, wikiname);
                     Wiki wk = this.GetWiki(wikiname);
                    // if (wk != null &&a ==true)
                     {
@@ -559,7 +559,7 @@ namespace MultiPlex.Core.Data.Repositories
                                 this.DeleteById(wikiname, ct.Id);
                             }                           
                         }
-                        //this.db.SaveChanges();
+                        this.db.SaveChanges();
                     }
 
                 }
@@ -604,7 +604,7 @@ namespace MultiPlex.Core.Data.Repositories
                     }
                     else
                     {
-                        ap=cats.Exists(s => s.Name==catname);
+                        ap=cats.Exists(s => s.Title==catname);
                     }
                 }
                 return ap;
@@ -663,7 +663,7 @@ namespace MultiPlex.Core.Data.Repositories
               
                 if ( cat != null)
                 {
-                    if (this.CategoryExistsinWiki(cat.Name,cat.Wiki.Name) == false)
+                    if (this.CategoryExistsinWiki(cat.Title,cat.Wiki.Name) == false)
                     {    Wiki  wk= this.GetWiki(cat.Wiki.Name);
                         if (wk != null)
                         {  if ( wk.Categories == null )

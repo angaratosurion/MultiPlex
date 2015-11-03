@@ -39,42 +39,43 @@
                         <dd>
                             @Html.DisplayNameFor(model => model.Moderators)
                         </dd>
-                        <dt>
+                        @*<dt>
                             <ul class="nav navbar-nav">
                                 @{
                                     var mods = Model.Moderators;
                                     foreach (var mod in mods)
                                     {
-                                        <li> @Html.DisplayForModel(mod.UserName);  </li>
+                                        <li> @Html.DisplayForModel(mod.UserName.ToString());  </li>
                                     }
 
                                 }
                             </ul>
-                        </dt>
-                    </dl>
+                        </dt>*@
+                   
                 </td>
                 <td>             
-                   @Html.DisplayNameFor(model => model.Categories);
+                   @*@Html.DisplayNameFor(model => model.Categories);*@
                     <ul class="nav navbar-nav">
-                        @{ 
+                        @{
                             var categories = Model.Categories;
-                            if (categories.Count>0)
-                            {
-                                foreach (var cat in categories)
-                                {
-                                @Html.ActionLink(cat.Name, "ListCategories", new { wikiname = Model.Name,
-                               cid = cat.Id });
 
-                                }
-                            }
-                            else
-                            {
-                                @Html.ActionLink("Create New Category", "CreateCategories", new
+                            @Html.ActionLink("Create New Category", "CreateCategories", new
                            {
                                wikiname = Model.Name
                            });
+                            <br/>
 
-                           }
+                            if (categories.Count > 0)
+                            {
+                                foreach (var cat in categories)
+                                {
+                                @Html.ActionLink(cat.Title, "ListCategories", new { wikiname = Model.Name,
+                               cid = cat.Id });<br/>
+
+                                }
+                            }
+                           
+                          
                                 }
                      </ul>
 

@@ -14,7 +14,7 @@
         @Html.AntiForgeryToken()
         <fieldset>
             <label for="Name">Title:</label>
-            @Html.TextBox("Name", Model.Title.Name)
+            @Html.DisplayForModel("Name", Model.Title.Name)
             <label for="Source">Source:</label>
             <br />
             <br/>
