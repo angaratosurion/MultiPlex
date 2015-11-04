@@ -197,7 +197,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Verbs\HomeVerb.cs" />
-    <Compile Include="Verbs\AdminVerb.cs" />
+    <Compile Include="Verbs\AdminSiteVerb.cs" />
     <Compile Include="Views\CustomViewEngine.cs" />
     <Compile Include="WikiMacro\TitleLinkMacro.cs" />
     <Compile Include="WikiMacro\TitleLinkRenderer.cs" />

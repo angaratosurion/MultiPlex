@@ -203,7 +203,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminSiteController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\TitleController.cs" />
     <Compile Include="Controllers\HomeWikiController.cs" />
