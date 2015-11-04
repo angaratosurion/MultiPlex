@@ -728,6 +728,98 @@ namespace MultiPlex.Core.Data.Repositories
                 //return null;
             }
         }
+        public List<File> GetFiles()
+        {
+            try
+            {
+                List<File> ap = null;
+                ap = this.db.Files.ToList();
+
+
+                return ap;
+
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        public List<File> GetWikiFiles(string wikiname)
+        {
+            try
+            {
+                List<File> ap = null;
+                if (wikiname != null && this.WikiExists(wikiname) != false)
+                {
+                    ap=this.db.Files.Where(x => x.Wiki.Name == wikiname).ToList();
+                }
+
+                    return ap;
+
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        public  List<File> GetFilesByTitle(string wikiname,int tid)
+        {
+
+            try
+            {
+                List<File> ap = null;
+                if (wikiname != null && this.WikiExists(wikiname) != false  && tid>0)
+                {
+                    ap = this.db.Files.Where(x => x.Wiki.Name == wikiname 
+                    && x.Title.Id==tid).ToList();
+                }
+
+                return ap;
+
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+
+        }
+        public File GetFileByVersion(string wikiname, int id, int version)
+        {
+            try
+            {
+                File ap = null;
+                if (wikiname != null && this.WikiExists(wikiname) && id > 0 && version > 0)
+                {
+                    ap = db.Files.First(s => s.Title.Id == id && s.Version == version 
+                    && s.Wiki.Name == wikiname);
+                }
+
+
+
+
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+
+            }
+
+        }
+
+
         #endregion
 
     }
