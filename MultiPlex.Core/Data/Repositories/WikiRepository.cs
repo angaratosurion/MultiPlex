@@ -688,7 +688,47 @@ namespace MultiPlex.Core.Data.Repositories
 
 
         #endregion
+        #region Files
+        public void AddFile(string wikiname, File tfile, int tid, ApplicationUser user)
+        {
+            try
+            {
+                if (wikiname != null && this.WikiExists(wikiname) != false
+                    && tfile !=null && tid>0 && user!=null)
+                {
 
+                    Wiki wk = this.GetWiki(wikiname);
+                    Title title = this.Get(wikiname, tid);
+                    if (this.CountWithTitleId(wikiname, title.Id) > 0)
+                    {
+                        tfile.Version = this.CountWithTitleId(wikiname, title.Id) + 1;
+                    }
+                    else
+                    {
+                        tfile.Version = 1;
+                    }
+                   
+                    tfile.Wiki = wk;
+                    tfile.VersionDate = DateTime.Now;
+                    tfile.Title = title;
+                    tfile.Owner = user;
+                    wk.Files.Add(tfile);
+
+                    
+                    
+
+                    this.db.Files.Add(tfile);
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                //return null;
+            }
+        }
+        #endregion
 
     }
 }
