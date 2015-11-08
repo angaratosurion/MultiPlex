@@ -17,6 +17,11 @@ namespace MultiPlex.Core.Configuration
             {
                 string app = null;
                app= rdr.GetValue(ConfigurationConstants.FolderNameSetting, typeof(string)).ToString();
+
+                if (CommonTools.isEmpty(app))
+                {
+                    app = "wikifiles";
+                }
                 FoldernameSetting = app;
 
 

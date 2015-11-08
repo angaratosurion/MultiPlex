@@ -20,7 +20,7 @@ namespace MultiPlex.Core.Managers
       
         SettingsManager setmngr = new SettingsManager();
         FileSystemManager flmng= new FileSystemManager();
-        const string AppDataDir = "App_Data";
+        
       
         public List<Data.Models.Wiki> ListWiki()
         {
@@ -76,11 +76,12 @@ namespace MultiPlex.Core.Managers
                     string wkrotfold = this.setmngr.WikiRootFolderName();
                     string wkpath;
 
-                    if (CommonTools.isEmpty(wkrotfold ))
-                    {
-                        wkrotfold = "wikifiles";
-                    }
-                    wkpath = "~/" + AppDataDir + "/" + wkrotfold + "/" + wk.Name;
+                    //if (CommonTools.isEmpty(wkrotfold ))
+                    //{
+                    //    wkrotfold = "wikifiles";
+                    //}
+                   // wkpath = "~/" + AppDataDir + "/" + wkrotfold + "/" + wk.Name;
+                    wkpath = FileSystemManager.GetWikiRootDataFolderRelativePath(wk.Name);
                     if ( FileSystemManager.DirectoryExists(wkpath)==false)
                     {
                         FileSystemManager.CreateDirectory(wkpath);
