@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace MultiPlex.Core.Data.Models
 {
+    
    public class File
     {
         [Required]

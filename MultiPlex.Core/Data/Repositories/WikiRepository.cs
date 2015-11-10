@@ -728,6 +728,30 @@ namespace MultiPlex.Core.Data.Repositories
                 //return null;
             }
         }
+
+        public File GetFilesById(string wikiname, int id)
+        {
+
+            try
+            {
+                File ap = null;
+                if (wikiname != null && this.WikiExists(wikiname) != false && id > 0)
+                {
+                    ap = db.Files.First(x => x.Wiki.Name == wikiname && x.Id == id);
+                }
+
+                return ap;
+
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+
+        }
         public List<File> GetFiles()
         {
             try
@@ -819,6 +843,60 @@ namespace MultiPlex.Core.Data.Repositories
 
         }
 
+        public void DeleteFileById(string wikiname, int id)
+        {
+            try
+            {
+                if (wikiname != null && this.WikiExists(wikiname) != false 
+                    && id > 0)
+                {
+                    Wiki  wk=this.GetWiki(wikiname);
+                    if (wk.Files.Count > 0)
+                    {
+                        File file = this.GetFilesById(wikiname, id);
+                        wk.Files.Remove(file);
+                        
+
+                        this.db.Files.Remove(file);
+                        this.db.SaveChanges();
+                    }
+                    
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                // return null;
+            }
+        }
+        public void DeleteFileByTitle(string wikiname,int tid)
+        {
+            try
+            {
+                if (wikiname != null && this.WikiExists(wikiname) != false
+                    && tid > 0)
+                {
+                    List<File> files = this.GetFilesByTitle(wikiname, tid);
+                     if (  files.Count>0)
+                    {
+                         foreach( File file in files)
+                        {
+;                            this.DeleteFileById(wikiname, file.Id);
+                        }
+                    }
+
+                }
+
+                }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+               // return null;
+            }
+        }
 
         #endregion
 

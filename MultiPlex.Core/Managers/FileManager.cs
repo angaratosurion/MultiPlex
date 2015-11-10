@@ -46,5 +46,48 @@ namespace MultiPlex.Core.Managers
                // return null;
             }
         }
+        public List<Data.Models.File> GetFilesByWiki(string wikiname)
+        {
+            try
+            {
+                List<Data.Models.File> ap = null;
+
+                if ( CommonTools.isEmpty(wikiname)==false && this.rep.WikiExists(wikiname))
+                {
+                    ap = this.rep.GetWikiFiles(wikiname);
+                }
+
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        public List<Data.Models.File> GetFilesByTitle(string wikiname,int tid)
+        {
+            try
+            {
+                List<Data.Models.File> ap = null;
+
+                if (CommonTools.isEmpty(wikiname) == false && this.rep.WikiExists(wikiname)
+                    && tid>0)
+                {
+                    ap = this.rep.GetFilesByTitle(wikiname, tid);
+                }
+
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
     }
 }
