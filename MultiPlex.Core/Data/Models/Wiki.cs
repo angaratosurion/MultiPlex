@@ -20,13 +20,13 @@ namespace MultiPlex.Core.Data.Models
         [Display(Name="Title")]
         [Required]
         public string WikiTitle { get; set; }
-        public virtual List<Title> Titles { get; set; }
-        public virtual List<Content> Content { get; set; }
+        public virtual List<WikiTitle> Titles { get; set; }
+        public virtual List<WikiContent> Content { get; set; }
         [Required]
         public virtual ApplicationUser Administrtor { get; set; }
         public virtual List<ApplicationUser> Moderators { get; set; }
-        public virtual List<Category>Categories { get; set; }
-        public virtual List<File> Files { get; set; }
+        public virtual List<WikiCategory>Categories { get; set; }
+        public virtual List<WikiFile> Files { get; set; }
         [Timestamp]
         public Byte[] RowVersion { get; set; }
     }

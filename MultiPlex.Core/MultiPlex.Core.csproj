@@ -173,8 +173,8 @@
     <Compile Include="Configuration\SettingsManager.cs" />
     <Compile Include="Controllers\Factory\CustomControllerFactory.cs" />
     <Compile Include="Data\Context.cs" />
-    <Compile Include="Data\Models\Category.cs" />
-    <Compile Include="Data\Models\File.cs" />
+    <Compile Include="Data\Models\WikiCategory.cs" />
+    <Compile Include="Data\Models\WikiFile.cs" />
     <Compile Include="Data\Models\IdentityModels.cs" />
     <Compile Include="Data\Models\Wiki.cs" />
     <Compile Include="Data\Repositories\WikiRepository.cs" />
@@ -186,8 +186,8 @@
     <Compile Include="Interfaces\IControllerMetadata.cs" />
     <Compile Include="Interfaces\IRouteRegistrar.cs" />
     <Compile Include="Interfaces\IRouteRegistrarMetadata.cs" />
-    <Compile Include="Data\Models\Content.cs" />
-    <Compile Include="Data\Models\Title.cs" />
+    <Compile Include="Data\Models\WikiContent.cs" />
+    <Compile Include="Data\Models\WikiTitle.cs" />
     <Compile Include="Managers\CategoryManager.cs" />
     <Compile Include="Managers\FileManager.cs" />
     <Compile Include="Managers\FileSystemManager.cs" />

@@ -25,21 +25,21 @@ namespace MultiPlex.Core.Data
             
             
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Content>()
+            modelBuilder.Entity<WikiContent>()
                 .HasRequired(s => s.WrittenBy)
                 .WithMany().WillCascadeOnDelete(false);
-            modelBuilder.Entity<Title>()
+            modelBuilder.Entity<WikiTitle>()
                 .HasRequired(t => t.WrittenBy)
                 .WithMany().WillCascadeOnDelete(false);
 
 
 
 
-            modelBuilder.Entity<Title>()
+            modelBuilder.Entity<WikiTitle>()
                 .HasRequired(t=>t.Wiki)
                 .WithMany().WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<File>()
+            modelBuilder.Entity<WikiFile>()
                 .HasRequired(f => f.Wiki)
                 .WithMany()
                 .WillCascadeOnDelete(false);
@@ -53,10 +53,10 @@ namespace MultiPlex.Core.Data
             return new Context();
         }
 
-        public IDbSet<Content > Content { get; set; }
-        public IDbSet<Title> Title { get; set; }
+        public IDbSet<WikiContent > Content { get; set; }
+        public IDbSet<WikiTitle> Title { get; set; }
         public IDbSet<Models.Wiki> Wikis { get; set; }
-        public IDbSet<Category> Categories { get; set; }
-        public IDbSet<File> Files { get; set; }
+        public IDbSet<WikiCategory> Categories { get; set; }
+        public IDbSet<WikiFile> Files { get; set; }
     }
 }

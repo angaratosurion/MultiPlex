@@ -5,8 +5,8 @@ namespace MultiPlex.Core.Data.ViewModels
 {
     public class ViewContent
     {
-        public Content Content { get; set; }
-        public List<Content> History { get; set; }
+        public WikiContent Content { get; set; }
+        public List<WikiContent> History { get; set; }
         public bool Editable { get; set; }
     }
 }

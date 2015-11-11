@@ -14,7 +14,7 @@ namespace MultiPlex.Core.Managers
        
         WikiRepository rp = new WikiRepository();
 
-        public void Add(Category cat)
+        public void Add(WikiCategory cat)
         {
             try
             {
@@ -34,12 +34,12 @@ namespace MultiPlex.Core.Managers
                // return null;
             }
         }
-        public List<Category> GetCategoryListByWiki(string wikiname)
+        public List<WikiCategory> GetCategoryListByWiki(string wikiname)
         {
 
             try
             {
-                List<Category> ap = null;
+                List<WikiCategory> ap = null;
 
                 if (CommonTools.isEmpty(wikiname)== false)
                 {
@@ -58,12 +58,12 @@ namespace MultiPlex.Core.Managers
             }
 
         }
-        public Category GetCategoryListById(int id)
+        public WikiCategory GetCategoryListById(int id)
         {
 
             try
             {
-                Category ap = null;
+                WikiCategory ap = null;
 
                 if (id>0)
                 {

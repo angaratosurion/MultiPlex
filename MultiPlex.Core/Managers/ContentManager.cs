@@ -38,14 +38,14 @@ namespace MultiPlex.Core.Managers
             this.wikiname = wikiname;
 
         }
-        public void AddContent(String wikiname , Title title, Content cont,int cid,ApplicationUser usr )
+        public void AddContent(String wikiname , WikiTitle title, WikiContent cont,int cid,ApplicationUser usr )
         {
             try
             {
                 if (CommonTools.isEmpty(wikiname) == false && (cid > 0)
                   && title != null && cont != null)
                 {
-                    Category cat = CommonTools.catmngr.GetCategoryListById(cid);
+                    WikiCategory cat = CommonTools.catmngr.GetCategoryListById(cid);
                     Wiki wk = CommonTools.wkmngr.GetWiki(wikiname);
 
                     if (wk != null && cat != null && usr != null)
@@ -84,7 +84,7 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
-        public Content GetContent(string wikiname, int id)
+        public WikiContent GetContent(string wikiname, int id)
         {
             try
             {
@@ -116,13 +116,13 @@ namespace MultiPlex.Core.Managers
             }
         }
        
-        public void EditContentPost(string wikiname, Content cont, ApplicationUser user,int id)
+        public void EditContentPost(string wikiname, WikiContent cont, ApplicationUser user,int id)
         {
             try
             {
                 if (cont != null)
                 {
-                    Title title =this.repository.Get(wikiname, id);
+                    WikiTitle title =this.repository.Get(wikiname, id);
                  //   Title title = cont.Title;
                     if (CommonTools.isEmpty(wikiname) == false 
                  && id >0 && cont != null)
@@ -143,12 +143,12 @@ namespace MultiPlex.Core.Managers
                 //return -1;
             }
         }
-        public Content GetWikiSource(string wikiname,int id, string slug, int version)
+        public WikiContent GetWikiSource(string wikiname,int id, string slug, int version)
         {
 
             try
             {
-                Content content = repository.GetByVersion(wikiname,id, version);
+                WikiContent content = repository.GetByVersion(wikiname,id, version);
                 return content;
             }
             catch (Exception ex)

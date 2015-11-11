@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace MultiPlex.Core.Data.Models
 {
     
-   public class File
+   public class WikiFile
     {
         [Required]
         public int Id { get; set; }
@@ -28,7 +28,7 @@ namespace MultiPlex.Core.Data.Models
         [Required]
         public virtual Wiki Wiki { get; set; }
         [Required]
-        public virtual Title Title { get; set; }
+        public virtual WikiTitle Title { get; set; }
 
     }
 }

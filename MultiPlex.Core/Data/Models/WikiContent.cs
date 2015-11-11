@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MultiPlex.Core.Data.Models
 {
-    public class Content
+    public class WikiContent
     {
-        public Content()
+        public WikiContent()
         {
 
         }
@@ -23,7 +23,7 @@ namespace MultiPlex.Core.Data.Models
         [Required]
         public int Id { get; set; }
         [Required]
-        public virtual Title Title { get; set; }
+        public virtual WikiTitle Title { get; set; }
         [DataType(DataType.MultilineText)]
         [Required]
         public string Source { get; set; }

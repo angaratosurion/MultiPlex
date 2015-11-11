@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -89,14 +90,33 @@ namespace MultiPlex.Core.Data.Repositories
             }
 
         }
-
-        #endregion
-        #region Title
-        public List<Title> GetTitlebyWiki(string wikiname)
+        public void EditWikiBasicInfo(Wiki wk,string wikiname)
         {
             try
             {
-                List<Title> ap = null;
+                if (wk != null && CommonTools.isEmpty(wikiname)==false)
+                {
+                    if (wk.Name == wikiname)
+                    {
+                        db.Entry(wk).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                //return null;
+            }
+        }
+        #endregion
+        #region Title
+        public List<WikiTitle> GetTitlebyWiki(string wikiname)
+        {
+            try
+            {
+                List<WikiTitle> ap = null;
                 if ( !CommonTools.isEmpty(wikiname ) && this.WikiExists(wikiname))
                 {
                     ap = this.db.Title.Where(t => t.Wiki.Name == wikiname).ToList();
@@ -112,14 +132,14 @@ namespace MultiPlex.Core.Data.Repositories
                 return null;
             }
         }
-       public List<Title> GetTitleByCategory(string wikiname,int catid)
+       public List<WikiTitle> GetTitleByCategory(string wikiname,int catid)
         {
             try
             {
-                List<Title> ap = null;
+                List<WikiTitle> ap = null;
                  if (CommonTools.isEmpty(wikiname)==false && catid>0 && this.WikiExists(wikiname))
                 {
-                    Category cat = this.GetCategorybyId(catid);
+                    WikiCategory cat = this.GetCategorybyId(catid);
                     if (cat != null)
                     {
                         ap = this.GetTitlebyWiki(wikiname).Where(t => t.Categories.Contains(cat)).ToList();
@@ -137,11 +157,11 @@ namespace MultiPlex.Core.Data.Repositories
                 return null;
             }
         }
-        public Title Get(string wikiname, int titleid)
+        public WikiTitle Get(string wikiname, int titleid)
         {
             try
             {
-                Title ap = null;
+                WikiTitle ap = null;
                 if (wikiname != null && (titleid > 0))
                 {
                     ap = db.Title.FirstOrDefault(t => t.Id == titleid && t.Wiki.Name == wikiname);
@@ -155,16 +175,16 @@ namespace MultiPlex.Core.Data.Repositories
                 return null;
             }
         }
-        public Title Add(string wikiname, string name, string slug, ApplicationUser user)
+        public WikiTitle Add(string wikiname, string name, string slug, ApplicationUser user)
         {
             try
             {
-                Title ap = null;
+                WikiTitle ap = null;
 
                 if (wikiname != null)// && slug != null)
                 {
                     Models.Wiki wiki = this.GetWiki(wikiname);
-                    ap = new Title();
+                    ap = new WikiTitle();
                     ap.Name = name;
                     ap.Slug = slug;
                     ap.Wiki = wiki;
@@ -189,7 +209,8 @@ namespace MultiPlex.Core.Data.Repositories
                 {
                     Wiki wk = this.GetWiki(wikiname);
                     this.DeleteByTitle(wikiname, titleid);
-                    Title  title= this.Get(wikiname, titleid);
+                    WikiTitle  title= this.Get(wikiname, titleid);
+                    this.DeleteFileByTitle(wikiname, titleid);
                     title.Categories.Clear();
                     this.db.Title.Remove(title);
                     this.db.SaveChanges();
@@ -206,11 +227,11 @@ namespace MultiPlex.Core.Data.Repositories
         }
         #endregion
         #region Content
-        public List<Content> GetHistory(int titleid)
+        public List<WikiContent> GetHistory(int titleid)
         {
             try
             {
-                List<Content> ap = null;
+                List<WikiContent> ap = null;
                 if ((titleid > 0))
                 {
                     ap = db.Content.Where(s => s.Title.Id == titleid).ToList();
@@ -248,11 +269,11 @@ namespace MultiPlex.Core.Data.Repositories
                 return -1;
             }
         }
-        public Content GetContent(String wikiname, int id)
+        public WikiContent GetContent(String wikiname, int id)
         {
             try
             {
-                Content ap = null;
+                WikiContent ap = null;
                 if ((wikiname != null) && (id > 0))
                 {
                     ap = db.Content.First(s => s.Id == id);
@@ -269,11 +290,11 @@ namespace MultiPlex.Core.Data.Repositories
                 return null;
             }
         }
-        public Content GetContent(String wikiname, string slug, string title)
+        public WikiContent GetContent(String wikiname, string slug, string title)
         {
             try
             {
-                Content ap = null;
+                WikiContent ap = null;
                 if ((wikiname != null) && (title != null) && slug != null)
                 {
                     ap = db.Content.First(s => s.Title.Name == title && s.Title.Slug == slug);
@@ -290,11 +311,11 @@ namespace MultiPlex.Core.Data.Repositories
                 return null;
             }
         }
-        public List<Content> GetByTitle(String wikiname, int tid)
+        public List<WikiContent> GetByTitle(String wikiname, int tid)
         {
             try
             {
-                List<Content> ap = null;
+                List<WikiContent> ap = null;
                 if ((wikiname != null) && (tid > 0))
                 {
                     ap = db.Content.Where(s => s.Title.Id == tid).ToList();
@@ -318,9 +339,9 @@ namespace MultiPlex.Core.Data.Repositories
                 if (wikiname != null && tid > 0 && source != null)
                 {
 
-                    Content cont;
-                    cont = new Content();
-                    Title title = Get(wikiname, tid);
+                    WikiContent cont;
+                    cont = new WikiContent();
+                    WikiTitle title = Get(wikiname, tid);
                     if (title != null)
                     {
                         //  cont.Id = id;
@@ -356,7 +377,7 @@ namespace MultiPlex.Core.Data.Repositories
 
         }
 
-        public void AddContentTitle(string wikiname, Title title , Content cont,Category cat,ApplicationUser usr)
+        public void AddContentTitle(string wikiname, WikiTitle title , WikiContent cont,WikiCategory cat,ApplicationUser usr)
         {
             try
             {
@@ -369,7 +390,7 @@ namespace MultiPlex.Core.Data.Repositories
                         //  cont.Id = id;
                        
 
-                        title.Categories = new List<Category>();
+                        title.Categories = new List<WikiCategory>();
                         title.Categories.Add(cat);
                         title.Wiki = wk;
                         title.WrittenBy = usr;
@@ -382,12 +403,12 @@ namespace MultiPlex.Core.Data.Repositories
                         cont.VersionDate = DateTime.Now;
                         if (wk.Content == null)
                         {
-                            wk.Content = new List<Core.Data.Models.Content>();
+                            wk.Content = new List<Core.Data.Models.WikiContent>();
                         }
                         wk.Content.Add(cont);
                         if (wk.Titles == null)
                         {
-                            wk.Titles = new List<Title>();
+                            wk.Titles = new List<WikiTitle>();
                         }
                         wk.Titles.Add(title);
                         db.Content.Add(cont);
@@ -414,7 +435,7 @@ namespace MultiPlex.Core.Data.Repositories
 
         }
 
-        public void AddContent(string wikiname, int tid, Content cont,  ApplicationUser usr)
+        public void AddContent(string wikiname, int tid, WikiContent cont,  ApplicationUser usr)
         {
             try
             {
@@ -423,7 +444,7 @@ namespace MultiPlex.Core.Data.Repositories
                   //  var a = this.CategoryExistsinWiki(cat.Name, wikiname);
                     Wiki wk = this.GetWiki(wikiname);
                     //Content cont1 = new Content();
-                    Title title = this.Get(wikiname, tid);
+                    WikiTitle title = this.Get(wikiname, tid);
                     
                    if (wk != null   && title !=null)
                     {
@@ -494,11 +515,11 @@ namespace MultiPlex.Core.Data.Repositories
 
         }
 
-        public Content GetByVersion(string wikiname, int id, int version)
+        public WikiContent GetByVersion(string wikiname, int id, int version)
         {
             try
             {
-                Content ap = null;
+                WikiContent ap = null;
                 if (wikiname != null && this.WikiExists(wikiname) && id > 0 && version > 0)
                 {
                     ap = db.Content.First(s => s.Title.Id == id && s.Version == version && s.Wiki.Name == wikiname);
@@ -551,10 +572,10 @@ namespace MultiPlex.Core.Data.Repositories
                     Wiki wk = this.GetWiki(wikiname);
                     if (wk.Content != null && wk.Content.Count > 0)
                     {
-                        List<Content> conts = this.GetByTitle(wikiname, tid);
+                        List<WikiContent> conts = this.GetByTitle(wikiname, tid);
                         if (conts != null)
                         {
-                            foreach ( Content ct  in conts)
+                            foreach ( WikiContent ct  in conts)
                             {
                                 this.DeleteById(wikiname, ct.Id);
                             }                           
@@ -576,7 +597,7 @@ namespace MultiPlex.Core.Data.Repositories
         #endregion
 
         #region Categories
-        public List<Category> GetCategories()
+        public List<WikiCategory> GetCategories()
         {
             try
             {
@@ -597,7 +618,7 @@ namespace MultiPlex.Core.Data.Repositories
                 if (!CommonTools.isEmpty(wikiname) && this.WikiExists(wikiname)
                     &&!CommonTools.isEmpty(catname))
                 {
-                    List<Category> cats = this.GetCategorybyWiki(wikiname);  
+                    List<WikiCategory> cats = this.GetCategorybyWiki(wikiname);  
                     if ( cats==null )
                     {
                         return false;
@@ -618,11 +639,11 @@ namespace MultiPlex.Core.Data.Repositories
             }
         }
 
-        public List<Category> GetCategorybyWiki(string wikiname)
+        public List<WikiCategory> GetCategorybyWiki(string wikiname)
         {
             try
             {
-                List<Category> ap = null;
+                List<WikiCategory> ap = null;
                 if ( !CommonTools.isEmpty(wikiname) && this.WikiExists(wikiname))
                 {
                     ap = this.db.Categories.Where(c => c.Wiki.Name == wikiname).ToList();
@@ -637,11 +658,11 @@ namespace MultiPlex.Core.Data.Repositories
                 return null;
             }
         }
-        public Category GetCategorybyId(int id)
+        public WikiCategory GetCategorybyId(int id)
         {
             try
             {
-                Category ap = null;
+                WikiCategory ap = null;
                 if (id > 0)
                 {
                     ap = this.db.Categories.First(c => c.Id == id);
@@ -656,7 +677,7 @@ namespace MultiPlex.Core.Data.Repositories
                 return null;
             }
         }
-        public void CreateCategory(Category cat)
+        public void CreateCategory(WikiCategory cat)
         {
             try
             {
@@ -668,7 +689,7 @@ namespace MultiPlex.Core.Data.Repositories
                         if (wk != null)
                         {  if ( wk.Categories == null )
                             {
-                                wk.Categories = new List<Category>();
+                                wk.Categories = new List<WikiCategory>();
                             }
                             wk.Categories.Add(cat);
                             this.db.Categories.Add(cat);
@@ -689,7 +710,7 @@ namespace MultiPlex.Core.Data.Repositories
 
         #endregion
         #region Files
-        public void AddFile(string wikiname, File tfile, int tid, ApplicationUser user)
+        public void AddFile(string wikiname, WikiFile tfile, int tid, ApplicationUser user)
         {
             try
             {
@@ -698,15 +719,15 @@ namespace MultiPlex.Core.Data.Repositories
                 {
 
                     Wiki wk = this.GetWiki(wikiname);
-                    Title title = this.Get(wikiname, tid);
-                    if (this.CountWithTitleId(wikiname, title.Id) > 0)
-                    {
-                        tfile.Version = this.CountWithTitleId(wikiname, title.Id) + 1;
-                    }
-                    else
-                    {
-                        tfile.Version = 1;
-                    }
+                    WikiTitle title = this.Get(wikiname, tid);
+                    //if (this.CountWithTitleId(wikiname, title.Id) > 0)
+                    //{
+                    //    tfile.Version = this.CountWithTitleId(wikiname, title.Id) + 1;
+                    //}
+                    //else
+                    //{
+                    //    tfile.Version = 1;
+                    //}
                    
                     tfile.Wiki = wk;
                     tfile.VersionDate = DateTime.Now;
@@ -729,12 +750,12 @@ namespace MultiPlex.Core.Data.Repositories
             }
         }
 
-        public File GetFilesById(string wikiname, int id)
+        public WikiFile GetFilesById(string wikiname, int id)
         {
 
             try
             {
-                File ap = null;
+                WikiFile ap = null;
                 if (wikiname != null && this.WikiExists(wikiname) != false && id > 0)
                 {
                     ap = db.Files.First(x => x.Wiki.Name == wikiname && x.Id == id);
@@ -752,11 +773,11 @@ namespace MultiPlex.Core.Data.Repositories
             }
 
         }
-        public List<File> GetFiles()
+        public List<WikiFile> GetFiles()
         {
             try
             {
-                List<File> ap = null;
+                List<WikiFile> ap = null;
                 ap = this.db.Files.ToList();
 
 
@@ -771,11 +792,11 @@ namespace MultiPlex.Core.Data.Repositories
                 return null;
             }
         }
-        public List<File> GetWikiFiles(string wikiname)
+        public List<WikiFile> GetWikiFiles(string wikiname)
         {
             try
             {
-                List<File> ap = null;
+                List<WikiFile> ap = null;
                 if (wikiname != null && this.WikiExists(wikiname) != false)
                 {
                     ap=this.db.Files.Where(x => x.Wiki.Name == wikiname).ToList();
@@ -792,12 +813,12 @@ namespace MultiPlex.Core.Data.Repositories
                 return null;
             }
         }
-        public  List<File> GetFilesByTitle(string wikiname,int tid)
+        public  List<WikiFile> GetFilesByTitle(string wikiname,int tid)
         {
 
             try
             {
-                List<File> ap = null;
+                List<WikiFile> ap = null;
                 if (wikiname != null && this.WikiExists(wikiname) != false  && tid>0)
                 {
                     ap = this.db.Files.Where(x => x.Wiki.Name == wikiname 
@@ -816,11 +837,11 @@ namespace MultiPlex.Core.Data.Repositories
             }
 
         }
-        public File GetFileByVersion(string wikiname, int id, int version)
+        public WikiFile GetFileByVersion(string wikiname, int id, int version)
         {
             try
             {
-                File ap = null;
+                WikiFile ap = null;
                 if (wikiname != null && this.WikiExists(wikiname) && id > 0 && version > 0)
                 {
                     ap = db.Files.First(s => s.Title.Id == id && s.Version == version 
@@ -853,7 +874,7 @@ namespace MultiPlex.Core.Data.Repositories
                     Wiki  wk=this.GetWiki(wikiname);
                     if (wk.Files.Count > 0)
                     {
-                        File file = this.GetFilesById(wikiname, id);
+                        WikiFile file = this.GetFilesById(wikiname, id);
                         wk.Files.Remove(file);
                         
 
@@ -878,10 +899,10 @@ namespace MultiPlex.Core.Data.Repositories
                 if (wikiname != null && this.WikiExists(wikiname) != false
                     && tid > 0)
                 {
-                    List<File> files = this.GetFilesByTitle(wikiname, tid);
+                    List<WikiFile> files = this.GetFilesByTitle(wikiname, tid);
                      if (  files.Count>0)
                     {
-                         foreach( File file in files)
+                         foreach( WikiFile file in files)
                         {
 ;                            this.DeleteFileById(wikiname, file.Id);
                         }

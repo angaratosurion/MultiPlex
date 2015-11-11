@@ -10,7 +10,7 @@ namespace MultiPlex.Core.Data.Models
 {
     
 
-    public class Title
+    public class WikiTitle
     {  
             [Required]                
         public int Id { get; set; }
@@ -28,9 +28,9 @@ namespace MultiPlex.Core.Data.Models
         public virtual Wiki Wiki { get; set; }
         [Required]
         public virtual ApplicationUser WrittenBy { get; set; }
-        public virtual List<File> Files { get; set; }
-        public virtual List<Category> Categories { get; set; }
+        public virtual List<WikiFile> Files { get; set; }
+        public virtual List<WikiCategory> Categories { get; set; }
       
-        public virtual Content Content { get; set; }
+        public virtual WikiContent Content { get; set; }
     }
 }

@@ -46,11 +46,11 @@ namespace MultiPlex.Core.Managers
                     ap = this.wrepo.GetWiki(name);
                     if ( ap.Categories ==null)
                     {
-                        ap.Categories = new List<Category>();
+                        ap.Categories = new List<WikiCategory>();
                     }
                     if ( ap.Titles ==null)
                     {
-                        ap.Titles = new List<Title>();
+                        ap.Titles = new List<WikiTitle>();
                     }
 
                 }
@@ -94,6 +94,34 @@ namespace MultiPlex.Core.Managers
 
                 CommonTools.ErrorReporting(ex);
                 //return null;
+            }
+        }
+        public Wiki EditBasicInfo(Wiki wk,string wikiname)
+        {
+            try
+            {
+                Wiki ap = null,wk2;
+                if (wk != null && CommonTools.isEmpty(wikiname)==false)
+                   {
+                    //wk2 = this.GetWiki(wikiname);
+                    //wk.Categories = wk2.Categories;
+                    //wk.Content = wk2.Content;
+                    //wk.Files = wk2.Files;
+                    //wk.Moderators = wk2.Moderators;
+                    //wk.Titles = wk2.Titles;
+                    //wk.Administrtor = wk2.Administrtor;
+                    this.wrepo.EditWikiBasicInfo(wk, wikiname);
+                    ap = this.wrepo.GetWiki(wikiname);
+                }
+
+
+                return ap;
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
             }
         }
     }

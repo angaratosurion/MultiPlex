@@ -42,8 +42,8 @@ namespace MultiPlex.Web.Controllers
         {
             try
             {
-                Title title = new Title();
-                Content content = new Content();
+                WikiTitle title = new WikiTitle();
+                WikiContent content = new WikiContent();
                 
                 return View(Tuple.Create(title,content));
             }
@@ -56,8 +56,8 @@ namespace MultiPlex.Web.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateContent(string wikiname, int cid, [Bind(Prefix ="item1")]Title title,
-            [Bind(Prefix ="item2")] Content cont)
+        public ActionResult CreateContent(string wikiname, int cid, [Bind(Prefix ="item1")]WikiTitle title,
+            [Bind(Prefix ="item2")] WikiContent cont)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace MultiPlex.Web.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateCategory(Category cat,string wikiname)
+        public ActionResult CreateCategory(WikiCategory cat,string wikiname)
         {
 
             try
@@ -141,7 +141,7 @@ namespace MultiPlex.Web.Controllers
                 }
                 contmngr = new ContentManager(new WikiEngine(), this.Url, wid);
 
-                List<Title> titles = this.tmngr.GetTitlesbyCategory(wid, tcatid);
+                List<WikiTitle> titles = this.tmngr.GetTitlesbyCategory(wid, tcatid);
                 if (titles == null)
                 {
                     //return HttpNotFound();
@@ -219,7 +219,7 @@ namespace MultiPlex.Web.Controllers
                     return RedirectToAction("ViewContent"); }
                 contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
 
-                Content content = this.contmngr.GetContent(wikiname, Convert.ToInt32(id));
+                WikiContent content = this.contmngr.GetContent(wikiname, Convert.ToInt32(id));
                 content.Title = this.tmngr.GetTitlebyId(wikiname,Convert.ToInt32(id));
                 EditContent cont = new EditContent();
                     cont.Source = content.Source;
@@ -244,7 +244,7 @@ namespace MultiPlex.Web.Controllers
         {
             try
             {
-                Content cont = new Content();
+                WikiContent cont = new WikiContent();
                 if (!ContentManager.IsEditable())
                 {
                     return RedirectToAction("ViewContent");
@@ -258,7 +258,7 @@ namespace MultiPlex.Web.Controllers
                     
                      this.contmngr.EditContentPost(wikiname, cont, 
                         this.usrmng.GetUser(this.User.Identity.Name),id);
-                    Content ct = this.contmngr.GetContent(wikiname, id);
+                    WikiContent ct = this.contmngr.GetContent(wikiname, id);
                     return RedirectToAction("ViewContent", new { wikiname, id, ct.Title.Slug });
                 }
                 return View("Edit", econt);
@@ -279,7 +279,7 @@ namespace MultiPlex.Web.Controllers
             try {
                 contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
 
-                Content content = this.contmngr.GetWikiSource(wikiname, id, slug, version);
+                WikiContent content = this.contmngr.GetWikiSource(wikiname, id, slug, version);
 
                 return content.Source;
             }
@@ -317,7 +317,7 @@ namespace MultiPlex.Web.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                Title title = CommonTools.titlemngr.GetTitlebyId(wikiname, Convert.ToInt32(id));
+                WikiTitle title = CommonTools.titlemngr.GetTitlebyId(wikiname, Convert.ToInt32(id));
                 if (title == null)
                 {
                     return HttpNotFound();
@@ -347,7 +347,7 @@ namespace MultiPlex.Web.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                Title title = CommonTools.titlemngr.GetTitlebyId(wikiname, Convert.ToInt32(id));
+                WikiTitle title = CommonTools.titlemngr.GetTitlebyId(wikiname, Convert.ToInt32(id));
                 if (title != null)
                 {
                     cat = title.Categories[0].Id;

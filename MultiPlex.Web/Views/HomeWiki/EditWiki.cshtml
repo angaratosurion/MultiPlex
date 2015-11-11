@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Edit Wiki";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Wiki</h2>
+
+<table class="table">
+    <tr>
+        <th>
+@{
+      @Html.ActionLink("Basic Info","EditBasicInfo", new { id=Request.RequestContext.RouteData.Values["id"]  })
+
+}
+
+</th>
+</tr>
+
+</table>

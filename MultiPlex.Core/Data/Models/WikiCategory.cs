@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MultiPlex.Core.Data.Models
 {
-   public class Category
+   public class WikiCategory
     {
         [Required]
         [Key]

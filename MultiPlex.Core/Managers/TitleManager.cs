@@ -13,7 +13,7 @@ namespace MultiPlex.Core.Managers
         WikiRepository wrepo = new WikiRepository();
         //UserManager usrmngr = new UserManager();
 
-        public List<Title> GetTitlesbyCategory(string wikiname,int catid)
+        public List<WikiTitle> GetTitlesbyCategory(string wikiname,int catid)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
-        public Title GetTitlebyId(string wikiname, int id)
+        public WikiTitle GetTitlebyId(string wikiname, int id)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace MultiPlex.Core.Managers
             }
         }
        
-        public void Delete(Title title,ApplicationUser user)
+        public void Delete(WikiTitle title,ApplicationUser user)
         {
 
             try
@@ -50,8 +50,7 @@ namespace MultiPlex.Core.Managers
                 if (title != null && user != null)
                 {
                     Wiki wk = CommonTools.wkmngr.GetWiki(title.Wiki.Name);
-                    if ( wk !=null &&( wk.Administrtor== user )
-                        && CommonTools.usrmng.UserHasAccessToWiki(user,wk,true))
+                    if ( wk !=null  && CommonTools.usrmng.UserHasAccessToWiki(user,wk,true))
                     {
                         wrepo.DeleteTitleById(wk.Name, title.Id);
                     }

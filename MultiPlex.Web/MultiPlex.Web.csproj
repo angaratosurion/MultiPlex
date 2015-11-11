@@ -290,7 +290,9 @@
     <Content Include="Views\Content\CreateCategory.cshtml" />
     <Content Include="Views\Content\CreateContent.cshtml" />
     <Content Include="Views\Content\Delete.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\AdminSite\Index.cshtml" />
+    <Content Include="Views\HomeWiki\EditWiki.cshtml" />
+    <Content Include="Views\HomeWiki\EditBasicInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\wiki\" />

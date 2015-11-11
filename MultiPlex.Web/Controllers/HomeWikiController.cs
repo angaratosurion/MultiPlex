@@ -139,5 +139,54 @@ namespace MultiPlex.Web.Controllers
 
             return View(wk);
         }
+        [Authorize]
+        public ActionResult EditWiki(string id)
+        {
+            string wikiname = id;
+            if (CommonTools.isEmpty(wikiname))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            }
+            return View();
+           
+           
+        }
+        [Authorize]
+        public ActionResult EditBasicInfo(string id)
+        {
+            string wikiname = id;
+            if (CommonTools.isEmpty(wikiname))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            }
+            Wiki wk = this.wmngr.GetWiki(wikiname);
+             if ( wk==null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+             if ( usrmngr.UserHasAccessToWiki(this.usrmngr.GetUser(this.User.Identity.Name),wk,true)==false)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+           
+            return View(wk);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditBasicInfo(Wiki wk,string id)
+        {
+            string wikiname = id;
+            Wiki wk2 = this.wmngr.GetWiki(wikiname);
+            wk.Name = wk2.Name;
+           // if (ModelState.IsValid)
+            {
+                wk=this.wmngr.EditBasicInfo(wk, wikiname);
+                return RedirectToAction("Index");
+            }
+            return View(wk);
+        }
+
     }
 }

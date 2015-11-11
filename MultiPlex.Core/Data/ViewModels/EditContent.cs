@@ -12,7 +12,7 @@ namespace MultiPlex.Core.Data.ViewModels
     {
 
        
-        public virtual Title Title { get; set; }
+        public virtual WikiTitle Title { get; set; }
         public string Source { get; set; }
     }
        

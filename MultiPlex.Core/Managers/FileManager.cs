@@ -16,7 +16,7 @@ namespace MultiPlex.Core.Managers
         FileSystemManager fsmngr = new FileSystemManager();
         WikiRepository rep = new WikiRepository();
         SettingsManager setmngr = new SettingsManager();
-        public void AddFile ( string wikiname, MultiPlex.Core.Data.Models.File tfile, 
+        public void AddFile ( string wikiname, MultiPlex.Core.Data.Models.WikiFile tfile, 
             HttpPostedFileBase filcnt ,int tid,ApplicationUser user)
         {
             try
@@ -46,11 +46,11 @@ namespace MultiPlex.Core.Managers
                // return null;
             }
         }
-        public List<Data.Models.File> GetFilesByWiki(string wikiname)
+        public List<Data.Models.WikiFile> GetFilesByWiki(string wikiname)
         {
             try
             {
-                List<Data.Models.File> ap = null;
+                List<Data.Models.WikiFile> ap = null;
 
                 if ( CommonTools.isEmpty(wikiname)==false && this.rep.WikiExists(wikiname))
                 {
@@ -67,11 +67,11 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
-        public List<Data.Models.File> GetFilesByTitle(string wikiname,int tid)
+        public List<Data.Models.WikiFile> GetFilesByTitle(string wikiname,int tid)
         {
             try
             {
-                List<Data.Models.File> ap = null;
+                List<Data.Models.WikiFile> ap = null;
 
                 if (CommonTools.isEmpty(wikiname) == false && this.rep.WikiExists(wikiname)
                     && tid>0)
@@ -89,5 +89,68 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
+        public void DeleteFileById(string wikiname, int fid, ApplicationUser user)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(wikiname) == false && this.rep.WikiExists(wikiname)
+                   && fid > 0 && user != null)
+                {  
+                    Wiki wk = CommonTools.wkmngr.GetWiki(wikiname);
+                    if (wk != null  && CommonTools.usrmng.UserHasAccessToWiki(user, wk, true))
+                    {
+                        WikiFile file = this.rep.GetFilesById(wikiname, fid);
+                        Boolean r=FileSystemManager.DeleteFile(file.Path);
+                         if ( r==true)
+                        {
+                            this.rep.DeleteFileById(wikiname, fid);
+                        }
+
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+
+            }
+        }
+        public void DeleteFileBTitle(string wikiname, int tid, ApplicationUser user)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(wikiname) == false && this.rep.WikiExists(wikiname)
+                   && tid > 0 && user != null)
+                {
+                    Wiki wk = CommonTools.wkmngr.GetWiki(wikiname);
+                    if (wk != null && CommonTools.usrmng.UserHasAccessToWiki(user, wk, true))
+                    {
+                        List<WikiFile> files = this.rep.GetFilesByTitle(wikiname, tid);
+                         if ( files!=null)
+                        {
+                            foreach(var file in files)
+                            {
+                                this.DeleteFileById(wikiname, file.Id, user);
+                            }
+
+                        }
+                        
+
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+
+            }
+        }
+
     }
 }
