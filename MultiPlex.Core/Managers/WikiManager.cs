@@ -103,13 +103,7 @@ namespace MultiPlex.Core.Managers
                 Wiki ap = null,wk2;
                 if (wk != null && CommonTools.isEmpty(wikiname)==false)
                    {
-                    //wk2 = this.GetWiki(wikiname);
-                    //wk.Categories = wk2.Categories;
-                    //wk.Content = wk2.Content;
-                    //wk.Files = wk2.Files;
-                    //wk.Moderators = wk2.Moderators;
-                    //wk.Titles = wk2.Titles;
-                    //wk.Administrtor = wk2.Administrtor;
+                    
                     this.wrepo.EditWikiBasicInfo(wk, wikiname);
                     ap = this.wrepo.GetWiki(wikiname);
                 }

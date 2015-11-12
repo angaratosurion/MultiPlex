@@ -23,7 +23,8 @@ namespace MultiPlex.Core.Data.Repositories
                 Models.Wiki ap = null;
                 if (wikiname != null)
                 {
-                    ap = db.Wikis.FirstOrDefault(w => w.Name == wikiname);
+                   ap = db.Wikis.FirstOrDefault(w => w.Name == wikiname);
+                  //  ap = db.Wikis.AsNoTracking().FirstOrDefault(w => w.Name == wikiname);
                 }
                 return ap;
             }
@@ -96,12 +97,18 @@ namespace MultiPlex.Core.Data.Repositories
             {
                 if (wk != null && CommonTools.isEmpty(wikiname)==false)
                 {
-                    if (wk.Name == wikiname)
+                    //if (wk.Name == wikiname)
                     {
-                        db.Entry(wk).State = EntityState.Modified;
+                        wk.Administrator = this.GetWiki(wikiname).Administrator;
+                        // db.Entry(wk).State = EntityState.Modified;
+                        db.Entry(this.GetWiki(wikiname)).CurrentValues.SetValues(wk);
                         db.SaveChanges();
                     }
                 }
+            }
+            catch(ValidationException ex)
+            {
+                throw (ex);
             }
             catch (Exception ex)
             {

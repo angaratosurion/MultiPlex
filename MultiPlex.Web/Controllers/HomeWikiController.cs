@@ -122,8 +122,8 @@ namespace MultiPlex.Web.Controllers
             ApplicationUser usr =null ;
             string ttusr = this.User.Identity.Name;
             usr=this.usrmngr.GetUser(ttusr);
-            wk.Administrtor = usr;
-          //  if (ModelState.IsValid)
+            wk.Administrator = usr;
+          if (ModelState.IsValid)
             {
                 
                 if (usr != null)
@@ -178,9 +178,9 @@ namespace MultiPlex.Web.Controllers
         public ActionResult EditBasicInfo(Wiki wk,string id)
         {
             string wikiname = id;
-            Wiki wk2 = this.wmngr.GetWiki(wikiname);
-            wk.Name = wk2.Name;
-           // if (ModelState.IsValid)
+          //  Wiki wk2 = this.wmngr.GetWiki(wikiname);
+          //  wk.Name = wk2.Name;
+         // if (ModelState.IsValid)
             {
                 wk=this.wmngr.EditBasicInfo(wk, wikiname);
                 return RedirectToAction("Index");

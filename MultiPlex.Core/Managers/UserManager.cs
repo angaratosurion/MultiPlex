@@ -68,7 +68,7 @@ namespace MultiPlex.Core.Managers
                         IdentityRole role = this.GetRole(AdminRoles);
                          if ( role !=null)
                         {
-                             if ( role.Users.First(x=>x.UserId== user.Id)!=null && wk.Administrtor.UserName == user.UserName)
+                             if ( role.Users.First(x=>x.UserId== user.Id)!=null && wk.Administrator.UserName == user.UserName)
                             {
                                 ap = true;
                             }
@@ -77,7 +77,7 @@ namespace MultiPlex.Core.Managers
                     }
                     else
                     {
-                        if ( wk.Administrtor==user)
+                        if ( wk.Administrator==user)
                         {
                             ap = true;
                         }
