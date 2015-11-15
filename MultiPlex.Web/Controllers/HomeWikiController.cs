@@ -178,8 +178,9 @@ namespace MultiPlex.Web.Controllers
         public ActionResult EditBasicInfo(Wiki wk,string id)
         {
             string wikiname = id;
-          //  Wiki wk2 = this.wmngr.GetWiki(wikiname);
-          //  wk.Name = wk2.Name;
+            //  Wiki wk2 = this.wmngr.GetWiki(wikiname);
+            //  wk.Name = wk2.Name;
+            wikiname = wk.Name;
          // if (ModelState.IsValid)
             {
                 wk=this.wmngr.EditBasicInfo(wk, wikiname);

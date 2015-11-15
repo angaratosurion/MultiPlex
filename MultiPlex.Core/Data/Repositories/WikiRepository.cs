@@ -99,7 +99,10 @@ namespace MultiPlex.Core.Data.Repositories
                 {
                     //if (wk.Name == wikiname)
                     {
-                        wk.Administrator = this.GetWiki(wikiname).Administrator;
+
+
+                        Wiki wk2 = this.GetWiki(wikiname);
+                        wk.Administrator = wk2.Administrator;
                         // db.Entry(wk).State = EntityState.Modified;
                         db.Entry(this.GetWiki(wikiname)).CurrentValues.SetValues(wk);
                         db.SaveChanges();

@@ -10,7 +10,10 @@
     <tr>
         <th>
 @{
-      @Html.ActionLink("Basic Info","EditBasicInfo", new { id=Request.RequestContext.RouteData.Values["id"]  })
+    
+ 
+
+ @Html.ActionLink("Basic Info","EditBasicInfo", new { id= Request.QueryString.Get("id")})
 
 }
 
