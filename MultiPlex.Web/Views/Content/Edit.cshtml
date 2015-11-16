@@ -20,9 +20,12 @@
             <br/>
             @Html.TextArea("Source")
             <label></label>
-            <input type="submit" value="Save" />
-            @if (@Model.Title.Id > 0) { 
-            <input type="button" value="Cancel" onclick="window.location.href='@Url.RouteUrl("Default")'" />
+            <input type="submit" value="Save" class="btn btn-default"/>
+            @if (@Model.Title.Id > 0) {
+            @*<input type="button" value="Cancel" onclick="window.location.href='@Url.RouteUrl("Default")'" />*@
+            @Html.ActionLink("Cancel", "ViewContent",
+ new { wikiname = Model.Title.Wiki.Name, id = @Model.Title.Id, slug = @Model.Title.Slug }, new  {@class="btn btn-default"})
+               
              } 
         </fieldset>
      } 

@@ -64,7 +64,7 @@ namespace MultiPlex.Web.Controllers
                 return null;
             }
         }
-        public ActionResult ListCategories(string wikiname, int cid)
+        public ActionResult ListTitles(string wikiname, int cid)
         {
             try
             {
@@ -78,6 +78,28 @@ namespace MultiPlex.Web.Controllers
                 vals.Add("wikiname", wikiname);
                 vals.Add("cid", cid);
               return  RedirectToAction("Index", "Content", vals);
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        public ActionResult ListWikiTitles(string wikiname)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(wikiname))
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                }
+                //   RouteDataValueProvider
+                RouteValueDictionary vals = new RouteValueDictionary();
+                vals.Add("wikiname", wikiname);
+                return RedirectToAction("TitlesByWiki", "Content", vals);
 
             }
             catch (Exception ex)

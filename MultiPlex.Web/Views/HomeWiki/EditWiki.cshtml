@@ -8,16 +8,16 @@
 
 <table class="table">
     <tr>
-        <th>
+        
 @{
-    
- 
 
- @Html.ActionLink("Basic Info","EditBasicInfo", new { id= Request.QueryString.Get("id")})
+    var wikiname = Request.QueryString.Get("id");
 
+   <td> @Html.ActionLink("Basic Info","EditBasicInfo", new { id=wikiname })</td>    
+   @*<td> @Html.ActionLink("Categories","ListCategories", new { id = wikiname })</td>*@
+   <td> @Html.ActionLink("Titles", "ListWikiTitles", new { wikiname = wikiname })</td>
 }
 
-</th>
 </tr>
 
 </table>

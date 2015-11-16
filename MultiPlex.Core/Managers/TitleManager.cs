@@ -41,7 +41,21 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
-       
+        public List<WikiTitle> GetTitlebyWiki(string wikiname)
+        {
+            try
+            {
+                return wrepo.GetTitlebyWiki(wikiname);
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+
         public void Delete(WikiTitle title,ApplicationUser user)
         {
 

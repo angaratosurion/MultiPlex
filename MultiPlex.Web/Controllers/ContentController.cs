@@ -162,6 +162,40 @@ namespace MultiPlex.Web.Controllers
                 return null;
             }
         }
+        [Authorize]
+        public ActionResult TitlesByWiki(string wikiname)
+        {
+            try
+            {
+                string wid = wikiname;
+               //int tcatid = Convert.ToInt32(cid);
+                if (CommonTools.isEmpty(wid))
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                }
+                contmngr = new ContentManager(new WikiEngine(), this.Url, wid);
+
+                List<WikiTitle> titles = this.tmngr.GetTitlebyWiki(wikiname);
+                if (titles == null)
+                {
+                    //return HttpNotFound();
+                    RouteValueDictionary vals = new RouteValueDictionary();
+                    vals.Add("wikiname", wikiname);
+                    //vals.Add("id", 0);
+                    //vals.Add("slug", "");
+                    return RedirectToAction("CreateContent", "Content", vals);
+                    //  return RedirectToAction("EditContent", "Content", vals);
+                }
+                return View(titles);
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
         public ActionResult ViewContent(string wikiname, int id, string slug)
         {
             try
@@ -215,8 +249,14 @@ namespace MultiPlex.Web.Controllers
         {
             try
             {
-                if (!ContentManager.IsEditable()) { 
-                    return RedirectToAction("ViewContent"); }
+                if (!ContentManager.IsEditable())
+                { 
+                    return RedirectToAction("ViewContent");
+                }
+                 if ( CommonTools.isEmpty(wikiname) ==true && id ==null )
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
                 contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
 
                 WikiContent content = this.contmngr.GetContent(wikiname, Convert.ToInt32(id));
