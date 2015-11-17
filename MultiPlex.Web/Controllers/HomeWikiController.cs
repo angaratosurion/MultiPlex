@@ -145,11 +145,12 @@ namespace MultiPlex.Web.Controllers
             string ttusr = this.User.Identity.Name;
             usr=this.usrmngr.GetUser(ttusr);
             wk.Administrator = usr;
-          if (ModelState.IsValid)
+            if (usr != null)
             {
-                
-                if (usr != null)
+                // if (ModelState.IsValid)
                 {
+                    
+              
                     wk.Moderators = new List<ApplicationUser>();
                     wk.Moderators.Add(usr);
                     
@@ -159,7 +160,7 @@ namespace MultiPlex.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(wk);
+           return View(wk);
         }
         [Authorize]
         public ActionResult EditWiki(string id)
@@ -170,7 +171,9 @@ namespace MultiPlex.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             }
-            return View();
+            Wiki wk = this.wmngr.GetWiki(wikiname);
+
+            return View(wk);
            
            
         }

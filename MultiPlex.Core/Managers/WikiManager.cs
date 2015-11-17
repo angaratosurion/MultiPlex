@@ -72,6 +72,8 @@ namespace MultiPlex.Core.Managers
             {
                 if ( wk!=null)
                 {
+
+                     
                     this.wrepo.CreateWiki(wk);
                     string wkrotfold = this.setmngr.WikiRootFolderName();
                     string wkpath;

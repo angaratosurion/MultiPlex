@@ -15,6 +15,52 @@ namespace MultiPlex.Core.Data.Repositories
         // Context db = new Context();
         Context db = CommonTools.db;
         #region Wiki
+        public void MarkWikiAsUpdated(string wikiname)
+        {
+            try
+            {
+                if ( this.WikiExists(wikiname)==true)
+                {
+                    Wiki wk = this.GetWiki(wikiname);
+                    wk.UpdatedAt = DateTime.Now;
+                 db.Entry(this.GetWiki(wikiname)).CurrentValues.SetValues(wk);
+                    db.Entry(wk).State = EntityState.Modified;
+                    this.db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+            }
+        }
+        public Wiki GetLatestUpdatedWiki()
+        {
+
+            try
+            {
+                Models.Wiki ap = null;
+                List<Wiki> wks = this.ListWiki();
+                List<Wiki> orwks;
+                if (wks != null)
+                {
+                    orwks = wks.OrderByDescending(x => x.UpdatedAt).ToList();
+                    if ( orwks !=null)
+                    {
+                        ap = orwks[0];
+                    }
+
+                    //ap = db.Wikis.FirstOrDefault(w => w.Name == wikiname);
+                }
+                return ap;
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
         public Wiki GetWiki(string wikiname)
         {
 
@@ -79,9 +125,18 @@ namespace MultiPlex.Core.Data.Repositories
             {
                 if ( wk!=null && this.WikiExists(wk.Name)==false)
                 {
+                    wk.UpdatedAt = DateTime.Now;
+                     if (  CommonTools.isEmpty(wk.WikiTitle))
+                    {
+                        wk.WikiTitle = wk.Name;
+                    }
                     this.db.Wikis.Add(wk);
                     this.db.SaveChanges();
                 }
+            }
+            catch (ValidationException ex)
+            {
+                throw (ex);
             }
             catch (Exception ex)
             {
@@ -103,9 +158,11 @@ namespace MultiPlex.Core.Data.Repositories
 
                         Wiki wk2 = this.GetWiki(wikiname);
                         wk.Administrator = wk2.Administrator;
+                        
                         // db.Entry(wk).State = EntityState.Modified;
                         db.Entry(this.GetWiki(wikiname)).CurrentValues.SetValues(wk);
                         db.SaveChanges();
+                        this.MarkWikiAsUpdated(wikiname);
                     }
                 }
             }
@@ -224,6 +281,7 @@ namespace MultiPlex.Core.Data.Repositories
                     title.Categories.Clear();
                     this.db.Title.Remove(title);
                     this.db.SaveChanges();
+                    this.MarkWikiAsUpdated(wikiname);
 
                 }
 
@@ -342,6 +400,7 @@ namespace MultiPlex.Core.Data.Repositories
                 return null;
             }
         }
+        [Obsolete("Is to be deleted")]
         public void SaveorAddContent(string wikiname, int tid, string source, ApplicationUser user)
         {
             try
@@ -426,6 +485,7 @@ namespace MultiPlex.Core.Data.Repositories
                        
 
                         db.SaveChanges();
+                        this.MarkWikiAsUpdated(wikiname);
                     }
                 }
 
@@ -506,6 +566,7 @@ namespace MultiPlex.Core.Data.Repositories
                         //  db.Title.Add(title);
 
                         db.SaveChanges();
+                        this.MarkWikiAsUpdated(wikiname);
                     }
                 }
 
@@ -562,6 +623,7 @@ namespace MultiPlex.Core.Data.Repositories
                         wk.Content.Remove(this.GetContent(wikiname, id));
                         db.Content.Remove(this.GetContent(wikiname, id));
                         this.db.SaveChanges();
+                        this.MarkWikiAsUpdated(wikiname);
                     }
 
                 }
@@ -591,6 +653,7 @@ namespace MultiPlex.Core.Data.Repositories
                             }                           
                         }
                         this.db.SaveChanges();
+                        this.MarkWikiAsUpdated(wikiname);
                     }
 
                 }
@@ -704,6 +767,7 @@ namespace MultiPlex.Core.Data.Repositories
                             wk.Categories.Add(cat);
                             this.db.Categories.Add(cat);
                             this.db.SaveChanges();
+                            this.MarkWikiAsUpdated(cat.Wiki.Name);
                         }
                     }
                 }
@@ -749,7 +813,9 @@ namespace MultiPlex.Core.Data.Repositories
                     
 
                     this.db.Files.Add(tfile);
-                    
+                    this.db.SaveChanges();
+                    this.MarkWikiAsUpdated(wikiname);
+
                 }
             }
             catch (Exception ex)
@@ -890,6 +956,7 @@ namespace MultiPlex.Core.Data.Repositories
 
                         this.db.Files.Remove(file);
                         this.db.SaveChanges();
+                        this.MarkWikiAsUpdated(wikiname);
                     }
                     
                 }
@@ -916,6 +983,7 @@ namespace MultiPlex.Core.Data.Repositories
                         {
 ;                            this.DeleteFileById(wikiname, file.Id);
                         }
+                        this.MarkWikiAsUpdated(wikiname);
                     }
 
                 }

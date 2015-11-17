@@ -25,6 +25,9 @@ namespace MultiPlex.Core.Data
             
             
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Properties<DateTime>()
+                  .Configure(c => c.HasColumnType("datetime2"));
+
             modelBuilder.Entity<WikiContent>()
                 .HasRequired(s => s.WrittenBy)
                 .WithMany().WillCascadeOnDelete(false);

@@ -1,11 +1,11 @@
-﻿
+﻿@model MultiPlex.Core.Data.Models.Wiki
 @{
     ViewBag.Title = "Edit Wiki";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Edit Wiki</h2>
-
+<p> Wiki Was Last Updated at  @Html.DisplayFor(model => model.UpdatedAt)</p>
 <table class="table">
     <tr>
         
