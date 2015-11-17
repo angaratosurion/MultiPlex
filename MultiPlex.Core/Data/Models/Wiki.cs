@@ -31,8 +31,7 @@ namespace MultiPlex.Core.Data.Models
         public virtual List<WikiFile> Files { get; set; }
         [Timestamp]
         public Byte[] RowVersion { get; set; }
-        [DataType(DataType.DateTime)]
-        [Required,DatabaseGenerated(DatabaseGeneratedOption.Computed)]             
+          
         public DateTime UpdatedAt { get; set; }
     }
 }
