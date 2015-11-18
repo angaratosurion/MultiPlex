@@ -139,6 +139,61 @@ namespace MultiPlex.Core.Data.Repositories
                 return null;
             }
         }
+        public List<Models.Wiki> ListWikiByAdmUser(string username)
+        {
+            try
+            {
+                List<Models.Wiki> ap = null;
+                if ( CommonTools.isEmpty(username)==false)
+                {
+                    ap=this.db.Wikis.Where(s => s.Administrator.UserName == username).ToList();
+
+                }
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        public List<Models.Wiki> ListWikiByModUser(string username)
+        {
+            try
+            {
+                List<Models.Wiki> ap = null;
+                if (CommonTools.isEmpty(username) == false)
+                {
+
+
+                    ApplicationUser  usr =this.db.Users.FirstOrDefault(u => u.UserName==username);
+
+                    List<Wiki> wks = this.ListWiki();
+
+                    if ( wks!=null)
+                    {
+                        ap = new List<Wiki>();
+                         foreach( Wiki w in wks )
+                        {
+                             if ( w.Moderators.Contains(usr))
+                            {
+                                ap.Add(w);
+                            }
+                        }
+                    }
+                }
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
         public void CreateWiki(Wiki wk)
         {
             try

@@ -36,6 +36,46 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
+        public List<Data.Models.Wiki> ListWikiByAdmUser(string username)
+        {
+            try
+            {
+                List<Data.Models.Wiki> ap = null;
+                if (!CommonTools.isEmpty(username)  && CommonTools.usrmng.UserExists(username))
+                {
+                    ap = this.wrepo.ListWikiByAdmUser(username);
+                }
+
+                    return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        public List<Data.Models.Wiki> ListWikiByModUser(string username)
+        {
+            try
+            {
+                List<Data.Models.Wiki> ap = null;
+                if (!CommonTools.isEmpty(username) && CommonTools.usrmng.UserExists(username))
+                {
+                    ap = this.wrepo.ListWikiByModUser(username);
+                }
+
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
         public Wiki GetWiki(string name)
         {
             try
@@ -126,7 +166,7 @@ namespace MultiPlex.Core.Managers
             {
                 List<ApplicationUser> ap = null;
 
-                if (CommonTools.isEmpty(wikiname) == this.wrepo.WikiExists(wikiname))
+                if (CommonTools.isEmpty(wikiname) == false && this.wrepo.WikiExists(wikiname))
                 {
                     Wiki wk = this.GetWiki(wikiname);
                     ap = wk.Moderators;
@@ -147,7 +187,7 @@ namespace MultiPlex.Core.Managers
             {
                 ApplicationUser ap = null;
 
-                if (CommonTools.isEmpty(wikiname) == this.wrepo.WikiExists(wikiname))
+                if (CommonTools.isEmpty(wikiname) ==false && this.wrepo.WikiExists(wikiname))
                 {
                     Wiki wk = this.GetWiki(wikiname);
                     ap = wk.Administrator;

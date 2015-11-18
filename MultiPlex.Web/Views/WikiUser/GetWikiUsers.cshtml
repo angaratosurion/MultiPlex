@@ -1,43 +1,52 @@
-﻿@model IEnumerable<MultiPlex.Core.Data.Models.ApplicationUser>
+﻿@model MultiPlex.Core.Data.ViewModels.ViewWikiUsers
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Wiki users";
 }
 
-<h2>Index</h2>
+<h2>Wiki's users</h2>
 
-<p>
-    @Html.ActionLink("Create New", "CreateContent",
-    new  {wikiname=Request.RequestContext.RouteData.Values["wikiname"] ,
-    cid = Request.QueryString.Get("cid")})
-</p>
+@*<p>
+        @Html.ActionLink("Create New", "CreateContent",
+        new  {wikiname=Request.RequestContext.RouteData.Values["wikiname"] ,
+        cid = Request.QueryString.Get("cid")})
+    </p>*@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Administrator.UserName)
+            
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Id)
+            @Html.DisplayNameFor(model => model.Administrator.Email)
         </th>
-        <th></th>
-    </tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Administrator.PhoneNumber)
+        </th>
 
-    @foreach (var item in Model)
+    </tr>
+     @{ var mods = Model.Moderators;}
+    @foreach (var item in Model.Moderators)
     {
         <tr>
             <td>
-               @*@Html.DisplayFor(modelItem => item.Name)*@
-                @Html.ActionLink(item.Name, "ViewContent",
-               new { wikiname = item.Wiki.Name, id = item.Id, slug = item.Slug });
+                @*@Html.DisplayFor(modelItem => item.UserName)*@
+                @Html.ActionLink(item.UserName, "Details",
+                    new { username = item.UserName })
             </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>*@
             <td>
+                @Html.DisplayFor(modelItem => item.Email)
 
-                @Html.ActionLink("Edit", "EditContent", new { wikiname = item.Wiki.Name,
-               id = item.Id, slug = item.Slug }) ;            
-                @Html.ActionLink("Delete", "Delete", new { wikiname = item.Wiki.Name, id = item.Id })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+
+            </td>
+            <td>
+                When Implement Viewing user details and edit user uncomment the followingng
+                @*@Html.ActionLink("Edit", "EditContent", new { wikiname = item.Wiki.Name,
+                    id = item.Id, slug = item.Slug }) ;
+                     @Html.ActionLink("Delete", "Delete", new { wikiname = item.Wiki.Name, id = item.Id })*@
             </td>
         </tr>
     }

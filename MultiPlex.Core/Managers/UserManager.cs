@@ -131,6 +131,37 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
+        public List<IdentityRole> GetRolesOfUser(string UserName)
+        {
+            try
+            {
+                List<IdentityRole> ap = null;
+                if (UserName != null && this.UserExists(UserName))
+                {
+                    ApplicationUser usr = this.GetUser(UserName);
+                    if ( usr !=null && usr.Roles!=null)
+                    {
+                        ap = new List<IdentityRole>();
+                        foreach(IdentityUserRole rl in usr.Roles)
+                        {
+                            IdentityRole r = this.db.Roles.FirstOrDefault(x => x.Id == rl.RoleId);
+                            ap.Add(r);
+                        }
+                        
+                    }
+                }
+
+
+
+                return ap;
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
 
         #endregion
     }

@@ -3,3 +3,30 @@
 }
 
 
+@{
+    ViewBag.Title = "Site Administration";
+}
+
+<h2>Site Administration</h2>
+
+<div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+        @*<li>@Html.ActionLink("HomeWiki", "Index", "HomeWiki")</li>*@
+        @{
+            var verbs = MultiPlex.Core.Bootstrapper.GetVerbsForCategory("AdminNavigation");
+            foreach (var verb in verbs)
+            {
+                <li> @Html.ActionLink(verb.Name, verb.Action, verb.Controller)</li>
+            }
+
+
+        }
+       
+
+    </ul>
+</div>
+
+
+
+
+
