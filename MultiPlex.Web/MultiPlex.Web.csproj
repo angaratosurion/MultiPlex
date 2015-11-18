@@ -208,6 +208,7 @@
     <Compile Include="Controllers\TitleController.cs" />
     <Compile Include="Controllers\HomeWikiController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -294,6 +295,7 @@
     <Content Include="Views\HomeWiki\EditWiki.cshtml" />
     <Content Include="Views\HomeWiki\EditBasicInfo.cshtml" />
     <Content Include="Views\Content\TitlesByWiki.cshtml" />
+    <Content Include="Views\WikiUser\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\wiki\" />

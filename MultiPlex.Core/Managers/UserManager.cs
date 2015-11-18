@@ -13,6 +13,7 @@ namespace MultiPlex.Core.Managers
     {
         // Context db = new Context();
         Context db = CommonTools.db;
+        WikiManager wkmngr = CommonTools.wkmngr;
         public static string AdminRoles = "Administrators";
         #region User
         public ApplicationUser GetUser (string id)
@@ -55,7 +56,21 @@ namespace MultiPlex.Core.Managers
                 return false;
             }
         }
-    
+       public List<ApplicationUser> GetUsers()
+        {
+            try
+            {
+                return this.db.Users.ToList();
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        
         public Boolean UserHasAccessToWiki(ApplicationUser user,Wiki wk,Boolean isDelete)
         {
             try

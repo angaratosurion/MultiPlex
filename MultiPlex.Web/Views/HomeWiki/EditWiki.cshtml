@@ -13,11 +13,23 @@
 
     var wikiname = Request.QueryString.Get("id");
 
-   <td> @Html.ActionLink("Basic Info","EditBasicInfo", new { id=wikiname })</td>    
+   <td> @Html.ActionLink("Basic Info","EditBasicInfo", new { id=wikiname }, new { @class = "btn btn-default" })</td>    
    @*<td> @Html.ActionLink("Categories","ListCategories", new { id = wikiname })</td>*@
-   <td> @Html.ActionLink("Titles", "ListWikiTitles", new { wikiname = wikiname })</td>
+   <td> @Html.ActionLink("Titles", "ListWikiTitles", new { wikiname = wikiname }, new { @class = "btn btn-default" })</td>
 }
 
 </tr>
+    <tr>
+
+        @{
+
+            
+
+            <td> @Html.ActionLink("Users", "GetWikiUsers", "WikiUser", new { wikiname = wikiname }, 
+                new { @class = "btn btn-default" })</td>
+         
+        }
+
+    </tr>
 
 </table>

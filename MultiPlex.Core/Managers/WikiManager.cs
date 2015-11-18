@@ -120,5 +120,47 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
+        public List<ApplicationUser> GetWikiModerators(string wikiname)
+        {
+            try
+            {
+                List<ApplicationUser> ap = null;
+
+                if (CommonTools.isEmpty(wikiname) == this.wrepo.WikiExists(wikiname))
+                {
+                    Wiki wk = this.GetWiki(wikiname);
+                    ap = wk.Moderators;
+                }
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        public ApplicationUser GetWikiAdministrator(string wikiname)
+        {
+            try
+            {
+                ApplicationUser ap = null;
+
+                if (CommonTools.isEmpty(wikiname) == this.wrepo.WikiExists(wikiname))
+                {
+                    Wiki wk = this.GetWiki(wikiname);
+                    ap = wk.Administrator;
+                }
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
     }
 }
