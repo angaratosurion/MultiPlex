@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,24 @@ namespace MultiPlex.Core.Managers
 
                 CommonTools.ErrorReporting(ex);
                 return null;
+            }
+        }
+        public void EditUser(string username,ApplicationUser user)
+        {
+            try
+            {
+                if ( CommonTools.isEmpty(username)==false && user != null && 
+                    this.UserExists(user.UserName)  )
+                {
+                    db.Entry(this.GetUser(username)).CurrentValues.SetValues(user);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+              
             }
         }
          public Boolean UserExists(string id)
@@ -70,6 +89,7 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
+
         
         public Boolean UserHasAccessToWiki(ApplicationUser user,Wiki wk,Boolean isDelete)
         {

@@ -202,6 +202,7 @@
     <Compile Include="Verbs\AdminUsersVerb.cs" />
     <Compile Include="Verbs\HomeVerb.cs" />
     <Compile Include="Verbs\AdminSiteVerb.cs" />
+    <Compile Include="Verbs\WikiAdmVerb.cs" />
     <Compile Include="Views\CustomViewEngine.cs" />
     <Compile Include="WikiMacro\TitleLinkMacro.cs" />
     <Compile Include="WikiMacro\TitleLinkRenderer.cs" />

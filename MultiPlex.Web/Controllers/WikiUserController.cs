@@ -8,6 +8,7 @@ using MultiPlex.Core;
 using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Data.ViewModels;
 using MultiPlex.Core.Managers;
+using MultiPlex.Web.Models;
 
 namespace MultiPlex.Web.Controllers
 {
@@ -59,10 +60,54 @@ namespace MultiPlex.Web.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
             }
         }
+        [Authorize(Roles = "Administrators")]
+        public ActionResult EditUserDetails (string username)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(username) == true)
+                {
+                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                }
+                ApplicationUser adm = this.usremngr.GetUser(username);
+                if (adm == null)
+                {
+                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.NotFound);
+                }
+              
+                return View(adm);
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditUserDetails(ApplicationUser user)
+        {
+            try
+            { if (ModelState.IsValid)
+                {
+                    this.usremngr.EditUser(user.UserName,user);
+                    return RedirectToAction("Index");
+                }
+                return View(user);
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
+
         #endregion
         #region WikiUserEdit
 
-        
+
         public ActionResult GetWikiUsers(string wikiname)
         {
             try
