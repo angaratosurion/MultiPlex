@@ -202,5 +202,69 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
+        public void DeleteWiki(string wikiname)
+        {
+            try
+            {
+                Wiki ap = null;
+                if (!CommonTools.isEmpty(wikiname))
+                {
+                    string path = FileSystemManager.GetWikiRootDataFolderRelativePath(wikiname);
+                    List<WikiFile> wkfiles = this.wrepo.GetWikiFiles(wikiname);
+                     if ( wkfiles !=null)
+                    {
+                          foreach(WikiFile f in wkfiles)
+                        {
+                            FileSystemManager.DeleteFile(f.Path);
+                        }
+                        FileSystemManager.DeleteDirectory(path);
+                    }
+
+                    this.wrepo.DeleteWiki(wikiname);
+
+                }
+
+
+               
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+               
+            }
+        }
+        public void DeleteWikiByAdm(string username)
+        {
+            try
+            {
+                Wiki ap = null;
+                if (!CommonTools.isEmpty(username))
+                {
+
+                    List<Wiki> wks = this.ListWikiByAdmUser(username);
+                    if (wks != null)
+                    {
+                        foreach(Wiki w in wks)
+                        {
+                            this.DeleteWiki(w.Name);
+                        }
+                    }
+                   
+
+                }
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+
+            }
+        }
     }
 }

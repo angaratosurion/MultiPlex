@@ -300,6 +300,7 @@
     <Content Include="Views\WikiUser\Details.cshtml" />
     <Content Include="Views\WikiUser\FullDetails.cshtml" />
     <Content Include="Views\WikiUser\EditUserDetails.cshtml" />
+    <Content Include="Views\WikiUser\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\wiki\" />

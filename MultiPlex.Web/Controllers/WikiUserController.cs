@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using MultiPlex.Core;
 using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Data.ViewModels;
@@ -103,7 +105,64 @@ namespace MultiPlex.Web.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
             }
         }
+        [Authorize(Roles = "Administrators")]
+        public ActionResult Delete(string username)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(username) == true)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                ApplicationUser user = this.usremngr.GetUser(username);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewFullUserDetails fulusr = new ViewFullUserDetails();
+                fulusr.UserDetails = user;
+                fulusr.Roles = this.usremngr.GetRolesOfUser(username);
+                fulusr.WikisAsAdmin = this.wkmngr.ListWikiByAdmUser(username);
+                fulusr.WikisAsMod = this.wkmngr.ListWikiByModUser(username);
 
+
+                return View(fulusr);
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
+        // POST: ProjectNews/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string username)
+        {
+
+            try
+            {
+                int cat = 0;
+                if (CommonTools.isEmpty(username) == true)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                ApplicationUser user = this.usremngr.GetUser(username);
+                if (user != null)
+                {
+                    this.wkmngr.DeleteWikiByAdm(user.UserName);
+                }
+               
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
         #endregion
         #region WikiUserEdit
 

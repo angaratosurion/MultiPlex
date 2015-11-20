@@ -253,6 +253,63 @@ namespace MultiPlex.Core.Data.Repositories
                 //return null;
             }
         }
+        
+        public void DeleteWiki(string wikiname)
+        {
+            try
+            {
+                if (wikiname != null)
+                {
+                    this.DeleteTitleByWiki(wikiname);
+                    this.DeleteCategoryByWiki(wikiname);
+                    Wiki wk = this.GetWiki(wikiname);
+                    this.db.Wikis.Remove(wk);
+                    this.db.SaveChanges();
+                       
+                }
+
+            }
+            catch (ValidationException ex)
+            {
+                throw (ex);
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                //return null;
+            }
+        }
+        public void DeleteWikiByAdm(string username)
+        {
+            try
+            {
+                if (username != null)
+                {
+                    List<Wiki> wks = this.ListWikiByAdmUser(username);
+                    if ( wks !=null)
+                    {
+                         foreach( Wiki w in wks)
+                        {
+                            this.DeleteWiki(w.Name);
+                        }
+                    }
+
+                }
+
+            }
+            catch (ValidationException ex)
+            {
+                throw (ex);
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                //return null;
+            }
+        }
+
         #endregion
         #region Title
         public List<WikiTitle> GetTitlebyWiki(string wikiname)
@@ -367,6 +424,31 @@ namespace MultiPlex.Core.Data.Repositories
 
                 CommonTools.ErrorReporting(ex);
                
+            }
+        }
+        public void DeleteTitleByWiki(string wikiname)
+        {
+            try
+            {
+                if (wikiname != null && this.WikiExists(wikiname))
+                {
+                    List<WikiTitle> tls = this.GetTitlebyWiki(wikiname);
+                     if ( tls !=null)
+                    {
+                        foreach( WikiTitle t in tls)
+                        {
+                            this.DeleteTitleById(wikiname, t.Id);
+                        }
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+
             }
         }
         #endregion
@@ -860,7 +942,53 @@ namespace MultiPlex.Core.Data.Repositories
               
             }
         }
+        public void DeleteCategoryByWiki(string wikiname)
+        {
+            try
+            {
+                WikiCategory ap = null;
+                if (!CommonTools.isEmpty(wikiname) && this.WikiExists(wikiname))
+                {
+                    List<WikiCategory> cats = this.GetCategorybyWiki(wikiname);
+                     if (cats !=null)
+                    {
+                         foreach( WikiCategory c in cats)
+                        {
+                            this.DeleteCategoryById(c.Id);
+                        }
+                    }
+                }
+                
 
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+              
+            }
+        }
+        public void DeleteCategoryById(int id)
+        {
+            try
+            {
+                WikiCategory ap = null;
+                if (id > 0)
+                {
+                    ap = this.db.Categories.First(c => c.Id == id);
+                    this.db.Categories.Remove(ap);
+                    this.db.SaveChanges();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+
+            }
+        }
 
         #endregion
         #region Files
