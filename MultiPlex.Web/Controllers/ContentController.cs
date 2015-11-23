@@ -19,7 +19,7 @@ namespace MultiPlex.Web.Controllers
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class ContentController : Controller
     {
-        UserManager usrmng = new UserManager();
+        WikiUserManager usrmng = new WikiUserManager();
         TitleManager tmngr = new TitleManager();
         ContentManager contmngr;
         CategoryManager catmngr = new CategoryManager();

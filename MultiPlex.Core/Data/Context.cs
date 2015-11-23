@@ -46,8 +46,12 @@ namespace MultiPlex.Core.Data
                 .HasRequired(f => f.Wiki)
                 .WithMany()
                 .WillCascadeOnDelete(false);
+            modelBuilder.Entity<WikiModInvitations>()
+               .HasRequired(f => f.Wiki)
+               .WithMany()
+               .WillCascadeOnDelete(false);
 
-          
+
 
 
         }
@@ -61,5 +65,6 @@ namespace MultiPlex.Core.Data
         public IDbSet<Models.Wiki> Wikis { get; set; }
         public IDbSet<WikiCategory> Categories { get; set; }
         public IDbSet<WikiFile> Files { get; set; }
+        public IDbSet<WikiModInvitations> ModInvites { get; set; }
     }
 }

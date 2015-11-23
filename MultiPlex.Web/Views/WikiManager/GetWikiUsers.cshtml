@@ -1,0 +1,78 @@
+﻿@model MultiPlex.Core.Data.ViewModels.ViewWikiUsers
+
+@{
+    ViewBag.Title = "Wiki users";
+}
+
+<h2>Wiki's users</h2>
+<h4>@Html.DisplayNameFor(model => model.Administrator)</h4>
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Administrator.UserName)
+    </dt>
+
+    <dd>      
+        @Html.ActionLink(Model.Administrator.UserName, "Details","WikiUser",
+                    new { username = Model.Administrator.UserName },htmlAttributes:null)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Administrator.Email)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Administrator.Email)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Administrator.PhoneNumber)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Administrator.PhoneNumber)
+    </dd>   
+
+</dl>
+<hr/>
+<h4>@Html.DisplayNameFor(model => model.Moderators)</h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Administrator.UserName)
+            
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Administrator.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Administrator.PhoneNumber)
+        </th>
+
+    </tr>
+     @{ var mods = Model.Moderators;}
+    @foreach (var item in Model.Moderators)
+{
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.UserName)*@
+                @Html.ActionLink(item.UserName, "Details","WikiUser",
+                    new { username = item.UserName }, htmlAttributes: null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+
+            </td>
+            <td>
+                
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    @Html.ActionLink("Back to Wiki Administration", "EditWiki", new { wikiname = Model.Wiki.Name })
+</div>

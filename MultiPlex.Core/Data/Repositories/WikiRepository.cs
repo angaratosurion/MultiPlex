@@ -1208,5 +1208,133 @@ namespace MultiPlex.Core.Data.Repositories
 
         #endregion
 
+        #region WikiModInvites
+        public List<WikiModInvitations> GetWikiModInvites()
+        {
+            try
+            {
+                List<WikiModInvitations> ap = null;
+
+
+                ap = this.db.ModInvites.ToList();
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+
+            }
+        }
+        public List<WikiModInvitations> GetWikiModInvitesbyWiki(string wikiname)
+        {
+            try
+            {
+                List<WikiModInvitations> ap = null, tap = null;
+
+                 if ( CommonTools.isEmpty(wikiname) == false && this.WikiExists(wikiname)==true)
+                {
+                    tap = this.GetWikiModInvites();
+                     if (tap !=null)
+                    {
+                        ap = tap.Where(s => s.Wiki.Name == wikiname).ToList();
+                    }
+                }
+                
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+
+            }
+        }
+        public WikiModInvitations GetWikiModInvitebyId(string wikiname,int id)
+        {
+            try
+            {
+                WikiModInvitations ap = null;
+                List<WikiModInvitations> tap = null;
+
+                if (CommonTools.isEmpty(wikiname) == false && this.WikiExists(wikiname) == true)
+                {
+                    tap = this.GetWikiModInvitesbyWiki(wikiname);
+                    if (tap != null)
+                    {
+                        ap = tap.FirstOrDefault(s => s.Id == id);
+                    }
+                }
+
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+
+            }
+        }
+        public void CreateNewModInvite(string wikiname,string  mod, WikiModInvitations inv )
+        {
+            try
+            {
+                if ( CommonTools.isEmpty(wikiname)==false && this.WikiExists(wikiname)==true
+                    && CommonTools.isEmpty(mod) == false)
+                {
+                    Wiki wk = this.GetWiki(wikiname);
+                    if ( wk !=null )
+                    {
+                        inv.Wiki = wk;
+                        this.db.ModInvites.Add(inv);
+                        this.db.SaveChanges();
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+               
+
+            }
+
+        }
+        public void DeleteModInviteById(string wikiname, int id)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(wikiname) == false && this.WikiExists(wikiname) == true
+                    && id>0)
+                {
+                    WikiModInvitations inv = this.GetWikiModInvitebyId(wikiname,id);
+                    if (inv!= null)
+                    {
+                        this.db.ModInvites.Remove(inv);
+                        this.db.SaveChanges();
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+
+
+            }
+
+        }
+        #endregion
+
     }
 }

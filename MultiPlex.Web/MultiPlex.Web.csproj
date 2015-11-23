@@ -208,6 +208,7 @@
     <Compile Include="Controllers\TitleController.cs" />
     <Compile Include="Controllers\HomeWikiController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\WikiManagerController.cs" />
     <Compile Include="Controllers\WikiUserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -292,15 +293,19 @@
     <Content Include="Views\Content\CreateContent.cshtml" />
     <Content Include="Views\Content\Delete.cshtml" />
     <Content Include="Views\AdminSite\Index.cshtml" />
-    <Content Include="Views\HomeWiki\EditWiki.cshtml" />
-    <Content Include="Views\HomeWiki\EditBasicInfo.cshtml" />
     <Content Include="Views\Content\TitlesByWiki.cshtml" />
     <Content Include="Views\WikiUser\Index.cshtml" />
-    <Content Include="Views\WikiUser\GetWikiUsers.cshtml" />
     <Content Include="Views\WikiUser\Details.cshtml" />
     <Content Include="Views\WikiUser\FullDetails.cshtml" />
     <Content Include="Views\WikiUser\EditUserDetails.cshtml" />
     <Content Include="Views\WikiUser\Delete.cshtml" />
+    <Content Include="Views\WikiUser\CreateNewUser.cshtml" />
+    <Content Include="Views\WikiManager\UserDetails.cshtml" />
+    <Content Include="Views\WikiManager\GetWikiUsers.cshtml" />
+    <Content Include="Views\WikiManager\EditBasicInfo.cshtml" />
+    <Content Include="Views\WikiManager\EditWiki.cshtml" />
+    <Content Include="Views\WikiManager\GetModeratorInvitesByWiki.cshtml" />
+    <Content Include="Views\WikiManager\GetModeratorInviteDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\wiki\" />

@@ -1,0 +1,56 @@
+﻿@model MultiPlex.Core.Data.Models.WikiModInvitations
+@{
+    ViewBag.Title = "Moderator Invitations";
+}
+
+<h2>Moderator Invitations</h2>
+
+<div>
+    <h4>Moderator Invitations</h4>
+    <hr />
+    <table class="table">
+        
+        <tbody>
+            <tr>
+                <td>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Wiki.WikiTitle)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Wiki.WikiTitle))
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Moderator.UserName)
+                        </dt>
+
+                        <dd>
+                            @Html.ActionLink(Model.Moderator.UserName, "Details", "WikiUser",
+                    new { username = Model.Moderator.UserName }, htmlAttributes: null)
+                        </dd>
+                        <dt>
+                            @Html.ActionLink("Accept","AcceptModInvitation",new {wikiname=Model.Wiki.Name,id=Model.Id })
+
+                        </dt>
+                        <dt>
+                            @Html.ActionLink("Reject", "RejectModInvitation", new { wikiname = Model.Wiki.Name, id = Model.Id })
+
+                        </dt>
+                        </dl>
+                        
+                       
+                   
+                </td>
+                <td>             
+                  
+
+</td>
+            </tr>
+    </tbody>
+    </table>
+</div>
+<p>
+   @Html.ActionLink("Back to Wiki Moderator Invites", "GetModeratorInvitesByWiki", new { wikiname = Model.Wiki.Name })
+</p>

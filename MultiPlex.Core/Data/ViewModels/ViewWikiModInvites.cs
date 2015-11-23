@@ -7,11 +7,9 @@ using MultiPlex.Core.Data.Models;
 
 namespace MultiPlex.Core.Data.ViewModels
 {
-    public class ViewWikiUsers
+   public  class ViewWikiModInvites
     {
-        public ApplicationUser Administrator { get; set; }
-        public List<ApplicationUser> Moderators { get; set; }
-        public Wiki Wiki { get; set; }
-
+        public  Wiki Wiki { get; set; }
+        public List<WikiModInvitations> ModeratorInvites { get; set; }
     }
 }

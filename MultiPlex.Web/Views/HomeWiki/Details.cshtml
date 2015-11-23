@@ -85,6 +85,8 @@
     </table>
 </div>
 <p>
-    @Html.ActionLink("Edit", "EditWiki", new { id = Model.Name }) |
+    @Html.ActionLink("Edit", "EditWiki", new { wikiname = Model.Name }) |
+    @Html.ActionLink("Request Moderator Invitation", "RequestModeratorInvite", "WikiManager", new { wikiname = Model.Name },
+    htmlAttributes:null) |
     @Html.ActionLink("Back to List", "Index")
 </p>

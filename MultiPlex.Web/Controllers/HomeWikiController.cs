@@ -16,7 +16,7 @@ namespace MultiPlex.Web.Controllers
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class HomeWikiController : Controller
     { WikiManager wmngr;
-        UserManager usrmngr = new UserManager();
+        WikiUserManager usrmngr = new WikiUserManager();
         public HomeWikiController()
         {
             wmngr = new WikiManager();
@@ -40,10 +40,11 @@ namespace MultiPlex.Web.Controllers
 
 
         }
-        public ActionResult Details(string id)
+        public ActionResult Details(string wikiname)
         {
             try
             {
+                string id = wikiname;
                 if ( CommonTools.isEmpty(id))
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -162,57 +163,23 @@ namespace MultiPlex.Web.Controllers
 
            return View(wk);
         }
-        [Authorize]
-        public ActionResult EditWiki(string id)
+        public ActionResult EditWiki(string wikiname)
         {
-            string wikiname = id;
+            
             if (CommonTools.isEmpty(wikiname))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             }
-            Wiki wk = this.wmngr.GetWiki(wikiname);
+            RouteValueDictionary vals = new RouteValueDictionary();
+            vals.Add("wikiname", wikiname);
+            return RedirectToAction("EditWiki", "WikiManager", vals);
 
-            return View(wk);
-           
-           
-        }
-        [Authorize]
-        public ActionResult EditBasicInfo(string id)
-        {
-            string wikiname = id;
-            if (CommonTools.isEmpty(wikiname))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            
 
-            }
-            Wiki wk = this.wmngr.GetWiki(wikiname);
-             if ( wk==null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
-            }
-             if ( usrmngr.UserHasAccessToWiki(this.usrmngr.GetUser(this.User.Identity.Name),wk,true)==false)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
-            }
-           
-            return View(wk);
+
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditBasicInfo(Wiki wk,string id)
-        {
-            string wikiname = id;
-            //  Wiki wk2 = this.wmngr.GetWiki(wikiname);
-            //  wk.Name = wk2.Name;
-            wikiname = wk.Name;
-         // if (ModelState.IsValid)
-            {
-                wk=this.wmngr.EditBasicInfo(wk, wikiname);
-                return RedirectToAction("Index");
-            }
-            return View(wk);
-        }
+
 
     }
 }

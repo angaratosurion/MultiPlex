@@ -6,11 +6,9 @@
 
 <h2>Users</h2>
 
-@*<p>
-    @Html.ActionLink("Create New", "CreateContent",
-    new  {wikiname=Request.RequestContext.RouteData.Values["wikiname"] ,
-    cid = Request.QueryString.Get("cid")})
-</p>*@
+<p>
+    @Html.ActionLink("Create New", "CreateNewUser")
+</p>
 <table class="table">
     <tr>
         <th>
@@ -21,6 +19,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+
         </th>
         
     </tr>

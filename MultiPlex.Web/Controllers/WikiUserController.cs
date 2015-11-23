@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Microsoft.AspNet.Identity.Owin;
 using MultiPlex.Core;
+using MultiPlex.Core.Application;
 using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Data.ViewModels;
 using MultiPlex.Core.Managers;
@@ -19,8 +22,33 @@ namespace MultiPlex.Web.Controllers
     [Authorize]
     public class WikiUserController : Controller
     {
-        UserManager usremngr = new UserManager();
+        WikiUserManager usremngr = new WikiUserManager();
         WikiManager wkmngr = CommonTools.wkmngr;
+        private ApplicationSignInManager _signInManager;
+        private ApplicationUserManager _userManager;
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
+        }
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
         #region AdminPanel
         [Authorize(Roles = "Administrators")]
         public ActionResult Index()
@@ -163,32 +191,44 @@ namespace MultiPlex.Web.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
             }
         }
-        #endregion
-        #region WikiUserEdit
+      //  [AllowAnonymous]
+        [Authorize(Roles = "Administrators")]
+        public ActionResult CreateNewUser()
+        {
+            return View();
+        }
 
-
-        public ActionResult GetWikiUsers(string wikiname)
+        //
+        // POST: /Account/Register
+        [HttpPost]
+        [Authorize(Roles = "Administrators")]
+        //  [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateNewUser(RegisterViewModel model)
         {
             try
             {
-
-
-                if (CommonTools.isEmpty(wikiname) == true)
+                if (ModelState.IsValid)
                 {
-                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-                }
-                List<ApplicationUser> modusr = this.wkmngr.GetWikiModerators(wikiname);
-                ApplicationUser adm = this.wkmngr.GetWikiAdministrator(wikiname);
-                if (adm == null)
-                {
-                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.NotFound);
-                }
-                ViewWikiUsers vwkus = new ViewWikiUsers();
+                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                      //  await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                vwkus.Administrator = adm;
-                vwkus.Moderators = modusr;
+                        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                        // Send an email with this link
+                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                return View(vwkus);
+                        return RedirectToAction("Index", " WikiUser");
+                    }
+                    //AddErrors(result);
+                }
+
+                // If we got this far, something failed, redisplay form
+                return View(model);
             }
             catch (Exception ex)
             {
@@ -197,6 +237,10 @@ namespace MultiPlex.Web.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
             }
         }
+
+
+        #endregion
+        #region WikiUserEdit
         public ActionResult Details(string username)
         {
             try

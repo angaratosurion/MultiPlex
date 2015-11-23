@@ -177,10 +177,12 @@
     <Compile Include="Data\Models\WikiFile.cs" />
     <Compile Include="Data\Models\IdentityModels.cs" />
     <Compile Include="Data\Models\Wiki.cs" />
+    <Compile Include="Data\Models\WikiModInvitations.cs" />
     <Compile Include="Data\Repositories\WikiRepository.cs" />
     <Compile Include="Data\ViewModels\EditContent.cs" />
     <Compile Include="Data\ViewModels\ViewContent.cs" />
     <Compile Include="Data\ViewModels\ViewFullUserDetails.cs" />
+    <Compile Include="Data\ViewModels\ViewWikiModInvites.cs" />
     <Compile Include="Data\ViewModels\ViewWikiUsers.cs" />
     <Compile Include="Helpers\SlugHelper.cs" />
     <Compile Include="Interfaces\IActionVerb.cs" />
@@ -194,7 +196,8 @@
     <Compile Include="Managers\FileManager.cs" />
     <Compile Include="Managers\FileSystemManager.cs" />
     <Compile Include="Managers\TitleManager.cs" />
-    <Compile Include="Managers\UserManager.cs" />
+    <Compile Include="Managers\WikiModeratorsInvitesManager.cs" />
+    <Compile Include="Managers\WikiUserManager.cs" />
     <Compile Include="Managers\ContentManager.cs" />
     <Compile Include="Managers\WikiManager.cs" />
     <Compile Include="Migrations\Configuration.cs" />

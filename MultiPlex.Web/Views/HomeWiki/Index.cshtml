@@ -29,9 +29,9 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "EditWiki", new { id=item.Name }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Name }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Name })
+            @Html.ActionLink("Edit", "EditWiki", new { wikiname=item.Name }) |
+            @Html.ActionLink("Details", "Details", new { wikiname = item.Name }) |
+            @Html.ActionLink("Delete", "Delete", new { wikiname = item.Name })
         </td>
     </tr>
 }

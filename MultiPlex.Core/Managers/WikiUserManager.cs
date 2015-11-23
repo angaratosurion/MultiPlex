@@ -10,7 +10,7 @@ using MultiPlex.Core.Data.Models;
 
 namespace MultiPlex.Core.Managers
 {
-    public class UserManager
+    public class WikiUserManager
     {
         // Context db = new Context();
         Context db = CommonTools.db;
