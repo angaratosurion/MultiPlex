@@ -2,9 +2,9 @@
  
 @section head {
 
-    <title>MultiPlex Sample - @Model.Content.Title.Name</title>
+    <title>MultiPlex  @Model.Content.Title.Name</title>
     @if (Model.Editable)
-       { 
+    {
     <script type="text/javascript">
         var timeout = null;
         $(function () {
@@ -51,34 +51,61 @@
             });
         });
     </script>
-     } 
+    } 
 
 }
 <h2>@Model.Content.Title.Name</h2>
 
-    @if (Model.Editable) { 
+    @if (Model.Editable)
+    {
     <div id="EditContent" class="EditContent">
-        @Html.ActionLink("Edit Content", "EditContent", new { wikiname = Model.Content.Wiki.Name, id = Model.Content.Id,
-         slug = Model.Content.Title.Slug }) 
+        @Html.ActionLink("Edit Content", "EditContent", new
+   {
+       wikiname = Model.Content.Wiki.Name,
+       id = Model.Content.Id,
+       slug = Model.Content.Title.Slug
+   }) 
         <br/>
         <hr/>
     </div>
-     } 
+    } 
     
     <div id="wikiHistory">
         <h3>Page History</h3>
         <ul>
-            @{ foreach (var content in Model.History) {
-                   if (Model.Content.Version == content.Version) { 
+            @{ foreach (var content in Model.History)
+                {
+                    if (Model.Content.Version == content.Version)
+                    {
             <li>@content.VersionDate.ToString()</li>
-                 } else { 
-            <li><a href="@Url.RouteUrl("History", new {Model.Content.Title.Id, Model.Content.Title.Slug, content.Version})">@content.VersionDate.ToString()</a></li>
-             } } }
+                    }
+                    else
+                    {
+            <li><a href="@Url.RouteUrl("History", new { Model.Content.Title.Id, Model.Content.Title.Slug, content.Version })">@content.VersionDate.ToString()</a></li>
+                    }
+                } }
         </ul>
     </div>
     
     <div id="wikiContent">
-        <div id="originalWikiContent"> @Html.Raw(@Model.Content.RenderedSource)</div>
+        <div id="originalWikiContent"> @Html.Raw(@Model.Content.RenderedSource)
+            @{
+                var categories = Model.Content.Title.Categories;
+                if (categories != null && categories.Count > 0)
+                {
+                    foreach (var cat in categories)
+                    {
+
+                        @Html.ActionLink(cat.Title + " | ", "Index", new { wikiname = Model.Content.Wiki.Name, cid = cat.Id })
+                        }
+
+                    }
+                }
+         </div>
+         
+
+
+       
         <div id="preViewContentContent" style="display:none;"></div>
     </div>
 
