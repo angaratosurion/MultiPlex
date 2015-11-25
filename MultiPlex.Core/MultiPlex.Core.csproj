@@ -180,6 +180,7 @@
     <Compile Include="Data\Models\WikiModInvitations.cs" />
     <Compile Include="Data\Repositories\WikiRepository.cs" />
     <Compile Include="Data\ViewModels\EditContent.cs" />
+    <Compile Include="Data\ViewModels\ViewAddUserToRole.cs" />
     <Compile Include="Data\ViewModels\ViewContent.cs" />
     <Compile Include="Data\ViewModels\ViewFullUserDetails.cs" />
     <Compile Include="Data\ViewModels\ViewIdentityRoleDetails.cs" />

@@ -418,6 +418,52 @@ namespace MultiPlex.Web.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
             }
         }
+        [Authorize(Roles = "Administrators")]
+        public ActionResult AddUserToRole(string rolename)
+        {
+            ViewAddUserToRole model = new ViewAddUserToRole();
+            List<ApplicationUser> usr = this.usremngr.GetUsers();
+            IdentityRole rol = this.usremngr.GetRole(rolename);
+            model.Role = rol;
+            model.Users = usr;
+            ViewBag.Users = new SelectList(usr, "UserName");
+            return View(model);
+        }
+        [Authorize(Roles = "Administrators")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddUserToRole(string UserName, string rolename)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                   
+                  if (UserName != null && model.UserToAdd!=null && rolename != null)
+                    {
+
+
+                        this.usremngr.AddUserToRole(this.UserManager, rolename, model.UserToAdd.UserName);
+
+                        RouteValueDictionary vals = new RouteValueDictionary();
+                        vals.Add("rolename", model.Role.Name);
+                        return RedirectToAction("RoleDetails",vals);
+                    }
+                    //AddErrors(result);
+                }
+
+                // If we got this far, something failed, redisplay form
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
+
         #endregion
         #region WikiUserEdit
         public ActionResult Details(string username)

@@ -30,8 +30,6 @@
             <td>
                
                 @Html.DisplayFor(modelItem => item.Id)
-                @*@Html.ActionLink(item.Name, "ViewContent",
-               new { wikiname = item.Wiki.Name, id = item.Id, slug = item.Slug });*@
             </td>
             <td>
                 
@@ -41,8 +39,8 @@
             </td>
             
             <td>
-               
-                @Html.ActionLink("Edit", "EditRoleDetails", new {rolename = item.Name }) ;            
+                @Html.ActionLink("Add User To Role", "AddUserToRole",new  {rolename=item.Name })
+                @Html.ActionLink("Edit", "EditRoleDetails", new {rolename = item.Name })             
                 @Html.ActionLink("Delete", "DeleteRole", new { rolename = item.Name})
             </td>
         </tr>

@@ -88,6 +88,7 @@ namespace MultiPlex.Core.Managers
                 return false;
             }
         }
+
        public List<ApplicationUser> GetUsers()
         {
             try
@@ -327,6 +328,83 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
+        public void AddUserToRole(ApplicationUserManager usermngr,string rolename, string username)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(rolename) == false 
+                    && CommonTools.isEmpty(username) == false &&
+                    this.RoleExists(rolename) && this.UserExists(username)==true && usermngr !=null
+                    )
+                {
+                    IdentityRole or = this.GetRole(rolename);
+                    ApplicationUser user = this.GetUser(username);
+                    if ( this.UserExistsInRole(usermngr,rolename,username) ==false)
+                    {
+                        usermngr.AddToRoleAsync(user.Id, or.Id);
+                        
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                // return null;
+            }
+        }
+        public void RemoveUserFromRole(ApplicationUserManager usermngr, string rolename, string username)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(rolename) == false
+                    && CommonTools.isEmpty(username) == false &&
+                    this.RoleExists(rolename) && this.UserExists(username) == true && usermngr != null
+                    )
+                {
+                    IdentityRole or = this.GetRole(rolename);
+                    ApplicationUser user = this.GetUser(username);
+                    if (this.UserExistsInRole(usermngr, rolename, username) == false)
+                    {
+                        usermngr.RemoveFromRoleAsync(user.Id, or.Id);
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                // return null;
+            }
+        }
+        public Boolean UserExistsInRole(ApplicationUserManager usermngr, string rolename, string username)
+        {
+            try
+            {
+                Boolean ap = false;
+                if (CommonTools.isEmpty(rolename) == false
+                     && CommonTools.isEmpty(username) == false &&
+                     this.RoleExists(rolename) && this.UserExists(username) == true && usermngr != null )
+                {
+                    ApplicationUser us = this.GetUser(username);
+                    IdentityRole or = this.GetRole(rolename);
+                    ap = usermngr.IsInRoleAsync(us.Id, or.Id).Result;
+
+                }
+                
+                return ap;
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return false;
+            }
+        }
+
         #endregion
     }
 }
