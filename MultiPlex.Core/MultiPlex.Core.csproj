@@ -182,6 +182,7 @@
     <Compile Include="Data\ViewModels\EditContent.cs" />
     <Compile Include="Data\ViewModels\ViewContent.cs" />
     <Compile Include="Data\ViewModels\ViewFullUserDetails.cs" />
+    <Compile Include="Data\ViewModels\ViewIdentityRoleDetails.cs" />
     <Compile Include="Data\ViewModels\ViewWikiModInvites.cs" />
     <Compile Include="Data\ViewModels\ViewWikiUsers.cs" />
     <Compile Include="Helpers\SlugHelper.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="Managers\WikiManager.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Verbs\AdminRolesVerb.cs" />
     <Compile Include="Verbs\AdminUsersVerb.cs" />
     <Compile Include="Verbs\HomeVerb.cs" />
     <Compile Include="Verbs\AdminSiteVerb.cs" />

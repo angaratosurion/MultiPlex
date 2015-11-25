@@ -298,7 +298,7 @@
     <Content Include="Views\WikiUser\Details.cshtml" />
     <Content Include="Views\WikiUser\FullDetails.cshtml" />
     <Content Include="Views\WikiUser\EditUserDetails.cshtml" />
-    <Content Include="Views\WikiUser\Delete.cshtml" />
+    <Content Include="Views\WikiUser\DeleteUser.cshtml" />
     <Content Include="Views\WikiUser\CreateNewUser.cshtml" />
     <Content Include="Views\WikiManager\UserDetails.cshtml" />
     <Content Include="Views\WikiManager\GetWikiUsers.cshtml" />
@@ -306,6 +306,11 @@
     <Content Include="Views\WikiManager\EditWiki.cshtml" />
     <Content Include="Views\WikiManager\GetModeratorInvitesByWiki.cshtml" />
     <Content Include="Views\WikiManager\GetModeratorInviteDetails.cshtml" />
+    <Content Include="Views\WikiUser\GetRoles.cshtml" />
+    <Content Include="Views\WikiUser\CreateNewRole.cshtml" />
+    <Content Include="Views\WikiUser\EditRoleDetails.cshtml" />
+    <Content Include="Views\WikiUser\RoleDetails.cshtml" />
+    <Content Include="Views\WikiUser\DeleteRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\wiki\" />

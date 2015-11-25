@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.EntityFramework;
+using MultiPlex.Core.Application;
 using MultiPlex.Core.Data;
 using MultiPlex.Core.Data.Models;
 
@@ -13,6 +14,18 @@ namespace MultiPlex.Core.Managers
     public class WikiUserManager
     {
         // Context db = new Context();
+        private ApplicationSignInManager _signInManager;
+        private ApplicationUserManager _userManager;
+
+        public WikiUserManager(ApplicationUserManager usrmngr, ApplicationSignInManager singmngr)
+        {
+            this._userManager = usrmngr;
+            this._signInManager = singmngr;
+        }
+        public WikiUserManager()
+        {
+
+        }
         Context db = CommonTools.db;
         WikiManager wkmngr = CommonTools.wkmngr;
         public static string AdminRoles = "Administrators";
@@ -132,7 +145,28 @@ namespace MultiPlex.Core.Managers
         }
         #endregion
         #region roles
+        public  Boolean RoleExists(string Name)
+        {
+            try
+            {
+                Boolean ap = false;
+                if (Name != null)
+                {
+                    IdentityRole rol = this.GetRole(Name);
+                   if (rol!=null)
+                    {
+                        ap = true;
+                    }   
+                }
+                return ap;
+            }
+            catch (Exception ex)
+            {
 
+                CommonTools.ErrorReporting(ex);
+                return false;
+            }
+        }
         public IdentityRole GetRole(string Name)
         {
             try
@@ -140,7 +174,12 @@ namespace MultiPlex.Core.Managers
                 IdentityRole ap = null;
                 if (Name != null)
                 {
-                    ap = this.db.Roles.First(x => x.Name == Name);
+                    List<IdentityRole> rols = this.GetRoles();
+
+                    if (rols != null)
+                    {
+                        ap = rols.FirstOrDefault(r => r.Name == Name);
+                    }
                 }
                 return ap;
             }
@@ -182,7 +221,110 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
+        public List<IdentityRole> GetRoles()
+        {
+            try
+            {
+                List < IdentityRole > ap= this.db.Roles.ToList();
+                return ap;
+            }
+            catch (Exception ex)
+            {
 
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        public void CreateNewRole(IdentityRole role)
+        {
+            try
+            {
+                if ( role !=null &&  this.RoleExists(role.Name)==false)
+                {
+                    this.db.Roles.Add(role);
+                    this.db.SaveChanges();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+               // return null;
+            }
+        }
+        public void EditRole(string rolename ,IdentityRole role)
+        {
+            try
+            {
+                if ( CommonTools.isEmpty( rolename) ==false && 
+                    role != null && this.RoleExists(role.Name))
+                {
+                    IdentityRole or = this.GetRole(rolename);
+                    if (or != null && or.Name!= "Administrators")
+                    {
+                        this.db.Entry(or).CurrentValues.SetValues(role);
+                        this.db.SaveChanges();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                // return null;
+            }
+        }
+        public void DeleteRole(string rolename)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(rolename) == false)
+                {
+                    IdentityRole or = this.GetRole(rolename);
+                    if (or != null && rolename!= "Administrators")
+                    {
+                        this.db.Roles.Remove(or);
+                        this.db.SaveChanges();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                // return null;
+            }
+        }
+        public List<ApplicationUser> GetUsersofRole(string Name)
+        {
+            try
+            {
+                List<ApplicationUser> ap = null;
+                if (Name != null && this.RoleExists(Name))
+                {
+                    IdentityRole rol = this.GetRole(Name);
+                     if ( rol !=null && rol.Users !=null && rol.Users.Count>0)
+                    {
+                        ap = new List<ApplicationUser>();
+                        foreach( var u in rol.Users)
+                        {
+                            ApplicationUser t=this.db.Users.FirstOrDefault(x => x.Id == u.UserId);
+                            ap.Add(t);
+                        }
+                    }
+                }
+                return ap;
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
         #endregion
     }
 }
