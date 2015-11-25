@@ -258,10 +258,12 @@ namespace MultiPlex.Core.Managers
             try
             {
                 if ( CommonTools.isEmpty( rolename) ==false && 
-                    role != null && this.RoleExists(role.Name))
+                    role != null && this.RoleExists(role.Name)==false&&
+                    this.RoleExists(rolename))
                 {
                     IdentityRole or = this.GetRole(rolename);
-                    if (or != null && or.Name!= "Administrators")
+                    if (or != null && or.Name!= "Administrators"
+                        && rolename != "Administrators")
                     {
                         this.db.Entry(or).CurrentValues.SetValues(role);
                         this.db.SaveChanges();
