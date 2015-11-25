@@ -44,30 +44,35 @@
     <h4>User to add in the  Role</h4>
     <hr />
 
-    @{
-        // var users = Model.Users.ToList();
-        SelectList users = new SelectList(Model.Users.ToList());
-        if (users != null)
-        {
-            // User Name:
-            @Html.DropDownList("UserName", (IEnumerable<SelectListItem>) ViewBag.Users, "Select ...")
+    
+        @using (Html.BeginForm())
+        {   @Html.AntiForgeryToken()
+            // var users = Model.Users.ToList();
+            SelectList users = new SelectList(Model.Users.Select(x => x.UserName));
+            if (users != null)
+            {
+                // User Name:
+            @Html.DropDownList("UserToAdd", users, "", " ")
 
-        }
-        else
-        {
+            }
+            else
+            {
         <p> You have no Users in the Database.</p>
+            }
+            <div class="form-actions no-color">
+                <input type="submit" value="Add" class="btn btn-default" />
+                @Html.ActionLink("Back to List", "GetRoles")
+            </div>
         }
-        }
+
+        
 </div>
 <p>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+   
+    @{
+     
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Add" class="btn btn-default" /> 
-            @Html.ActionLink("Back to List", "GetRoles")
-        </div>
+       
     }
    
 </p>

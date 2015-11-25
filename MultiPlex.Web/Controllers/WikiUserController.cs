@@ -432,29 +432,29 @@ namespace MultiPlex.Web.Controllers
         [Authorize(Roles = "Administrators")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddUserToRole(string UserName, string rolename)
+        public ActionResult AddUserToRole(FormCollection con, string rolename)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
 
-                   
-                  if (UserName != null && model.UserToAdd!=null && rolename != null)
+                    string UserToAdd;
+                  if (con != null && rolename != null && CommonTools.isEmpty( con["UserToAdd"])==false)
                     {
 
-
-                        this.usremngr.AddUserToRole(this.UserManager, rolename, model.UserToAdd.UserName);
+                        UserToAdd = con["UserToAdd"];
+                        this.usremngr.AddUserToRole(this.UserManager, rolename, UserToAdd);
 
                         RouteValueDictionary vals = new RouteValueDictionary();
-                        vals.Add("rolename", model.Role.Name);
-                        return RedirectToAction("RoleDetails",vals);
+                        vals.Add("rolename", rolename);
+                        return RedirectToAction("RoleDetails", vals);
                     }
                     //AddErrors(result);
                 }
 
                 // If we got this far, something failed, redisplay form
-                return View(model);
+                return View();
             }
             catch (Exception ex)
             {

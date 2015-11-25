@@ -341,7 +341,7 @@ namespace MultiPlex.Core.Managers
                     ApplicationUser user = this.GetUser(username);
                     if ( this.UserExistsInRole(usermngr,rolename,username) ==false)
                     {
-                        usermngr.AddToRoleAsync(user.Id, or.Id);
+                        usermngr.AddToRoleAsync(user.Id, or.Name);
                         
                     }
                 }
@@ -367,7 +367,7 @@ namespace MultiPlex.Core.Managers
                     ApplicationUser user = this.GetUser(username);
                     if (this.UserExistsInRole(usermngr, rolename, username) == false)
                     {
-                        usermngr.RemoveFromRoleAsync(user.Id, or.Id);
+                        usermngr.RemoveFromRoleAsync(user.Id, or.Name);
 
                     }
                 }
