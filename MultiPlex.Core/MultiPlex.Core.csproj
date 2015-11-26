@@ -181,6 +181,7 @@
     <Compile Include="Data\Repositories\WikiRepository.cs" />
     <Compile Include="Data\ViewModels\EditContent.cs" />
     <Compile Include="Data\ViewModels\ViewAddUserToRole.cs" />
+    <Compile Include="Data\ViewModels\ViewCategoryTitles.cs" />
     <Compile Include="Data\ViewModels\ViewContent.cs" />
     <Compile Include="Data\ViewModels\ViewDeleteUserFromRole.cs" />
     <Compile Include="Data\ViewModels\ViewFullUserDetails.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="Managers\WikiManager.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Verbs\AdminCategoriesVerb.cs" />
     <Compile Include="Verbs\AdminRolesVerb.cs" />
     <Compile Include="Verbs\AdminUsersVerb.cs" />
     <Compile Include="Verbs\HomeVerb.cs" />

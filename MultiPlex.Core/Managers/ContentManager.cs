@@ -45,7 +45,7 @@ namespace MultiPlex.Core.Managers
                 if (CommonTools.isEmpty(wikiname) == false && (cid > 0)
                   && title != null && cont != null)
                 {
-                    WikiCategory cat = CommonTools.catmngr.GetCategoryListById(cid);
+                    WikiCategory cat = CommonTools.catmngr.GetCategoryById(cid);
                     Wiki wk = CommonTools.wkmngr.GetWiki(wikiname);
 
                     if (wk != null && cat != null && usr != null)

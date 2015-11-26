@@ -204,6 +204,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminSiteController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\TitleController.cs" />
     <Compile Include="Controllers\HomeWikiController.cs" />
@@ -313,11 +314,15 @@
     <Content Include="Views\WikiUser\DeleteRole.cshtml" />
     <Content Include="Views\WikiUser\AddUserToRole.cshtml" />
     <Content Include="Views\WikiUser\RemoveUserFromRole.cshtml" />
+    <Content Include="Views\Category\CategoriesByWiki.cshtml" />
+    <Content Include="Views\Category\EditCategory.cshtml" />
+    <Content Include="Views\Category\Delete.cshtml" />
+    <Content Include="Views\Category\Details.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\wiki\" />
     <Folder Include="Modules\" />
-    <Folder Include="Views\Category\" />
     <Folder Include="Views\Title\" />
   </ItemGroup>
   <ItemGroup>

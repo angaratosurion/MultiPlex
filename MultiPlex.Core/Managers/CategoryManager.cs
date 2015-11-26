@@ -13,7 +13,23 @@ namespace MultiPlex.Core.Managers
     {
        
         WikiRepository rp = new WikiRepository();
+        public List<WikiCategory> GetCategories()
+        {
+            try
+            {
+                List<WikiCategory> ap = null;
+                ap = this.rp.GetCategories();
+                return ap;
 
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+
+            }
+        }
         public void Add(WikiCategory cat)
         {
             try
@@ -58,7 +74,7 @@ namespace MultiPlex.Core.Managers
             }
 
         }
-        public WikiCategory GetCategoryListById(int id)
+        public WikiCategory GetCategoryById(int id)
         {
 
             try
@@ -81,6 +97,38 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
 
+        }
+        public void EditCatrgory(string wikiname,int id , WikiCategory cat)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(wikiname) == false && id >0 && cat !=null)
+                {
+                    this.rp.EditCategory(id, wikiname, cat);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+
+            }
+        }
+        public void DeleteCatrgory( int id)
+        {
+            try
+            {
+                if ( id > 0)
+                {
+                    this.rp.DeleteCategoryById(id);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+
+            }
         }
     }
 }

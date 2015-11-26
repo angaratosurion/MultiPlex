@@ -989,6 +989,34 @@ namespace MultiPlex.Core.Data.Repositories
 
             }
         }
+        public void EditCategory(int id ,string wikiname,WikiCategory cat)
+        {
+            try
+            {
+
+                if (!CommonTools.isEmpty(wikiname) && this.WikiExists(wikiname) &&
+                    cat !=null)
+                {
+                    WikiCategory od = this.GetCategorybyId(id);
+                    Wiki wk = this.GetWiki(wikiname);
+                     if ( od !=null && wk !=null)
+                    {
+                        this.db.Entry(od).CurrentValues.SetValues(cat);
+                        this.db.SaveChanges();
+                        this.MarkWikiAsUpdated(wk);
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+
+            }
+
+        }
 
         #endregion
         #region Files

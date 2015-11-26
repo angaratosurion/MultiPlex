@@ -18,7 +18,8 @@
     }
 
    <td> @Html.ActionLink("Basic Info","EditBasicInfo", new { wikiname = wikiname }, new { @class = "btn btn-default" })</td>    
-   @*<td> @Html.ActionLink("Categories","ListCategories", new { id = wikiname })</td>*@
+   <td> @Html.ActionLink("Categories", "CategoriesByWiki", "Category", new { wikiname = wikiname },
+       new { @class = "btn btn-default" })</td>
    <td> @Html.ActionLink("Titles", "TitlesByWiki", "Content", new { wikiname = wikiname }, new { @class = "btn btn-default" })</td>
 }
 
