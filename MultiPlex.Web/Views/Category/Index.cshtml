@@ -15,7 +15,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
-        <th>@Html.DisplayNameFor(model=>model.Wiki.Name)</th>
+        <th>@Html.DisplayNameFor(model=>model.Wiki)</th>
         <th></th>
     </tr>
 
@@ -28,7 +28,7 @@
             @Html.ActionLink(item.Title, "Details", new { wikiname = item.Wiki.Name, id = item.Id })
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Wiki)
+            @Html.DisplayFor(modelItem => item.Wiki.Name)
         </td>
         <td>
            @Html.ActionLink("Edit", "EditCategory", new { wikiname = item.Wiki.Name, id = item.Id }) |
