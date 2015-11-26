@@ -312,6 +312,7 @@
     <Content Include="Views\WikiUser\RoleDetails.cshtml" />
     <Content Include="Views\WikiUser\DeleteRole.cshtml" />
     <Content Include="Views\WikiUser\AddUserToRole.cshtml" />
+    <Content Include="Views\WikiUser\RemoveUserFromRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\wiki\" />

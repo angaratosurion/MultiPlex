@@ -85,8 +85,9 @@
                         </td>
                         <td>
 
-                            @Html.ActionLink("Edit", "EditUserDetails", new { username = item.UserName }) ;
-                            @Html.ActionLink("Delete", "Delete", new { username = item.UserName })
+                           
+                            @Html.ActionLink("Remove User From This Role", "RemoveUserFromRole",
+                           new { rolename=Model.Role.Name, username = item.UserName })
                         </td>
                     </tr>
                 }

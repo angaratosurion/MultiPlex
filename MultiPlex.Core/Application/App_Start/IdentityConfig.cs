@@ -37,7 +37,7 @@ namespace MultiPlex.Core.Application
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<Context>()));
             // Configure validation logic for usernames
@@ -78,7 +78,7 @@ namespace MultiPlex.Core.Application
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = 
+                manager.UserTokenProvider =
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
@@ -103,4 +103,31 @@ namespace MultiPlex.Core.Application
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
     }
+    //public class ApplicationRoleManager : RoleManager<IdentityRole>
+
+    //{
+
+    //    public ApplicationRoleManager(IRoleStore<IdentityRole, string> roleStore)
+
+    //        : base(roleStore)
+
+    //    {
+
+    //    }
+
+
+
+    //    public static ApplicationRoleManager Create(
+
+    //        IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
+
+    //    {
+
+    //        return new ApplicationRoleManager(
+
+    //            new RoleStore<IdentityRole>(context.Get<Context>()));
+
+    //    }
+
+    //}
 }

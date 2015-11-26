@@ -182,6 +182,7 @@
     <Compile Include="Data\ViewModels\EditContent.cs" />
     <Compile Include="Data\ViewModels\ViewAddUserToRole.cs" />
     <Compile Include="Data\ViewModels\ViewContent.cs" />
+    <Compile Include="Data\ViewModels\ViewDeleteUserFromRole.cs" />
     <Compile Include="Data\ViewModels\ViewFullUserDetails.cs" />
     <Compile Include="Data\ViewModels\ViewIdentityRoleDetails.cs" />
     <Compile Include="Data\ViewModels\ViewWikiModInvites.cs" />

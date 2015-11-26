@@ -432,7 +432,7 @@ namespace MultiPlex.Web.Controllers
         [Authorize(Roles = "Administrators")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddUserToRole(FormCollection con, string rolename)
+        public ActionResult AddUserToRole(ViewAddUserToRole model,string rolename)
         {
             try
             {
@@ -440,11 +440,12 @@ namespace MultiPlex.Web.Controllers
                 {
 
                     string UserToAdd;
-                  if (con != null && rolename != null && CommonTools.isEmpty( con["UserToAdd"])==false)
+                  if ( rolename != null  && model !=null && model.UserToAdd!=null)
+                        //&& CommonTools.isEmpty( con["UserToAdd"])==false)
                     {
 
-                        UserToAdd = con["UserToAdd"];
-                        this.usremngr.AddUserToRole(this.UserManager, rolename, UserToAdd);
+                        UserToAdd = model.UserToAdd.UserName;
+                        this.usremngr.AddUserToRole( rolename, UserToAdd);
 
                         RouteValueDictionary vals = new RouteValueDictionary();
                         vals.Add("rolename", rolename);
@@ -463,7 +464,76 @@ namespace MultiPlex.Web.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
             }
         }
+        [Authorize(Roles = "Administrators")]
+        public ActionResult RemoveUserFromRole(string rolename,string username)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(rolename) == true)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                if (CommonTools.isEmpty(username) == true)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                IdentityRole adm = this.usremngr.GetRole(rolename);
+                ApplicationUser user = this.usremngr.GetUser(username);
+                if (adm == null)
+                {
+                    return HttpNotFound();
+                }
+               
+                ViewDeleteUserFromRole rolddetails = new ViewDeleteUserFromRole();
+                rolddetails.Role = adm;
+                rolddetails.UserToDelete=user;
+                
 
+
+                return View(rolddetails);
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
+        // POST: ProjectNews/Delete/5
+        [HttpPost, ActionName("RemoveUserFromRole")]
+        [Authorize(Roles = "Administrators")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RemoveUserFromRoleConfirmed(string rolename, string username)
+        {
+
+            try
+            {
+                int cat = 0;
+                if (CommonTools.isEmpty(rolename) == true)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                IdentityRole adm = this.usremngr.GetRole(rolename);
+                ApplicationUser user = this.usremngr.GetUser(username);
+               
+                if (CommonTools.isEmpty(username) == true)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                if (adm != null && user != null)
+                {
+                    this.usremngr.RemoveUserFromRole(rolename, username);
+                }
+
+                return RedirectToAction("GetRoles");
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
         #endregion
         #region WikiUserEdit
         public ActionResult Details(string username)

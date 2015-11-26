@@ -328,20 +328,30 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
-        public void AddUserToRole(ApplicationUserManager usermngr,string rolename, string username)
+        public void AddUserToRole(string rolename, string username)
         {
             try
             {
                 if (CommonTools.isEmpty(rolename) == false 
                     && CommonTools.isEmpty(username) == false &&
-                    this.RoleExists(rolename) && this.UserExists(username)==true && usermngr !=null
-                    )
+                    this.RoleExists(rolename) && this.UserExists(username)==true )
+                   // && rolemngr !=null)
+                    
                 {
                     IdentityRole or = this.GetRole(rolename);
                     ApplicationUser user = this.GetUser(username);
-                    if ( this.UserExistsInRole(usermngr,rolename,username) ==false)
+                    if ( this.UserExistsInRole(rolename,username) ==false)
                     {
-                        usermngr.AddToRoleAsync(user.Id, or.Name);
+                        IdentityUserRole r = new IdentityUserRole();
+                        r.RoleId = or.Id;
+                        r.UserId = user.Id;
+                         if ( or.Users != null)
+                        {
+                            or.Users.Add(r);
+                            this.db.Entry(or).CurrentValues.SetValues(or);
+                            this.db.SaveChanges();
+
+                        }
                         
                     }
                 }
@@ -354,24 +364,34 @@ namespace MultiPlex.Core.Managers
                 // return null;
             }
         }
-        public void RemoveUserFromRole(ApplicationUserManager usermngr, string rolename, string username)
+        public void RemoveUserFromRole(string rolename, string username)
         {
             try
             {
                 if (CommonTools.isEmpty(rolename) == false
                     && CommonTools.isEmpty(username) == false &&
-                    this.RoleExists(rolename) && this.UserExists(username) == true && usermngr != null
-                    )
+                    this.RoleExists(rolename) && this.UserExists(username) == true)
                 {
                     IdentityRole or = this.GetRole(rolename);
                     ApplicationUser user = this.GetUser(username);
-                    if (this.UserExistsInRole(usermngr, rolename, username) == false)
+                    if (this.UserExistsInRole(rolename, username) != false)
                     {
-                        usermngr.RemoveFromRoleAsync(user.Id, or.Name);
-
+                        IdentityUserRole r = new IdentityUserRole();
+                        r.RoleId = or.Id;
+                        r.UserId = user.Id;
+                        if (or.Users != null)
+                        {
+                            or.Users.Remove(r);
+                            user.Roles.Remove(r);
+                          this.db.Entry(GetRole(rolename)).CurrentValues.SetValues(or);
+                            this.db.Entry(user).CurrentValues.SetValues(user);
+                         
+                            
+                            this.db.SaveChanges();
+                        }
                     }
-                }
 
+                }
             }
             catch (Exception ex)
             {
@@ -380,18 +400,28 @@ namespace MultiPlex.Core.Managers
                 // return null;
             }
         }
-        public Boolean UserExistsInRole(ApplicationUserManager usermngr, string rolename, string username)
+        public Boolean UserExistsInRole( string rolename, string username)
         {
             try
             {
                 Boolean ap = false;
                 if (CommonTools.isEmpty(rolename) == false
                      && CommonTools.isEmpty(username) == false &&
-                     this.RoleExists(rolename) && this.UserExists(username) == true && usermngr != null )
+                     this.RoleExists(rolename) && this.UserExists(username) == true )
                 {
                     ApplicationUser us = this.GetUser(username);
                     IdentityRole or = this.GetRole(rolename);
-                    ap = usermngr.IsInRoleAsync(us.Id, or.Id).Result;
+                    IdentityUserRole r = or.Users.FirstOrDefault(x => x.UserId == us.Id && x.RoleId == or.Id);
+                    IdentityRole r1=null;
+                    List<IdentityRole> rls=this.GetRolesOfUser(username);
+                     if ( rls !=null)
+                    {
+                        r1 =rls.FirstOrDefault(x => x.Name == rolename);
+                    }
+                     if ( r !=null && r1!=null)
+                    {
+                        ap = true;
+                    }
 
                 }
                 
