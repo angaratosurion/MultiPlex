@@ -73,7 +73,8 @@
             {<tr>
                     <td>
                      
-                        @Html.ActionLink(item.Name, "ViewContent", "Content", new{ wikiname = item.Wiki.Name, id = item.Id, slug = item.Slug})
+                        @Html.ActionLink(item.Name, "ViewContent", "Content", 
+                       new{ wikiname = item.Wiki.Name, id = item.Id, slug = item.Slug},htmlAttributes:null)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Slug)
@@ -91,7 +92,7 @@
                        wikiname = item.Wiki.Name,
                        id = item.Id,
                        slug = item.Slug
-                   })</td></tr>
+                   }, htmlAttributes: null)</td></tr>
             }
                                 
         </table>

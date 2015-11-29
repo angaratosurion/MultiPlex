@@ -71,21 +71,22 @@
     } 
     
     <div id="wikiHistory">
-        <h3>Page History</h3>
-        <ul>
-            @{ foreach (var content in Model.History)
-                {
-                    if (Model.Content.Version == content.Version)
+            <h3>Page History</h3>
+            <ul>
+                @{ foreach (var content in Model.History)
                     {
-            <li>@content.VersionDate.ToString()</li>
-                    }
-                    else
-                    {
-            <li><a href="@Url.RouteUrl("History", new { Model.Content.Title.Id, Model.Content.Title.Slug, content.Version })">@content.VersionDate.ToString()</a></li>
-                    }
-                } }
-        </ul>
-    </div>
+                        if (Model.Content.Version == content.Version)
+                        {
+                            <li>@content.VersionDate.ToString()</li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.RouteUrl("History", new { Model.Content.Title.Id, Model.Content.Title.Slug, content.Version })">@content.VersionDate.ToString()</a></li>
+                        }
+                    } }
+            </ul>
+       
+        </div>
     
     <div id="wikiContent">
         <div id="originalWikiContent"> @Html.Raw(@Model.Content.RenderedSource)
@@ -109,7 +110,7 @@
         <div id="preViewContentContent" style="display:none;"></div>
     </div>
 
-    <div class="clear"></div>
+    @*<div class="clear"></div>*@
     
     @*@if (Model.Editable) { 
     <div id="EditContentForm" class="EditContentForm">
@@ -128,4 +129,3 @@
             </fieldset>
          } 
     </div>}*@
-
