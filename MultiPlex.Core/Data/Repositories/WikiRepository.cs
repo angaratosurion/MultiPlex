@@ -451,6 +451,26 @@ namespace MultiPlex.Core.Data.Repositories
 
             }
         }
+        public void EditTitle(string wikiname, int id, WikiTitle newvals)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(wikiname) == false && this.WikiExists(wikiname) == true
+                    && id > 0 && newvals != null)
+                {
+                    this.db.Entry(this.Get(wikiname, id)).CurrentValues.SetValues(newvals);
+                    this.MarkWikiAsUpdated(this.GetWiki(wikiname));
+                    this.db.SaveChanges();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+
+            }
+        }
         #endregion
         #region Content
         public List<WikiContent> GetHistory(int titleid)
@@ -1017,7 +1037,69 @@ namespace MultiPlex.Core.Data.Repositories
             }
 
         }
+        public void AddTitleToCategory(string wikiname, int catid, WikiTitle title)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(wikiname) == false && catid > 0 && title != null
+                     )
+                {
+                    WikiCategory cat = this.GetCategorybyId(catid);
+                    if (cat != null)
+                    {
+                        if (title.Categories == null)
+                        {
+                            title.Categories = new List<WikiCategory>();
+                        }
+                        if (title.Categories.FirstOrDefault(x => x.Id == catid) == null)
+                        {
+                            title.Categories.Add(cat);
+                            CommonTools.titlemngr.EditTitle(wikiname, catid, title);
 
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+
+            }
+        }
+        public void RemoveTitleFromCategory(string wikiname, int catid, WikiTitle title)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(wikiname) == false && catid > 0 && title != null
+                     )
+                {
+                    WikiCategory cat = this.GetCategorybyId(catid);
+                    if (cat != null)
+                    {
+                        if (title.Categories != null)
+                        {
+                            title.Categories = new List<WikiCategory>();
+
+                            if (title.Categories.FirstOrDefault(x => x.Id == catid) != null)
+                            {
+                                title.Categories.Remove(cat);
+                                CommonTools.titlemngr.EditTitle(wikiname, catid, title);
+
+                            }
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+
+            }
+        }
         #endregion
         #region Files
         public void AddFile(string wikiname, WikiFile tfile, int tid, ApplicationUser user)

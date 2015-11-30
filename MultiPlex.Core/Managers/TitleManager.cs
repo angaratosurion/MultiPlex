@@ -27,6 +27,24 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
+        public void EditTitle(string wikiname,int id,WikiTitle newvals)
+        {
+            try
+            {
+                if ( CommonTools.isEmpty(wikiname)==false && this.wrepo.WikiExists(wikiname)==true
+                    && id>0 && newvals!=null)
+                {
+                    this.wrepo.EditTitle(wikiname, id, newvals);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                
+            }
+        }
         public WikiTitle GetTitlebyId(string wikiname, int id)
         {
             try

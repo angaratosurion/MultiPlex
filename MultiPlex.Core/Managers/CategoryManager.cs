@@ -130,5 +130,40 @@ namespace MultiPlex.Core.Managers
 
             }
         }
+        public void AddTitleToCategory(string wikiname,int catid,WikiTitle title)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(wikiname) == false && catid > 0 && title != null
+                     )
+                {
+                    this.rp.AddTitleToCategory(wikiname, catid, title);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+
+            }
+        }
+  
+    public void RemoveTitleFromCategory(string wikiname, int catid, WikiTitle title)
+    {
+        try
+        {
+            if (CommonTools.isEmpty(wikiname) == false && catid > 0 && title != null
+                 )
+            {
+                this.rp.RemoveTitleFromCategory (wikiname, catid, title);
+            }//
+        }
+        catch (Exception ex)
+        {
+
+            CommonTools.ErrorReporting(ex);
+
+        }
     }
+}
 }
