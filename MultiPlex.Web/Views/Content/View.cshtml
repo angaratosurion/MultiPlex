@@ -102,6 +102,13 @@
 
                     }
                 }
+        @Html.ActionLink("Add Title to Category", "AddTitleToCategory","Category",new { wikiname = Model.Content.Wiki.Name,
+   tid=Model.Content.Title.Id},htmlAttributes:null)|
+            @Html.ActionLink("Remove Title From Category", "RemoveTitleFromCategory", "Category", new
+    {
+        wikiname = Model.Content.Wiki.Name,
+        tid = Model.Content.Title.Id
+    }, htmlAttributes: null)
          </div>
          
 

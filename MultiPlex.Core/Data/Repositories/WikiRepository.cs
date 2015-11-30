@@ -458,11 +458,17 @@ namespace MultiPlex.Core.Data.Repositories
                 if (CommonTools.isEmpty(wikiname) == false && this.WikiExists(wikiname) == true
                     && id > 0 && newvals != null)
                 {
-                    this.db.Entry(this.Get(wikiname, id)).CurrentValues.SetValues(newvals);
-                    this.MarkWikiAsUpdated(this.GetWiki(wikiname));
+                    WikiTitle oldvals = this.Get(wikiname, id);
+                    this.db.Entry(oldvals).CurrentValues.SetValues(newvals);
+                  
                     this.db.SaveChanges();
+                    this.MarkWikiAsUpdated(this.GetWiki(wikiname));
                 }
 
+            }
+            catch(ValidationException ex)
+            {
+                throw (ex);
             }
             catch (Exception ex)
             {
@@ -931,6 +937,27 @@ namespace MultiPlex.Core.Data.Repositories
                 return null;
             }
         }
+        public WikiCategory GetCategorybyTitle(string catname, string wikiname)
+        {
+            try
+            {
+                WikiCategory ap = null;
+                if (!CommonTools.isEmpty(wikiname) && this.WikiExists(wikiname)
+                     && !CommonTools.isEmpty(catname))
+                {
+                    List<WikiCategory> cats = this.GetCategorybyWiki(wikiname);
+                    ap = cats.FirstOrDefault(x => x.Title == catname);
+                }
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
         public void CreateCategory(WikiCategory cat)
         {
             try
@@ -1054,12 +1081,16 @@ namespace MultiPlex.Core.Data.Repositories
                         if (title.Categories.FirstOrDefault(x => x.Id == catid) == null)
                         {
                             title.Categories.Add(cat);
-                            CommonTools.titlemngr.EditTitle(wikiname, catid, title);
+                            CommonTools.titlemngr.EditTitle(wikiname, title.Id, title);
 
                         }
 
                     }
                 }
+            }
+            catch(ValidationException ex)
+            {
+                throw (ex);
             }
             catch (Exception ex)
             {
@@ -1080,12 +1111,12 @@ namespace MultiPlex.Core.Data.Repositories
                     {
                         if (title.Categories != null)
                         {
-                            title.Categories = new List<WikiCategory>();
+                            //title.Categories = new List<WikiCategory>();
 
                             if (title.Categories.FirstOrDefault(x => x.Id == catid) != null)
                             {
                                 title.Categories.Remove(cat);
-                                CommonTools.titlemngr.EditTitle(wikiname, catid, title);
+                                CommonTools.titlemngr.EditTitle(wikiname, title.Id, title);
 
                             }
                         }

@@ -98,6 +98,30 @@ namespace MultiPlex.Core.Managers
             }
 
         }
+        public WikiCategory GetCategoryByTitle(string catname, string wikiname)
+        {
+
+            try
+            {
+                WikiCategory ap = null;
+
+                if (!CommonTools.isEmpty(wikiname)  && !CommonTools.isEmpty(catname))
+                {
+                    ap = rp.GetCategorybyTitle(catname, wikiname);
+
+
+                }
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+
+        }
         public void EditCatrgory(string wikiname,int id , WikiCategory cat)
         {
             try

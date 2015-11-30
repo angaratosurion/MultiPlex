@@ -43,22 +43,22 @@ namespace MultiPlex.Web.Controllers
         {
             try
             {
-                
 
-            if (CommonTools.isEmpty(wikiname))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
+                if (CommonTools.isEmpty(wikiname))
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                }
+                List<WikiCategory> cats = catmngr.GetCategoryListByWiki(wikiname);
+                if (cats == null)
+                {
+                    return HttpNotFound();
+                }
+
+
+                return View(cats);
             }
-            List<WikiCategory> cats = catmngr.GetCategoryListByWiki(wikiname);
-            if (cats == null)
-            {
-                return HttpNotFound();
-            }
-
-
-            return View(cats);
-           }
             catch (Exception ex)
             {
 
@@ -66,7 +66,7 @@ namespace MultiPlex.Web.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
             }
         }
-        public ActionResult Details(string wikiname,int id)
+        public ActionResult Details(string wikiname, int id)
         {
             try
             {
@@ -86,7 +86,7 @@ namespace MultiPlex.Web.Controllers
                 ViewCategoryTitles modl = new ViewCategoryTitles();
                 modl.Category = cat;
                 List<WikiTitle> titles = this.tmngr.GetTitlesbyCategory(wikiname, id);
-                 if ( titles == null)
+                if (titles == null)
                 {
                     titles = new List<WikiTitle>();
                 }
@@ -101,16 +101,16 @@ namespace MultiPlex.Web.Controllers
             }
         }
         [Authorize]
-        public ActionResult EditCategory(string wikiname , int ?id)
+        public ActionResult EditCategory(string wikiname, int? id)
         {
             try
-            { 
+            {
                 if (CommonTools.isEmpty(wikiname) && Convert.ToInt32(id) <= 0)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
                 }
-                
+
                 Wiki wk = this.wkmngr.GetWiki(wikiname);
                 if (wk == null)
                 {
@@ -121,7 +121,7 @@ namespace MultiPlex.Web.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
                 }
                 WikiCategory cat = this.catmngr.GetCategoryById(Convert.ToInt32(id));
-                if ( cat == null)
+                if (cat == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.NotFound);
                 }
@@ -143,14 +143,14 @@ namespace MultiPlex.Web.Controllers
             try
             {
 
-                 if ( cat !=null)
+                if (cat != null)
                 {
                     this.catmngr.EditCatrgory(wikiname, id, cat);
                     RouteValueDictionary vals = new RouteValueDictionary();
                     vals.Add("wikiname", wikiname);
                     vals.Add("id", id);
 
-                    return RedirectToAction("Details",vals);
+                    return RedirectToAction("Details", vals);
                 }
 
                 return View(cat);
@@ -164,12 +164,12 @@ namespace MultiPlex.Web.Controllers
 
 
         }
-       [Authorize]
+        [Authorize]
         public ActionResult Delete(string wikiname, int id)
         {
             try
             {
-                if (CommonTools.isEmpty(wikiname) == true && id <=0)
+                if (CommonTools.isEmpty(wikiname) == true && id <= 0)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
@@ -205,7 +205,7 @@ namespace MultiPlex.Web.Controllers
 
             try
             {
-               
+
                 if (CommonTools.isEmpty(wikiname) == true && id <= 0)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -217,7 +217,163 @@ namespace MultiPlex.Web.Controllers
                 }
                 RouteValueDictionary vals = new RouteValueDictionary();
                 vals.Add("wikiname", wikiname);
-                return RedirectToAction("CategoriesByWiki",vals);
+                return RedirectToAction("CategoriesByWiki", vals);
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
+        [Authorize]
+        public ActionResult AddTitleToCategory(string wikiname, int tid)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(wikiname) && tid <= 0)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                }
+
+                WikiTitle title = this.tmngr.GetTitlebyId(wikiname, tid);
+                if (title == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewTitleCategories mod = new ViewTitleCategories();
+                mod.Title = title;
+                mod.Categories = this.catmngr.GetCategoryListByWiki(wikiname);
+                return View(mod);
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public ActionResult AddTitleToCategory(string wikiname, ViewTitleCategories model, int tid)
+        {
+            try
+            {
+                int catid = 0;
+                string catname;
+                if (CommonTools.isEmpty(wikiname) && tid <= 0)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                }
+
+                WikiTitle title = this.tmngr.GetTitlebyId(wikiname, tid);
+                if (title == null)
+                {
+                    return HttpNotFound();
+                }
+                if (tid > 0 && model != null && model.CategoryToAddOrRemove != null)
+                //&& CommonTools.isEmpty( con["UserToAdd"])==false)
+                {
+                    catname = model.CategoryToAddOrRemove.Title;
+                    WikiCategory cat = this.catmngr.GetCategoryByTitle(catname, wikiname);
+                    if (cat==null)
+                    {
+                        return HttpNotFound();
+                    }
+                    catid = cat.Id;
+                    if (catid > 0)
+                    {
+                        this.catmngr.AddTitleToCategory(wikiname, catid, title);
+                    }
+
+                }
+                RouteValueDictionary vals = new RouteValueDictionary();
+                vals.Add("wikiname", wikiname);
+                vals.Add("cid", catid);
+                return RedirectToAction("Index", "Content", vals);
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
+        [Authorize]
+        public ActionResult RemoveTitleFromCategory(string wikiname, int tid)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(wikiname) && tid <= 0)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                }
+
+                WikiTitle title = this.tmngr.GetTitlebyId(wikiname, tid);
+                if (title == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewTitleCategories mod = new ViewTitleCategories();
+                mod.Title = title;
+                mod.Categories = this.catmngr.GetCategoryListByWiki(wikiname);
+                return View(mod);
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public ActionResult RemoveTitleFromCategory(string wikiname, ViewTitleCategories model, int tid)
+        {
+            try
+            {
+                int catid = 0;
+                string catname;
+                if (CommonTools.isEmpty(wikiname) && tid <= 0)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                }
+
+                WikiTitle title = this.tmngr.GetTitlebyId(wikiname, tid);
+                if (title == null)
+                {
+                    return HttpNotFound();
+                }
+                if (tid > 0 && model != null && model.CategoryToAddOrRemove != null)
+                //&& CommonTools.isEmpty( con["UserToAdd"])==false)
+                {
+                    catname = model.CategoryToAddOrRemove.Title;
+                    WikiCategory cat = this.catmngr.GetCategoryByTitle(catname, wikiname);
+                    if (cat == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    catid = cat.Id;
+                    if (catid > 0)
+                    {
+                        this.catmngr.RemoveTitleFromCategory(wikiname, catid, title);
+                    }
+
+                }
+                RouteValueDictionary vals = new RouteValueDictionary();
+                vals.Add("wikiname", wikiname);
+                vals.Add("cid", catid);
+                return RedirectToAction("Index", "Content", vals);
+
             }
             catch (Exception ex)
             {
@@ -227,4 +383,5 @@ namespace MultiPlex.Web.Controllers
             }
         }
     }
+
 }
