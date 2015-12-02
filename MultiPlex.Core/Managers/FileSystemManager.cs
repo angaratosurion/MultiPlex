@@ -70,15 +70,15 @@ namespace MultiPlex.Core.Managers
                return false;
            }
        }
-        public static Boolean CreateDirectory(string path)
+        public static Boolean CreateDirectory(string relpath)
        {
            try
            {
                Boolean ap = false;
 
-               if ( DirectoryExists(path)==false)
+               if ( DirectoryExists(relpath) ==false)
                {
-                   string t =  HostingEnvironment.MapPath(path);
+                   string t =  HostingEnvironment.MapPath(relpath);
                    Directory.CreateDirectory(t);
                    ap = true;
                }
@@ -92,14 +92,14 @@ namespace MultiPlex.Core.Managers
                return false;
            }
        }
-       public static Boolean DeleteDirectory(string path)
+       public static Boolean DeleteDirectory(string relpath)
        {
            try
            {
                Boolean ap = false;
-               if (CommonTools.isEmpty(path) &&  DirectoryExists(path))
+               if (CommonTools.isEmpty(relpath) &&  DirectoryExists(relpath))
                {
-                   string t =  HostingEnvironment.MapPath(path);
+                   string t =  HostingEnvironment.MapPath(relpath);
                    Directory.Delete(t,true);
                    ap = true;
                }
@@ -115,18 +115,18 @@ namespace MultiPlex.Core.Managers
                return false;
            }
        }
-       public static Boolean MoveDirectory(string src, string trg)
+       public static Boolean MoveDirectory(string relsrc, string reltrg)
        {
            try
            {
                Boolean ap = false;
 
-               if (CommonTools.isEmpty(src) && CommonTools.isEmpty(trg)
-                   &&  DirectoryExists(src))//&&  Exists(trg))
+               if (CommonTools.isEmpty(relsrc) && CommonTools.isEmpty(reltrg)
+                   &&  DirectoryExists(relsrc))//&&  Exists(trg))
                {
-                   src = HostingEnvironment.MapPath(src);
-                   trg = HostingEnvironment.MapPath(trg);
-                   Directory.Move(src, trg);
+                    relsrc = HostingEnvironment.MapPath(relsrc);
+                    reltrg = HostingEnvironment.MapPath(reltrg);
+                   Directory.Move(relsrc, reltrg);
                    ap = true;
                }
 
@@ -139,18 +139,18 @@ namespace MultiPlex.Core.Managers
                return false;
            }
        }
-        public static Boolean CreateDirectoryLink(string src, string trg)
+        public static Boolean CreateDirectoryLink(string relsrc, string reltrg)
         {
             try
             {
                 Boolean ap = false;
 
-                if (CommonTools.isEmpty(src) && CommonTools.isEmpty(trg)
-                    &&  DirectoryExists(src))//&&  Exists(trg))
+                if (CommonTools.isEmpty(relsrc) && CommonTools.isEmpty(reltrg)
+                    &&  DirectoryExists(relsrc))//&&  Exists(trg))
                 {
-                    src = HostingEnvironment.MapPath(src);
-                    trg = HostingEnvironment.MapPath(trg);
-                   ap= CreateSymbolicLink(src, trg, SYMLINK_FLAG_DIRECTORY);
+                    relsrc = HostingEnvironment.MapPath(relsrc);
+                    reltrg = HostingEnvironment.MapPath(reltrg);
+                   ap= CreateSymbolicLink(relsrc, reltrg, SYMLINK_FLAG_DIRECTORY);
 
                 }
 
@@ -167,13 +167,13 @@ namespace MultiPlex.Core.Managers
         }
         #endregion
         #region files
-        public static Boolean FileExists(String path)
+        public static Boolean FileExists(String relpath)
        {
            try
            {
                Boolean ap = false;
-               path =  HostingEnvironment.MapPath(path);
-               if (CommonTools.isEmpty(path) && File.Exists(path))
+                relpath =  HostingEnvironment.MapPath(relpath);
+               if (CommonTools.isEmpty(relpath) && File.Exists(relpath))
                {
                    ap = true;
                }
@@ -185,11 +185,12 @@ namespace MultiPlex.Core.Managers
                return false;
            }
        }
-       public static Boolean CreateFile(string path, HttpPostedFileBase data)
+       public static Boolean CreateFile(string relpath, HttpPostedFileBase data)
        {
            try
            {
                Boolean ap = false;
+                string path= relpath;
                if (CommonTools.isEmpty(path)==false && !FileExists(path) && data !=null)
                {
                     /* int count = data.Count();
@@ -213,11 +214,12 @@ namespace MultiPlex.Core.Managers
                return false;
            }
        }
-       public static Boolean DeleteFile(string path)
+       public static Boolean DeleteFile(string relpath)
        {
            try
            {
-               Boolean ap = false;
+                string path = relpath;
+                Boolean ap = false;
                if (CommonTools.isEmpty(path) &&  FileExists(path))
                {
                    path =  HostingEnvironment.MapPath(path);
@@ -236,13 +238,14 @@ namespace MultiPlex.Core.Managers
                return false;
            }
        }
-       public static Boolean CopyFile(string src,string trg)
+       public static Boolean CopyFile(string relsrc, string reltrg)
        {
            try
            {
                Boolean ap = false;
+                string src=relsrc,trg=reltrg;
 
-               if (CommonTools.isEmpty(src) && CommonTools.isEmpty(trg)
+                if (CommonTools.isEmpty(src) && CommonTools.isEmpty(trg)
                    &&  FileExists(src) )//&&  Exists(trg))
                {
                    src = HostingEnvironment.MapPath(src);
@@ -260,13 +263,14 @@ namespace MultiPlex.Core.Managers
                return false;
            }
        }
-        public static Boolean MoveFile(string src, string trg)
+        public static Boolean MoveFile(string relsrc, string reltrg)
        {
            try
            {
                Boolean ap = false;
+                string src = relsrc, trg = reltrg;
 
-               if (CommonTools.isEmpty(src) && CommonTools.isEmpty(trg)
+                if (CommonTools.isEmpty(src) && CommonTools.isEmpty(trg)
                    &&  FileExists(src))//&&  Exists(trg))
                {
                    src = HostingEnvironment.MapPath(src);
@@ -285,11 +289,12 @@ namespace MultiPlex.Core.Managers
            }
        }
      
-        public static Boolean CreateFileLink(string src,string trg)
+        public static Boolean CreateFileLink(string relsrc, string reltrg)
         {
             try
             {
                 Boolean ap = false;
+                string src = relsrc, trg = reltrg;
 
                 if (CommonTools.isEmpty(src) && CommonTools.isEmpty(trg)
                     &&  FileExists(src))//&&  Exists(trg))

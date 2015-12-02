@@ -215,7 +215,7 @@ namespace MultiPlex.Core.Managers
                     {
                           foreach(WikiFile f in wkfiles)
                         {
-                            FileSystemManager.DeleteFile(f.Path);
+                            FileSystemManager.DeleteFile(f.RelativePath);
                         }
                         FileSystemManager.DeleteDirectory(path);
                     }

@@ -206,6 +206,7 @@
     <Compile Include="Controllers\AdminSiteController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\TitleController.cs" />
     <Compile Include="Controllers\HomeWikiController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -326,6 +327,7 @@
   <ItemGroup>
     <Folder Include="App_Data\wiki\" />
     <Folder Include="Modules\" />
+    <Folder Include="Views\File\" />
     <Folder Include="Views\Title\" />
   </ItemGroup>
   <ItemGroup>

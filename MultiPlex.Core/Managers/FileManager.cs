@@ -29,6 +29,7 @@ namespace MultiPlex.Core.Managers
                     string wkpath = wkrotfold + "/" + filcnt.FileName;
                     if ( FileSystemManager.FileExists(wkpath))
                     {
+                        tfile.RelativePath = wkpath;
                        Boolean ap= FileSystemManager.CreateFile(wkpath, filcnt);
                         if (ap)
                         {
@@ -100,7 +101,7 @@ namespace MultiPlex.Core.Managers
                     if (wk != null  && CommonTools.usrmng.UserHasAccessToWiki(user, wk, true))
                     {
                         WikiFile file = this.rep.GetFilesById(wikiname, fid);
-                        Boolean r=FileSystemManager.DeleteFile(file.Path);
+                        Boolean r=FileSystemManager.DeleteFile(file.RelativePath);
                          if ( r==true)
                         {
                             this.rep.DeleteFileById(wikiname, fid);

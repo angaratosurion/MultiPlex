@@ -14,8 +14,10 @@ namespace MultiPlex.Core.Data.Models
         public int Id { get; set; }
         [Required]
         public string FileName { get; set; }
+       // [Required]
+        public string AbsolutePath { get; set; }
         [Required]
-        public string Path { get; set; }
+        public string RelativePath { get; set; }
         public int Version { get; set; }
         [DataType(DataType.DateTime)]
 
