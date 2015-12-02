@@ -179,7 +179,24 @@ namespace MultiPlex.Web.Controllers
 
 
         }
+        public ActionResult About()
+        {
+            try
+            {
 
+
+                //  List<WikiModel> wikis = this.wmngr.ListWiki();
+                return View();
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+
+
+        }
 
     }
 }

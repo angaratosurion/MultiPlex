@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("MultiPlex.Core")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A Wiki Software using Wkiplex engine for multitiple wikis ")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MultiPlex.Core")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCopyright("Copyright ©  2015 Paris Koutsioukis")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -16,7 +16,7 @@ namespace MultiPlex.Core
         [ImportMany]
         private IEnumerable<Lazy<IRouteRegistrar, IRouteRegistrarMetadata>> RouteRegistrars;
         private static IEnumerable<Lazy<IActionVerb, IActionVerbMetadata>> ActionVerbs;
-
+        private static IEnumerable<Lazy<IModuleInfo>> ModuleInfos;
         public static void Compose(List<string> pluginFolders)
         {
             try
@@ -40,6 +40,7 @@ namespace MultiPlex.Core
 
                 CompositionContainer.ComposeParts();
                 ActionVerbs = CompositionContainer.GetExports<IActionVerb, IActionVerbMetadata>();
+                ModuleInfos = CompositionContainer.GetExports<IModuleInfo>();
                 IsLoaded = true;
             }
             catch (Exception ex)
@@ -97,6 +98,17 @@ namespace MultiPlex.Core
             return ActionVerbs
                 .Where(l => l.Metadata.Category.Equals(category, StringComparison.InvariantCultureIgnoreCase))
                 .Select(l => l.Value);
+        }
+        public static IEnumerable<IModuleInfo> GetAllModulesInfo()
+        {
+            List<IModuleInfo> ap = new List<IModuleInfo>();
+            
+             foreach(var inf in ModuleInfos)
+            {
+                ap.Add(inf.Value);
+            }
+
+            return ap;
         }
     }
 }
