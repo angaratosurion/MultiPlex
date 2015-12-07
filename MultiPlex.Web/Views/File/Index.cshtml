@@ -17,15 +17,31 @@
 <table class="table">
     <tr>
         <th>
-             
-          
+
+       
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Wiki.Name)
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Wiki)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Owner.UserName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FileName)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RelativePath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AbsolutePath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Version)            
+        </th>
+        
         <th></th>
     </tr>
 
@@ -33,22 +49,41 @@
     {
         <tr>
             <td>
-
+                
                  @if (item.isImage == true)
                  {
-                   @Html.Image(item.RelativePath,item.FileName,"100")
+                   @Html.Image(item.RelativePath,item.FileType,"100")
                  }
-                 @{
+                 @*@{*@
                      else
                      {
-                         @Html.DisplayFor(modelItem => item.RelativePath);
+                         @Html.DisplayFor(modelItem => item.FileType);
 
                      }
-                 }
+                 @*}*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Wiki.Name)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RelativePath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AbsolutePath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Version)
+            </td>
+          
             <td>
                 @*@Html.ActionLink("Edit", "EditWiki", new { wikiname = item.Name }) |
                 @Html.ActionLink("Details", "Details", new { wikiname = item.Name }) |

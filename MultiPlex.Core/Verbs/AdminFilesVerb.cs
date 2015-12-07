@@ -31,7 +31,7 @@ namespace MultiPlex.Core.Verbs
         {
             get
             {
-                return "Users Administration";
+                return "File Administration";
             }
         }
     }
