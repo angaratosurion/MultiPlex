@@ -18,6 +18,9 @@ namespace MultiPlex.Core.Data.Models
         public string AbsolutePath { get; set; }
         [Required]
         public string RelativePath { get; set; }
+        [Required]
+        public string FileType { get; set; }
+        public Boolean isImage { get; set; }
         public int Version { get; set; }
         [DataType(DataType.DateTime)]
 

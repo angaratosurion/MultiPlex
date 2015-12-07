@@ -323,11 +323,11 @@
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\AddTitleToCategory.cshtml" />
     <Content Include="Views\Category\RemoveTitleFromCategory.cshtml" />
+    <Content Include="Views\File\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\wiki\" />
     <Folder Include="Modules\" />
-    <Folder Include="Views\File\" />
     <Folder Include="Views\Title\" />
   </ItemGroup>
   <ItemGroup>

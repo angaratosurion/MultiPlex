@@ -33,6 +33,7 @@ namespace MultiPlex.Core.Managers
                        Boolean ap= FileSystemManager.CreateFile(wkpath, filcnt);
                         if (ap)
                         {
+                            tfile=this.MarkAFileAsImage(filcnt, tfile);
                             rep.AddFile(wikiname, tfile, tid, user);
                         }
                     }
@@ -57,6 +58,26 @@ namespace MultiPlex.Core.Managers
                 {
                     ap = this.rep.GetWikiFiles(wikiname);
                 }
+
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        public List<Data.Models.WikiFile> GetFiles()
+        {
+            try
+            {
+                List<Data.Models.WikiFile> ap = null;
+
+
+                ap = this.rep.GetFiles();
+                
 
                 return ap;
 
@@ -149,6 +170,51 @@ namespace MultiPlex.Core.Managers
             {
 
                 CommonTools.ErrorReporting(ex);
+
+            }
+        }
+        public Boolean isUplaodedFileImage(HttpPostedFileBase file)
+        {
+            try
+            {
+                Boolean ap = false;
+                 if ( file !=null && file.ContentType.Contains("image") ==true)
+                {
+                    ap = true;
+                }
+
+
+
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return false;
+
+            }
+        }
+        public WikiFile MarkAFileAsImage(HttpPostedFileBase pfile , WikiFile wfile)
+        {
+            try
+            {
+                WikiFile ap = wfile;
+
+
+                 if ( pfile !=null && wfile!=null )
+                {
+                    ap.isImage = this.isUplaodedFileImage(pfile);
+                }
+                return ap; 
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return wfile;
 
             }
         }
