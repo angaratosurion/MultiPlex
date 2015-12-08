@@ -188,6 +188,7 @@
     <Compile Include="Data\ViewModels\ViewFullUserDetails.cs" />
     <Compile Include="Data\ViewModels\ViewIdentityRoleDetails.cs" />
     <Compile Include="Data\ViewModels\ViewTitleCategories.cs" />
+    <Compile Include="Data\ViewModels\ViewTitleFile.cs" />
     <Compile Include="Data\ViewModels\ViewWikiModInvites.cs" />
     <Compile Include="Data\ViewModels\ViewWikiUsers.cs" />
     <Compile Include="Helpers\ASP.Net\ImageHelper.cs" />

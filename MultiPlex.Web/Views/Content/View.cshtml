@@ -51,6 +51,11 @@
             });
         });
     </script>
+    @Html.ActionLink("Add File to title", "AddFileToTitle","File",  new
+{
+    wikiname = Model.Content.Wiki.Name,
+    tid = Model.Content.Title.Id
+},htmlAttributes:null)
     } 
 
 }

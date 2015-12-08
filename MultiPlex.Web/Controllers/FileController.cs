@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using MultiPlex.Core;
 using MultiPlex.Core.Data.Models;
+using MultiPlex.Core.Data.ViewModels;
 using MultiPlex.Core.Managers;
 
 namespace MultiPlex.Web.Controllers
@@ -33,7 +34,7 @@ namespace MultiPlex.Web.Controllers
             }
         }
         [Authorize]
-        public ActionResult CreateFile(string wikiname,int tid)
+        public ActionResult AddFileToTitle(string wikiname,int tid)
         {
             try
             {
@@ -41,8 +42,23 @@ namespace MultiPlex.Web.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
+                WikiTitle title = CommonTools.titlemngr.GetTitlebyId(wikiname, tid);
+                Wiki wk = CommonTools.wkmngr.GetWiki(wikiname);
+                 if (wk==null  )
+                {
+                    return HttpNotFound();
+                }
+                 if(title == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewTitleFile mod = new ViewTitleFile();
+                mod.File = new WikiFile();
+                mod.Title = title;
+                mod.ToBeAdded = true;
 
-                return View();
+
+                return View(mod);
             }
             catch (Exception ex)
             {
@@ -54,7 +70,7 @@ namespace MultiPlex.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult CreateFile(string wikiname, int tid,HttpPostedFile file)
+        public ActionResult AddFileToTitle(string wikiname, int tid,HttpPostedFileBase file, ViewTitleFile mod)
         {
             try
             {
@@ -63,7 +79,11 @@ namespace MultiPlex.Web.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
-                return View();
+                 if ( mod !=null && mod.File !=null && mod.Title !=null)
+                {
+                    this.filemngr.AddFile(wikiname, mod.File, file, tid, CommonTools.usrmng.GetUser(this.User.Identity.Name));
+                }
+                return View(mod);
             }
             catch (Exception ex)
             {

@@ -324,6 +324,7 @@
     <Content Include="Views\Category\AddTitleToCategory.cshtml" />
     <Content Include="Views\Category\RemoveTitleFromCategory.cshtml" />
     <Content Include="Views\File\Index.cshtml" />
+    <Content Include="Views\File\AddFileToTitle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\wiki\" />
