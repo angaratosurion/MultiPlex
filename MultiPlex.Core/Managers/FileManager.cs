@@ -8,6 +8,7 @@ using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Data.Repositories;
 using System.IO;
 using MultiPlex.Core.Configuration;
+using System.Web.Hosting;
 
 namespace MultiPlex.Core.Managers
 {
@@ -26,14 +27,17 @@ namespace MultiPlex.Core.Managers
                 {
                     Wiki wk = rep.GetWiki(wikiname);
                     string wkrotfold = FileSystemManager.GetWikiRootDataFolderRelativePath(wk.Name);
-                    string wkpath = wkrotfold + "/" + filcnt.FileName;
-                    if ( FileSystemManager.FileExists(wkpath))
+                    string wkpath = wkrotfold + "/" + Path.GetFileName(filcnt.FileName);
+                    if ( FileSystemManager.FileExists(wkpath)==false)
                     {
                         tfile.RelativePath = wkpath;
                        Boolean ap= FileSystemManager.CreateFile(wkpath, filcnt);
                         if (ap)
                         {
-                            tfile=this.MarkAFileAsImage(filcnt, tfile);
+                            tfile.FileName = Path.GetFileName(filcnt.FileName);
+                            tfile.AbsolutePath = HostingEnvironment.MapPath(wkpath);
+                            tfile.FileType = filcnt.ContentType;
+                            tfile =this.MarkAFileAsImage(filcnt, tfile);
                             rep.AddFile(wikiname, tfile, tid, user);
                         }
                     }

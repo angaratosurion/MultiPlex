@@ -27,6 +27,14 @@ namespace MultiPlex.Core.Verbs
             }
         }
 
+        public string Description
+        {
+            get
+            {
+                return "";
+            }
+        }
+
         public string Name
         {
             get

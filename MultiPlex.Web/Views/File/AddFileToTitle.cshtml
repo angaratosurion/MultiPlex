@@ -37,5 +37,30 @@
             </tr>
         </tbody>
     </table>
+    
+   
+
 </div>
+<h4>Upload File</h4>
+<hr />
+@using (Html.BeginForm("AddFileToTitle", "File",new {wikiname=Model.Title.Wiki.Name,tid=Model.Title.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+
+        @Html.DisplayNameFor(m=>m.File.FileName)
+        <input type="file" name="file" id="file" />
+
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="AddFile" class="btn btn-default" />
+            </div>
+        </div>
+   </div>
+
+
+}
 

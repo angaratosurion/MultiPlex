@@ -193,12 +193,9 @@ namespace MultiPlex.Core.Managers
                 string path= relpath;
                if (CommonTools.isEmpty(path)==false && !FileExists(path) && data !=null)
                {
-                    /* int count = data.Count();
+                    /* int count = data.Count();*/
                      path =  HostingEnvironment.MapPath(path);
-                     FileStream fil=File.Create(path);
-                     fil.Write(data, 0, count);
-                     fil.Flush();
-                     fil.Close();*/
+                    
                     data.SaveAs(path);
                    ap = true;
                }

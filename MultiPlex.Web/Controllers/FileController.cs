@@ -78,9 +78,14 @@ namespace MultiPlex.Web.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-
-                 if ( mod !=null && mod.File !=null && mod.Title !=null)
+                mod.File = new WikiFile();
+                WikiTitle title = CommonTools.titlemngr.GetTitlebyId(wikiname, tid);
+                mod.Title = title;
+                if ( mod !=null && mod.File !=null && mod.Title !=null && file.ContentLength>0)
                 {
+                    WikiFile fmod = mod.File;
+                    
+
                     this.filemngr.AddFile(wikiname, mod.File, file, tid, CommonTools.usrmng.GetUser(this.User.Identity.Name));
                 }
                 return View(mod);

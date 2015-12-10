@@ -27,6 +27,14 @@ namespace MultiPlex.Core.Verbs
             }
         }
 
+        public string Description
+        {
+            get
+            {
+                return "Here you Administrage the Existing Wikis";
+            }
+        }
+
         public string Name
         {
             get

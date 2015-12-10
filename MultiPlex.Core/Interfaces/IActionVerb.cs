@@ -23,6 +23,7 @@ namespace MultiPlex.Core.Interfaces
         /// Gets the controller.
         /// </summary>
         string Controller { get; }
+        string Description { get; }
         #endregion
     }
 }

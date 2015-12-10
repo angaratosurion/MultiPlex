@@ -51,8 +51,8 @@
             <td>
                 
                  @if (item.isImage == true)
-                 {
-                   @Html.Image(item.RelativePath,item.FileType,"100")
+                 { //var imgsrc = Url.Content(item.RelativePath);
+                     @Html.Image(Url.Content(item.RelativePath), item.FileType,"100")
                  }
                  @*@{*@
                      else
