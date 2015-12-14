@@ -17,7 +17,9 @@ namespace MultiPlex.Core.Helpers.ASP.Net
             builder.MergeAttribute("height", height);
             return MvcHtmlString.Create(builder.ToString(TagRenderMode.SelfClosing));
         }
-        public static MvcHtmlString Image(this HtmlHelper helper, string src, string altText, string height = null, string width = null, string maxheight = null, string maxwidth = null, string cssClass = null)
+        public static MvcHtmlString Image(this HtmlHelper helper, string src, string altText, 
+            string height = null, string width = null, string maxheight = null, string maxwidth = null, 
+            string cssClass = null)
         {
             var builder = new TagBuilder("img");
             builder.MergeAttribute("src", src);
