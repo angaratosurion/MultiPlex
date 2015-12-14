@@ -32,6 +32,10 @@
                     @Html.ActionLink("Moderator invitations", "GetModeratorInvitesByWiki", new { wikiname = wikiname },
                 new { @class = "btn btn-default" })
                 </td>
+                <td>
+                    @Html.ActionLink("Files", "GetFilesByWiki","File", new { wikiname = wikiname },
+                new { @class = "btn btn-default" })
+                </td>
         }
     </tr>
 

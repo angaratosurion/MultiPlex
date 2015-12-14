@@ -124,11 +124,11 @@ namespace MultiPlex.Web.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
             }
         }
-        public ActionResult GetFilesByWiki(string wikiname, int tid)
+        public ActionResult GetFilesByWiki(string wikiname)
         {
             try
             {
-                if (CommonTools.isEmpty(wikiname) && tid <= 0)
+                if (CommonTools.isEmpty(wikiname) )
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
