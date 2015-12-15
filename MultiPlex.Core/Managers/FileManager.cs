@@ -73,6 +73,27 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
+        public List<Data.Models.WikiFile> GetImageFilesByWiki(string wikiname)
+        {
+            try
+            {
+                List<Data.Models.WikiFile> ap = null;
+
+                if (CommonTools.isEmpty(wikiname) == false && this.rep.WikiExists(wikiname))
+                {
+                    ap = this.rep.GetWikiImageFiles(wikiname);
+                }
+
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
         public List<Data.Models.WikiFile> GetFiles()
         {
             try

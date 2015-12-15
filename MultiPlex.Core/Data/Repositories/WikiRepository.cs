@@ -1288,6 +1288,59 @@ namespace MultiPlex.Core.Data.Repositories
             }
 
         }
+        public List<WikiFile> GetWikiImageFiles(string wikiname)
+        {
+            try
+            {
+                List<WikiFile> ap = null;
+                if (wikiname != null && this.WikiExists(wikiname) != false)
+                {
+                   var wkf = this.GetWikiFiles(wikiname);
+                    if ( wkf !=null && wkf.Count>0)
+                    {
+                        ap = wkf.FindAll(x => x.isImage == true);
+                        
+                    }
+                }
+
+                return ap;
+
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        public List<WikiFile> GetImageFilesByTitle(string wikiname, int tid)
+        {
+
+            try
+            {
+                List<WikiFile> ap = null;
+                if (wikiname != null && this.WikiExists(wikiname) != false && tid > 0)
+                {
+                    var wkf = this.GetFilesByTitle(wikiname, tid);
+                    if (wkf != null && wkf.Count > 0)
+                    {
+                        ap = wkf.FindAll(x => x.isImage == true);
+                    }
+                }
+                    return ap;
+                
+
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+
+        }
 
         public void DeleteFileById(string wikiname, int id)
         {
