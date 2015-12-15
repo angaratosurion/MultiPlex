@@ -50,19 +50,10 @@
         <tr>
             <td>
                 
-                 @if (item.isImage == true)
-                 { //var imgsrc = Url.Content(item.RelativePath);
+              
                      @Html.Image(Url.Content(item.RelativePath), item.FileType,"100")
-                   
-                 }
-                 @*@{*@
-                     else
-                     {
-                         @Html.DisplayFor(modelItem => item.FileType);
-
-                     }
                 @Html.ActionLink("Full image", "Details", new { wikiname = item.Wiki.Name, fid = item.Id })
-                 @*}*@
+              
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title.Name)

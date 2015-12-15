@@ -58,7 +58,7 @@ namespace MultiPlex.Core.Managers
            {
                Boolean ap = false;
                path =  HostingEnvironment.MapPath(path);
-               if (CommonTools.isEmpty(path) && Directory.Exists(path))
+               if (!CommonTools.isEmpty(path) && Directory.Exists(path))
                {
                    ap = true;
                }
@@ -76,7 +76,7 @@ namespace MultiPlex.Core.Managers
            {
                Boolean ap = false;
 
-               if ( DirectoryExists(relpath) ==false)
+               if (DirectoryExists(relpath) ==false)
                {
                    string t =  HostingEnvironment.MapPath(relpath);
                    Directory.CreateDirectory(t);
@@ -97,7 +97,7 @@ namespace MultiPlex.Core.Managers
            try
            {
                Boolean ap = false;
-               if (CommonTools.isEmpty(relpath) &&  DirectoryExists(relpath))
+               if (!CommonTools.isEmpty(relpath) &&  DirectoryExists(relpath))
                {
                    string t =  HostingEnvironment.MapPath(relpath);
                    Directory.Delete(t,true);
@@ -121,7 +121,7 @@ namespace MultiPlex.Core.Managers
            {
                Boolean ap = false;
 
-               if (CommonTools.isEmpty(relsrc) && CommonTools.isEmpty(reltrg)
+               if (!CommonTools.isEmpty(relsrc) && !CommonTools.isEmpty(reltrg)
                    &&  DirectoryExists(relsrc))//&&  Exists(trg))
                {
                     relsrc = HostingEnvironment.MapPath(relsrc);
@@ -145,7 +145,7 @@ namespace MultiPlex.Core.Managers
             {
                 Boolean ap = false;
 
-                if (CommonTools.isEmpty(relsrc) && CommonTools.isEmpty(reltrg)
+                if (CommonTools.isEmpty(relsrc)==false && !CommonTools.isEmpty(reltrg)
                     &&  DirectoryExists(relsrc))//&&  Exists(trg))
                 {
                     relsrc = HostingEnvironment.MapPath(relsrc);
@@ -172,15 +172,17 @@ namespace MultiPlex.Core.Managers
            try
            {
                Boolean ap = false;
-                relpath =  HostingEnvironment.MapPath(relpath);
-               if (CommonTools.isEmpty(relpath) && File.Exists(relpath))
+                String path =  HostingEnvironment.MapPath(relpath);
+                
+              if (CommonTools.isEmpty(path)!=true && File.Exists(path)==true)
                {
                    ap = true;
                }
                return ap;
 
            }
-            catch (Exception ex){CommonTools.ErrorReporting(ex);
+            catch (Exception ex){
+                CommonTools.ErrorReporting(ex);
 
                return false;
            }
@@ -215,11 +217,11 @@ namespace MultiPlex.Core.Managers
        {
            try
            {
-                string path = relpath;
+                string path;
                 Boolean ap = false;
-               if (CommonTools.isEmpty(path) &&  FileExists(path))
+               if (CommonTools.isEmpty(relpath)!=true &&  FileExists(relpath)==true)
                {
-                   path =  HostingEnvironment.MapPath(path);
+                   path =  HostingEnvironment.MapPath(relpath);
                    File.Delete(path);
                    ap = true;
                }
@@ -242,7 +244,7 @@ namespace MultiPlex.Core.Managers
                Boolean ap = false;
                 string src=relsrc,trg=reltrg;
 
-                if (CommonTools.isEmpty(src) && CommonTools.isEmpty(trg)
+                if (CommonTools.isEmpty(src)==false && CommonTools.isEmpty(trg)==false
                    &&  FileExists(src) )//&&  Exists(trg))
                {
                    src = HostingEnvironment.MapPath(src);
@@ -267,7 +269,7 @@ namespace MultiPlex.Core.Managers
                Boolean ap = false;
                 string src = relsrc, trg = reltrg;
 
-                if (CommonTools.isEmpty(src) && CommonTools.isEmpty(trg)
+                if (CommonTools.isEmpty(src)==false && CommonTools.isEmpty(trg)==false
                    &&  FileExists(src))//&&  Exists(trg))
                {
                    src = HostingEnvironment.MapPath(src);
@@ -293,7 +295,7 @@ namespace MultiPlex.Core.Managers
                 Boolean ap = false;
                 string src = relsrc, trg = reltrg;
 
-                if (CommonTools.isEmpty(src) && CommonTools.isEmpty(trg)
+                if (CommonTools.isEmpty(src)==false && CommonTools.isEmpty(trg)==false
                     &&  FileExists(src))//&&  Exists(trg))
                 {
                     src = HostingEnvironment.MapPath(src);

@@ -136,6 +136,50 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
+        public WikiFile GetFileById(string wikiname, int fid)
+        {
+            try
+            {
+               WikiFile ap = null;
+
+                if (CommonTools.isEmpty(wikiname) == false && this.rep.WikiExists(wikiname)
+                    && fid > 0)
+                {
+                    ap = this.rep.GetFilesById(wikiname, fid);
+                }
+
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        public List<Data.Models.WikiFile> GetImageFilesByTitle(string wikiname, int tid)
+        {
+            try
+            {
+                List<Data.Models.WikiFile> ap = null;
+
+                if (CommonTools.isEmpty(wikiname) == false && this.rep.WikiExists(wikiname)
+                    && tid > 0)
+                {
+                    ap = this.rep.GetImageFilesByTitle(wikiname, tid);
+                }
+
+                return ap;
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
         public void DeleteFileById(string wikiname, int fid, ApplicationUser user)
         {
             try

@@ -327,6 +327,10 @@
     <Content Include="Views\File\AddFileToTitle.cshtml" />
     <Content Include="Views\File\GetFilesByWiki.cshtml" />
     <Content Include="Views\File\GetTitleFiles.cshtml" />
+    <Content Include="Views\File\GetImageFilesByWiki.cshtml" />
+    <Content Include="Views\File\Gallery.cshtml" />
+    <Content Include="Views\File\Details.cshtml" />
+    <Content Include="Views\File\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\wiki\" />

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using MultiPlex.Core;
 using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Data.ViewModels;
@@ -124,6 +125,33 @@ namespace MultiPlex.Web.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
             }
         }
+        public ActionResult Gallery(string wikiname, int tid)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(wikiname) && tid <= 0)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                List<WikiFile> lst = this.filemngr.GetImageFilesByTitle(wikiname, tid);
+                if (lst == null && CommonTools.wkmngr.GetWiki(wikiname) == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+                }
+
+
+
+                return View(lst);
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
         public ActionResult GetFilesByWiki(string wikiname)
         {
             try
@@ -149,6 +177,115 @@ namespace MultiPlex.Web.Controllers
 
                 CommonTools.ErrorReporting(ex);
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
+        public ActionResult GetImageFilesByWiki(string wikiname)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(wikiname))
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                List<WikiFile> lst = this.filemngr.GetImageFilesByWiki(wikiname);
+                if (lst == null && CommonTools.wkmngr.GetWiki(wikiname) == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+                }
+
+
+
+                return View(lst);
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
+        public ActionResult Details(string wikiname, int fid)
+        {
+            try
+            {
+                if (CommonTools.isEmpty(wikiname) && fid <= 0)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                WikiFile lst = this.filemngr.GetFileById(wikiname, fid);
+                if (lst == null && CommonTools.wkmngr.GetWiki(wikiname) == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+                }
+
+
+
+                return View(lst);
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
+        [Authorize]
+        public ActionResult Delete(string wikiname, int fid)
+        {
+            try
+            {
+                if (fid<=0)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                WikiFile file = this.filemngr.GetFileById(wikiname, fid);
+                if (file == null)
+                {
+                    return HttpNotFound();
+                }
+
+
+
+                return View(file);
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
+        }
+        // POST: ProjectNews/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string wikiname, int fid)
+        {
+
+            try
+            {
+              
+                if (fid <=0)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+               
+                  
+                     this.filemngr.DeleteFileById(wikiname, fid,CommonTools.usrmng.GetUser(this.User.Identity.Name));
+              
+                RouteValueDictionary vals = new RouteValueDictionary();
+                vals.Add("wikiname", wikiname);
+               
+                return RedirectToAction("Details","HomeWiki", vals);
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
             }
         }
 

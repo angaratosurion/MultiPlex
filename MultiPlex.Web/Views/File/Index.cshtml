@@ -60,6 +60,7 @@
                          @Html.DisplayFor(modelItem => item.FileType);
 
                      }
+                @Html.ActionLink("Full image", "Details", new { wikiname = item.Wiki.Name, fid = item.Id })
                  @*}*@
             </td>
             <td>

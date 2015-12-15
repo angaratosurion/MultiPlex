@@ -76,49 +76,55 @@
     } 
     
     <div id="wikiHistory">
+        @Html.ActionLink("Image Gallery", "Gallery","File",new { wikiname=Model.Content.Wiki.Name,tid=Model.Content.Title.Id}
+   ,htmlAttributes:null)<br />
+        @Html.ActionLink("Files", "GetTitleFiles", "File", new { wikiname = Model.Content.Wiki.Name, tid = Model.Content.Title.Id }
+   , htmlAttributes: null)<br />
+
             <h3>Page History</h3>
             <ul>
                 @{ foreach (var content in Model.History)
-                    {
-                        if (Model.Content.Version == content.Version)
-                        {
+            {
+                if (Model.Content.Version == content.Version)
+                {
                             <li>@content.VersionDate.ToString()</li>
                         }
-                        else
-                        {
+                else
+                {
                             <li><a href="@Url.RouteUrl("History", new { Model.Content.Title.Id, Model.Content.Title.Slug, content.Version })">@content.VersionDate.ToString()</a></li>
                         }
-                    } }
+            } }
             </ul>
-       
+
+
         </div>
-    
+
     <div id="wikiContent">
         <div id="originalWikiContent"> @Html.Raw(@Model.Content.RenderedSource)
             @{
-                var categories = Model.Content.Title.Categories;
-                if (categories != null && categories.Count > 0)
+            var categories = Model.Content.Title.Categories;
+            if (categories != null && categories.Count > 0)
+            {
+                foreach (var cat in categories)
                 {
-                    foreach (var cat in categories)
-                    {
 
-                        @Html.ActionLink(cat.Title + " | ", "Index", new { wikiname = Model.Content.Wiki.Name, cid = cat.Id })
+                    @Html.ActionLink(cat.Title + " | ", "Index", new { wikiname = Model.Content.Wiki.Name, cid = cat.Id })
                         }
 
-                    }
-                }
+            }
+        }
         @Html.ActionLink("Add Title to Category", "AddTitleToCategory","Category",new { wikiname = Model.Content.Wiki.Name,
-   tid=Model.Content.Title.Id},htmlAttributes:null)|
+            tid=Model.Content.Title.Id},htmlAttributes:null)|
             @Html.ActionLink("Remove Title From Category", "RemoveTitleFromCategory", "Category", new
-    {
-        wikiname = Model.Content.Wiki.Name,
-        tid = Model.Content.Title.Id
-    }, htmlAttributes: null)
+            {
+                wikiname = Model.Content.Wiki.Name,
+                tid = Model.Content.Title.Id
+            }, htmlAttributes: null)
          </div>
-         
 
 
-       
+
+
         <div id="preViewContentContent" style="display:none;"></div>
     </div>
 

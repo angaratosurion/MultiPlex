@@ -6,11 +6,12 @@
     
 
 @{
-    ViewBag.Title = "File Index";
-    
+    var m = Model.ToList();
+    ViewBag.Title = "Image Gallery of " +m[0].Title.Name ;
+
 }
 
-<h2>File Index</h2>
+<h2>Image Gallery of   @Html.DisplayFor(mod=>mod.ToList()[0].Title.Name) </h2>
 <p>
     @*@Html.ActionLink("Create New", "Create")*@
 </p>
@@ -32,12 +33,12 @@
         <th>
             @Html.DisplayNameFor(model => model.FileName)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.RelativePath)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.AbsolutePath)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Version)            
         </th>
@@ -53,7 +54,7 @@
                  @if (item.isImage == true)
                  { //var imgsrc = Url.Content(item.RelativePath);
                      @Html.Image(Url.Content(item.RelativePath), item.FileType,"100")
-                   
+                     @Html.ActionLink("Full image","Details",new {wikiname= item.Wiki.Name,fid=item.Id})
                  }
                  @*@{*@
                      else
@@ -61,7 +62,6 @@
                          @Html.DisplayFor(modelItem => item.FileType);
 
                      }
-                @Html.ActionLink("Full image", "Details", new { wikiname = item.Wiki.Name, fid = item.Id })
                  @*}*@
             </td>
             <td>
@@ -76,12 +76,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.FileName)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.RelativePath)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AbsolutePath)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Version)
             </td>
