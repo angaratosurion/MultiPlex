@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using MultiPlex.Core.Managers;
 
-namespace MultiPlex.Web.Controllers
+namespace MultiPlex.Core.Controllers
 {
     [Export("WikiAdminSite", typeof(IController))]
     [PartCreationPolicy(CreationPolicy.NonShared)]

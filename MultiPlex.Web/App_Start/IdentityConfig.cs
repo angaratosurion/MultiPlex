@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using MultiPlex.Web.Models;
+//using MultiPlex.Web.Models;
 
 namespace MultiPlex.Web
 {

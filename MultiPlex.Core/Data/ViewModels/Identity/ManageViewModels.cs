@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace MultiPlex.Web.Models
+namespace MultiPlex.Core.Data.ViewModels.Identity
 {
     public class IndexViewModel
     {

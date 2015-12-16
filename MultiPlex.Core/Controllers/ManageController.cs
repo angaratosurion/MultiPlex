@@ -8,9 +8,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MultiPlex.Core.Application;
-using MultiPlex.Web.Models;
+using MultiPlex.Core.Data.ViewModels.Identity;
 
-namespace MultiPlex.Web.Controllers
+namespace MultiPlex.Core.Controllers
 {
     [Export("Manage", typeof(IController))]
     [PartCreationPolicy(CreationPolicy.NonShared)]

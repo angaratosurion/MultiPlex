@@ -202,23 +202,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\WikiAdminSiteController.cs" />
-    <Compile Include="Controllers\WikiCategoryController.cs" />
-    <Compile Include="Controllers\WikiContentController.cs" />
-    <Compile Include="Controllers\WikiFileController.cs" />
-    <Compile Include="Controllers\WikiTitleController.cs" />
-    <Compile Include="Controllers\HomeWikiController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\WikiManagerController.cs" />
-    <Compile Include="Controllers\WikiUserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -334,6 +321,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\wiki\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Models\" />
     <Folder Include="Modules\" />
   </ItemGroup>
   <ItemGroup>

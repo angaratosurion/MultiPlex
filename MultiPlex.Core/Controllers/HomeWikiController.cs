@@ -10,7 +10,7 @@ using MultiPlex.Core;
 using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Managers;
 
-namespace MultiPlex.Web.Controllers
+namespace MultiPlex.Core.Controllers
 {
     [Export("HomeWiki", typeof(IController))]
     [PartCreationPolicy(CreationPolicy.NonShared)]

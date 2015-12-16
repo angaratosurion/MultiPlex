@@ -54,8 +54,12 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -172,7 +176,17 @@
     <Compile Include="CommonTools.cs" />
     <Compile Include="Configuration\ConfigurationConstants.cs" />
     <Compile Include="Configuration\SettingsManager.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Factory\CustomControllerFactory.cs" />
+    <Compile Include="Controllers\HomeWikiController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\WikiAdminSiteController.cs" />
+    <Compile Include="Controllers\WikiCategoryController.cs" />
+    <Compile Include="Controllers\WikiContentController.cs" />
+    <Compile Include="Controllers\WikiFileController.cs" />
+    <Compile Include="Controllers\WikiManagerController.cs" />
+    <Compile Include="Controllers\WikiTitleController.cs" />
+    <Compile Include="Controllers\WikiUserController.cs" />
     <Compile Include="Data\Context.cs" />
     <Compile Include="Data\Models\WikiCategory.cs" />
     <Compile Include="Data\Models\WikiFile.cs" />
@@ -181,6 +195,9 @@
     <Compile Include="Data\Models\WikiModInvitations.cs" />
     <Compile Include="Data\Repositories\WikiRepository.cs" />
     <Compile Include="Data\ViewModels\EditContent.cs" />
+    <Compile Include="Data\ViewModels\Identity\AccountViewModels.cs" />
+    <Compile Include="Data\ViewModels\Identity\IdentityModels.cs" />
+    <Compile Include="Data\ViewModels\Identity\ManageViewModels.cs" />
     <Compile Include="Data\ViewModels\ViewAddUserToRole.cs" />
     <Compile Include="Data\ViewModels\ViewCategoryTitles.cs" />
     <Compile Include="Data\ViewModels\ViewContent.cs" />

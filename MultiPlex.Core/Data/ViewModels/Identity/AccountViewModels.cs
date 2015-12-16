@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace MultiPlex.Web.Models
+namespace MultiPlex.Core.Data.ViewModels.Identity
 {
     public class ExternalLoginConfirmationViewModel
     {

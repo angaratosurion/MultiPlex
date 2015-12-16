@@ -5,6 +5,8 @@ using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using MultiPlex.Core.Interfaces;
+using System.Reflection;
+using System.Diagnostics;
 
 namespace MultiPlex.Core
 {
@@ -109,6 +111,23 @@ namespace MultiPlex.Core
             }
 
             return ap;
+        }
+        public static string GetApplicationName()
+        {
+            try
+            {
+                string ap = null;
+                FileVersionInfo finof = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
+                ap = finof.ProductName;
+
+                return ap;
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            }
         }
     }
 }

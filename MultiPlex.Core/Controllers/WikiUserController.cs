@@ -14,9 +14,9 @@ using MultiPlex.Core.Application;
 using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Data.ViewModels;
 using MultiPlex.Core.Managers;
-using MultiPlex.Web.Models;
+using MultiPlex.Core.Data.ViewModels.Identity;
 
-namespace MultiPlex.Web.Controllers
+namespace MultiPlex.Core.Controllers
 {
     [Export("WikiUser", typeof(IController))]
     [PartCreationPolicy(CreationPolicy.NonShared)]

@@ -10,7 +10,7 @@ using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Data.Repositories;
 using MultiPlex.Core.Managers;
 
-namespace MultiPlex.Web.Controllers
+namespace MultiPlex.Core.Controllers
 {
 
     //[Export("Title", typeof(IController))]

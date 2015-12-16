@@ -11,7 +11,7 @@ using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Data.ViewModels;
 using MultiPlex.Core.Managers;
 
-namespace MultiPlex.Web.Controllers
+namespace MultiPlex.Core.Controllers
 {
     [Export("WikiFile", typeof(IController))]
     [PartCreationPolicy(CreationPolicy.NonShared)]

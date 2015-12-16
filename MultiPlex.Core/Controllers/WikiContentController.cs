@@ -13,7 +13,7 @@ using MultiPlex.Core.Data.Repositories;
 using MultiPlex.Core.Data.ViewModels;
 using MultiPlex.Core.Managers;
 
-namespace MultiPlex.Web.Controllers
+namespace MultiPlex.Core.Controllers
 {
     [Export("WikiContent", typeof(IController))]
     [PartCreationPolicy(CreationPolicy.NonShared)]

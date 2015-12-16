@@ -13,9 +13,10 @@ using Microsoft.Owin.Security;
 using MultiPlex.Core;
 using MultiPlex.Core.Application;
 using MultiPlex.Core.Data.Models;
-using MultiPlex.Web.Models;
+using MultiPlex.Core.Data.ViewModels.Identity;
+//using MultiPlex.Core.Data.ViewModels.Identity;
 
-namespace MultiPlex.Web.Controllers
+namespace MultiPlex.Core.Controllers
 {
     [Export("Account", typeof(IController))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
