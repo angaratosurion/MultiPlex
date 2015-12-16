@@ -3,13 +3,12 @@
 
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Details";
 }
 
-<h2>Delete</h2>
+<h2>File Details</h2>
 
 <div>
-    <h3>Are you sure you want to delete this?</h3>
     <h4>File Details</h4>
     <hr />
     <table class="table">
@@ -30,7 +29,7 @@
                             @*@{*@
                             else
                             {
-                                @Html.DisplayFor(modelItem => modelItem.FileType);
+                                @Html.DisplayFor(modelItem => modelItem.FileType)
 
                             }
                         </dd>
@@ -82,17 +81,9 @@
             </tr>
     </tbody>
     </table>
-    @using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-
-    <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        @*@Html.ActionLink("Back to List", "Index")*@
-        @Html.ActionLink("Back to List", "Details","HomeWiki", new {wikiname=Model.Wiki.Name})
-    </div>
-    }
 </div>
 <p>
     @*@Html.ActionLink("Edit", "EditWiki", new { id = Model.Name }) |*@
-    @Html.ActionLink("Back to List", "Index","HomeWiki")
+    @Html.ActionLink("Delete", "Delete",new {wikiname=Model.Wiki.Name,fid=Model.Id })|
+    @Html.ActionLink("Back to List", null, null, null, new { href = Request.UrlReferrer })
 </p>

@@ -23,7 +23,7 @@ namespace MultiPlex.Core.Verbs
         {
             get
             {
-                return "File";
+                return "WikiFile";
             }
         }
 

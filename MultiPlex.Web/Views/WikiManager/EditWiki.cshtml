@@ -18,9 +18,9 @@
     }
 
    <td> @Html.ActionLink("Basic Info","EditBasicInfo", new { wikiname = wikiname }, new { @class = "btn btn-default" })</td>    
-   <td> @Html.ActionLink("Categories", "CategoriesByWiki", "Category", new { wikiname = wikiname },
+   <td> @Html.ActionLink("Categories", "CategoriesByWiki", "WikiCategory", new { wikiname = wikiname },
        new { @class = "btn btn-default" })</td>
-   <td> @Html.ActionLink("Titles", "TitlesByWiki", "Content", new { wikiname = wikiname }, new { @class = "btn btn-default" })</td>
+   <td> @Html.ActionLink("Titles", "TitlesByWiki", "WikiContent", new { wikiname = wikiname }, new { @class = "btn btn-default" })</td>
 }
 
 </tr>
@@ -33,7 +33,7 @@
                 new { @class = "btn btn-default" })
                 </td>
                 <td>
-                    @Html.ActionLink("Files", "GetFilesByWiki","File", new { wikiname = wikiname },
+                    @Html.ActionLink("Files", "GetFilesByWiki","WikiFile", new { wikiname = wikiname },
                 new { @class = "btn btn-default" })
                 </td>
         }

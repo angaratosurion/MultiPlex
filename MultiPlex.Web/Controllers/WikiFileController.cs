@@ -13,9 +13,9 @@ using MultiPlex.Core.Managers;
 
 namespace MultiPlex.Web.Controllers
 {
-    [Export("File", typeof(IController))]
+    [Export("WikiFile", typeof(IController))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class FileController : Controller
+    public class WikiFileController : Controller
     {
         FileManager filemngr = new FileManager();
         // GET: File

@@ -8,9 +8,9 @@ using MultiPlex.Core.Managers;
 
 namespace MultiPlex.Web.Controllers
 {
-    [Export("AdminSite", typeof(IController))]
+    [Export("WikiAdminSite", typeof(IController))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class AdminSiteController : Controller
+    public class WikiAdminSiteController : Controller
     {
         // GET: Admin
         [Authorize(Roles = "Administrators")]

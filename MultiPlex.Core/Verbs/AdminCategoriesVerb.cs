@@ -23,7 +23,7 @@ namespace MultiPlex.Core.Verbs
         {
             get
             {
-                return "Category";
+                return "WikiCategory";
             }
         }
 

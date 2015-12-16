@@ -53,11 +53,13 @@
             }
             else
             {
-        <p> You have no Users in the Database.</p>
+        <p> You have no Categories in the Database.</p>
             }
             <div class="form-actions no-color">
                 <input type="submit" value="Add" class="btn btn-default" />
-                @Html.ActionLink("Back to List", "GetRoles")
+                @Html.ActionLink("Back to title", "ViewContent", "WikiContent",
+                       new { wikiname = Model.Title.Wiki.Name, id = Model.Title.Id, slug = Model.Title.Slug },
+                       htmlAttributes: null)
             </div>
         }
 

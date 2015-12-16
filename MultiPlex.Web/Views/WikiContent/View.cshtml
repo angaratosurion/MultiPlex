@@ -51,7 +51,7 @@
             });
         });
     </script>
-    @Html.ActionLink("Add File to title", "AddFileToTitle","File",  new
+    @Html.ActionLink("Add File to title", "AddFileToTitle","WikiFile",  new
 {
     wikiname = Model.Content.Wiki.Name,
     tid = Model.Content.Title.Id
@@ -76,9 +76,9 @@
     } 
     
     <div id="wikiHistory">
-        @Html.ActionLink("Image Gallery", "Gallery","File",new { wikiname=Model.Content.Wiki.Name,tid=Model.Content.Title.Id}
+        @Html.ActionLink("Image Gallery", "Gallery","WikiFile",new { wikiname=Model.Content.Wiki.Name,tid=Model.Content.Title.Id}
    ,htmlAttributes:null)<br />
-        @Html.ActionLink("Files", "GetTitleFiles", "File", new { wikiname = Model.Content.Wiki.Name, tid = Model.Content.Title.Id }
+        @Html.ActionLink("Files", "GetTitleFiles", "WikiFile", new { wikiname = Model.Content.Wiki.Name, tid = Model.Content.Title.Id }
    , htmlAttributes: null)<br />
 
             <h3>Page History</h3>
@@ -113,9 +113,9 @@
 
             }
         }
-        @Html.ActionLink("Add Title to Category", "AddTitleToCategory","Category",new { wikiname = Model.Content.Wiki.Name,
+        @Html.ActionLink("Add Title to Category", "AddTitleToCategory","WikiCategory",new { wikiname = Model.Content.Wiki.Name,
             tid=Model.Content.Title.Id},htmlAttributes:null)|
-            @Html.ActionLink("Remove Title From Category", "RemoveTitleFromCategory", "Category", new
+            @Html.ActionLink("Remove Title From Category", "RemoveTitleFromCategory", "WikiCategory", new
             {
                 wikiname = Model.Content.Wiki.Name,
                 tid = Model.Content.Title.Id

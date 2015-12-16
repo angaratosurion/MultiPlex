@@ -13,10 +13,10 @@ using MultiPlex.Core.Managers;
 
 namespace MultiPlex.Web.Controllers
 {
-    [Export("Category", typeof(IController))]
+    [Export("WikiCategory", typeof(IController))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
     [Authorize]
-    public class CategoryController : Controller
+    public class WikiCategoryController : Controller
     {
         CategoryManager catmngr = new CategoryManager();
         WikiUserManager usremngr = new WikiUserManager();
@@ -294,7 +294,7 @@ namespace MultiPlex.Web.Controllers
                 RouteValueDictionary vals = new RouteValueDictionary();
                 vals.Add("wikiname", wikiname);
                 vals.Add("cid", catid);
-                return RedirectToAction("Index", "Content", vals);
+                return RedirectToAction("Index", "WikiContent", vals);
 
             }
             catch (Exception ex)
@@ -372,7 +372,7 @@ namespace MultiPlex.Web.Controllers
                 RouteValueDictionary vals = new RouteValueDictionary();
                 vals.Add("wikiname", wikiname);
                 vals.Add("cid", catid);
-                return RedirectToAction("Index", "Content", vals);
+                return RedirectToAction("Index", "WikiContent", vals);
 
             }
             catch (Exception ex)

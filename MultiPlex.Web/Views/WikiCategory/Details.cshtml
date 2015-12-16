@@ -73,7 +73,7 @@
             {<tr>
                     <td>
                      
-                        @Html.ActionLink(item.Name, "ViewContent", "Content", 
+                        @Html.ActionLink(item.Name, "ViewContent", "WikiContent", 
                        new{ wikiname = item.Wiki.Name, id = item.Id, slug = item.Slug},htmlAttributes:null)
                     </td>
                     <td>
@@ -87,7 +87,7 @@
                     </td>
                    
                     <td>
-                        @Html.ActionLink("Edit", "EditContent", "Content", new
+                        @Html.ActionLink("Edit", "EditContent", "WikiContent", new
                    {
                        wikiname = item.Wiki.Name,
                        id = item.Id,

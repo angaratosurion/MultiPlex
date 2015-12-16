@@ -15,9 +15,9 @@ using MultiPlex.Core.Managers;
 
 namespace MultiPlex.Web.Controllers
 {
-    [Export("Content", typeof(IController))]
+    [Export("WikiContent", typeof(IController))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class ContentController : Controller
+    public class WikiContentController : Controller
     {
         WikiUserManager usrmng = new WikiUserManager();
         TitleManager tmngr = new TitleManager();
@@ -25,7 +25,7 @@ namespace MultiPlex.Web.Controllers
         CategoryManager catmngr = new CategoryManager();
         WikiManager wkmngr = new WikiManager();
        // WikiRepository rep = new WikiRepository();
-        public ContentController()
+        public WikiContentController()
         {
 
         }
@@ -150,7 +150,7 @@ namespace MultiPlex.Web.Controllers
                     vals.Add("cid", cid);
                     //vals.Add("id", 0);
                     //vals.Add("slug", "");
-                   return RedirectToAction("CreateContent", "Content", vals);
+                   return RedirectToAction("CreateContent", "WikiContent", vals);
                   //  return RedirectToAction("EditContent", "Content", vals);
                 }
                 return View(titles);
@@ -184,7 +184,7 @@ namespace MultiPlex.Web.Controllers
                     vals.Add("wikiname", wikiname);
                     //vals.Add("id", 0);
                     //vals.Add("slug", "");
-                    return RedirectToAction("CreateContent", "Content", vals);
+                    return RedirectToAction("CreateContent", "WikiContent", vals);
                     //  return RedirectToAction("EditContent", "Content", vals);
                 }
                 return View(titles);

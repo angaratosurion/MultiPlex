@@ -78,7 +78,7 @@ namespace MultiPlex.Web.Controllers
                RouteValueDictionary vals = new RouteValueDictionary();
                 vals.Add("wikiname", wikiname);
                 vals.Add("cid", cid);
-              return  RedirectToAction("Index", "Content", vals);
+              return  RedirectToAction("Index", "WikiContent", vals);
 
             }
             catch (Exception ex)
@@ -100,7 +100,7 @@ namespace MultiPlex.Web.Controllers
                 //   RouteDataValueProvider
                 RouteValueDictionary vals = new RouteValueDictionary();
                 vals.Add("wikiname", wikiname);
-                return RedirectToAction("TitlesByWiki", "Content", vals);
+                return RedirectToAction("TitlesByWiki", "WikiContent", vals);
 
             }
             catch (Exception ex)
