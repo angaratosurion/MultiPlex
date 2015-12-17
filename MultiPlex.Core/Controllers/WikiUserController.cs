@@ -15,6 +15,7 @@ using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Data.ViewModels;
 using MultiPlex.Core.Managers;
 using MultiPlex.Core.Data.ViewModels.Identity;
+using BlackCogs.Data.ViewModels.Identity;
 
 namespace MultiPlex.Core.Controllers
 {

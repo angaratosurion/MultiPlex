@@ -195,9 +195,7 @@
     <Compile Include="Data\Models\WikiModInvitations.cs" />
     <Compile Include="Data\Repositories\WikiRepository.cs" />
     <Compile Include="Data\ViewModels\EditContent.cs" />
-    <Compile Include="Data\ViewModels\Identity\AccountViewModels.cs" />
     <Compile Include="Data\ViewModels\Identity\IdentityModels.cs" />
-    <Compile Include="Data\ViewModels\Identity\ManageViewModels.cs" />
     <Compile Include="Data\ViewModels\ViewAddUserToRole.cs" />
     <Compile Include="Data\ViewModels\ViewCategoryTitles.cs" />
     <Compile Include="Data\ViewModels\ViewContent.cs" />
