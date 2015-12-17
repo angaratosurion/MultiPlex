@@ -8,7 +8,7 @@ using MultiPlex.Core.Interfaces;
 
 namespace MultiPlex.Core.Verbs
 {
-    [Export(typeof(IActionVerb)), ExportMetadata("Category", "Navigation")]
+    [Export(typeof(IActionVerb)), ExportMetadata("Category", "WikiNavigation")]
     public class AdminSiteVerb : IActionVerb
     {
         public string Action

@@ -30,7 +30,7 @@
                 <ul class="nav navbar-nav">
                     @*<li>@Html.ActionLink("HomeWiki", "Index", "HomeWiki")</li>*@
                     @{
-                        var verbs = MultiPlex.Core.Bootstrapper.GetVerbsForCategory("Navigation");
+                        var verbs = MultiPlex.Core.Bootstrapper.GetVerbsForCategory("WikiNavigation");
                         foreach (var verb in verbs)
                         {
                             <li> @Html.ActionLink(verb.Name, verb.Action, verb.Controller)</li>
