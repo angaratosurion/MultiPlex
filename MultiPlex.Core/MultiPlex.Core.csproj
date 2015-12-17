@@ -210,12 +210,6 @@
     <Compile Include="Data\ViewModels\ViewWikiUsers.cs" />
     <Compile Include="Helpers\ASP.Net\ImageHelper.cs" />
     <Compile Include="Helpers\SlugHelper.cs" />
-    <Compile Include="Interfaces\IActionVerb.cs" />
-    <Compile Include="Interfaces\IActionVerbMetadata.cs" />
-    <Compile Include="Interfaces\IControllerMetadata.cs" />
-    <Compile Include="Interfaces\IModuleInfo.cs" />
-    <Compile Include="Interfaces\IRouteRegistrar.cs" />
-    <Compile Include="Interfaces\IRouteRegistrarMetadata.cs" />
     <Compile Include="Data\Models\WikiContent.cs" />
     <Compile Include="Data\Models\WikiTitle.cs" />
     <Compile Include="Managers\CategoryManager.cs" />
@@ -254,12 +248,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\BlackCogs\BlackCogs\BlackCogs.csproj">
+      <Project>{b17ede4e-7c83-40d7-be1b-5b54598f0d30}</Project>
+      <Name>BlackCogs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MultiPlex\MultiPlex.csproj">
       <Project>{3ea6cbe4-2523-4bb3-8926-9a1746774741}</Project>
       <Name>MultiPlex</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

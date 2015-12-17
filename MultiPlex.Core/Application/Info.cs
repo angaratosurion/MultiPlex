@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using MultiPlex.Core.Interfaces;
+using BlackCogs.Interfaces;
 
 namespace MultiPlex.Core.Application
 {

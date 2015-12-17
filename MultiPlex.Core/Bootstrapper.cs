@@ -4,7 +4,7 @@ using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
-using MultiPlex.Core.Interfaces;
+using BlackCogs.Interfaces;
 using System.Reflection;
 using System.Diagnostics;
 

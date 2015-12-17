@@ -10,7 +10,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using MultiPlex.Core.Controllers;
 using MultiPlex.Core.Controllers.Factory;
-using MultiPlex.Core.Interfaces;
+using BlackCogs.Interfaces;
 using MultiPlex.Core.Views;
 
 namespace MultiPlex.Core.Application
