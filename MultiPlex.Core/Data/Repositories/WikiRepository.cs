@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MultiPlex.Core.Data.Models;
-
+using BlackCogs.Data.Models;
 namespace MultiPlex.Core.Data.Repositories
 {
     public class WikiRepository

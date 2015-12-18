@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MultiPlex.Core.Data.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
-
+using BlackCogs.Data.Models;
 namespace MultiPlex.Core.Data
 {
     public class Context : IdentityDbContext<ApplicationUser>

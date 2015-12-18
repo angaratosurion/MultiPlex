@@ -8,7 +8,7 @@ namespace MultiPlex.Web.Migrations
     using Microsoft.AspNet.Identity.EntityFramework;
     using Core.Data.Models;
     using Microsoft.AspNet.Identity;
-
+    using BlackCogs.Data.Models;
     internal sealed class Configuration : MultiPlex.Core.Migrations.Configuration// DbMigrationsConfiguration<MultiPlex.Web.Models.ApplicationDbContext>
     {
         public Configuration()

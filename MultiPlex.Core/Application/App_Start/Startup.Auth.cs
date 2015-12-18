@@ -6,7 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Owin;
 using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Data;
-
+using BlackCogs.Data.Models;
 namespace MultiPlex.Core.Application
 {
     public partial class Startup

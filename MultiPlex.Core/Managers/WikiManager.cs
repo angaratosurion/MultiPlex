@@ -10,7 +10,7 @@ using MultiPlex.Core.Configuration;
 using MultiPlex.Core.Data;
 using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Data.Repositories;
-
+using BlackCogs.Data.Models;
 namespace MultiPlex.Core.Managers
 {
  public   class WikiManager

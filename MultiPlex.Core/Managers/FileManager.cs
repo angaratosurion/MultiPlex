@@ -9,7 +9,7 @@ using MultiPlex.Core.Data.Repositories;
 using System.IO;
 using MultiPlex.Core.Configuration;
 using System.Web.Hosting;
-
+using BlackCogs.Data.Models;
 namespace MultiPlex.Core.Managers
 {
    public class FileManager

@@ -13,7 +13,7 @@ using MultiPlex.Core.Data.ViewModels;
 using MultiPlex.Core.WikiMacro;
 using MultiPlex.Formatting.Renderers;
 
-
+using BlackCogs.Data.Models;
 namespace MultiPlex.Core.Managers
 {
     public class ContentManager

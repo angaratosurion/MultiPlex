@@ -8,7 +8,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using MultiPlex.Core.Application;
 using MultiPlex.Core.Data;
 using MultiPlex.Core.Data.Models;
-
+using BlackCogs.Data.Models;
 namespace MultiPlex.Core.Managers
 {
     public class WikiUserManager

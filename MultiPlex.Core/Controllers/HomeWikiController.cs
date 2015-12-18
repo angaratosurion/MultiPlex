@@ -9,7 +9,7 @@ using System.Web.Routing;
 using MultiPlex.Core;
 using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Managers;
-
+using BlackCogs.Data.Models;
 namespace MultiPlex.Core.Controllers
 {
     [Export("HomeWiki", typeof(IController))]

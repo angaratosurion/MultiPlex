@@ -16,6 +16,7 @@ using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Data.ViewModels.Identity;
 //using MultiPlex.Core.Data.ViewModels.Identity;
 using BlackCogs.Data.ViewModels.Identity;
+using BlackCogs.Data.Models;
 namespace MultiPlex.Core.Controllers
 {
     [Export("Account", typeof(IController))]

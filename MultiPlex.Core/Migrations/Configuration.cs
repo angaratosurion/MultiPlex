@@ -7,7 +7,7 @@ namespace MultiPlex.Core.Migrations
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Data.Models;
-
+    using BlackCogs.Data.Models;
     public   class Configuration : DbMigrationsConfiguration<MultiPlex.Core.Data.Context>
     {
         public Configuration()

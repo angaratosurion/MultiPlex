@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using BlackCogs.Data.Models;
 
 namespace MultiPlex.Core.Data.Models
 {

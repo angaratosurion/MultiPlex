@@ -12,7 +12,7 @@ using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Data.Repositories;
 using MultiPlex.Core.Data.ViewModels;
 using MultiPlex.Core.Managers;
-
+using BlackCogs.Data.Models;
 namespace MultiPlex.Core.Controllers
 {
     [Export("WikiContent", typeof(IController))]

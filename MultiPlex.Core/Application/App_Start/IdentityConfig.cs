@@ -8,6 +8,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Data;
+using BlackCogs.Data.Models;
 
 namespace MultiPlex.Core.Application
 {

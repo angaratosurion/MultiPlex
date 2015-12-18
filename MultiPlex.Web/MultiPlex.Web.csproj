@@ -334,6 +334,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\BlackCogs\BlackCogs\BlackCogs.csproj">
+      <Project>{b17ede4e-7c83-40d7-be1b-5b54598f0d30}</Project>
+      <Name>BlackCogs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MultiPlex.Core\MultiPlex.Core.csproj">
       <Project>{03da9457-2f29-4a8a-b5ce-971f68dd8759}</Project>
       <Name>MultiPlex.Core</Name>
