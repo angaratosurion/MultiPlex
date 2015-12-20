@@ -8,7 +8,7 @@ using MultiPlex.Core.Managers;
 
 namespace MultiPlex.Core
 {
-   public class CommonTools
+   public  class CommonTools:BlackCogs.CommonTools
     {
         public static Context db = new Context();
         public static FileSystemManager filesysmngr = new FileSystemManager();
@@ -17,33 +17,5 @@ namespace MultiPlex.Core
         public static CategoryManager catmngr = new CategoryManager();
         public static TitleManager titlemngr = new TitleManager();
         public static WikiModeratorsInvitesManager wkinvmngr = new WikiModeratorsInvitesManager();
-        public static  Boolean isEmpty(string str)
-       {
-           try
-           {
-               Boolean ap = true;
-               if (str != null && str != String.Empty)
-               {
-                   ap = false;
-               }
-
-               return ap;
-           }
-           catch (Exception)
-           {
-               
-               throw;
-               return true;
-           }
-       }
-       public static void ErrorReporting (Exception ex)
-       {
-           //throw (ex);
-           
-            NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-            logger.Fatal(ex);
-            throw (ex);
-
-        }
     }
 }
