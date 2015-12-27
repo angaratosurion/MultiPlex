@@ -9,13 +9,13 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using BlackCogs.Data.Models;
 namespace MultiPlex.Core.Data
 {
-    public class Context : IdentityDbContext<ApplicationUser>
+    public class Context : BlackCogs.Data.Context//  IdentityDbContext<ApplicationUser>
     {
-        public Context()
-            : base("DefaultConnection")
-        { 
+        //public Context()
+        //    : base("DefaultConnection")
+        //{ 
            
-        }
+        //}
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //modelBuilder.Properties()
