@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - @MultiPlex.Core.Bootstrapper.GetApplicationName()</title>
+    <title>@ViewBag.Title - @MultiPlex.Core.Bootstrapper.GetApplicationName("MultiPlex")</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -17,7 +17,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink(@MultiPlex.Core.Bootstrapper.GetApplicationName(), "Index", "HomeWiki", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink(@MultiPlex.Core.Bootstrapper.GetApplicationName("MultiPlex"), "Index", "HomeWiki", new { area = "" }, new { @class = "navbar-brand" })
                 <div id="header">
                     @if (IsSectionDefined("head"))
                     {
@@ -57,7 +57,7 @@
     </div>
     <div class="container body-content">
         <footer>
-            <p>&copy; @DateTime.Now.Year - @MultiPlex.Core.Bootstrapper.GetApplicationName()</p>
+            <p>&copy; @DateTime.Now.Year - @MultiPlex.Core.Bootstrapper.GetApplicationName("MultiPlex")</p>
         </footer>
         </div>
         @Scripts.Render("~/bundles/jquery")
