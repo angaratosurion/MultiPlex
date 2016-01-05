@@ -5,8 +5,8 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using BlackCogs.Controllers.Factory;
 using BlackCogs.Views.Engines;
-using MultiPlex.Core.Controllers.Factory;
 
 namespace MultiPlex.Core.Application
 {

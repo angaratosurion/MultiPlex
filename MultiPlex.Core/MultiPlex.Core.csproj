@@ -177,7 +177,6 @@
     <Compile Include="Configuration\ConfigurationConstants.cs" />
     <Compile Include="Configuration\SettingsManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\Factory\CustomControllerFactory.cs" />
     <Compile Include="Controllers\HomeWikiController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\WikiAdminSiteController.cs" />

@@ -113,9 +113,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="Common\Dimensions.cs" />
     <Compile Include="Common\ImagePart.cs" />
     <Compile Include="Common\ImagePartExtras.cs" />
