@@ -9,72 +9,8 @@ using System.Web.SessionState;
 
 namespace MultiPlex.Core.Controllers.Factory
 {
-    public class CustomControllerFactory : IControllerFactory
+    public class CustomControllerFactory : BlackCogs.Controllers.Factory.CustomControllerFactory
     {
-        private readonly DefaultControllerFactory _defaultControllerFactory;
-
-        public CustomControllerFactory()
-        {
-            try
-            {
-                _defaultControllerFactory = new DefaultControllerFactory();
-            }
-            catch (Exception ex)
-            {
-
-                CommonTools.ErrorReporting(ex);
-            }
-        }
-
-        public IController CreateController(RequestContext requestContext, string controllerName)
-        {
-            try
-            {
-                var controller = Bootstrapper.GetInstance<IController>(controllerName);
-
-                if (controller == null)
-                    throw new Exception("Controller not found!");
-
-                return controller;
-            }
-            catch (Exception ex)
-            {
-
-                CommonTools.ErrorReporting(ex);
-                return null;
-            }
-        }
-
-        public SessionStateBehavior GetControllerSessionBehavior(RequestContext requestContext, string controllerName)
-        {
-            try
-            {
-                return SessionStateBehavior.Default;
-            }
-            catch (Exception ex)
-            {
-
-                CommonTools.ErrorReporting(ex);
-                return SessionStateBehavior.Default;
-            }
-        }
-
-        public void ReleaseController(IController controller)
-        {
-            try
-            {
-                var disposableController = controller as IDisposable;
-
-                if (disposableController != null)
-                {
-                    disposableController.Dispose();
-                }
-            }
-            catch (Exception ex)
-            {
-
-                CommonTools.ErrorReporting(ex);
-            }
-        }
+        
     }
 }

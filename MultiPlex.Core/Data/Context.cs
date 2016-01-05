@@ -50,6 +50,10 @@ namespace MultiPlex.Core.Data
                .HasRequired(f => f.Wiki)
                .WithMany()
                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Wiki>()
+            .HasRequired(f => f.Administrator)
+            .WithMany()
+            .WillCascadeOnDelete(false);
 
 
 
