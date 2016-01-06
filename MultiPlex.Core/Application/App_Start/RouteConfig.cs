@@ -12,7 +12,7 @@ namespace MultiPlex.Core.Application
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+            
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{wikiname}",
@@ -42,6 +42,7 @@ namespace MultiPlex.Core.Application
                 new { controller = "HomeWiki", action = "ViewContent" },
                 new { id = @"\d+", action = @"\w+" }
                 );
+         
 
             //routes.MapRoute(
             //    "Default",
@@ -50,5 +51,6 @@ namespace MultiPlex.Core.Application
             //    new { id = @"\d+" }
             //    );
         }
+        
     }
 }

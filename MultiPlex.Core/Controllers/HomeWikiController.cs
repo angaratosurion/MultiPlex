@@ -28,8 +28,8 @@ namespace MultiPlex.Core.Controllers
             {
 
 
-                //  List<WikiModel> wikis = this.wmngr.ListWiki();
-                return View(this.wmngr.ListWiki());
+                List<Wiki> wikis = this.wmngr.ListWiki();
+                return View(wikis);
             }
             catch (Exception ex)
             {

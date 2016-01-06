@@ -164,8 +164,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application\Info.cs" />
     <Compile Include="Application\Application.cs" />
+    <Compile Include="Application\Info.cs" />
     <Compile Include="Application\App_Start\BundleConfig.cs" />
     <Compile Include="Application\App_Start\FilterConfig.cs" />
     <Compile Include="Application\App_Start\IdentityConfig.cs" />
@@ -176,9 +176,9 @@
     <Compile Include="CommonTools.cs" />
     <Compile Include="Configuration\ConfigurationConstants.cs" />
     <Compile Include="Configuration\SettingsManager.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeWikiController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MultiPlexAccountController.cs" />
     <Compile Include="Controllers\WikiAdminSiteController.cs" />
     <Compile Include="Controllers\WikiCategoryController.cs" />
     <Compile Include="Controllers\WikiContentController.cs" />

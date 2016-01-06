@@ -10,6 +10,7 @@ using Microsoft.Owin.Security;
 using MultiPlex.Core.Application;
 using MultiPlex.Core.Data.ViewModels.Identity;
 using BlackCogs.Data.ViewModels.Identity;
+using BlackCogs.Controllers;
 
 namespace MultiPlex.Core.Controllers
 {

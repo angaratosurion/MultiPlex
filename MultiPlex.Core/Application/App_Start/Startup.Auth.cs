@@ -9,7 +9,7 @@ using MultiPlex.Core.Data;
 using BlackCogs.Data.Models;
 namespace MultiPlex.Core.Application
 {
-    public partial class Startup
+    public partial class Startup//:BlackCogs.Application.Startup
     {
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
@@ -63,6 +63,8 @@ namespace MultiPlex.Core.Application
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+
+           
         }
     }
-}
+    }
