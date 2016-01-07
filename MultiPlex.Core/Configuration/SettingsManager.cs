@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using BlackCogs.Configuration;
 
 namespace MultiPlex.Core.Configuration
 {
-   public  class SettingsManager
+   public  class SettingsManager:BlackCogsSettingManager
     {
         public static string FoldernameSetting;
         AppSettingsReader rdr = new AppSettingsReader();
