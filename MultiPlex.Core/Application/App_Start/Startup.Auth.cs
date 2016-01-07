@@ -9,11 +9,12 @@ using MultiPlex.Core.Data;
 using BlackCogs.Data.Models;
 namespace MultiPlex.Core.Application
 {
-    public partial class Startup//:BlackCogs.Application.Startup
+    public partial class Startup:BlackCogs.Application.Startup
     {
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
+            base.ConfigureAuth(app);
             // Configure the db context, user manager and signin manager to use a single instance per request
             app.CreatePerOwinContext(Context.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
@@ -63,7 +64,7 @@ namespace MultiPlex.Core.Application
             //    ClientId = "",
             //    ClientSecret = ""
             //});
-
+            
            
         }
     }
