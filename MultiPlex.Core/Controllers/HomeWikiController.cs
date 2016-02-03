@@ -163,6 +163,36 @@ namespace MultiPlex.Core.Controllers
 
            return View(wk);
         }
+        [Authorize]
+        public ActionResult Create(string newwikiname)
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Wiki wk, string newwikiname)
+        {
+            ApplicationUser usr = null;
+            string ttusr = this.User.Identity.Name;
+            usr = this.usrmngr.GetUser(ttusr);
+            wk.Administrator = usr;
+            if (usr != null)
+            {
+                // if (ModelState.IsValid)
+                {
+
+
+                    wk.Moderators = new List<ApplicationUser>();
+                    wk.Moderators.Add(usr);
+
+                    wmngr.CreateWiki(wk);
+
+                }
+                return RedirectToAction("Index");
+            }
+
+            return View(wk);
+        }
         public ActionResult EditWiki(string wikiname)
         {
             
