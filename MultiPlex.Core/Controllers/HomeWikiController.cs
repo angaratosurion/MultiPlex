@@ -164,13 +164,13 @@ namespace MultiPlex.Core.Controllers
            return View(wk);
         }
         [Authorize]
-        public ActionResult Create(string newwikiname)
+        public ActionResult CreateWikiByExternSrc(string newwikiname)
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Wiki wk, string newwikiname)
+        public ActionResult CreateWikiByExternSrc(Wiki wk, string newwikiname)
         {
             ApplicationUser usr = null;
             string ttusr = this.User.Identity.Name;
