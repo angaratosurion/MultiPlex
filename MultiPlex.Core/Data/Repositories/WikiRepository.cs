@@ -205,6 +205,7 @@ namespace MultiPlex.Core.Data.Repositories
                     {
                         wk.WikiTitle = wk.Name;
                     }
+                  
                     this.db.Wikis.Add(wk);
                     this.db.SaveChanges();
                 }

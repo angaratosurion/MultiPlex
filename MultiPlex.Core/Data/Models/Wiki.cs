@@ -25,8 +25,9 @@ namespace MultiPlex.Core.Data.Models
         public string WikiTitle { get; set; }
         public virtual List<WikiTitle> Titles { get; set; }
         public virtual List<WikiContent> Content { get; set; }
+       
         [Required]
-        public  ApplicationUser Administrator { get; set; }
+        public virtual  ApplicationUser Administrator { get; set; }
         public virtual List<ApplicationUser> Moderators { get; set; }
         public virtual List<WikiCategory> Categories { get; set; }
         public virtual List<WikiFile> Files { get; set; }

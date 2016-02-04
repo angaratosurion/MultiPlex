@@ -8,7 +8,7 @@ using BlackCogs.Interfaces;
 
 namespace MultiPlex.Core.Verbs
 {
-    [Export(typeof(IActionVerb)), ExportMetadata("Category", "AdminNavigation")]
+    [Export(typeof(IActionVerb)), ExportMetadata("Category", "WikiNavigation")]
     public class WikiAdmVerb : IActionVerb
     {
         public string Action
