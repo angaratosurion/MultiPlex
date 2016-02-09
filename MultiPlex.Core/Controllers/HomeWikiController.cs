@@ -142,20 +142,17 @@ namespace MultiPlex.Core.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Wiki wk)
         {
-            ApplicationUser usr =null ;
             string ttusr = this.User.Identity.Name;
-            usr=this.usrmngr.GetUser(ttusr);
-            wk.Administrator = usr;
-            if (usr != null)
+
+            if (ttusr != null)
             {
                 // if (ModelState.IsValid)
                 {
                     
               
-                    wk.Moderators = new List<ApplicationUser>();
-                    wk.Moderators.Add(usr);
+                  
                     
-                    wmngr.CreateWiki(wk);
+                    wmngr.CreateWiki(wk,ttusr);
 
                 }
                 return RedirectToAction("Index");
@@ -174,18 +171,16 @@ namespace MultiPlex.Core.Controllers
         {
             ApplicationUser usr = null;
             string ttusr = this.User.Identity.Name;
-            usr = this.usrmngr.GetUser(ttusr);
-            wk.Administrator = usr;
-            if (usr != null)
+           
+            if (ttusr != null)
             {
                 // if (ModelState.IsValid)
                 {
 
 
-                    wk.Moderators = new List<ApplicationUser>();
-                    wk.Moderators.Add(usr);
+                   
 
-                    wmngr.CreateWiki(wk);
+                    wmngr.CreateWiki(wk,ttusr);
 
                 }
                 return RedirectToAction("Index");

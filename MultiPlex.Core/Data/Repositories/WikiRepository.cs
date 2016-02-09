@@ -207,6 +207,7 @@ namespace MultiPlex.Core.Data.Repositories
                     }
                   
                     this.db.Wikis.Add(wk);
+                    this.db.Configuration.ValidateOnSaveEnabled = false;
                     this.db.SaveChanges();
                 }
             }

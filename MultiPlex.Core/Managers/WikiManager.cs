@@ -106,28 +106,41 @@ namespace MultiPlex.Core.Managers
                 return null;
             }
         }
-        public void CreateWiki(Wiki wk)
+        public void CreateWiki(Wiki wk,string username)
         {
             try
             {
-                if ( wk!=null)
+                ApplicationUser usr = null;
+              
+                if ( wk!=null && CommonTools.isEmpty(username)==false)
                 {
 
-                     
-                    this.wrepo.CreateWiki(wk);
-                    string wkrotfold = this.setmngr.WikiRootFolderName();
-                    string wkpath;
 
-                    //if (CommonTools.isEmpty(wkrotfold ))
-                    //{
-                    //    wkrotfold = "wikifiles";
-                    //}
-                   // wkpath = "~/" + AppDataDir + "/" + wkrotfold + "/" + wk.Name;
-                    wkpath = FileSystemManager.GetWikiRootDataFolderRelativePath(wk.Name);
-                    if ( FileSystemManager.DirectoryExists(wkpath)==false)
+
+                    usr = CommonTools.usrmng.GetUser(username);
+                    if (usr != null)
                     {
-                        FileSystemManager.CreateDirectory(wkpath);
+                        wk.Administrator = usr.Clone();
 
+                  
+
+                        wk.Moderators = new List<ApplicationUser>();
+                        wk.Moderators.Add(usr.Clone());
+                        this.wrepo.CreateWiki(wk);
+                        string wkrotfold = this.setmngr.WikiRootFolderName();
+                        string wkpath;
+
+                        //if (CommonTools.isEmpty(wkrotfold ))
+                        //{
+                        //    wkrotfold = "wikifiles";
+                        //}
+                        // wkpath = "~/" + AppDataDir + "/" + wkrotfold + "/" + wk.Name;
+                        wkpath = FileSystemManager.GetWikiRootDataFolderRelativePath(wk.Name);
+                        if (FileSystemManager.DirectoryExists(wkpath) == false)
+                        {
+                            FileSystemManager.CreateDirectory(wkpath);
+
+                        }
                     }
                 }
             }
