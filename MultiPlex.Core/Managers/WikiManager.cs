@@ -120,13 +120,15 @@ namespace MultiPlex.Core.Managers
                     usr = CommonTools.usrmng.GetUser(username);
                     if (usr != null)
                     {
-                        wk.Administrator = usr.Clone();
+                        wk.Administrator = usr;//.Clone();
+                        //wk.AdministratorId = wk.Administrator.Id;
 
                   
 
-                        wk.Moderators = new List<ApplicationUser>();
-                        wk.Moderators.Add(usr.Clone());
+                       wk.Moderators = new List<ApplicationUser>();
+                        wk.Moderators.Add(usr);
                         this.wrepo.CreateWiki(wk);
+                      
                         string wkrotfold = this.setmngr.WikiRootFolderName();
                         string wkpath;
 
