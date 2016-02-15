@@ -39,7 +39,7 @@ namespace MultiPlex.Core.Data.Models
         [Required]
         public virtual Wiki Wiki { get; set; }
         [Required]        
-        public  ApplicationUser WrittenBy { get; set; }
+        public virtual ApplicationUser WrittenBy { get; set; }
 
     }
 }
