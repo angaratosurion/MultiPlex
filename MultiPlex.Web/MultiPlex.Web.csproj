@@ -331,6 +331,15 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\RemoveUserFromRole.cshtml" />
     <Content Include="Views\User\RoleDetails.cshtml" />
+    <Content Include="Views\WikiUser\AddUserToRole.cshtml" />
+    <Content Include="Views\WikiUser\CreateNewRole.cshtml" />
+    <Content Include="Views\WikiUser\CreateNewUser.cshtml" />
+    <Content Include="Views\WikiUser\DeleteRole.cshtml" />
+    <Content Include="Views\WikiUser\Details.cshtml" />
+    <Content Include="Views\WikiUser\GetRoles.cshtml" />
+    <Content Include="Views\WikiUser\Index.cshtml" />
+    <Content Include="Views\WikiUser\RemoveUserFromRole.cshtml" />
+    <Content Include="Views\WikiUser\RoleDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\wiki\" />
@@ -374,7 +383,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51617</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:51618/</IISUrl>
+          <IISUrl>http://localhost:51619/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
