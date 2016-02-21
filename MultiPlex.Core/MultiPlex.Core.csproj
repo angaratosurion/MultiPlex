@@ -201,6 +201,11 @@
     <Compile Include="Data\ViewModels\ViewTitleFile.cs" />
     <Compile Include="Data\ViewModels\ViewWikiModInvites.cs" />
     <Compile Include="Data\ViewModels\ViewWikiUsers.cs" />
+    <Compile Include="Data\ViewModels\ViewWiki.cs" />
+    <Compile Include="Data\ViewModels\ViewWikiContent.cs" />
+    <Compile Include="Data\ViewModels\ViewWikiFile.cs" />
+    <Compile Include="Data\ViewModels\ViewWikiModInvitations.cs" />
+    <Compile Include="Data\ViewModels\ViewWikiTitle.cs" />
     <Compile Include="Helpers\ASP.Net\ImageHelper.cs" />
     <Compile Include="Helpers\SlugHelper.cs" />
     <Compile Include="Data\Models\WikiContent.cs" />

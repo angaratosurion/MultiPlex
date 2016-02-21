@@ -146,7 +146,11 @@ namespace MultiPlex.Core.Data.Repositories
                 List<Models.Wiki> ap = null;
                 if ( CommonTools.isEmpty(username)==false)
                 {
-                    ap=this.db.Wikis.Where(s => s.Administrator.UserName == username).ToList();
+                    ApplicationUser adm = CommonTools.usrmng.GetUser(username);
+                    if (adm != null)
+                    {
+                        ap = this.db.Wikis.Where(s => s.Administrator == adm.Id).ToList();
+                    }
 
                 }
                 return ap;
@@ -177,7 +181,7 @@ namespace MultiPlex.Core.Data.Repositories
                         ap = new List<Wiki>();
                          foreach( Wiki w in wks )
                         {
-                             if ( w.Moderators.Contains(usr))
+                             if ( w.Moderators.Contains(usr.Id))
                             {
                                 ap.Add(w);
                             }
@@ -393,7 +397,7 @@ namespace MultiPlex.Core.Data.Repositories
                     ap.Name = name;
                     ap.Slug = slug;
                     ap.Wiki = wiki;
-                    ap.WrittenBy = user;
+                    ap.WrittenBy = user.Id;
                 }
                 return ap;
 
@@ -606,7 +610,7 @@ namespace MultiPlex.Core.Data.Repositories
                         cont.Title = title;
                         cont.Source = source;
                         cont.Wiki = db.Wikis.FirstOrDefault(w => w.Name == wikiname);
-                        cont.WrittenBy = user;
+                        cont.WrittenBy = user.Id;
                         if (this.CountWithTitleId(wikiname, tid) > 0)
                         {
                             cont.Version = this.CountWithTitleId(wikiname, tid) + 1;
@@ -651,13 +655,13 @@ namespace MultiPlex.Core.Data.Repositories
                         title.Categories = new List<WikiCategory>();
                         title.Categories.Add(cat);
                         title.Wiki = wk;
-                        title.WrittenBy = usr;
+                        title.WrittenBy = usr.Id;
                         title.Slug = title.Name.Replace(" ", "_");
 
                         cont.Title = title;
                         cont.Version = 1;
                         cont.Wiki = wk;
-                        cont.WrittenBy = usr;
+                        cont.WrittenBy = usr.Id;
                         cont.VersionDate = DateTime.Now;
                         if (wk.Content == null)
                         {
@@ -739,7 +743,7 @@ namespace MultiPlex.Core.Data.Repositories
                         //}
                         wk.Content.Add(cont);
                         cont.Wiki = wk;
-                        cont.WrittenBy = usr;
+                        cont.WrittenBy = usr.Id;
                         cont.VersionDate = DateTime.Now;
                         //cont1.Source = cont.Source;
 
@@ -1160,7 +1164,7 @@ namespace MultiPlex.Core.Data.Repositories
                     tfile.Wiki = wk;
                     tfile.VersionDate = DateTime.Now;
                     tfile.Title = title;
-                    tfile.Owner = user;
+                    tfile.Owner = user.Id;
                     wk.Files.Add(tfile);
 
                     

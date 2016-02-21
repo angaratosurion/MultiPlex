@@ -29,8 +29,8 @@ namespace MultiPlex.Core.Data.Models
       //  public string AdministratorId { get; set; }
         [Required]
       //  [ForeignKey("AdministratorId")]
-        public virtual  ApplicationUser Administrator { get; set; }
-        public virtual List<ApplicationUser> Moderators { get; set; }
+        public string Administrator { get; set; }
+        public  List<string> Moderators { get; set; }
         public virtual List<WikiCategory> Categories { get; set; }
         public virtual List<WikiFile> Files { get; set; }
         [Timestamp]

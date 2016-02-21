@@ -120,13 +120,13 @@ namespace MultiPlex.Core.Managers
                     usr = CommonTools.usrmng.GetUser(username);
                     if (usr != null)
                     {
-                        wk.Administrator = usr;//.Clone();
+                        wk.Administrator = usr.Id;//.Clone();
                         //wk.AdministratorId = wk.Administrator.Id;
 
                   
 
-                       wk.Moderators = new List<ApplicationUser>();
-                        wk.Moderators.Add(usr);
+                       wk.Moderators = new List<string>();
+                        wk.Moderators.Add(usr.Id);
                         this.wrepo.CreateWiki(wk);
                       
                         string wkrotfold = this.setmngr.WikiRootFolderName();
@@ -184,7 +184,19 @@ namespace MultiPlex.Core.Managers
                 if (CommonTools.isEmpty(wikiname) == false && this.wrepo.WikiExists(wikiname))
                 {
                     Wiki wk = this.GetWiki(wikiname);
-                    ap = wk.Moderators;
+
+                    List<string> mods = wk.Moderators;
+                    if (mods != null)
+                    {
+                        foreach (var m in mods)
+                        {
+                            ApplicationUser md = CommonTools.usrmng.GetUserbyID(m);
+                            if (md != null)
+                            {
+                                ap.Add(md);
+                            }
+                        }
+                    }
                 }
                 return ap;
 
@@ -205,7 +217,12 @@ namespace MultiPlex.Core.Managers
                 if (CommonTools.isEmpty(wikiname) ==false && this.wrepo.WikiExists(wikiname))
                 {
                     Wiki wk = this.GetWiki(wikiname);
-                    ap = wk.Administrator;
+                    string adm= wk.Administrator;
+                    if (CommonTools.isEmpty(adm) == false)
+                    {
+                        ap = CommonTools.usrmng.GetUserbyID(adm);
+                            
+                    } 
                 }
                 return ap;
 

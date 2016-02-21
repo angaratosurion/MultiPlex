@@ -322,15 +322,6 @@
     <Content Include="Views\WikiFile\Gallery.cshtml" />
     <Content Include="Views\WikiFile\Details.cshtml" />
     <Content Include="Views\WikiFile\Delete.cshtml" />
-    <Content Include="Views\User\AddUserToRole.cshtml" />
-    <Content Include="Views\User\CreateNewRole.cshtml" />
-    <Content Include="Views\User\CreateNewUser.cshtml" />
-    <Content Include="Views\User\DeleteRole.cshtml" />
-    <Content Include="Views\User\Details.cshtml" />
-    <Content Include="Views\User\GetRoles.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\User\RemoveUserFromRole.cshtml" />
-    <Content Include="Views\User\RoleDetails.cshtml" />
     <Content Include="Views\WikiUser\AddUserToRole.cshtml" />
     <Content Include="Views\WikiUser\CreateNewRole.cshtml" />
     <Content Include="Views\WikiUser\CreateNewUser.cshtml" />

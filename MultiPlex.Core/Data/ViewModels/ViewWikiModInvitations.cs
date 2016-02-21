@@ -5,18 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlackCogs.Data.Models;
+using MultiPlex.Core.Data.Models;
 
-namespace MultiPlex.Core.Data.Models
+namespace MultiPlex.Core.Data.ViewModels
 {
-   public class WikiModInvitations
+   public class ViewWikiModInvitations
     {
         [Required]
         public int Id { get; set; }
         [Required]
         public Wiki Wiki { get; set; }
         [Required]
-        public string Moderator { get; set; }
-        [Timestamp]
-        public Byte[] RowVersion { get; set; }
+        public ApplicationUser Moderator { get; set; }
+       
     }
 }

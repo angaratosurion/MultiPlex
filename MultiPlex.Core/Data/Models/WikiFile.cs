@@ -30,7 +30,7 @@ namespace MultiPlex.Core.Data.Models
         [Timestamp]
         public Byte[] RowVersion { get; set; }
         [Required]
-        public virtual ApplicationUser Owner { get; set; }
+        public string Owner { get; set; }
         [Required]
         public virtual Wiki Wiki { get; set; }
         [Required]

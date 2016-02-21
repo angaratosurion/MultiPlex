@@ -28,12 +28,12 @@ namespace MultiPlex.Core.Data
             modelBuilder.Properties<DateTime>()
                   .Configure(c => c.HasColumnType("datetime2"));
 
-            modelBuilder.Entity<WikiContent>()
-                .HasRequired(s => s.WrittenBy)
-                .WithMany().WillCascadeOnDelete(false);
-            modelBuilder.Entity<WikiTitle>()
-                .HasRequired(t => t.WrittenBy)
-                .WithMany().WillCascadeOnDelete(false);
+            //modelBuilder.Entity<WikiContent>()
+            //    .HasRequired(s => s.WrittenBy)
+            //    .WithMany().WillCascadeOnDelete(false);
+            //modelBuilder.Entity<WikiTitle>()
+            //    .HasRequired(t => t.WrittenBy)
+            //    .WithMany().WillCascadeOnDelete(false);
 
 
 
@@ -50,10 +50,10 @@ namespace MultiPlex.Core.Data
                .HasRequired(f => f.Wiki)
                .WithMany()
                .WillCascadeOnDelete(false);
-            modelBuilder.Entity<Wiki>()
-            .HasRequired(f => f.Administrator)
-            .WithMany()
-            .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Wiki>()
+            //.HasRequired(f => f.Administrator)
+            //.WithMany()
+            //.WillCascadeOnDelete(false);
 
 
 

@@ -157,7 +157,7 @@ namespace MultiPlex.Core.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.NotFound);
                 }
                 WikiModInvitations inv = new WikiModInvitations();
-                inv.Moderator = this.usremngr.GetUser(this.User.Identity.Name);
+                inv.Moderator = this.usremngr.GetUser(this.User.Identity.Name).Id;
                 inv.Wiki = wk;
                 this.wkmodinvngr.CreateModRequest(wikiname,inv);
                 RouteValueDictionary vals = new RouteValueDictionary();
