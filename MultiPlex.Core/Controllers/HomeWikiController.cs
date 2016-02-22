@@ -10,6 +10,8 @@ using MultiPlex.Core;
 using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Managers;
 using BlackCogs.Data.Models;
+using MultiPlex.Core.Data.ViewModels;
+
 namespace MultiPlex.Core.Controllers
 {
     [Export("HomeWiki", typeof(IController))]
@@ -29,7 +31,15 @@ namespace MultiPlex.Core.Controllers
 
 
                 List<Wiki> wikis = this.wmngr.ListWiki();
-                return View(wikis);
+                List<ViewWiki> wkv = new List<ViewWiki>();
+                foreach ( var w in wikis)
+                {
+                    ViewWiki v = new ViewWiki();
+                    v.ImportFromModel(w);
+                    wkv.Add(v);
+                }
+
+                return View(wkv);
             }
             catch (Exception ex)
             {
@@ -55,7 +65,9 @@ namespace MultiPlex.Core.Controllers
                 {
                     return HttpNotFound();
                 }
-                return View(wk);
+                ViewWiki vwk = new ViewWiki();
+                vwk.ImportFromModel(wk);
+                return View(vwk);
 
             }
             catch (Exception ex)
@@ -140,7 +152,7 @@ namespace MultiPlex.Core.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Wiki wk)
+        public ActionResult Create(ViewWiki vwk)
         {
             string ttusr = this.User.Identity.Name;
 
@@ -148,9 +160,10 @@ namespace MultiPlex.Core.Controllers
             {
                 // if (ModelState.IsValid)
                 {
-                    
-              
-                  
+
+
+                    Wiki wk = vwk.ExportToModel();
+                     
                     
                     wmngr.CreateWiki(wk,ttusr);
 
@@ -158,7 +171,7 @@ namespace MultiPlex.Core.Controllers
                 return RedirectToAction("Index");
             }
 
-           return View(wk);
+           return View(vwk);
         }
         [Authorize]
         public ActionResult CreateWikiByExternSrc(string newwikiname)
@@ -167,7 +180,7 @@ namespace MultiPlex.Core.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateWikiByExternSrc(Wiki wk, string newwikiname)
+        public ActionResult CreateWikiByExternSrc(ViewWiki vwk, string newwikiname)
         {
             ApplicationUser usr = null;
             string ttusr = this.User.Identity.Name;
@@ -178,15 +191,15 @@ namespace MultiPlex.Core.Controllers
                 {
 
 
-                   
 
+                    Wiki wk = vwk.ExportToModel();
                     wmngr.CreateWiki(wk,ttusr);
 
                 }
                 return RedirectToAction("Index");
             }
 
-            return View(wk);
+            return View(vwk);
         }
         public ActionResult EditWiki(string wikiname)
         {

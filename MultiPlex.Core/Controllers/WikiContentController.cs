@@ -42,8 +42,8 @@ namespace MultiPlex.Core.Controllers
         {
             try
             {
-                WikiTitle title = new WikiTitle();
-                WikiContent content = new WikiContent();
+                ViewWikiTitle title = new ViewWikiTitle();
+                ViewWikiContent content = new ViewWikiContent();
                 
                 return View(Tuple.Create(title,content));
             }
@@ -56,8 +56,8 @@ namespace MultiPlex.Core.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateContent(string wikiname, int cid, [Bind(Prefix ="item1")]WikiTitle title,
-            [Bind(Prefix ="item2")] WikiContent cont)
+        public ActionResult CreateContent(string wikiname, int cid, [Bind(Prefix ="item1")]ViewWikiTitle title,
+            [Bind(Prefix ="item2")] ViewWikiContent cont)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace MultiPlex.Core.Controllers
                 {
                     contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
                     ApplicationUser usr = CommonTools.usrmng.GetUser(this.User.Identity.Name);
-                    this.contmngr.AddContent(wikiname, title, cont,cid,usr);
+                    this.contmngr.AddContent(wikiname, title.ExportToModel(), cont.ExportToModel(),cid,usr);
 
                     return RedirectToAction("ViewContent", new  {wikiname,title.Id,title.Slug });
                     }
@@ -153,7 +153,14 @@ namespace MultiPlex.Core.Controllers
                    return RedirectToAction("CreateContent", "WikiContent", vals);
                   //  return RedirectToAction("EditContent", "Content", vals);
                 }
-                return View(titles);
+                List<ViewWikiTitle> vtitles = new List<ViewWikiTitle>();
+                foreach(var v in titles)
+                {
+                    ViewWikiTitle vt = new ViewWikiTitle();
+                    vt.ImportFromModel(v);
+                    vtitles.Add(vt);
+                }
+                return View(vtitles);
             }
             catch (Exception ex)
             {
@@ -187,7 +194,14 @@ namespace MultiPlex.Core.Controllers
                     return RedirectToAction("CreateContent", "WikiContent", vals);
                     //  return RedirectToAction("EditContent", "Content", vals);
                 }
-                return View(titles);
+                List<ViewWikiTitle> vtitles = new List<ViewWikiTitle>();
+                foreach (var v in titles)
+                {
+                    ViewWikiTitle vt = new ViewWikiTitle();
+                    vt.ImportFromModel(v);
+                    vtitles.Add(vt);
+                }
+                return View(vtitles);
             }
             catch (Exception ex)
             {
@@ -363,9 +377,10 @@ namespace MultiPlex.Core.Controllers
                     return HttpNotFound();
                 }
 
+                ViewWikiTitle vt = new ViewWikiTitle();
+                vt.ImportFromModel(title);
 
-
-                return View(title);
+                return View(vt);
             }
             catch (Exception ex)
             {

@@ -64,5 +64,34 @@ namespace MultiPlex.Core.Data.ViewModels
 
             }
         }
+        public WikiTitle ExportToModel()
+        {
+            try
+            {
+                WikiTitle ap = new WikiTitle();
+                        ap.Id = Id;
+                        ap.Files = Files;
+                        ap.Categories = Categories;
+                        ap.Content = Content;
+                        ap.isLocked = isLocked;
+                        ap.MaxVersion = MaxVersion;
+                        ap.Name = Name;
+                        ap.Slug = Slug;
+                        ap.Wiki = Wiki;
+                        ap.WrittenBy = WrittenBy.Id;
+
+                return ap;
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+
+            }
+        }
     }
 }

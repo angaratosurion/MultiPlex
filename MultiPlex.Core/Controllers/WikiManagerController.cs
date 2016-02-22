@@ -70,23 +70,24 @@ namespace MultiPlex.Core.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
-
-            return View(wk);
+            ViewWiki vwk = new ViewWiki();
+            vwk.ImportFromModel(wk);
+            return View(vwk);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditBasicInfo(Wiki wk, string wikiname)
+        public ActionResult EditBasicInfo(ViewWiki vwk, string wikiname)
         {
-            
+            Wiki wk = vwk.ExportToModel();
             //  Wiki wk2 = this.wmngr.GetWiki(wikiname);
             //  wk.Name = wk2.Name;
-            wikiname = wk.Name;
+            wikiname = vwk.Name;
             // if (ModelState.IsValid)
             {
                 wk = this.wkmngr.EditBasicInfo(wk, wikiname);
                 return RedirectToAction("Index","HomeWiki");
             }
-            return View(wk);
+            return View(vwk);
         }
         [Authorize]
         public ActionResult EditWiki(string wikiname)
@@ -99,7 +100,9 @@ namespace MultiPlex.Core.Controllers
             }
             Wiki wk = this.wkmngr.GetWiki(wikiname);
             ViewBag.wikiname = wikiname;
-            return View(wk);
+            ViewWiki vwk = new ViewWiki();
+            vwk.ImportFromModel(wk);
+            return View(vwk);
 
 
         }

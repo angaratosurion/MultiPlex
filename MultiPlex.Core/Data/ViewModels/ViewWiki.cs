@@ -84,5 +84,48 @@ namespace MultiPlex.Core.Data.ViewModels
                 
             }
         }
+        public Wiki ExportToModel()
+        {
+            try
+            {
+                Wiki ap = new Wiki();
+                    //ApplicationUser user = CommonTools.usrmng.GetUserbyID(md.Administrator);
+                   
+                        ap.id = this.id;
+                        ap.Files = this.Files;
+                        ap.Categories = Categories;
+                        ap.Content = Content;
+                        ap.Description = Description;
+                        ap.Name = Name;
+                        ap.Titles = Titles;
+                        ap.UpdatedAt = UpdatedAt;
+                        ap.WikiTitle = WikiTitle;
+                        ap.Administrator = Administrator.Id;
+                        if (Moderators != null)
+                        {
+                            List<string> mods = new List<string>();
+
+                            foreach (var m in this.Moderators)
+                            {
+                              
+                                    mods.Add(m.Id);
+
+                              
+                            }
+                    ap.Moderators = mods;
+                        }
+
+
+                return ap;
+                
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+
+            }
+        }
     }
 }

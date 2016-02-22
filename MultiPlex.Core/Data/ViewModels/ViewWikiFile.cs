@@ -68,6 +68,35 @@ namespace MultiPlex.Core.Data.ViewModels
 
             }
         }
+        public WikiFile ExportToModel()
+        {
+            try
+            {
+                WikiFile ap = new WikiFile();
+               
+                        ap.Id = Id;
+                        ap.FileName = FileName;
+                        ap.RelativePath = RelativePath;
+                        ap.AbsolutePath = AbsolutePath;
+                        ap.FileType = FileType;
+                        ap.isImage = isImage;
+                        ap.Title = Title;
+                        ap.Version = Version;
+                       ap.VersionDate =VersionDate;
+                        ap.Owner = Owner.Id;
+                        ap.Wiki = Wiki;
+                return ap;
+                
+            }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+
+            }
+        }
+
 
     }
 }

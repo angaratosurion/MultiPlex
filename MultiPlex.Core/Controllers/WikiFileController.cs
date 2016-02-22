@@ -25,7 +25,15 @@ namespace MultiPlex.Core.Controllers
             try {
 
                 List<WikiFile> lst = this.filemngr.GetFiles();
-                return View(lst);
+                List<ViewWikiFile> vlist = new List<ViewWikiFile>();
+                foreach ( var v in lst)
+                {
+                    ViewWikiFile vf = new ViewWikiFile();
+                    vf.ImportFromModel(v);
+                    vlist.Add(vf);
+
+                }
+                return View(vlist);
             }
             catch (Exception ex)
             {
@@ -113,9 +121,16 @@ namespace MultiPlex.Core.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.NotFound);
                 }
 
+                List<ViewWikiFile> vlist = new List<ViewWikiFile>();
+                foreach (var v in lst)
+                {
+                    ViewWikiFile vf = new ViewWikiFile();
+                    vf.ImportFromModel(v);
+                    vlist.Add(vf);
 
+                }
 
-                return View(lst);
+                return View(vlist);
 
             }
             catch (Exception ex)
@@ -141,8 +156,15 @@ namespace MultiPlex.Core.Controllers
                 }
 
 
+                List<ViewWikiFile> vlist = new List<ViewWikiFile>();
+                foreach (var v in lst)
+                {
+                    ViewWikiFile vf = new ViewWikiFile();
+                    vf.ImportFromModel(v);
+                    vlist.Add(vf);
 
-                return View(lst);
+                }
+                return View(vlist);
 
             }
             catch (Exception ex)
@@ -167,9 +189,16 @@ namespace MultiPlex.Core.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.NotFound);
                 }
 
+                List<ViewWikiFile> vlist = new List<ViewWikiFile>();
+                foreach (var v in lst)
+                {
+                    ViewWikiFile vf = new ViewWikiFile();
+                    vf.ImportFromModel(v);
+                    vlist.Add(vf);
 
+                }
 
-                return View(lst);
+                return View(vlist);
 
             }
             catch (Exception ex)
@@ -195,8 +224,15 @@ namespace MultiPlex.Core.Controllers
                 }
 
 
+                List<ViewWikiFile> vlist = new List<ViewWikiFile>();
+                foreach (var v in lst)
+                {
+                    ViewWikiFile vf = new ViewWikiFile();
+                    vf.ImportFromModel(v);
+                    vlist.Add(vf);
 
-                return View(lst);
+                }
+                return View(vlist);
 
             }
             catch (Exception ex)
@@ -222,8 +258,9 @@ namespace MultiPlex.Core.Controllers
                 }
 
 
-
-                return View(lst);
+                ViewWikiFile vlst = new ViewWikiFile();
+                vlst.ImportFromModel(lst);
+                return View(vlst);
 
             }
             catch (Exception ex)
@@ -248,9 +285,10 @@ namespace MultiPlex.Core.Controllers
                     return HttpNotFound();
                 }
 
+                ViewWikiFile vfile = new ViewWikiFile();
+                vfile.ImportFromModel(file);
 
-
-                return View(file);
+                return View(vfile);
             }
             catch (Exception ex)
             {

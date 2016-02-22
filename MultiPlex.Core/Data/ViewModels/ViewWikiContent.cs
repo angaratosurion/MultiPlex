@@ -70,6 +70,35 @@ namespace MultiPlex.Core.Data.ViewModels
 
             }
         }
+        public WikiContent ExportToModel()
+        {
+            try
+            {
+                WikiContent ap = new WikiContent();
+                
+                        ap.Id = Id;
+                        ap.Source = Source;
+                        ap.Title = Title;
+                        ap.Version = Version;
+                        ap.RenderedSource = RenderedSource;
+                        ap.VersionDate = VersionDate;
+                        ap.Wiki = Wiki;
+                        ap.WrittenBy = WrittenBy.Id;
+
+
+                return ap;
+                
+                }
+            
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                return null;
+            
+
+            }
+        }
 
     }
 }
