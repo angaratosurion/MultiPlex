@@ -24,16 +24,16 @@ namespace MultiPlex.Core.Data.ViewModels
         [Display(Name = "Title")]
         [Required]
         public string WikiTitle { get; set; }
-        public virtual List<WikiTitle> Titles { get; set; }
-        public virtual List<WikiContent> Content { get; set; }
+        public  List<WikiTitle> Titles { get; set; }
+        public  List<WikiContent> Content { get; set; }
       
       //  public string AdministratorId { get; set; }
         [Required]
       //  [ForeignKey("AdministratorId")]
-        public virtual  ApplicationUser Administrator { get; set; }
-        public virtual List<ApplicationUser> Moderators { get; set; }
-        public virtual List<WikiCategory> Categories { get; set; }
-        public virtual List<WikiFile> Files { get; set; }
+        public   ApplicationUser Administrator { get; set; }
+        public  List<ApplicationUser> Moderators { get; set; }
+        public  List<WikiCategory> Categories { get; set; }
+        public  List<WikiFile> Files { get; set; }
        
           
         public DateTime UpdatedAt { get; set; }
@@ -41,7 +41,7 @@ namespace MultiPlex.Core.Data.ViewModels
         {
             try
             {
-                if ( md !=null && CommonTools.isEmpty(md.Administrator))
+                if ( md !=null && CommonTools.isEmpty(md.Administrator)==false)
                 {
                     ApplicationUser user = CommonTools.usrmng.GetUserbyID(md.Administrator);
                     if (user != null)
@@ -92,6 +92,7 @@ namespace MultiPlex.Core.Data.ViewModels
                     //ApplicationUser user = CommonTools.usrmng.GetUserbyID(md.Administrator);
                    
                         ap.id = this.id;
+                 
                         ap.Files = this.Files;
                         ap.Categories = Categories;
                         ap.Content = Content;
@@ -101,6 +102,14 @@ namespace MultiPlex.Core.Data.ViewModels
                         ap.UpdatedAt = UpdatedAt;
                         ap.WikiTitle = WikiTitle;
                         ap.Administrator = Administrator.Id;
+                if ( Files==null)
+                {
+                    ap.Files = new List<WikiFile>();
+                }
+                 if ( Categories== null)
+                {
+                    ap.Categories = new List<WikiCategory>();
+                }
                         if (Moderators != null)
                         {
                             List<string> mods = new List<string>();

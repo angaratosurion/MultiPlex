@@ -134,7 +134,7 @@ namespace MultiPlex.Core.Controllers
                 //   RouteDataValueProvider
                 RouteValueDictionary vals = new RouteValueDictionary();
                 vals.Add("wikiname", wikiname);
-                return RedirectToAction("CreateCategory", "Content", vals);
+                return RedirectToAction("CreateCategory", "WikiContent", vals);
 
             }
             catch (Exception ex)
@@ -161,7 +161,7 @@ namespace MultiPlex.Core.Controllers
                 // if (ModelState.IsValid)
                 {
 
-
+                    vwk.Administrator = CommonTools.usrmng.GetUser(ttusr);
                     Wiki wk = vwk.ExportToModel();
                      
                     

@@ -30,16 +30,16 @@ namespace MultiPlex.Core.Data.ViewModels
 
        
         [Required]
-        public virtual ApplicationUser Owner { get; set; }
+        public  ApplicationUser Owner { get; set; }
         [Required]
-        public virtual Wiki Wiki { get; set; }
+        public  Wiki Wiki { get; set; }
         [Required]
-        public virtual WikiTitle Title { get; set; }
+        public  WikiTitle Title { get; set; }
         public void ImportFromModel(WikiFile md)
         {
             try
             {
-                if (md != null && CommonTools.isEmpty(md.Owner))
+                if (md != null && CommonTools.isEmpty(md.Owner) == false)
                 {
                     ApplicationUser user = CommonTools.usrmng.GetUserbyID(md.Owner);
                     if (user != null)

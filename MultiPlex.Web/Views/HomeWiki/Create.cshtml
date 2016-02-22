@@ -45,7 +45,7 @@
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
-        @Html.HiddenFor(model => model.Administrator, new { Value = @CommonTools.usrmng.GetUser(Profile.UserName).Id });
+        @Html.HiddenFor(model => model.Administrator, new { Value = Profile.UserName });
       
 
        

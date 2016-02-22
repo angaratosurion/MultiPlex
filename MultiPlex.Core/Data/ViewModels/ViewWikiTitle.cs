@@ -25,18 +25,18 @@ namespace MultiPlex.Core.Data.ViewModels
        
         public Boolean isLocked { get; set; }
         [Required]
-        public virtual Wiki Wiki { get; set; }
+        public  Wiki Wiki { get; set; }
         [Required]
-        public virtual ApplicationUser WrittenBy { get; set; }
-        public virtual List<WikiFile> Files { get; set; }
-        public virtual List<WikiCategory> Categories { get; set; }
+        public  ApplicationUser WrittenBy { get; set; }
+        public  List<WikiFile> Files { get; set; }
+        public  List<WikiCategory> Categories { get; set; }
       
-        public virtual WikiContent Content { get; set; }
+        public  WikiContent Content { get; set; }
         public void ImportFromModel(WikiTitle md)
         {
             try
             {
-                if (md != null && CommonTools.isEmpty(md.WrittenBy))
+                if (md != null && CommonTools.isEmpty(md.WrittenBy) == false)
                 {
                     ApplicationUser user = CommonTools.usrmng.GetUserbyID(md.WrittenBy);
                     if (user != null)

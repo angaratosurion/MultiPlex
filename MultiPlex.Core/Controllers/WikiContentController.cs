@@ -67,6 +67,10 @@ namespace MultiPlex.Core.Controllers
                 {
                     contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);
                     ApplicationUser usr = CommonTools.usrmng.GetUser(this.User.Identity.Name);
+                    title.WrittenBy = usr;
+                    cont.WrittenBy = usr;
+                    //title.Wiki = wikiname;
+
                     this.contmngr.AddContent(wikiname, title.ExportToModel(), cont.ExportToModel(),cid,usr);
 
                     return RedirectToAction("ViewContent", new  {wikiname,title.Id,title.Slug });

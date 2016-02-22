@@ -83,7 +83,7 @@
                         @Html.DisplayFor(modelItem => item.Wiki.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.WrittenBy.UserName)
+                        @Html.DisplayFor(modelItem => @CommonTools.usrmng.GetUserbyID(item.WrittenBy).UserName)
                     </td>
                    
                     <td>

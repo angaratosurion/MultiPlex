@@ -25,7 +25,7 @@ namespace MultiPlex.Core.Data.ViewModels
         [Required]
         public int Id { get; set; }
         [Required]
-        public virtual WikiTitle Title { get; set; }
+        public  WikiTitle Title { get; set; }
         [DataType(DataType.MultilineText)]
         [Required]
         public string Source { get; set; }
@@ -37,14 +37,14 @@ namespace MultiPlex.Core.Data.ViewModels
         public DateTime VersionDate { get; set; }
        
         [Required]
-        public virtual Wiki Wiki { get; set; }
+        public  Wiki Wiki { get; set; }
         [Required]        
-        public virtual ApplicationUser WrittenBy { get; set; }
+        public  ApplicationUser WrittenBy { get; set; }
         public void ImportFromModel(WikiContent md)
         {
             try
             {
-                if (md != null && CommonTools.isEmpty(md.WrittenBy))
+                if (md != null && CommonTools.isEmpty(md.WrittenBy) == false)
                 {
                     ApplicationUser user = CommonTools.usrmng.GetUserbyID(md.WrittenBy);
                     if (user != null)
@@ -83,7 +83,10 @@ namespace MultiPlex.Core.Data.ViewModels
                         ap.RenderedSource = RenderedSource;
                         ap.VersionDate = VersionDate;
                         ap.Wiki = Wiki;
-                        ap.WrittenBy = WrittenBy.Id;
+                if (WrittenBy != null)
+                {
+                    ap.WrittenBy = WrittenBy.Id;
+                }
 
 
                 return ap;
