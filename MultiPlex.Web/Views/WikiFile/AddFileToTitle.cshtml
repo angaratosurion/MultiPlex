@@ -43,7 +43,7 @@
 </div>
 <h4>Upload File</h4>
 <hr />
-@using (Html.BeginForm("AddFileToTitle", "File",new {wikiname=Model.Title.Wiki.Name,tid=Model.Title.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("AddFileToTitle", "WikiFile",new {wikiname=Model.Title.Wiki.Name,tid=Model.Title.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">

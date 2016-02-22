@@ -99,7 +99,7 @@
                         <tr>
                             <td>
                                 @*@Html.DisplayFor(modelItem => item.Name)*@
-                                @Html.ActionLink(item.Name, "Details", "HomeWiki", new { id = item.Name},null)
+                                @Html.ActionLink(item.Name, "Details", "HomeWiki", new { wikiname = item.Name},null)
                             </td>
                             @*<td>
                                     @Html.DisplayFor(modelItem => item.)

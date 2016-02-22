@@ -71,9 +71,9 @@ namespace MultiPlex.Core.Controllers
                     cont.WrittenBy = usr;
                     //title.Wiki = wikiname;
 
-                    this.contmngr.AddContent(wikiname, title.ExportToModel(), cont.ExportToModel(),cid,usr);
-
-                    return RedirectToAction("ViewContent", new  {wikiname,title.Id,title.Slug });
+                   var t= this.contmngr.AddContent(wikiname, title.ExportToModel(), cont.ExportToModel(),cid,usr);
+                   
+                    return RedirectToAction("ViewContent", new  {wikiname,t.Id,t.Slug });
                     }
                 
                 return RedirectToAction("CreateContent");

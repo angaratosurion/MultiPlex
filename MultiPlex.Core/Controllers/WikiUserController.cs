@@ -53,7 +53,12 @@ namespace MultiPlex.Core.Controllers
                 fulusr.UserDetails = adm;
                 fulusr.Roles = this.usremngr.GetRolesOfUser(username);
                 fulusr.WikisAsAdmin= this.wkmngr.ListWikiByAdmUser(username);
-                fulusr.WikisAsMod = this.wkmngr.ListWikiByModUser(username);
+                var wkmods = this.wkmngr.ListWikiByModUser(username);
+                 if ( wkmods == null)
+                {
+                    wkmods = new List<Wiki>();
+                }
+                fulusr.WikisAsMod = wkmods;
 
                 return View(fulusr);
             }

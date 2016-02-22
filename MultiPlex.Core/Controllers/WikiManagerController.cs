@@ -40,8 +40,14 @@ namespace MultiPlex.Core.Controllers
                 ViewWikiUsers vwkus = new ViewWikiUsers();
 
                 vwkus.Administrator = adm;
+                if ( modusr == null)
+                {
+                    modusr = new List<ApplicationUser>();
+                }
                 vwkus.Moderators = modusr;
-                vwkus.Wiki = this.wkmngr.GetWiki(wikiname);
+                vwkus.Wiki = new ViewWiki();
+                Wiki wk = this.wkmngr.GetWiki(wikiname);
+                vwkus.Wiki.ImportFromModel(wk);
 
                 return View(vwkus);
             }
@@ -129,8 +135,15 @@ namespace MultiPlex.Core.Controllers
                 }
                 List<WikiModInvitations> wkinvs = this.wkmodinvngr.GetModeratorInvitesByWiki(wikiname);
                 ViewWikiModInvites wkminv = new ViewWikiModInvites();
-                wkminv.Wiki = wk;
-                wkminv.ModeratorInvites = wkinvs;
+                wkminv.Wiki = new ViewWiki();
+                wkminv.Wiki.ImportFromModel(wk);
+                wkminv.ModeratorInvites = new List<ViewWikiModInvitations>();
+                foreach(var vk in wkinvs)
+                {
+                    ViewWikiModInvitations i = new ViewWikiModInvitations();
+                    i.ImportFromModel(vk);
+                    wkminv.ModeratorInvites.Add(i);
+                }
                 
                
 
@@ -160,7 +173,7 @@ namespace MultiPlex.Core.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.NotFound);
                 }
                 WikiModInvitations inv = new WikiModInvitations();
-                inv.Moderator = this.usremngr.GetUser(this.User.Identity.Name).Id;
+                inv.Moderator = this.usremngr.GetUser(this.User.Identity.Name).Id;//.UserName;
                 inv.Wiki = wk;
                 this.wkmodinvngr.CreateModRequest(wikiname,inv);
                 RouteValueDictionary vals = new RouteValueDictionary();
@@ -192,8 +205,9 @@ namespace MultiPlex.Core.Controllers
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.NotFound);
                 }
 
-
-                return View(inv);
+                ViewWikiModInvitations vinv = new ViewWikiModInvitations();
+                vinv.ImportFromModel(inv);
+                return View(vinv);
 
 
             }

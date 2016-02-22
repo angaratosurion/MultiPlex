@@ -11,7 +11,7 @@ namespace MultiPlex.Core.Data.ViewModels
     {
         public ApplicationUser Administrator { get; set; }
         public List<ApplicationUser> Moderators { get; set; }
-        public Wiki Wiki { get; set; }
+        public ViewWiki Wiki { get; set; }
 
     }
 }

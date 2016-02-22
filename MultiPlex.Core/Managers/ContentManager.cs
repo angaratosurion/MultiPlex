@@ -38,10 +38,11 @@ namespace MultiPlex.Core.Managers
             this.wikiname = wikiname;
 
         }
-        public void AddContent(String wikiname , WikiTitle title, WikiContent cont,int cid,ApplicationUser usr )
+        public WikiTitle AddContent(String wikiname , WikiTitle title, WikiContent cont,int cid,ApplicationUser usr )
         {
             try
             {
+                WikiTitle ap= null;
                 if (CommonTools.isEmpty(wikiname) == false && (cid > 0)
                   && title != null && cont != null)
                 {
@@ -51,16 +52,17 @@ namespace MultiPlex.Core.Managers
                     if (wk != null && cat != null && usr != null)
                     {
                         
-                        repository.AddContentTitle(wikiname, title, cont,cat,usr);
+                       ap= repository.AddContentTitle(wikiname, title, cont,cat,usr);
 
                     }
                 }
+                return ap;
             }
             catch (Exception ex)
             {
 
                 CommonTools.ErrorReporting(ex);
-                //return null;
+                return null;
             }
         }
         public ViewContent ViewContent(string wikiname, int id, string slug)

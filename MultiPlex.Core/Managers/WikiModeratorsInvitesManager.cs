@@ -98,7 +98,7 @@ namespace MultiPlex.Core.Managers
                      &&inv!=null )
                 {
                     Wiki wk = wkmngr.GetWiki(wikiname);
-                    ApplicationUser usr = this.usrmngr.GetUser(inv.Moderator);
+                    ApplicationUser usr = this.usrmngr.GetUserbyID(inv.Moderator);
                     if (wk!=null && usr !=null)
                     {
                         this.wrepo.CreateNewModInvite(wikiname, usr.UserName, inv);
