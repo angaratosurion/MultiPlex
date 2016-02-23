@@ -191,6 +191,7 @@
     <Compile Include="Data\Models\WikiFile.cs" />
     <Compile Include="Data\Models\Wiki.cs" />
     <Compile Include="Data\Models\WikiModInvitations.cs" />
+    <Compile Include="Data\Models\WikiMods.cs" />
     <Compile Include="Data\Repositories\WikiRepository.cs" />
     <Compile Include="Data\ViewModels\EditContent.cs" />
     <Compile Include="Data\ViewModels\Identity\IdentityModels.cs" />

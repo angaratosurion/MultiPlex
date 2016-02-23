@@ -70,5 +70,6 @@ namespace MultiPlex.Core.Data
         public IDbSet<WikiCategory> Categories { get; set; }
         public IDbSet<WikiFile> Files { get; set; }
         public IDbSet<WikiModInvitations> ModInvites { get; set; }
+      
     }
 }

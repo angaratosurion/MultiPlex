@@ -62,7 +62,7 @@ namespace MultiPlex.Core.Data.ViewModels
 
                             foreach(var m in md.Moderators)
                             {
-                                ApplicationUser ms = CommonTools.usrmng.GetUserbyID(m);
+                                ApplicationUser ms = CommonTools.usrmng.GetUserbyID(m.Moderator);
                                  if ( ms !=null)
                                 {
                                     mods.Add(ms);
@@ -113,15 +113,20 @@ namespace MultiPlex.Core.Data.ViewModels
                         if (Moderators != null)
                         {
                             List<string> mods = new List<string>();
+                    ap.Moderators = new List<WikiMods>();
 
                             foreach (var m in this.Moderators)
                             {
-                              
-                                    mods.Add(m.Id);
+
+                        //mods.Add(m.Id);
+                        WikiMods wm = new WikiMods();
+                        wm.Wiki = ap;
+                        wm.Moderator = m.Id;
+                        ap.Moderators.Add(wm);
 
                               
                             }
-                    ap.Moderators = mods;
+                   
                         }
 
 

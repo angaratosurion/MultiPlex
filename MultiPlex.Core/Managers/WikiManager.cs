@@ -125,8 +125,11 @@ namespace MultiPlex.Core.Managers
 
                   
 
-                       wk.Moderators = new List<string>();
-                        wk.Moderators.Add(usr.Id);
+                       wk.Moderators = new List<WikiMods>();
+                        WikiMods wm = new WikiMods();
+                        wm.Wiki = wk;
+                        wm.Moderator = usr.Id;
+                        wk.Moderators.Add(wm);
                         this.wrepo.CreateWiki(wk);
                       
                         string wkrotfold = this.setmngr.WikiRootFolderName();
@@ -185,12 +188,12 @@ namespace MultiPlex.Core.Managers
                 {
                     Wiki wk = this.GetWiki(wikiname);
 
-                    List<string> mods = wk.Moderators;
+                    List<WikiMods> mods = wk.Moderators;
                     if (mods != null)
                     {
                         foreach (var m in mods)
                         {
-                            ApplicationUser md = CommonTools.usrmng.GetUserbyID(m);
+                            ApplicationUser md = CommonTools.usrmng.GetUserbyID(m.Moderator);
                             if (md != null)
                             {
                                 ap.Add(md);

@@ -132,12 +132,18 @@ namespace MultiPlex.Core.Managers
 
                             if (wk.Moderators != null)
                             {
-                                wk.Moderators.Add(inv.Moderator);
+                                WikiMods wm = new WikiMods();
+                                wm.Moderator = inv.Moderator;
+                                wm.Wiki = wk;
+                                wk.Moderators.Add(wm);
                             }
                             else
                             {
-                                wk.Moderators = new List<string>();
-                                wk.Moderators.Add(inv.Moderator);
+                                wk.Moderators = new List<WikiMods>();
+                                WikiMods wm = new WikiMods();
+                                wm.Moderator = inv.Moderator;
+                                wm.Wiki = wk;
+                                wk.Moderators.Add(wm);
 
                             }
                             wkmngr.EditBasicInfo(wk, wikiname);

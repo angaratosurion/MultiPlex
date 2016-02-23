@@ -181,7 +181,7 @@ namespace MultiPlex.Core.Data.Repositories
                         ap = new List<Wiki>();
                          foreach( Wiki w in wks )
                         {
-                             if (w.Moderators!=null && w.Moderators.Contains(usr.Id))
+                             if (w.Moderators!=null && w.Moderators.Exists(s=>s.Moderator==usr.Id))
                             {
                                 ap.Add(w);
                             }
