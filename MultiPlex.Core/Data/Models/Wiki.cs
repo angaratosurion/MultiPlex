@@ -30,7 +30,7 @@ namespace MultiPlex.Core.Data.Models
         [Required]
       //  [ForeignKey("AdministratorId")]
         public string Administrator { get; set; }
-        public  List<string> Moderators { get; set; }
+        public virtual List<string> Moderators { get; set; }
         public virtual List<WikiCategory> Categories { get; set; }
         public virtual List<WikiFile> Files { get; set; }
         [Timestamp]

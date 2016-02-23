@@ -31,7 +31,7 @@ namespace MultiPlex.Core.Controllers
                 {
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
-                List<ApplicationUser> modusr = this.wkmngr.GetWikiModerators(wikiname);
+                List<ApplicationUser> modusr;
                 ApplicationUser adm = this.wkmngr.GetWikiAdministrator(wikiname);
                 if (adm == null)
                 {
@@ -40,9 +40,13 @@ namespace MultiPlex.Core.Controllers
                 ViewWikiUsers vwkus = new ViewWikiUsers();
 
                 vwkus.Administrator = adm;
-                if ( modusr == null)
+                if (this.wkmngr.GetWikiModerators(wikiname) == null)
                 {
                     modusr = new List<ApplicationUser>();
+                }
+                else
+                {
+                    modusr= this.wkmngr.GetWikiModerators(wikiname); 
                 }
                 vwkus.Moderators = modusr;
                 vwkus.Wiki = new ViewWiki();

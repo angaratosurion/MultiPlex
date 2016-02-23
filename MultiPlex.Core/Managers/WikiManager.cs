@@ -179,7 +179,7 @@ namespace MultiPlex.Core.Managers
         {
             try
             {
-                List<ApplicationUser> ap = null;
+                List<ApplicationUser> ap = new List<ApplicationUser>();
 
                 if (CommonTools.isEmpty(wikiname) == false && this.wrepo.WikiExists(wikiname))
                 {

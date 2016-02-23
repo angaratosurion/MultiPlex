@@ -134,6 +134,12 @@ namespace MultiPlex.Core.Managers
                             {
                                 wk.Moderators.Add(inv.Moderator);
                             }
+                            else
+                            {
+                                wk.Moderators = new List<string>();
+                                wk.Moderators.Add(inv.Moderator);
+
+                            }
                             wkmngr.EditBasicInfo(wk, wikiname);
 
                             this.DeleteModeratorInvite(wikiname, invid, adm);
