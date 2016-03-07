@@ -1,0 +1,149 @@
+﻿@model MultiPlex.Core.Data.ViewModels.ViewContent
+ 
+@section head {
+
+    <title>MultiPlex  @Model.Content.Title.Name</title>
+    @if (Model.Editable)
+    {
+    <script type="text/javascript">
+        var timeout = null;
+        $(function () {
+            var dlg = $('#EditContentForm');
+            var cnt = $('#EditContentContent');
+            var cntPos = cnt.position();
+            dlg.dialog({ autoOpen: false,
+                width: 450,
+                position: [cntPos.left - 450 + cnt.outerWidth(), cntPos.top + cnt.outerHeight()],
+                show: 'blind',
+                hide: 'blind',
+                beforeclose: function () { $('#originalWikiContent').show(); $('#preViewContentContent').hide(); }
+            });
+            cnt.click(function () {
+                if (!dlg.dialog('isOpen')) {
+                    $.post('<%= Url.RouteUrl("Source", new { Model.Content.Title.Id, Model.Content.Title.Slug, Model.Content.Version }) %>', function (data) {
+                        $('#Source').val(data);
+                        var original = $('#originalWikiContent');
+                        original.hide();
+                        $('#preViewContentContent').html(original.html()).show();
+                        dlg.dialog('open');
+                    });
+                } else {
+                    dlg.dialog('close');
+                }
+            });
+
+            $('#Source').keyup(function (e) {
+                if (timeout != null) {
+                    clearTimeout(timeout);
+                    timeout = null;
+                }
+
+                var self = $(this);
+                timeout = setTimeout(function () {
+                    $.post('<%= Url.RouteUrl("Act", new { action = "GetWikiPreview", Model.Content.Title.Id, Model.Content.Title.Slug }) %>',
+                           { source: self.val() },
+                           function (data) { $('#preViewContentContent').html(data); });
+                }, 250);
+            });
+
+            $('#cancelEdit').click(function () {
+                $('#EditContentForm').dialog('close');
+            });
+        });
+    </script>
+    @Html.ActionLink("Add File to title", "AddFileToTitle","WikiFile",  new
+{
+    wikiname = Model.Content.Wiki.Name,
+    tid = Model.Content.Title.Id
+},htmlAttributes:null)
+    } 
+
+}
+<h2>@Model.Content.Title.Name</h2>
+
+    @if (Model.Editable)
+    {
+    <div id="EditContent" class="EditContent">
+        @Html.ActionLink("Edit Content", "EditContent", new
+   {
+       wikiname = Model.Content.Wiki.Name,
+       id = Model.Content.Id,
+       slug = Model.Content.Title.Slug
+   }) 
+        <br/>
+        <hr/>
+    </div>
+    } 
+    
+    <div id="wikiHistory">
+        @Html.ActionLink("Image Gallery", "Gallery","WikiFile",new { wikiname=Model.Content.Wiki.Name,tid=Model.Content.Title.Id}
+   ,htmlAttributes:null)<br />
+        @Html.ActionLink("Files", "GetTitleFiles", "WikiFile", new { wikiname = Model.Content.Wiki.Name, tid = Model.Content.Title.Id }
+   , htmlAttributes: null)<br />
+
+            <h3>Page History</h3>
+            <ul>
+                @{ foreach (var content in Model.History)
+            {
+                if (Model.Content.Version == content.Version)
+                {
+                            <li>@content.VersionDate.ToString()</li>
+                        }
+                else
+                {
+                            <li><a href="@Url.RouteUrl("History", new { Model.Content.Title.Id, Model.Content.Title.Slug, content.Version })">@content.VersionDate.ToString()</a></li>
+                        }
+            } }
+            </ul>
+
+
+        </div>
+
+    <div id="wikiContent">
+        <div id="originalWikiContent"> @Html.Raw(@Model.Content.RenderedSource)
+            @{
+            var categories = Model.Content.Title.Categories;
+            if (categories != null && categories.Count > 0)
+            {
+                foreach (var cat in categories)
+                {
+
+                    @Html.ActionLink(cat.Title + " | ", "Index", new { wikiname = Model.Content.Wiki.Name, cid = cat.Id })
+                        }
+
+            }
+        }
+        @Html.ActionLink("Add Title to Category", "AddTitleToCategory","WikiCategory",new { wikiname = Model.Content.Wiki.Name,
+            tid=Model.Content.Title.Id},htmlAttributes:null)|
+            @Html.ActionLink("Remove Title From Category", "RemoveTitleFromCategory", "WikiCategory", new
+            {
+                wikiname = Model.Content.Wiki.Name,
+                tid = Model.Content.Title.Id
+            }, htmlAttributes: null)
+         </div>
+
+
+
+
+        <div id="preViewContentContent" style="display:none;"></div>
+    </div>
+
+    @*<div class="clear"></div>*@
+    
+    @*@if (Model.Editable) { 
+    <div id="EditContentForm" class="EditContentForm">
+        @using (Html.BeginRouteForm("Act", new { action = "EditContent", Model.Content.Title.Slug }, FormMethod.Post)) { 
+            @Html.Hidden("Name", Model.Content.Title.Name)
+            <fieldset>
+                <label for="Source">Source:</label>
+                @if (Model.Content.Version != Model.Content.Title.MaxVersion) { 
+                <span id="EditContentNotLatest">
+                    Note: Not editing latest source
+                </span>
+                 } 
+                @Html.TextArea("Source", string.Empty)
+                <input type="submit" value="Save" />
+                <input id="cancelEdit" type="button" value="Cancel" />
+            </fieldset>
+         } 
+    </div>}*@

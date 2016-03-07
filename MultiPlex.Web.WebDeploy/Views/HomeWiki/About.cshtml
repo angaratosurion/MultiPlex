@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Use this area to provide additional information.</p>
+
+<h4>Information about the Wiki Software and it's Modules</h4>
+@{ var mods = MultiPlex.Core.Bootstrapper.GetAllModulesInfo();
+
+}
+@if (mods != null && mods.Count() > 0)
+{
+    <div class="container body-content">
+       
+        <ul class="nav navbar-nav">
+            @foreach (var mod in mods)
+            {
+                <li>  <b> @mod.Name   @mod.Version</b><br /><p>
+                    @mod.Description <br/>
+           <a href="@mod.WebSite" target="_blank"> Web Site </a>   <a href="@mod.SourceCode" target="_blank">Source Repository</a> 
+                    </p>
+            </li>
+
+            }
+
+            </ul>
+</div>     
+    }

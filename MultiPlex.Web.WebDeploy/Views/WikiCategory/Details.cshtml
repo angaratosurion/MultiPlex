@@ -1,0 +1,114 @@
+﻿@model MultiPlex.Core.Data.ViewModels.ViewCategoryTitles
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Category Details</h4>
+    <hr />
+    <table class="table">
+        
+        <tbody>
+            <tr>
+                <td>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.Id)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.Id)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.Title)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.Title)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.Wiki)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.Wiki.Name)
+                        </dd>
+                       
+                   
+                </td>
+                <td>             
+                  
+
+</td>
+            </tr>
+    </tbody>
+    </table>
+     @{  var titles = Model.Titles;
+         if (titles != null && titles.Count > 0)
+         {
+        <h4> @Html.DisplayNameFor(model => model.Titles) </h4>
+        <hr />
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => titles[0].Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => titles[0].Slug)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(modelItem => titles[0].Wiki)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => titles[0].WrittenBy)
+                </th>
+                
+                <th></th>
+            </tr>
+
+            @foreach (var item in titles)
+            {<tr>
+                    <td>
+                     
+                        @Html.ActionLink(item.Name, "ViewContent", "WikiContent", 
+                       new{ wikiname = item.Wiki.Name, id = item.Id, slug = item.Slug},htmlAttributes:null)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Slug)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Wiki.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => @CommonTools.usrmng.GetUserbyID(item.WrittenBy).UserName)
+                    </td>
+                   
+                    <td>
+                        @Html.ActionLink("Edit", "EditContent", "WikiContent", new
+                   {
+                       wikiname = item.Wiki.Name,
+                       id = item.Id,
+                       slug = item.Slug
+                   }, htmlAttributes: null)</td></tr>
+            }
+                                
+        </table>
+
+
+         }
+
+
+@*</div>*@
+
+<p>
+
+    @*@Html.ActionLink("Edit", "EditWiki", new { id = Model.Name }) |*@
+    @Html.ActionLink("Back to Categories of this Wiki", "CategoriesByWiki", new { wikiname = Model.Category.Wiki.Name })
+
+</p>
+
+         }
+                     

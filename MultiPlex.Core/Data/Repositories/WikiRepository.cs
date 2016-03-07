@@ -654,7 +654,10 @@ namespace MultiPlex.Core.Data.Repositories
                        
 
                         title.Categories = new List<WikiCategory>();
-                        title.Categories.Add(cat);
+                        if (cat != null)
+                        {
+                            title.Categories.Add(cat);
+                        }
                         title.Wiki = wk;
                         title.WrittenBy = usr.Id;
                         title.Slug = title.Name.Replace(" ", "_");

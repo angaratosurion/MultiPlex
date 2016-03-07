@@ -1,0 +1,79 @@
+﻿@model MultiPlex.Core.Data.ViewModels.ViewAddUserToRole
+@{
+    ViewBag.Title = "Add User To Role";
+}
+
+<h2>Add User To Role</h2>
+
+<div>
+    <h4>Role Details</h4>
+    <hr />
+    <table class="table">
+        
+        <tbody>
+            <tr>
+                <td>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Role.Id)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Role.Id)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Role.Name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Role.Name)
+                        </dd>
+                       
+                       
+                   
+                </td>
+                <td>             
+                  
+
+</td>
+            </tr>
+    </tbody>
+    </table>
+    <hr />
+    <h4>User to add in the  Role</h4>
+    <hr />
+
+    
+        @using (Html.BeginForm())
+        {   @Html.AntiForgeryToken()
+            // var users = Model.Users.ToList();
+            SelectList users = new SelectList(Model.Users.Select(x => x.UserName));
+            if (users != null)
+            {
+                // User Name:
+            //@Html.DropDownList("UserToAdd", users, "", "")
+             @Html.DropDownListFor(model=>model.UserToAdd.UserName,users)
+
+            }
+            else
+            {
+        <p> You have no Users in the Database.</p>
+            }
+            <div class="form-actions no-color">
+                <input type="submit" value="Add" class="btn btn-default" />
+                @Html.ActionLink("Back to List", "GetRoles")
+            </div>
+        }
+
+        
+</div>
+<p>
+   
+    @{
+     
+
+       
+    }
+   
+</p>

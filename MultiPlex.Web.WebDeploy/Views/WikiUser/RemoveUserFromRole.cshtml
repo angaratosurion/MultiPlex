@@ -1,0 +1,91 @@
+﻿@model MultiPlex.Core.Data.ViewModels.ViewDeleteUserFromRole
+
+@{
+    ViewBag.Title = "Delete User From Role";
+}
+
+<h2>Delete User From Role</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+
+    <h4>User Details</h4>
+    <hr />
+    <table class="table">
+
+        <tbody>
+            <tr>
+                <td>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UserToDelete.UserName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.UserToDelete.UserName)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UserToDelete.Email)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.UserToDelete.Email)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UserToDelete.PhoneNumber)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.UserToDelete.PhoneNumber)
+                        </dd>
+
+
+                </td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <hr/>
+    <h4>Role Details</h4>
+    <hr />
+    <table class="table">
+
+        <tbody>
+            <tr>
+                <td>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Role.Id)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Role.Id)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Role.Name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Role.Name)
+                        </dd>
+
+
+
+                </td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "GetRoles")
+        </div>
+    }
+</div>

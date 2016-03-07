@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BlackCogs.Data.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>Users</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateNewUser")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+
+        </th>
+        
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.UserName, "FullDetails",
+                    new { username = item.UserName })
+                
+                @*@Html.ActionLink(item.Name, "ViewContent",
+               new { wikiname = item.Wiki.Name, id = item.Id, slug = item.Slug });*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+               
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                
+            </td>
+            <td>
+               
+                @Html.ActionLink("Edit", "EditUserDetails", new {username = item.UserName }) ;            
+                @Html.ActionLink("Delete", "DeleteUser", new { username = item.UserName })
+            </td>
+        </tr>
+    }
+
+</table>

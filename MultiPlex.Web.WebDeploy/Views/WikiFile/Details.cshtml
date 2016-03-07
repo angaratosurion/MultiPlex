@@ -1,0 +1,89 @@
+﻿@model  MultiPlex.Core.Data.ViewModels.ViewWikiFile
+@using MultiPlex.Core.Helpers.ASP.Net
+
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>File Details</h2>
+
+<div>
+    <h4>File Details</h4>
+    <hr />
+    <table class="table">
+        
+        <tbody>
+            <tr>
+                <td>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            
+                        </dt>
+
+                        <dd>
+                            @if (Model.isImage == true)
+                            { //var imgsrc = Url.Content(item.RelativePath);
+                                @Html.Image(Url.Content(Model.RelativePath), Model.FileType, "auto")
+                            }
+                            @*@{*@
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => modelItem.FileType)
+
+                            }
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Title.Name)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Wiki)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Wiki.Name)
+                        </dd>
+                      
+                       
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Owner.UserName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Owner.UserName)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FileName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.FileName)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Version)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Version)
+                        </dd>
+                       
+                   
+                </td>
+                <td>             
+                  
+
+</td>
+            </tr>
+    </tbody>
+    </table>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "EditWiki", new { id = Model.Name }) |*@
+    @Html.ActionLink("Delete", "Delete",new {wikiname=Model.Wiki.Name,fid=Model.Id })|
+    @Html.ActionLink("Back to List", null, null, null, new { href = Request.UrlReferrer })
+</p>

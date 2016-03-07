@@ -1,0 +1,106 @@
+﻿@model MultiPlex.Core.Data.ViewModels.ViewIdentityRoleDetails
+@{
+    ViewBag.Title = "Role Details";
+}
+
+<h2>Role Details</h2>
+
+<div>
+    <h4>Role Details</h4>
+    <hr />
+    <table class="table">
+        
+        <tbody>
+            <tr>
+                <td>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Role.Id)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Role.Id)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Role.Name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Role.Name)
+                        </dd>
+                       
+                       
+                   
+                </td>
+                <td>             
+                  
+
+</td>
+            </tr>
+    </tbody>
+    </table>
+    <hr />
+    <h4>User in This Role</h4>
+    <hr />
+
+    @{
+        var users = Model.Members.ToList();
+        if (users != null && users.Count > 0)
+        {
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model=>model.Members[0].UserName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Members[0].Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Members[0].PhoneNumber)
+                    </th>
+                    <th>
+
+                    </th>
+
+                </tr>
+
+                @foreach (var item in users)
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(item.UserName, "FullDetails",
+                    new { username = item.UserName })
+
+                            @*@Html.ActionLink(item.Name, "ViewContent",
+                                new { wikiname = item.Wiki.Name, id = item.Id, slug = item.Slug });*@
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+
+                        </td>
+                        <td>
+
+                           
+                            @Html.ActionLink("Remove User From This Role", "RemoveUserFromRole",
+                           new { rolename=Model.Role.Name, username = item.UserName })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        }
+        else
+        {
+            <p> This Role is Empty.</p>
+        }
+    }
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "EditWiki", new { id = Model.Name }) |*@
+    @Html.ActionLink("Back to List", "GetRoles", "WikiUser")
+</p>

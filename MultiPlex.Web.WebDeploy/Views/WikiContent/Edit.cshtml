@@ -1,0 +1,34 @@
+﻿@model MultiPlex.Core.Data.ViewModels.EditContent
+
+@*@section head {
+
+    <title>Edit Wiki</title>
+
+}*@
+
+
+
+    <h2>Edit</h2>
+    @using (Html.BeginRouteForm("Act", new { action = "EditContent", Model.Title.Slug }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <fieldset>
+            <label for="Name">Title:</label>
+            @Html.DisplayForModel("Name", Model.Title.Name)
+            <label for="Source">Source:</label>
+            <br />
+            <br/>
+            @Html.TextArea("Source")
+            <label></label>
+            <input type="submit" value="Save" class="btn btn-default"/>
+            @if (@Model.Title.Id > 0) {
+            @*<input type="button" value="Cancel" onclick="window.location.href='@Url.RouteUrl("Default")'" />*@
+            @Html.ActionLink("Cancel", "ViewContent",
+ new { wikiname = Model.Title.Wiki.Name, id = @Model.Title.Id, slug = @Model.Title.Slug }, new  {@class="btn btn-default"})
+               
+             } 
+        </fieldset>
+     } 
+
+
+

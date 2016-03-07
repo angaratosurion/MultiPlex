@@ -1,0 +1,112 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+/*footer {
+   position:absolute;
+   top:auto;
+	bottom:0;
+	left:0;
+    width:100%;
+	height:100px;
+
+       
+}*/
+/* Set padding to keep content from hitting the edges */
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+#wikiHistory
+{
+	float: right;  
+	margin-top:1em;
+	width:15%;
+	padding-left:.5em;
+	border:solid 1px #CCC;
+}
+
+#wikiHistory h3
+{
+	font-size:1em;
+	margin-top:.5em;
+	margin-bottom:0;
+}
+
+#wikiHistory ul
+{
+	margin-top:0;
+	margin-bottom:.5em;
+	list-style-type:none;
+}
+
+#wikiHistory ul li
+{
+	margin-left:-4.25em;
+	font-size:.75em;
+}
+
+#wikiContent
+{
+	float:left;
+	margin-top:-1em;
+	width:85%;
+   
+
+}
+
+.editWiki
+{
+	text-align:right;
+	border-top:solid 1px #CCC;
+	padding-top:.25em;
+}
+
+.editWiki a
+{
+	background-color:#CCC;
+	padding: .25em 2em .40em 2em;
+	color:White;
+}
+
+.editWiki a:hover
+{
+	color: #585858;
+}
+
+.editWikiForm
+{
+	display:none;
+}
+
+.editWikiForm fieldset
+{
+	background-color:#FFF;
+	margin-top:0;
+}
+
+.editWikiForm form textarea
+{
+	width:98%;
+}
+
+.editWikiNotLatest
+{
+	color:Red;
+}

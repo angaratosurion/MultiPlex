@@ -1,0 +1,42 @@
+﻿@model  MultiPlex.Core.Data.ViewModels.ViewWiki
+@{
+    ViewBag.Title = "Edit Wiki";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Wiki</h2>
+<p> Wiki Was Last Updated at  @Html.DisplayFor(model => model.UpdatedAt)</p>
+<table class="table">
+    <tr>
+        
+@{
+
+    var wikiname = this.Request.Params.Get("wikiname");
+    if (wikiname == null)
+    {
+        wikiname = ViewBag.wikiname;
+    }
+
+   <td> @Html.ActionLink("Basic Info","EditBasicInfo", new { wikiname = wikiname }, new { @class = "btn btn-default" })</td>    
+   <td> @Html.ActionLink("Categories", "CategoriesByWiki", "WikiCategory", new { wikiname = wikiname },
+       new { @class = "btn btn-default" })</td>
+   <td> @Html.ActionLink("Titles", "TitlesByWiki", "WikiContent", new { wikiname = wikiname }, new { @class = "btn btn-default" })</td>
+}
+
+</tr>
+    <tr>
+
+        @{ <td> @Html.ActionLink("Users", "GetWikiUsers", new { wikiname = wikiname }, 
+                new { @class = "btn btn-default" })</td>
+                <td>
+                    @Html.ActionLink("Moderator invitations", "GetModeratorInvitesByWiki", new { wikiname = wikiname },
+                new { @class = "btn btn-default" })
+                </td>
+                <td>
+                    @Html.ActionLink("Files", "GetFilesByWiki","WikiFile", new { wikiname = wikiname },
+                new { @class = "btn btn-default" })
+                </td>
+        }
+    </tr>
+
+</table>

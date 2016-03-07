@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    ViewBag.Title = "Site Administration";
+}
+
+<h2>Site Administration</h2>
+
+<div class="navbar-collapse collapse">
+    @*<ul class="nav navbar-nav">*@
+    <table class="table">
+        <tbody> 
+    <ul>
+    @*<li>@Html.ActionLink("HomeWiki", "Index", "HomeWiki")</li>*@
+    @*@{*@
+    @{var verbs = MultiPlex.Core.Bootstrapper.GetVerbsForCategory("AdminNavigation"); }
+    @foreach (var verb in verbs)
+    { <tr>
+        <td>
+        <li> @Html.ActionLink(verb.Name, verb.Action, verb.Controller,null, new { @class = "btn btn-default" }) </li>
+            </td>
+            <td>  @verb.Description</td>
+        </tr>
+
+    }
+
+
+        @*}*@
+
+
+    </ul>
+        </tbody>
+        </table>
+</div>
+
+
+
+
+

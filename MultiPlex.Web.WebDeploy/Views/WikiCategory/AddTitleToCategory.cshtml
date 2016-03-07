@@ -1,0 +1,76 @@
+﻿@model MultiPlex.Core.Data.ViewModels.ViewTitleCategories
+@{
+    ViewBag.Title = "Add Title to Categories";
+}
+
+<h2>Add Title to Category</h2>
+
+<div>
+    <h4>Title Details</h4>
+    <hr />
+    <table class="table">
+        
+        <tbody>
+            <tr>
+                <td>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Title.Name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Title.Name)
+                        </dd>
+
+                       
+                       
+                       
+                   
+                </td>
+                <td>             
+                  
+
+</td>
+            </tr>
+    </tbody>
+    </table>
+    <hr />
+    <h4>Category</h4>
+    <p>Select a category</p>
+    <hr />
+
+    
+        @using (Html.BeginForm())
+        {   @Html.AntiForgeryToken()
+            // var users = Model.Users.ToList();
+            SelectList cats = new SelectList(Model.Categories.Select(x => x.Title));
+            if (cats != null)
+            {
+                // User Name:
+            //@Html.DropDownList("UserToAdd", users, "", "")
+             @Html.DropDownListFor(model=>model.CategoryToAddOrRemove.Title,cats)
+
+            }
+            else
+            {
+        <p> You have no Categories in the Database.</p>
+            }
+            <div class="form-actions no-color">
+                <input type="submit" value="Add" class="btn btn-default" />
+                @Html.ActionLink("Back to title", "ViewContent", "WikiContent",
+                       new { wikiname = Model.Title.Wiki.Name, id = Model.Title.Id, slug = Model.Title.Slug }, 
+                       htmlAttributes: null)
+            </div>
+        }
+
+        
+</div>
+<p>
+   
+    @{
+     
+
+       
+    }
+   
+</p>

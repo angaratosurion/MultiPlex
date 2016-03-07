@@ -10,6 +10,7 @@ namespace MultiPlex.Core.Configuration
     {
       //  public const string  AppSettingsFile= "MultiPlex.config";
         public const string FolderNameSetting = "FolderName";
+       
 
     }
 }

@@ -1,0 +1,66 @@
+﻿@model  MultiPlex.Core.Data.ViewModels.ViewTitleFile
+@{
+    ViewBag.Title = "Add File To Title";
+}
+
+<h2>Add File To Title</h2>
+<div>
+    <h4>Title</h4>
+    <hr />
+    <table class="table">
+
+        <tbody>
+            <tr>
+                <td>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Title.Name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Title.Name)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Title.Wiki)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Title.Wiki.Name)
+                        </dd>
+                        <dd>
+                            @Html.Raw(@Model.Title.Content.RenderedSource)
+                        </dd>
+
+
+                </td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    
+   
+
+</div>
+<h4>Upload File</h4>
+<hr />
+@using (Html.BeginForm("AddFileToTitle", "WikiFile",new {wikiname=Model.Title.Wiki.Name,tid=Model.Title.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+
+        @Html.DisplayNameFor(m=>m.File.FileName)
+        <input type="file" name="file" id="file" />
+
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="AddFile" class="btn btn-default" />
+            </div>
+        </div>
+   </div>
+
+
+}
+

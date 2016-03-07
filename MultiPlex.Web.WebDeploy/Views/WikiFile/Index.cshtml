@@ -1,0 +1,96 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable< MultiPlex.Core.Data.ViewModels.ViewWikiFile>
+@using MultiPlex.Core.Helpers.ASP.Net
+    
+
+@{
+    ViewBag.Title = "File Index";
+    
+}
+
+<h2>File Index</h2>
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+
+       
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Wiki)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Owner.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FileName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RelativePath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AbsolutePath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Version)            
+        </th>
+        
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                
+                 @if (item.isImage == true)
+                 { //var imgsrc = Url.Content(item.RelativePath);
+                     @Html.Image(Url.Content(item.RelativePath), item.FileType,"100")
+                 }
+                 @*@{*@
+                     else
+                     {
+                         @Html.DisplayFor(modelItem => item.FileType)
+
+                     }
+                @Html.ActionLink("Full image", "Details", new { wikiname = item.Wiki.Name, fid = item.Id })
+                 @*}*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Wiki.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RelativePath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AbsolutePath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Version)
+            </td>
+          
+            <td>
+                @*@Html.ActionLink("Edit", "EditWiki", new { wikiname = item.Name }) |
+                @Html.ActionLink("Details", "Details", new { wikiname = item.Name }) |
+                @Html.ActionLink("Delete", "Delete", new { wikiname = item.Name })*@
+            </td>
+        </tr>
+    }
+
+</table>

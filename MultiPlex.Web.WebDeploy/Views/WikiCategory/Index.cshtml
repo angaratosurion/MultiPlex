@@ -1,0 +1,41 @@
+﻿@model IEnumerable< MultiPlex.Core.Data.Models.WikiCategory>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>@Html.DisplayNameFor(model=>model.Wiki)</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.ActionLink(item.Title, "Details", new { wikiname = item.Wiki.Name, id = item.Id })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Wiki.Name)
+        </td>
+        <td>
+           @Html.ActionLink("Edit", "EditCategory", new { wikiname = item.Wiki.Name, id = item.Id }) |
+        @*@Html.ActionLink("Details", "Details", new { wikiname = item.Name }) |*@
+        @Html.ActionLink("Delete", "Delete", new { wikiname = item.Wiki.Name, id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

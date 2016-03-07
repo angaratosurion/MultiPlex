@@ -1,0 +1,43 @@
+﻿@model IEnumerable< MultiPlex.Core.Data.ViewModels.ViewWikiTitle>
+
+@{
+    ViewBag.Title = "Wiki Titles";
+}
+
+<h2>Wiki Titles</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "CreateContent",
+    new  {wikiname=Request.RequestContext.RouteData.Values["wikiname"] ,
+    cid = Request.QueryString.Get("cid")})*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+               @*@Html.DisplayFor(modelItem => item.Name)*@
+                @Html.ActionLink(item.Name, "ViewContent",
+               new { wikiname = item.Wiki.Name, id = item.Id, slug = item.Slug })
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>*@
+            <td>
+
+                @Html.ActionLink("Edit", "EditContent", new { wikiname = item.Wiki.Name,
+               id = item.Id, slug = item.Slug })             
+                @Html.ActionLink("Delete", "Delete", new { wikiname = item.Wiki.Name, id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

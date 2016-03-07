@@ -62,7 +62,7 @@ namespace MultiPlex.Core.Controllers
             try
             {
 
-                if (CommonTools.isEmpty(wikiname) == false && (cid > 0)
+                if (CommonTools.isEmpty(wikiname) == false && (cid >= 0)
                   && title != null && cont != null)
                 {
                     contmngr = new ContentManager(new WikiEngine(), this.Url, wikiname);

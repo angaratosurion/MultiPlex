@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - @MultiPlex.Core.Bootstrapper.GetApplicationName("MultiPlex")</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                     @{var appname = MultiPlex.Core.Bootstrapper.GetApplicationName("MultiPlex.Core");
+                         }
+                     @if ( @CommonTools.isEmpty(appname)==true)
+                     {
+                         appname = "text";
+                        
+                      }
+                 
+                @Html.ActionLink(appname, "Index", "HomeWiki", new { area = "" }, new { @class = "navbar-brand" })
+                <div id="header">
+                    @if (IsSectionDefined("head"))
+                    {
+                    @RenderSection("head");
+
+                    }
+                    </div>
+                </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("HomeWiki", "Index", "HomeWiki")</li>*@
+                    @{
+                        var verbs = MultiPlex.Core.Bootstrapper.GetVerbsForCategory("WikiNavigation");
+                        foreach (var verb in verbs)
+                        {
+                            <li> @Html.ActionLink(verb.Name, verb.Action, verb.Controller)</li>
+                        }
+
+
+                    }
+                    <li>@Html.ActionLink("About", "About", "HomeWiki")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "HomeWiki")</li>
+                
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        
+        @*<footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>*@
+           
+    </div>
+    <div class="container body-content">
+        <footer>
+            <p>&copy; @DateTime.Now.Year - @MultiPlex.Core.Bootstrapper.GetApplicationName("MultiPlex.Core")</p>
+        </footer>
+        </div>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -12,6 +12,7 @@ namespace MultiPlex.Core.Configuration
     {
         public static string FoldernameSetting;
         AppSettingsReader rdr = new AppSettingsReader();
+       
        public string WikiRootFolderName()
         {
             try
@@ -36,5 +37,7 @@ namespace MultiPlex.Core.Configuration
             }
         }
         
+
+
     }
 }

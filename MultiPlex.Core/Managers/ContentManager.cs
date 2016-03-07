@@ -56,7 +56,19 @@ namespace MultiPlex.Core.Managers
 
                     }
                 }
-                return ap;
+                else if (CommonTools.isEmpty(wikiname) == false && (cid == 0)
+                && title != null && cont != null)
+                {
+                    Wiki wk = CommonTools.wkmngr.GetWiki(wikiname);
+
+                    if (wk != null  && usr != null)
+                    {
+
+                        ap = repository.AddContentTitle(wikiname, title, cont, null, usr);
+
+                    }
+                }
+                    return ap;
             }
             catch (Exception ex)
             {
