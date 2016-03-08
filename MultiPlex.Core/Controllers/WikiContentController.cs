@@ -72,8 +72,11 @@ namespace MultiPlex.Core.Controllers
                     //title.Wiki = wikiname;
 
                    var t= this.contmngr.AddContent(wikiname, title.ExportToModel(), cont.ExportToModel(),cid,usr);
-                   
-                    return RedirectToAction("ViewContent", new  {wikiname,t.Id,t.Slug });
+                    RouteValueDictionary vals = new RouteValueDictionary();
+                    vals.Add("wikiname", wikiname);
+                    vals.Add("id", t.TitleId);
+                    vals.Add("slug",t.Slug);
+                    return RedirectToAction("ViewContent", vals);
                     }
                 
                 return RedirectToAction("CreateContent");

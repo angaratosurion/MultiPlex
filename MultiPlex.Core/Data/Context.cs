@@ -47,6 +47,9 @@ namespace MultiPlex.Core.Data
             modelBuilder.Entity<WikiTitle>()
                 .HasRequired(t=>t.Wiki)
                 .WithMany().WillCascadeOnDelete(false);
+            modelBuilder.Entity<WikiTitle>()
+                .HasKey(p => p.TitleId);
+            
 
             modelBuilder.Entity<WikiFile>()
                 .HasRequired(f => f.Wiki)

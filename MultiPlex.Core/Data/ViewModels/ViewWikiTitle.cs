@@ -41,7 +41,7 @@ namespace MultiPlex.Core.Data.ViewModels
                     ApplicationUser user = CommonTools.usrmng.GetUserbyID(md.WrittenBy);
                     if (user != null)
                     {
-                        this.Id = md.Id;
+                        this.Id = md.TitleId;
                         this.Files = md.Files;
                         this.Categories = md.Categories;
                         this.Content = md.Content;
@@ -69,7 +69,7 @@ namespace MultiPlex.Core.Data.ViewModels
             try
             {
                 WikiTitle ap = new WikiTitle();
-                        ap.Id = Id;
+                        ap.TitleId = Id;
                         ap.Files = Files;
                         ap.Categories = Categories;
                         ap.Content = Content;

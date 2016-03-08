@@ -20,7 +20,7 @@
             });
             cnt.click(function () {
                 if (!dlg.dialog('isOpen')) {
-                    $.post('<%= Url.RouteUrl("Source", new { Model.Content.Title.Id, Model.Content.Title.Slug, Model.Content.Version }) %>', function (data) {
+                    $.post('<%= Url.RouteUrl("Source", new { Model.Content.Title.TitleId, Model.Content.Title.Slug, Model.Content.Version }) %>', function (data) {
                         $('#Source').val(data);
                         var original = $('#originalWikiContent');
                         original.hide();
@@ -40,7 +40,7 @@
 
                 var self = $(this);
                 timeout = setTimeout(function () {
-                    $.post('<%= Url.RouteUrl("Act", new { action = "GetWikiPreview", Model.Content.Title.Id, Model.Content.Title.Slug }) %>',
+                    $.post('<%= Url.RouteUrl("Act", new { action = "GetWikiPreview", Model.Content.Title.TitleId, Model.Content.Title.Slug }) %>',
                            { source: self.val() },
                            function (data) { $('#preViewContentContent').html(data); });
                 }, 250);
@@ -54,7 +54,7 @@
     @Html.ActionLink("Add File to title", "AddFileToTitle","WikiFile",  new
 {
     wikiname = Model.Content.Wiki.Name,
-    tid = Model.Content.Title.Id
+    tid = Model.Content.Title.TitleId
 },htmlAttributes:null)
     } 
 
@@ -67,7 +67,7 @@
         @Html.ActionLink("Edit Content", "EditContent", new
    {
        wikiname = Model.Content.Wiki.Name,
-       id = Model.Content.Id,
+       id = Model.Content.ContentId,
        slug = Model.Content.Title.Slug
    }) 
         <br/>
@@ -76,9 +76,11 @@
     } 
     
     <div id="wikiHistory">
-        @Html.ActionLink("Image Gallery", "Gallery","WikiFile",new { wikiname=Model.Content.Wiki.Name,tid=Model.Content.Title.Id}
+        @Html.ActionLink("Image Gallery", "Gallery","WikiFile",new { wikiname=Model.Content.Wiki.Name,
+       tid =Model.Content.Title.TitleId}
    ,htmlAttributes:null)<br />
-        @Html.ActionLink("Files", "GetTitleFiles", "WikiFile", new { wikiname = Model.Content.Wiki.Name, tid = Model.Content.Title.Id }
+        @Html.ActionLink("Files", "GetTitleFiles", "WikiFile", new { wikiname = Model.Content.Wiki.Name,
+       tid = Model.Content.Title.TitleId }
    , htmlAttributes: null)<br />
 
             <h3>Page History</h3>
@@ -91,7 +93,8 @@
                         }
                 else
                 {
-                            <li><a href="@Url.RouteUrl("History", new { Model.Content.Title.Id, Model.Content.Title.Slug, content.Version })">@content.VersionDate.ToString()</a></li>
+                            <li><a href="@Url.RouteUrl("History", new { Model.Content.Title.TitleId,
+                                        Model.Content.Title.Slug, content.Version })">@content.VersionDate.ToString()</a></li>
                         }
             } }
             </ul>
@@ -114,11 +117,11 @@
             }
         }
         @Html.ActionLink("Add Title to Category", "AddTitleToCategory","WikiCategory",new { wikiname = Model.Content.Wiki.Name,
-            tid=Model.Content.Title.Id},htmlAttributes:null)|
+            tid=Model.Content.Title.TitleId},htmlAttributes:null)|
             @Html.ActionLink("Remove Title From Category", "RemoveTitleFromCategory", "WikiCategory", new
             {
                 wikiname = Model.Content.Wiki.Name,
-                tid = Model.Content.Title.Id
+                tid = Model.Content.Title.TitleId
             }, htmlAttributes: null)
          </div>
 

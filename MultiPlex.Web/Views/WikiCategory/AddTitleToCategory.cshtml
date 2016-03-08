@@ -58,7 +58,7 @@
             <div class="form-actions no-color">
                 <input type="submit" value="Add" class="btn btn-default" />
                 @Html.ActionLink("Back to title", "ViewContent", "WikiContent",
-                       new { wikiname = Model.Title.Wiki.Name, id = Model.Title.Id, slug = Model.Title.Slug }, 
+                       new { wikiname = Model.Title.Wiki.Name, id = Model.Title.TitleId, slug = Model.Title.Slug }, 
                        htmlAttributes: null)
             </div>
         }

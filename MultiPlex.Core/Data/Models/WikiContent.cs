@@ -23,11 +23,11 @@ namespace MultiPlex.Core.Data.Models
         //    this.WrittenBy = writtenBy;
         //}
         [Required]
-       [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        [Required]
-        public virtual WikiTitle Title { get; set; }
+        [Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[Column(Order =1)]
+        public int ContentId { get; set; } 
+
         [DataType(DataType.MultilineText)]
         [Required]
         public string Source { get; set; }
@@ -39,6 +39,12 @@ namespace MultiPlex.Core.Data.Models
         public DateTime VersionDate { get; set; }
         [Timestamp]
         public Byte[] RowVersion { get; set; }
+        [Required]
+       // [ ForeignKey("Title")]
+        public int TitleId { get; set; }
+        [Required]
+       // [ ForeignKey("Title")]
+        public virtual WikiTitle Title { get; set; }
         [Required]
         public virtual Wiki Wiki { get; set; }
         [Required]        

@@ -84,7 +84,7 @@ namespace MultiPlex.Core.Managers
                     Wiki wk = CommonTools.wkmngr.GetWiki(title.Wiki.Name);
                     if ( wk !=null  && CommonTools.usrmng.UserHasAccessToWiki(user,wk,true))
                     {
-                        wrepo.DeleteTitleById(wk.Name, title.Id);
+                        wrepo.DeleteTitleById(wk.Name, title.TitleId);
                     }
                     
                 }

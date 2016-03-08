@@ -92,6 +92,7 @@ namespace MultiPlex.Core.Controllers
             //  Wiki wk2 = this.wmngr.GetWiki(wikiname);
             //  wk.Name = wk2.Name;
             wikiname = vwk.Name;
+            wk.Administrator = this.usremngr.GetUser(this.User.Identity.Name).Id;
             // if (ModelState.IsValid)
             {
                 wk = this.wkmngr.EditBasicInfo(wk, wikiname);

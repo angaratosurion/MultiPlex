@@ -103,7 +103,7 @@
                           @foreach (var ncattitle in nocattitles)
                           {
                             @Html.ActionLink(ncattitle.Name, "ViewContent","WikiContent",
-               new { wikiname = ncattitle.Wiki.Name, id = ncattitle.Id, slug = ncattitle.Slug },htmlAttributes:null)
+               new { wikiname = ncattitle.Wiki.Name, id = ncattitle.TitleId, slug = ncattitle.Slug },htmlAttributes:null)
                           }
                           </ul>
                 }

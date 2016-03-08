@@ -365,7 +365,7 @@ namespace MultiPlex.Core.Data.Repositories
                 WikiTitle ap = null;
                 if (wikiname != null && (titleid > 0))
                 {
-                    ap = db.Title.FirstOrDefault(t => t.Id == titleid && t.Wiki.Name == wikiname);
+                    ap = db.Title.FirstOrDefault(t => t.TitleId == titleid && t.Wiki.Name == wikiname);
                 }
                 return ap;
             }
@@ -439,7 +439,7 @@ namespace MultiPlex.Core.Data.Repositories
                     {
                         foreach( WikiTitle t in tls)
                         {
-                            this.DeleteTitleById(wikiname, t.Id);
+                            this.DeleteTitleById(wikiname, t.TitleId);
                         }
                     }
 
@@ -485,7 +485,7 @@ namespace MultiPlex.Core.Data.Repositories
                 List<WikiContent> ap = null;
                 if ((titleid > 0))
                 {
-                    ap = db.Content.Where(s => s.Title.Id == titleid).ToList();
+                    ap = db.Content.Where(s => s.Title.TitleId == titleid).ToList();
 
 
                 }
@@ -527,7 +527,7 @@ namespace MultiPlex.Core.Data.Repositories
                 WikiContent ap = null;
                 if ((wikiname != null) && (id > 0))
                 {
-                    ap = db.Content.First(s => s.Id == id);
+                    ap = db.Content.First(s => s.ContentId == id);
 
 
                 }
@@ -569,7 +569,7 @@ namespace MultiPlex.Core.Data.Repositories
                 List<WikiContent> ap = null;
                 if ((wikiname != null) && (tid > 0))
                 {
-                    ap = db.Content.Where(s => s.Title.Id == tid).ToList();
+                    ap = db.Content.Where(s => s.Title.TitleId == tid).ToList();
 
 
                 }
@@ -609,12 +609,12 @@ namespace MultiPlex.Core.Data.Repositories
                         title.Slug = title.Name.Replace(" ", "_");
                         
                         cont.Title = title;
-                        
+                        cont.TitleId = title.TitleId;
                         cont.Version = 1;
                         cont.Wiki = wk;
                         cont.WrittenBy = usr.Id;
                         cont.VersionDate = DateTime.Now;
-                        // cont.Id = this.db.Content.Count() + 1;
+                       cont.ContentId = this.db.Content.Count() + 1;
                         title.Content = cont;
                         if (wk.Content == null)
                         {
@@ -666,7 +666,7 @@ namespace MultiPlex.Core.Data.Repositories
                     if (wk != null && title != null)
                     {
                         //  cont.Id = id;
-                        int i = cont.Id;
+                        int i = cont.ContentId;
                         if (i > 0)
                         {
                             i++;
@@ -675,11 +675,11 @@ namespace MultiPlex.Core.Data.Repositories
                         {
                             i = db.Content.Count() + 1;
                         }
-                        cont.Id = i;
+                        cont.ContentId = i;
 
-                        if (this.CountWithTitleId(wikiname, title.Id) > 0)
+                        if (this.CountWithTitleId(wikiname, title.TitleId) > 0)
                         {
-                            cont.Version = this.CountWithTitleId(wikiname, title.Id) + 1;
+                            cont.Version = this.CountWithTitleId(wikiname, title.TitleId) + 1;
                         }
                         else
                         {
@@ -689,6 +689,7 @@ namespace MultiPlex.Core.Data.Repositories
 
                         //cont1.Id = db.Content.Count() + 1;
                         cont.Title = title;
+                        cont.TitleId = title.TitleId;
                         // cont1.Version = cont.Version+ 1;
 
                         //if (wk.Content == null)
@@ -737,7 +738,7 @@ namespace MultiPlex.Core.Data.Repositories
                 WikiContent ap = null;
                 if (wikiname != null && this.WikiExists(wikiname) && id > 0 && version > 0)
                 {
-                    ap = db.Content.First(s => s.Title.Id == id && s.Version == version && s.Wiki.Name == wikiname);
+                    ap = db.Content.First(s => s.Title.TitleId == id && s.Version == version && s.Wiki.Name == wikiname);
                 }
 
 
@@ -795,7 +796,7 @@ namespace MultiPlex.Core.Data.Repositories
                         {
                             foreach ( WikiContent ct  in conts)
                             {
-                                this.DeleteById(wikiname, ct.Id);
+                                this.DeleteById(wikiname, ct.ContentId);
                             }                           
                         }
                         this.MarkWikiAsUpdated(wk);
@@ -1039,10 +1040,10 @@ namespace MultiPlex.Core.Data.Repositories
                     
                     foreach( var t in ap.Titles)
                     {
-                        int c = this.CountofCategoriesInTitle(t.Wiki.Name, t.Id);
+                        int c = this.CountofCategoriesInTitle(t.Wiki.Name, t.TitleId);
                         if (c ==1)
                         {
-                            this.DeleteTitleById(t.Wiki.Name, t.Id);
+                            this.DeleteTitleById(t.Wiki.Name, t.TitleId);
                         }
                         else if (c>1)
                         {
@@ -1109,7 +1110,7 @@ namespace MultiPlex.Core.Data.Repositories
                             !this.CategoryHasTitle(cat.Title, wikiname, title)) 
                         {
                             title.Categories.Add(cat);
-                            CommonTools.titlemngr.EditTitle(wikiname, title.Id, title);
+                            CommonTools.titlemngr.EditTitle(wikiname, title.TitleId, title);
                             if ( cat.Titles ==null)
                             {
                                 cat.Titles = new List<WikiTitle>();
@@ -1147,7 +1148,7 @@ namespace MultiPlex.Core.Data.Repositories
                             if (title.Categories.FirstOrDefault(x => x.Id == catid) != null)
                             {
                                 title.Categories.Remove(cat);
-                                CommonTools.titlemngr.EditTitle(wikiname, title.Id, title);
+                                CommonTools.titlemngr.EditTitle(wikiname, title.TitleId, title);
 
                             }
                         }
@@ -1282,7 +1283,7 @@ namespace MultiPlex.Core.Data.Repositories
                 if (wikiname != null && this.WikiExists(wikiname) != false  && tid>0)
                 {
                     ap = this.db.Files.Where(x => x.Wiki.Name == wikiname 
-                    && x.Title.Id==tid).ToList();
+                    && x.Title.TitleId==tid).ToList();
                 }
 
                 return ap;
@@ -1304,7 +1305,7 @@ namespace MultiPlex.Core.Data.Repositories
                 WikiFile ap = null;
                 if (wikiname != null && this.WikiExists(wikiname) && id > 0 && version > 0)
                 {
-                    ap = db.Files.First(s => s.Title.Id == id && s.Version == version 
+                    ap = db.Files.First(s => s.Title.TitleId == id && s.Version == version 
                     && s.Wiki.Name == wikiname);
                 }
 

@@ -37,7 +37,7 @@ namespace MultiPlex.Core.WikiMacro
         {
             string slug = SlugHelper.Generate(input);
             WikiContent content = wikiRepository.GetContent(wikiname,slug, input);
-            int id = content != null ? content.Title.Id : 0;
+            int id = content != null ? content.Title.TitleId : 0;
             string url;
 
             if (urlHelper != null)

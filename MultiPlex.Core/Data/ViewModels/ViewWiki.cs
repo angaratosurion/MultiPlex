@@ -14,7 +14,7 @@ namespace MultiPlex.Core.Data.ViewModels
     public class ViewWiki
     {
         ////[Required]
-        //public int id { get; set; }
+       // public int id { get; set; }
         [Required]
         [Key]
         public string Name { get; set; }
@@ -101,7 +101,10 @@ namespace MultiPlex.Core.Data.ViewModels
                         ap.Titles = Titles;
                         ap.UpdatedAt = UpdatedAt;
                         ap.WikiTitle = WikiTitle;
-                        ap.Administrator = Administrator.Id;
+                if (Administrator != null)
+                {
+                    ap.Administrator = Administrator.Id;
+                }
                 if ( Files==null)
                 {
                     ap.Files = new List<WikiFile>();
