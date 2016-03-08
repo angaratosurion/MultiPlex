@@ -44,7 +44,7 @@ namespace MultiPlex.Core.Data.Repositories
                     wk.UpdatedAt = DateTime.Now;
                     db.Entry(this.GetWiki(wk.Name)).CurrentValues.SetValues(wk);
                    // db.Entry(wk).State = EntityState.Modified;
-                   this.db.SaveChanges();
+                 //  this.db.SaveChanges();
                 }
                 
             }
@@ -587,7 +587,7 @@ namespace MultiPlex.Core.Data.Repositories
 
         public WikiTitle AddContentTitle(string wikiname, WikiTitle title , WikiContent cont,WikiCategory cat,ApplicationUser usr)
         {
-            try
+         try
             {
                 WikiTitle ap = null;
                 if (wikiname != null && title !=null && cont != null && cat!=null)
@@ -607,12 +607,15 @@ namespace MultiPlex.Core.Data.Repositories
                         title.Wiki = wk;
                         title.WrittenBy = usr.Id;
                         title.Slug = title.Name.Replace(" ", "_");
-
+                        
                         cont.Title = title;
+                        
                         cont.Version = 1;
                         cont.Wiki = wk;
                         cont.WrittenBy = usr.Id;
                         cont.VersionDate = DateTime.Now;
+                        // cont.Id = this.db.Content.Count() + 1;
+                        title.Content = cont;
                         if (wk.Content == null)
                         {
                             wk.Content = new List<Core.Data.Models.WikiContent>();
@@ -626,8 +629,10 @@ namespace MultiPlex.Core.Data.Repositories
                         db.Content.Add(cont);
                         db.Title.Add(title);
 
-                        this.MarkWikiAsUpdated(wk);
+                        
+                      //  this.db.Configuration.ValidateOnSaveEnabled = false;
                         db.SaveChanges();
+                        this.MarkWikiAsUpdated(wk);
                         ap = title;
                       
                     }
@@ -637,7 +642,7 @@ namespace MultiPlex.Core.Data.Repositories
 
 
             }
-            catch (ValidationException ex) { CommonTools.ValidationErrorReporting(ex);return null; }
+            catch (ValidationException ex) { CommonTools.ValidationErrorReporting(ex); return null; }
             catch (Exception ex)
             {
 

@@ -28,6 +28,7 @@ namespace MultiPlex.Core.Data
             modelBuilder.Properties<DateTime>()
                   .Configure(c => c.HasColumnType("datetime2"));
 
+
             //modelBuilder.Entity<WikiContent>()
             //    .HasRequired(s => s.WrittenBy)
             //    .WithMany().WillCascadeOnDelete(false);
@@ -36,7 +37,12 @@ namespace MultiPlex.Core.Data
             //    .WithMany().WillCascadeOnDelete(false);
 
 
-
+            //modelBuilder.Properties()
+            //    .Where(p => p.Name == "Id")
+            //    .Configure(p => p.HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity));
+            //modelBuilder.Properties()
+            //    .Where(p => p.Name == "RowVersion")
+            //    .Configure(p => p.IsRowVersion());
 
             modelBuilder.Entity<WikiTitle>()
                 .HasRequired(t=>t.Wiki)

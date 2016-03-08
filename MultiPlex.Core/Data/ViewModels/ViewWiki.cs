@@ -13,8 +13,8 @@ namespace MultiPlex.Core.Data.ViewModels
 {
     public class ViewWiki
     {
-        [Required]
-        public int id { get; set; }
+        ////[Required]
+        //public int id { get; set; }
         [Required]
         [Key]
         public string Name { get; set; }
@@ -46,7 +46,7 @@ namespace MultiPlex.Core.Data.ViewModels
                     ApplicationUser user = CommonTools.usrmng.GetUserbyID(md.Administrator);
                     if (user != null)
                     {
-                        this.id = md.id;
+                       // this.id = md.id;
                         this.Files = md.Files;
                         this.Categories = md.Categories;
                         this.Content = md.Content;
@@ -91,7 +91,7 @@ namespace MultiPlex.Core.Data.ViewModels
                 Wiki ap = new Wiki();
                     //ApplicationUser user = CommonTools.usrmng.GetUserbyID(md.Administrator);
                    
-                        ap.id = this.id;
+                      //  ap.id = this.id;
                  
                         ap.Files = this.Files;
                         ap.Categories = Categories;

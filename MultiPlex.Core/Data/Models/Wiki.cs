@@ -12,8 +12,8 @@ namespace MultiPlex.Core.Data.Models
 {
     public class Wiki
     {
-        [Required]
-        public int id { get; set; }
+        //[Required]
+     //  public int id { get; set; }
         [Required]
         [Key]
         public string Name { get; set; }
