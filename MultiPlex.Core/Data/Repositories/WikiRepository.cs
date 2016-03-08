@@ -91,6 +91,10 @@ namespace MultiPlex.Core.Data.Repositories
                 {
                    ap = db.Wikis.FirstOrDefault(w => w.Name == wikiname);
                   //  ap = db.Wikis.AsNoTracking().FirstOrDefault(w => w.Name == wikiname);
+                  if (ap.Moderators == null)
+                    {
+                        ap.Moderators = new List<WikiMods>();
+                    }
                 }
                 return ap;
             }
@@ -209,19 +213,16 @@ namespace MultiPlex.Core.Data.Repositories
                     {
                         wk.WikiTitle = wk.Name;
                     }
-                  
+                   // this.AddAModToNewWikiWithoutSave(wk, wk.Administrator);
                     this.db.Wikis.Add(wk);
-                   this.db.Configuration.ValidateOnSaveEnabled = false;
+                   //this.db.Configuration.ValidateOnSaveEnabled = false;
                     this.db.SaveChanges();
                    
                  
                     
                 }
             }
-            catch (ValidationException ex)
-            {
-                throw (ex);
-            }
+            catch (ValidationException ex){  CommonTools.ValidationErrorReporting(ex);        }
             catch (Exception ex)
             {
 
@@ -251,10 +252,7 @@ namespace MultiPlex.Core.Data.Repositories
                     }
                 }
             }
-            catch(ValidationException ex)
-            {
-                throw (ex);
-            }
+            catch (ValidationException ex) { CommonTools.ValidationErrorReporting(ex); }
             catch (Exception ex)
             {
 
@@ -278,10 +276,7 @@ namespace MultiPlex.Core.Data.Repositories
                 }
 
             }
-            catch (ValidationException ex)
-            {
-                throw (ex);
-            }
+            catch (ValidationException ex){  CommonTools.ValidationErrorReporting(ex);        }
             catch (Exception ex)
             {
 
@@ -307,10 +302,7 @@ namespace MultiPlex.Core.Data.Repositories
                 }
 
             }
-            catch (ValidationException ex)
-            {
-                throw (ex);
-            }
+            catch (ValidationException ex){  CommonTools.ValidationErrorReporting(ex);        }
             catch (Exception ex)
             {
 
@@ -402,6 +394,7 @@ namespace MultiPlex.Core.Data.Repositories
                 return ap;
 
             }
+            catch (ValidationException ex) { CommonTools.ValidationErrorReporting(ex); return null; }
             catch (Exception ex)
             {
 
@@ -475,10 +468,7 @@ namespace MultiPlex.Core.Data.Repositories
                 }
 
             }
-            catch(ValidationException ex)
-            {
-                throw (ex);
-            }
+            catch (ValidationException ex) { CommonTools.ValidationErrorReporting(ex); }
             catch (Exception ex)
             {
 
@@ -593,51 +583,7 @@ namespace MultiPlex.Core.Data.Repositories
                 return null;
             }
         }
-        [Obsolete("Is to be deleted")]
-        public void SaveorAddContent(string wikiname, int tid, string source, ApplicationUser user)
-        {
-            try
-            {
-                if (wikiname != null && tid > 0 && source != null)
-                {
-
-                    WikiContent cont;
-                    cont = new WikiContent();
-                    WikiTitle title = Get(wikiname, tid);
-                    if (title != null)
-                    {
-                        //  cont.Id = id;
-                        cont.Title = title;
-                        cont.Source = source;
-                        cont.Wiki = db.Wikis.FirstOrDefault(w => w.Name == wikiname);
-                        cont.WrittenBy = user.Id;
-                        if (this.CountWithTitleId(wikiname, tid) > 0)
-                        {
-                            cont.Version = this.CountWithTitleId(wikiname, tid) + 1;
-                        }
-                        else
-                        {
-                            cont.Version = 1;
-                        }
-                        cont.VersionDate = DateTime.Now;
-                        db.Content.Add(cont);
-
-
-                        db.SaveChanges();
-                    }
-                }
-
-
-
-            }
-            catch (Exception ex)
-            {
-
-                CommonTools.ErrorReporting(ex);
-                //return null;
-            }
-
-        }
+       
 
         public WikiTitle AddContentTitle(string wikiname, WikiTitle title , WikiContent cont,WikiCategory cat,ApplicationUser usr)
         {
@@ -691,11 +637,7 @@ namespace MultiPlex.Core.Data.Repositories
 
 
             }
-            catch(ValidationException x)
-            {
-                throw (x);
-                return null;
-            }
+            catch (ValidationException ex) { CommonTools.ValidationErrorReporting(ex);return null; }
             catch (Exception ex)
             {
 
@@ -773,10 +715,7 @@ namespace MultiPlex.Core.Data.Repositories
 
 
             }
-            catch (ValidationException x)
-            {
-                throw (x);
-            }
+            catch (ValidationException ex) { CommonTools.ValidationErrorReporting(ex); }
             catch (Exception ex)
             {
 
@@ -1050,6 +989,7 @@ namespace MultiPlex.Core.Data.Repositories
                 }
                
             }
+            catch (ValidationException ex) { CommonTools.ValidationErrorReporting(ex); }
             catch (Exception ex)
             {
 
@@ -1138,6 +1078,7 @@ namespace MultiPlex.Core.Data.Repositories
                 }
 
             }
+            catch (ValidationException ex) { CommonTools.ValidationErrorReporting(ex); }
             catch (Exception ex)
             {
 
@@ -1176,10 +1117,7 @@ namespace MultiPlex.Core.Data.Repositories
                     }
                 }
             }
-            catch(ValidationException ex)
-            {
-                throw (ex);
-            }
+            catch (ValidationException ex) { CommonTools.ValidationErrorReporting(ex); }
             catch (Exception ex)
             {
 
@@ -1214,6 +1152,7 @@ namespace MultiPlex.Core.Data.Repositories
                     }
                 }
             }
+            catch (ValidationException ex) { CommonTools.ValidationErrorReporting(ex); }
             catch (Exception ex)
             {
 
@@ -1257,6 +1196,7 @@ namespace MultiPlex.Core.Data.Repositories
 
                 }
             }
+            catch (ValidationException ex) { CommonTools.ValidationErrorReporting(ex); }
             catch (Exception ex)
             {
 
@@ -1583,6 +1523,7 @@ namespace MultiPlex.Core.Data.Repositories
                 }
 
             }
+            catch (ValidationException ex) { CommonTools.ValidationErrorReporting(ex); }
             catch (Exception ex)
             {
 
@@ -1618,6 +1559,76 @@ namespace MultiPlex.Core.Data.Repositories
             }
 
         }
+        public void AddAModToNewWiki(Wiki wk ,string mod)
+        {
+            try
+            {
+                if ( wk !=null && CommonTools.isEmpty(mod)==false )
+                {
+
+                    if (wk.Moderators != null)
+                    {
+                        WikiMods wm = new WikiMods();
+                        wm.Moderator = mod;
+                        wm.Wiki = wk;
+                        if ( wk.Moderators.FirstOrDefault(x=>x.Moderator==mod && x.Wiki.Name==wk.Name)==null)
+                        {
+                            wk.Moderators.Add(wm);
+                        }
+                        
+
+                    }
+                    else
+                    {
+                        wk.Moderators = new List<WikiMods>();
+                        WikiMods wm = new WikiMods();
+                        wm.Moderator = mod;
+                        wm.Wiki = wk;
+                        if (wk.Moderators.FirstOrDefault(x => x.Moderator == mod && x.Wiki.Name == wk.Name) == null)
+                        {
+                            wk.Moderators.Add(wm);
+                        }
+
+                    }
+                    
+                }
+
+            }
+            catch (ValidationException ex) { CommonTools.ValidationErrorReporting(ex); }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                //return null;
+            }
+        }
+        public void AddAModToWiki(string wikiname, string mod)
+        {
+            try
+            {
+                if (wikiname != null &&  CommonTools.isEmpty(wikiname) ==false
+                    &&CommonTools.isEmpty(mod) == false)
+                {
+
+                     if ( this.WikiExists(wikiname))
+                    {
+                        Wiki wk = this.GetWiki(wikiname);
+                        this.AddAModToNewWiki(wk, mod);
+                        this.EditWikiBasicInfo(wk, wikiname);
+                    }
+
+                }
+
+            }
+            catch (ValidationException ex) { CommonTools.ValidationErrorReporting(ex); }
+            catch (Exception ex)
+            {
+
+                CommonTools.ErrorReporting(ex);
+                //return null;
+            }
+        }
+
         #endregion
 
     }

@@ -130,22 +130,23 @@ namespace MultiPlex.Core.Managers
                         if (inv != null)
                         {
 
-                            if (wk.Moderators != null)
-                            {
-                                WikiMods wm = new WikiMods();
-                                wm.Moderator = inv.Moderator;
-                                wm.Wiki = wk;
-                                wk.Moderators.Add(wm);
-                            }
-                            else
-                            {
-                                wk.Moderators = new List<WikiMods>();
-                                WikiMods wm = new WikiMods();
-                                wm.Moderator = inv.Moderator;
-                                wm.Wiki = wk;
-                                wk.Moderators.Add(wm);
+                            //if (wk.Moderators != null)
+                            //{
+                            //    WikiMods wm = new WikiMods();
+                            //    wm.Moderator = inv.Moderator;
+                            //    wm.Wiki = wk;
+                            //    wk.Moderators.Add(wm);
+                            //}
+                            //else
+                            //{
+                            //    wk.Moderators = new List<WikiMods>();
+                            //    WikiMods wm = new WikiMods();
+                            //    wm.Moderator = inv.Moderator;
+                            //    wm.Wiki = wk;
+                            //    wk.Moderators.Add(wm);
 
-                            }
+                            //}
+                            this.wrepo.AddAModToWiki(wikiname, inv.Moderator);
                             wkmngr.EditBasicInfo(wk, wikiname);
 
                             this.DeleteModeratorInvite(wikiname, invid, adm);

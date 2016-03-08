@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using BlackCogs.Data.Models;
 
 namespace MultiPlex.Core.Data.Models
@@ -22,6 +23,7 @@ namespace MultiPlex.Core.Data.Models
         //    this.WrittenBy = writtenBy;
         //}
         [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
         public virtual WikiTitle Title { get; set; }
