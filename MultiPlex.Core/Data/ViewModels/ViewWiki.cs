@@ -115,7 +115,7 @@ namespace MultiPlex.Core.Data.ViewModels
                 }
                         if (Moderators != null)
                         {
-                            List<string> mods = new List<string>();
+                            //List<string> mods = new List<string>();
                     ap.Moderators = new List<WikiMods>();
 
                             foreach (var m in this.Moderators)
