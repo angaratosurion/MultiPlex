@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using BlackCogs.Interfaces;
 
 namespace MultiPlex.Core.Application
 {
-    public class RouteConfig
+    [Export(typeof(IRouteRegistrar)), ExportMetadata("Order", 101)]
+
+    public class RouteConfig:IRouteRegistrar
     {
-        public static void RegisterRoutes(RouteCollection routes)
+        public  void RegisterRoutes(RouteCollection routes)
         {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             
             routes.MapRoute(
                 name: "Default",
@@ -51,6 +54,13 @@ namespace MultiPlex.Core.Application
             //    new { id = @"\d+" }
             //    );
         }
-        
+
+        public void RegisterIgnoreRoutes(RouteCollection routes)
+        {
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+        }
+
+       
     }
 }
