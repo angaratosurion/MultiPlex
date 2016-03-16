@@ -157,6 +157,10 @@ namespace MultiPlex.Core.Controllers
 
 
                 List<ViewWikiFile> vlist = new List<ViewWikiFile>();
+                if ( lst == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+                }
                 foreach (var v in lst)
                 {
                     ViewWikiFile vf = new ViewWikiFile();

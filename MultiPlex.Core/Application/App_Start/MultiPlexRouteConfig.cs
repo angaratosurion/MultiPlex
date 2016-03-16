@@ -11,7 +11,7 @@ namespace MultiPlex.Core.Application
 {
     [Export(typeof(IRouteRegistrar)), ExportMetadata("Order", 101)]
 
-    public class RouteConfig:IRouteRegistrar
+    public class MultiPlexRouteConfig : IRouteRegistrar
     {
         public  void RegisterRoutes(RouteCollection routes)
         {

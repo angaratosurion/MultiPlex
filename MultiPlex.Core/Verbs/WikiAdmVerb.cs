@@ -35,6 +35,14 @@ namespace MultiPlex.Core.Verbs
             }
         }
 
+        public bool isAdminPalnel
+        {
+            get
+            {
+                return false;
+            }
+        }
+
         public string Name
         {
             get

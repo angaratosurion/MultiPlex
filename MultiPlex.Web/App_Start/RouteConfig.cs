@@ -7,7 +7,7 @@ using System.Web.Routing;
 
 namespace MultiPlex.Web
 {
-    public class RouteConfig : MultiPlex.Core.Application.RouteConfig
+    public class RouteConfig : MultiPlex.Core.Application.MultiPlexRouteConfig
     {
         //public static void RegisterRoutes(RouteCollection routes)
         //{

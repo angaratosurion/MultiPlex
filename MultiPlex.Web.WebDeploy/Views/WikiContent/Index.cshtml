@@ -7,8 +7,23 @@
 <h2>Index</h2>
 
 <p>
+    @{
+        var routval = "";
+
+        routval=(string)Request.RequestContext.RouteData.Values["wikiname"];
+        var wkname="";
+        if ( routval !=null)
+        {
+            wkname = routval;
+        }
+        else
+        {
+            wkname= Request.QueryString["wikiname"];
+        }
+
+    }}
     @Html.ActionLink("Create New", "CreateContent",
-    new  {wikiname=Request.RequestContext.RouteData.Values["wikiname"] ,
+    new  {wikiname=wkname,
     cid = Request.QueryString.Get("cid")})
 </p>
 <table class="table">

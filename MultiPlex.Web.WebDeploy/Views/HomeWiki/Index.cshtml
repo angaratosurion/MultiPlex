@@ -20,7 +20,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.WikiTitle)
@@ -29,11 +30,33 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "EditWiki", new { wikiname=item.Name }) |
-            @Html.ActionLink("Details", "Details", new { wikiname = item.Name }) |
-            @Html.ActionLink("Delete", "Delete", new { wikiname = item.Name })
+           
+                @{var wk = item.ExportToModel();
+
+                    BlackCogs.Data.Models.ApplicationUser usr = null;
+                    if (User.Identity.Name != "")
+                    {
+                        usr = CommonTools.usrmng.GetUser(User.Identity.Name);
+                    }
+                }
+                @if (CommonTools.usrmng.UserHasAccessToWiki(usr, wk, false)==true)
+                {
+                    @Html.ActionLink("Edit", "EditWiki", new { wikiname = item.Name })@Html.Raw(" | ")
+                }
+
+                    @Html.ActionLink("Details", "Details", new { wikiname = item.Name }) 
+              @if (CommonTools.usrmng.UserHasAccessToWiki(usr, wk, false)==true)
+              { @Html.Raw(" | ")
+                    @Html.ActionLink("Delete", "Delete", new { wikiname = item.Name })
+                }
+
+                    
+                   
+           
         </td>
+       
     </tr>
 }
+   
 
 </table>
