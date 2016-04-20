@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlackCogs.Interfaces;
+using MultiPlex.Core.Application;
 
 namespace MultiPlex.Core.Verbs
 {
@@ -49,6 +50,23 @@ namespace MultiPlex.Core.Verbs
             get
             {
                 return "Site Administration";
+            }
+        }
+        public string Moduledescription
+        {
+            get
+            {
+                Info inf = new Info();
+                return inf.Description;
+            }
+        }
+
+        public string ModuleName
+        {
+            get
+            {
+                Info inf = new Info();
+                return inf.Name;
             }
         }
     }
