@@ -39,7 +39,7 @@ namespace MultiPlex.Core.Application
                 //RouteConfig.RegisterRoutes(RouteTable.Routes);
                 BundleConfig.RegisterBundles(BundleTable.Bundles);
                 BootStrap();
-                Bootstrapper.RegisterRoutes();
+              //  Bootstrapper.RegisterRoutes();
                 
              
             }
