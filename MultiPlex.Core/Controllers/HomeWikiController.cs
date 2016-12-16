@@ -23,6 +23,12 @@ namespace MultiPlex.Core.Controllers
         {
             wmngr = new WikiManager();
         }
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
         // GET: HomeWiki
         public ActionResult Index()
         {

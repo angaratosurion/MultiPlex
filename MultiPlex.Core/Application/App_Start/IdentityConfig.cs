@@ -37,6 +37,7 @@ namespace MultiPlex.Core.Application
             : base(store)
         {
         }
+        /*
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
@@ -84,7 +85,7 @@ namespace MultiPlex.Core.Application
             }
             return manager;
         }
-
+        */
     }
 
     // Configure the application sign-in manager which is used in this application.
@@ -99,11 +100,11 @@ namespace MultiPlex.Core.Application
         //{
         //    return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
         //}
-
+        /*
         public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
         {
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
-        }
+        }*/
     }
     //public class ApplicationRoleManager : RoleManager<IdentityRole>
 
