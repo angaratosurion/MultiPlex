@@ -18,6 +18,7 @@ using MultiPlex.Core.Data.ViewModels.Identity;
 using BlackCogs.Data.ViewModels.Identity;
 using BlackCogs.Data.Models;
 using BlackCogs.Data.ViewModels;
+using BlackCogs.Managers;
 
 namespace MultiPlex.Core.Controllers
 {
@@ -118,6 +119,8 @@ namespace MultiPlex.Core.Controllers
                 if (user != null)
                 {
                     this.wkmngr.DeleteWikiByAdm(user.UserName);
+                  BlackCogsUserManager mnger= new BlackCogsUserManager(this.UserManager,this.SignInManager);
+                    mnger.DeleteUser(user.UserName);
                 }
                
                 return RedirectToAction("Index");

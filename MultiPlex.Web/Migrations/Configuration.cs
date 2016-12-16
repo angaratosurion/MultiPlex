@@ -43,6 +43,7 @@ namespace MultiPlex.Web.Migrations
             
 
             adm.Email = "admin@localhost.com";
+            adm.UserName = "admin";
 
             mngr.Create(adm, "Adm!n0");
            
