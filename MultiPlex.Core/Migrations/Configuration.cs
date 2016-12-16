@@ -42,7 +42,10 @@ namespace MultiPlex.Core.Migrations
 
             context.SaveChanges();
             ApplicationUser adm = new ApplicationUser();
+           
             adm.Email = "admin@localhost.com";
+            adm.UserName = adm.Email;
+            adm.DisplayName = "Admin";
             mngr.Create(adm, "Adm!n0");
             IdentityRole adrol = context.Roles.First(x => x.Name == "Administrators");
             adm = mngr.FindByEmail("admin@localhost.com");
