@@ -36,6 +36,7 @@
 </dl>
 <hr/>
 <h4>@Html.DisplayNameFor(model => model.ModeratorInvites)</h4>
+
 <table class="table">
     <tr>
         <th>
@@ -51,8 +52,10 @@
 
     </tr>
      @{ var mods = Model.ModeratorInvites;}
-    @foreach (var item in Model.ModeratorInvites)
-{
+    @if(mods!=null)
+    {
+        foreach (var item in Model.ModeratorInvites)
+        {
         <tr>
             <td>
                 @*@Html.DisplayFor(modelItem => item.UserName)*@
@@ -74,6 +77,12 @@
             </td>
         </tr>
     }
+    }
+    else
+    {
+       <p> There is no requests for Moderators</p>   
+     }
+    
 
 </table>
 <div>

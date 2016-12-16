@@ -34,7 +34,7 @@
                         </dt>
 
                         <dd>
-                           @Html.ActionLink(Model.Administrator.UserName, "Details", "WikiUser", 
+                           @Html.ActionLink(Model.Administrator.DisplayName, "Details", "WikiUser", 
                           new { username = Model.Administrator.UserName }, htmlAttributes: null) 
                         </dd>
                         <dd>
@@ -46,7 +46,7 @@
                                     var mods = Model.Moderators.ToList();
                                     foreach (var mod in mods)
                                     {
-                                        <li> @Html.ActionLink(mod.UserName,"Details", "WikiUser", new { username = mod.UserName },htmlAttributes:null)  </li>
+                                        <li> @Html.ActionLink(mod.DisplayName,"Details", "WikiUser", new { username = mod.UserName },htmlAttributes:null)  </li>
                                     }
 
                                         }
