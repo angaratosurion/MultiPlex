@@ -37,7 +37,7 @@ namespace MultiPlex.Core.Application
             : base(store)
         {
         }
-        /*
+       
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
@@ -60,7 +60,7 @@ namespace MultiPlex.Core.Application
             };
 
             // Configure user lockout defaults
-            manager.UserLockoutEnabledByDefault = true;
+            manager.UserLockoutEnabledByDefault = false;
             manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
             manager.MaxFailedAccessAttemptsBeforeLockout = 5;
 
@@ -85,7 +85,7 @@ namespace MultiPlex.Core.Application
             }
             return manager;
         }
-        */
+        
     }
 
     // Configure the application sign-in manager which is used in this application.
@@ -100,11 +100,11 @@ namespace MultiPlex.Core.Application
         //{
         //    return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
         //}
-        /*
+        
         public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
         {
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
-        }*/
+        }
     }
     //public class ApplicationRoleManager : RoleManager<IdentityRole>
 

@@ -24,12 +24,14 @@ namespace MultiPlex.Core.Controllers
 
         public ManageController()
         {
+           // UserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            //SignInManager = HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
-            UserManager = userManager;
-            SignInManager = signInManager;
+            UserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            SignInManager =  HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
         }
 
         public ApplicationSignInManager SignInManager
@@ -60,6 +62,8 @@ namespace MultiPlex.Core.Controllers
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
+            UserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            SignInManager = HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
