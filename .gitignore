@@ -11,3 +11,4 @@ sample/
 packages/
 *.log
 Backups/*
+*.tmp
