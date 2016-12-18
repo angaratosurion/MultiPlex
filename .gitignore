@@ -10,3 +10,4 @@ sample/
 *.sln.cache
 packages/
 *.log
+*/Backups/*
