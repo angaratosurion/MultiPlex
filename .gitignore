@@ -10,7 +10,7 @@ sample/
 *.sln.cache
 packages/
 *.log
-*/Backups/*
+Backups/*
 Backups/MultiPlex-15-12-2015.7z
 Backups/MultiPlex-9-2-2016.7z
 Backups/MultiPlex-16-12-2015.7z
