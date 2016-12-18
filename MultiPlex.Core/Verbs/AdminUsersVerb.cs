@@ -55,7 +55,7 @@ namespace MultiPlex.Core.Verbs
         {
             get
             {
-                Info inf = new Info();
+                MultiPlexInfo inf = new MultiPlexInfo();
                 return inf.Description;
             }
         }
@@ -64,7 +64,7 @@ namespace MultiPlex.Core.Verbs
         {
             get
             {
-                Info inf = new Info();
+                MultiPlexInfo inf = new MultiPlexInfo();
                 return inf.Name;
             }
         }

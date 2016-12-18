@@ -10,7 +10,7 @@ using BlackCogs.Interfaces;
 namespace MultiPlex.Core.Application
 {
     [Export(typeof(IModuleInfo))]
-       public class Info : IModuleInfo
+       public class MultiPlexInfo : IModuleInfo
     {
         public string Description
         {

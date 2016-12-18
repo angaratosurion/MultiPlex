@@ -165,7 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\Application.cs" />
-    <Compile Include="Application\Info.cs" />
+    <Compile Include="Application\MultiPlexInfo.cs" />
     <Compile Include="Application\App_Start\BundleConfig.cs" />
     <Compile Include="Application\App_Start\FilterConfig.cs" />
     <Compile Include="Application\App_Start\IdentityConfig.cs" />
