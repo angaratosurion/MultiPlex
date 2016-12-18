@@ -27,8 +27,8 @@
                         </dt>
 
                         <dd>
-                            @Html.ActionLink(Model.Moderator.UserName, "Details", "WikiUser",
-                    new { username = Model.Moderator.UserName }, htmlAttributes: null)
+                            @Html.ActionLink(Model.Moderator.DisplayName, "Details", "WikiUser",
+                    new { usernameid = Model.Moderator.Id }, htmlAttributes: null)
                         </dd>
                         <dt>
                             @Html.ActionLink("Accept","AcceptModInvitation",new {wikiname=Model.Wiki.Name,id=Model.Id })

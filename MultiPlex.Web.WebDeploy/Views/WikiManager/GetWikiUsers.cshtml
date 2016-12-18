@@ -13,7 +13,7 @@
 
     <dd>      
         @Html.ActionLink(Model.Administrator.UserName, "Details","WikiUser",
-                    new { username = Model.Administrator.UserName },htmlAttributes:null)
+                    new { usernameid = Model.Administrator.Id },htmlAttributes:null)
     </dd>
 
     <dt>
@@ -56,7 +56,7 @@
             <td>
                 @*@Html.DisplayFor(modelItem => item.UserName)*@
                 @Html.ActionLink(item.UserName, "Details","WikiUser",
-                    new { username = item.UserName }, htmlAttributes: null)
+                    new { usernameid = item.Id }, htmlAttributes: null)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)

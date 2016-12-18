@@ -27,8 +27,8 @@
     </dt>
 
     <dd>
-       @Html.ActionLink(Model.Wiki.Administrator.UserName, "Details", "WikiUser",
-                    new { username = Model.Wiki.Administrator.UserName }, htmlAttributes: null)
+       @Html.ActionLink(Model.Wiki.Administrator.DisplayName, "Details", "WikiUser",
+                    new { usernameid = Model.Wiki.Administrator.Id }, htmlAttributes: null)
     </dd>
 
     
@@ -59,8 +59,8 @@
         <tr>
             <td>
                 @*@Html.DisplayFor(modelItem => item.UserName)*@
-                @Html.ActionLink(item.Moderator.UserName, "Details", "WikiUser",
-         new { username = item.Moderator.UserName }, htmlAttributes: null)
+                @Html.ActionLink(item.Moderator.DisplayName, "Details", "WikiUser",
+         new { usernameid = item.Moderator.Id }, htmlAttributes: null)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Moderator.Email)

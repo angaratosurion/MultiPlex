@@ -137,18 +137,19 @@ namespace MultiPlex.Core.Controllers
        
         #endregion
         #region WikiUserEdit
-        public ActionResult Details(string username)
+      
+        public ActionResult Details(string usernameid)
         {
             try
             {
 
 
-                if (CommonTools.isEmpty(username) == true)
+                if (CommonTools.isEmpty(usernameid) == true)
                 {
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
                 }
 
-                ApplicationUser adm = this.usremngr.GetUser(username);
+                ApplicationUser adm = this.usremngr.GetUserbyID(usernameid);
                 if (adm == null)
                 {
                     return new HttpStatusCodeResult(System.Net.HttpStatusCode.NotFound);

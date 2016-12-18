@@ -106,6 +106,7 @@ namespace MultiPlex.Core.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
             }
         }
+        [AllowAnonymous]
         public ActionResult GetTitleFiles(string wikiname,int tid)
         {
             try
@@ -140,6 +141,7 @@ namespace MultiPlex.Core.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
             }
         }
+        [AllowAnonymous]
         public ActionResult Gallery(string wikiname, int tid)
         {
             try
@@ -246,6 +248,7 @@ namespace MultiPlex.Core.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
             }
         }
+        [AllowAnonymous]
         public ActionResult Details(string wikiname, int fid)
         {
             try
