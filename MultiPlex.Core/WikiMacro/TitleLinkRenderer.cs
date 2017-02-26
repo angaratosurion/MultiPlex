@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using MultiPlex.Formatting.Renderers;
+
 using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Helpers;
 using MultiPlex.Core.Data.Repositories;
+using WikiPlex.Formatting.Renderers;
 
 namespace MultiPlex.Core.WikiMacro
 {

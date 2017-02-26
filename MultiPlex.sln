@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2677E587-725B-45C0-9E79-60FDCFAA2393}"
 	ProjectSection(SolutionItems) = preProject
@@ -9,10 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2677E5
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiPlex", "MultiPlex\MultiPlex.csproj", "{3EA6CBE4-2523-4BB3-8926-9A1746774741}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiPlex.Web.Sample", "MultiPlex.Web.Sample\MultiPlex.Web.Sample.csproj", "{38F27781-7D44-475D-BA02-A1B97C0D875E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiPlex.Web", "MultiPlex.Web\MultiPlex.Web.csproj", "{5CEECB04-F597-4AB0-847C-5452393CA1D8}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -27,24 +23,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiPlex.Core", "MultiPlex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackCogs", "..\BlackCogs\BlackCogs\BlackCogs.csproj", "{B17EDE4E-7C83-40D7-BE1B-5B54598F0D30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WikiPlex.Web.Sample", "WikiPlex.Web.Sample\WikiPlex.Web.Sample.csproj", "{38F27781-7D44-475D-BA02-A1B97C0D875E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WikiPlex", "WikiPlex\WikiPlex.csproj", "{3EA6CBE4-2523-4BB3-8926-9A1746774741}"
+EndProject
 Global
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3EA6CBE4-2523-4BB3-8926-9A1746774741}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3EA6CBE4-2523-4BB3-8926-9A1746774741}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3EA6CBE4-2523-4BB3-8926-9A1746774741}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3EA6CBE4-2523-4BB3-8926-9A1746774741}.Release|Any CPU.Build.0 = Release|Any CPU
-		{38F27781-7D44-475D-BA02-A1B97C0D875E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{38F27781-7D44-475D-BA02-A1B97C0D875E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{38F27781-7D44-475D-BA02-A1B97C0D875E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{38F27781-7D44-475D-BA02-A1B97C0D875E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5CEECB04-F597-4AB0-847C-5452393CA1D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5CEECB04-F597-4AB0-847C-5452393CA1D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CEECB04-F597-4AB0-847C-5452393CA1D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,8 +45,20 @@ Global
 		{B17EDE4E-7C83-40D7-BE1B-5B54598F0D30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B17EDE4E-7C83-40D7-BE1B-5B54598F0D30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B17EDE4E-7C83-40D7-BE1B-5B54598F0D30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38F27781-7D44-475D-BA02-A1B97C0D875E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38F27781-7D44-475D-BA02-A1B97C0D875E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38F27781-7D44-475D-BA02-A1B97C0D875E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38F27781-7D44-475D-BA02-A1B97C0D875E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EA6CBE4-2523-4BB3-8926-9A1746774741}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EA6CBE4-2523-4BB3-8926-9A1746774741}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EA6CBE4-2523-4BB3-8926-9A1746774741}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EA6CBE4-2523-4BB3-8926-9A1746774741}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 EndGlobal

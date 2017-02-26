@@ -11,9 +11,12 @@ using MultiPlex.Core.Data.Models;
 using MultiPlex.Core.Data.Repositories;
 using MultiPlex.Core.Data.ViewModels;
 using MultiPlex.Core.WikiMacro;
-using MultiPlex.Formatting.Renderers;
+
 
 using BlackCogs.Data.Models;
+using WikiPlex;
+using WikiPlex.Formatting.Renderers;
+
 namespace MultiPlex.Core.Managers
 {
     public class ContentManager

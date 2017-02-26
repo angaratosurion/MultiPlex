@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
-using MultiPlex.Compilation;
-using MultiPlex.Compilation.Macros;
+
 using MultiPlex;
+using WikiPlex;
+using WikiPlex.Compilation;
+using WikiPlex.Compilation.Macros;
 
 namespace MultiPlex.Core.WikiMacro
 {
