@@ -13,35 +13,22 @@ namespace MultiPlex.Core.Application
 {
     public class Application : BlackCogs.Application.Application //System.Web.HttpApplication
     {
-       
-        //[Import]
-        //private CustomControllerFactory ControllerFactory;
 
-        protected  void  Application_Start()
+
+        protected void Application_Start()
         {
             try
             {
-                //var pluginFolders = new List<string>();
+                base.Application_Start();
 
-                //var plugins = Directory.GetDirectories(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                //    "Modules")).ToList();
-
-
-                //    plugins.ForEach(s =>
-                //    {
-                //        var di = new DirectoryInfo(s);
-                //        pluginFolders.Add(di.Name);
-                //    });
-                //base.Application_Start();
-               
                 AreaRegistration.RegisterAllAreas();
                 FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
                 //RouteConfig.RegisterRoutes(RouteTable.Routes);
                 BundleConfig.RegisterBundles(BundleTable.Bundles);
                 BootStrap();
-              //  Bootstrapper.RegisterRoutes();
-                
-             
+
+
+
             }
             catch (Exception ex)
             {
@@ -51,10 +38,9 @@ namespace MultiPlex.Core.Application
         }
         protected void Application_Error()
         {
-            //Exception lastException = Server.GetLastError();
-            //CommonTools.ErrorReporting(lastException);
+
             base.Application_Error();
-            
+
         }
 
     }

@@ -47,12 +47,13 @@ namespace MultiPlex.Core.Application
                 new { id = @"\d+", action = @"\w+" }
                 );
          */
+         
             BlackRouteCollectionExtensions.MapRouteWithName(routes,"Default", "{controller}/{action}/{wikiname}",
-                defaults: new { controller = "HomeWiki", action = "Index", wikiname = UrlParameter.Optional });
+              new { controller = "HomeWiki", action = "Index", wikiname = UrlParameter.Optional });
 
             BlackRouteCollectionExtensions.MapRouteWithName(routes, "History",
                 "{wikiname}/{id}/{slug}/v{version}",
-                new { controller = "HomeWiki", action = "ViewContentVersion" },  new { id = @"\d+", version = @"\d+" }     );
+                new { controller = "HomeWiki", action = "ViewContentVersion" },  new { id = @"\d+", version = @"\d+" } );
             BlackRouteCollectionExtensions.MapRouteWithName(routes, "Source",
                 "{wikiname}/{id}/{slug}/source/v{version}",
                 new { controller = "HomeWiki", action = "GetWikiSource" },
