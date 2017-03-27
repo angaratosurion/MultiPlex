@@ -185,7 +185,6 @@
     <Compile Include="Configuration\ConfigurationConstants.cs" />
     <Compile Include="Configuration\SettingsManager.cs" />
     <Compile Include="Controllers\HomeWikiController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MultiPlexAccountController.cs" />
     <Compile Include="Controllers\WikiAdminSiteController.cs" />
     <Compile Include="Controllers\WikiCategoryController.cs" />
