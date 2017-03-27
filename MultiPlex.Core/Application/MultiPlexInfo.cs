@@ -9,8 +9,8 @@ using BlackCogs.Interfaces;
 
 namespace MultiPlex.Core.Application
 {
-    [Export(typeof(IModuleInfo)), ExportMetadata("ID", "2") ]
-       public class MultiPlexInfo : IModuleInfo
+    [Export(typeof(IModuleInfo)), ExportMetadata("Type", "ModuleInfo2")]
+    public class MultiPlexInfo : IModuleInfo
     {
         public string Description
         {

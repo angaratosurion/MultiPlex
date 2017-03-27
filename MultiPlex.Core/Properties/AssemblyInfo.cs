@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using BlackCogs.Attributes.Assembly;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -34,3 +35,6 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("0.0.7.7")]
 [assembly: AssemblyFileVersion("0.0.7.7")]
+
+[assembly: ModuleInfoAssemblyWebSite("http://pariskoutsioukis.net/blog/category/MultiPlex")]
+[assembly: ModuleInfoAssemblySourceCode("https://github.com/angaratosurion/MultiPlex")]
